@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 7 Específico SS — Acción Protectora</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #0d0f14; --surface: #141720; --border: #252a38;
+    --accent: #e8c840; --accent2: #3d9eff; --accent3: #ff5f5f;
+    --accent4: #4ade80; --accent5: #c084fc;
+    --text: #d4d8e8; --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 13px; line-height: 1.6; padding: 32px 24px; max-width: 980px; margin: 0 auto; }
+  .header { border-left: 4px solid var(--accent4); padding: 16px 20px; margin-bottom: 32px; background: var(--surface); }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent4); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .block-title { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin: 22px 0 11px 0; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .info { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .info .ilabel { font-family: var(--mono); font-size: 9px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+  .sub-head { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 10px 0 6px 0; }
+
+  /* AUTOMATICIDAD CARDS */
+  .auto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .auto-card { padding: 16px; }
+  .auto-num { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .auto-list { margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 7 — Acción Protectora: Contenido, Clasificación y Reintegro</h1>
+  <div class="sub">Arts. 2, 42-46, 55, 156-167 TRLGSS · RD 1415/2004 · RD 148/1996</div>
+</div>
+
+<!-- BLOQUE 1: PRINCIPIOS Y CONTENIDO -->
+<div class="section-label">01 · Principios generales y contenido de la acción protectora (arts. 2, 42-44 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Principios fundamentales (art. 2 TRLGSS)</div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">Universalidad</span> · <span class="pill pill-g">Unidad</span> · <span class="pill pill-g">Solidaridad</span> · <span class="pill pill-g">Igualdad</span></span></div>
+    <div class="sub-head">Contingencias protegidas (art. 42)</div>
+    <div class="item"><span class="arrow">→</span><span>Asistencia sanitaria (maternidad, enfermedad común o profesional, accidentes)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Recuperación profesional</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>IT</strong> · <strong>NYCM</strong> · Riesgo embarazo/lactancia · Cuidado menores cáncer</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>IP</strong> · <strong>Jubilación</strong> · <strong>Desempleo</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Muerte y supervivencia (viudedad, orfandad, favor de familiares)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>IMV</strong></span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Características de las prestaciones (art. 44 TRLGSS)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Regla general:</strong> NO pueden ser objeto de retención, cesión, compensación ni descuento</span></div>
+    <div class="sub-head">Excepciones legales</div>
+    <div class="item"><span class="arrow">→</span><span>Obligaciones <strong>alimenticias</strong> a favor de cónyuge e hijos (embargos judiciales)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Obligaciones contraídas por el beneficiario <strong>dentro de la SS</strong></span></div>
+    <div class="sub-head">Exención fiscal — IRPF</div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-y">Exentas:</span> Pensiones de <strong>IPA y Gran Invalidez</strong> · Prestaciones por NYCM · Prestaciones familiares no contributivas · <strong>IMV</strong></span></div>
+    <div class="sub-head">Número de pagas (art. 46)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Contingencias comunes:</strong> <span class="pill pill-y">14 pagas</span> (12 ordinarias + 2 extras en junio y noviembre)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>AT/EP:</strong> <span class="pill pill-r">12 pagas</span> (extras prorrateadas dentro de las mensualidades)</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 2: REINTEGRO -->
+<div class="section-label">02 · Reintegro de prestaciones indebidas (art. 55 TRLGSS · RD 1415/2004 · RD 148/1996)</div>
+<div class="grid-2">
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Obligación y prescripción</div>
+    <div class="item"><span class="arrow">→</span><span>Toda persona que haya percibido indebidamente prestaciones tiene <strong>obligación de reintegrar</strong> su importe</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Prescripción:</strong> <span class="pill pill-r">4 años</span> contados desde la fecha de cobro o desde que fue posible ejercitar la acción de devolución</span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Procedimientos de reintegro</div>
+    <div class="sub-head">Procedimiento general (RD 1415/2004)</div>
+    <div class="item"><span class="arrow">→</span><span>Reclamación de la <strong>TGSS</strong>. Plazo voluntario: desde la notificación hasta el <span class="pill pill-b">último día hábil del mes siguiente</span></span></div>
+    <div class="item"><span class="arrow">→</span><span>Fraccionamiento permitido: mínimo <span class="pill pill-b">100 €/mes</span>, máximo <span class="pill pill-b">5 años</span></span></div>
+    <div class="item"><span class="arrow">→</span><span>Impago de <span class="pill pill-r">3 plazos</span> → vía ejecutiva de apremio por la totalidad</span></div>
+    <div class="sub-head">Procedimiento especial (RD 148/1996)</div>
+    <div class="item"><span class="arrow">→</span><span>Por <strong>descuento directo</strong> cuando el deudor es simultáneamente acreedor de prestaciones económicas corrientes gestionadas por entidades gestoras</span></div>
+    <div class="item"><span class="arrow">→</span><span>Plazo máximo por esta vía: <span class="pill pill-b">5 años</span></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 3: REQUISITOS GENERALES -->
+<div class="section-label">03 · Requisitos generales del derecho a las prestaciones (arts. 165-166 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Requisitos generales (art. 165)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>1.</strong> Estar <strong>afiliado y en alta</strong> (o situación asimilada) en el régimen correspondiente</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>2.</strong> Tener cubierto el <strong>período mínimo de cotización</strong> (carencia) previo</span></div>
+    <div class="note">
+      <div class="nlabel">Excepción a la carencia</div>
+      Las prestaciones derivadas de <strong>AT, EP y accidente no laboral</strong> no exigen período mínimo de cotización previo → <strong>carencia cero</strong>
+    </div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Alta de pleno derecho (art. 166 TRLGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Los trabajadores se consideran en alta de pleno derecho aunque el empresario haya incumplido totalmente sus obligaciones de afiliación y alta, a efectos de:</span></div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-y">AT</span> · <span class="pill pill-y">EP</span> · <span class="pill pill-y">Desempleo</span></span></div>
+    <div class="item"><span class="arrow">→</span><span>+ Asistencia sanitaria por <strong>enfermedad común, accidente no laboral y maternidad</strong></span></div>
+    <div class="alert">
+      <div class="alabel">⚠ Cepo de examen</div>
+      El alta de pleno derecho cubre <strong>AT, EP y desempleo</strong> sin necesidad de que el empresario haya cumplido. Para el resto (IT, jubilación, IP, MYS por CC) se requiere que el trabajador esté efectivamente en alta o asimilada.
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 4: AUTOMATICIDAD -->
+<div class="section-label">04 · Automaticidad de prestaciones y anticipo (art. 167.3 TRLGSS)</div>
+<div class="auto-grid">
+  <div class="block red auto-card">
+    <div class="auto-num" style="color:var(--accent3);">Automaticidad Absoluta o Plena</div>
+    <div class="item"><span class="arrow">→</span><span>El trabajador tiene derecho a la protección <strong>total e inmediata</strong> aunque el empresario <strong>no le haya dado de alta</strong></span></div>
+    <div class="auto-list">
+      <div class="item"><span class="arrow">→</span><span>Prestaciones derivadas de <span class="pill pill-r">AT y EP</span></span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">Desempleo</span></span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">Asistencia sanitaria</span> (enfermedad común, accidente no laboral, maternidad)</span></div>
+    </div>
+  </div>
+  <div class="block blue auto-card">
+    <div class="auto-num" style="color:var(--accent2);">Automaticidad Relativa</div>
+    <div class="item"><span class="arrow">→</span><span>Opera la automaticidad solo si el trabajador se encuentra <strong>en alta o situación asimilada</strong> en el momento del hecho causante</span></div>
+    <div class="auto-list">
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-b">IT</span> por contingencias comunes</span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-b">NYCM</span></span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-b">Jubilación</span></span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-b">IP</span> por contingencias comunes</span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-b">MYS</span> por contingencias comunes</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ANTICIPO Y LÍMITES -->
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Anticipo de prestaciones y límites (art. 167.3 TRLGSS)</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Las entidades gestoras, mutuas o servicios comunes <strong>pagan de inmediato</strong> al trabajador y se <strong>subrogan</strong> en sus derechos frente al empresario infractor</span></div>
+      <div class="item"><span class="arrow">→</span><span>El anticipo procede aunque la empresa haya <strong>desaparecido</strong> o no pueda ser objeto del procedimiento ejecutivo de apremio</span></div>
+    </div>
+    <div>
+      <div class="alert">
+        <div class="alabel">⚠ Límite del anticipo</div>
+        El anticipo no puede exceder de <span class="pill pill-r">2,5 veces el IPREM</span> vigente en el momento del hecho causante.<br><br>
+        O en su caso, el importe del capital coste necesario para el pago anticipado (incluyendo intereses de capitalización y recargo por falta de aseguramiento).<br><br>
+        <strong>Excluido expresamente:</strong> recargo por falta de medidas de seguridad (art. 164)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 5: RESPONSABILIDAD EMPRESARIAL -->
+<div class="section-label">05 · Responsabilidad empresarial por incumplimiento (art. 167 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Tipos de incumplimiento y responsabilidad</div>
+    <div class="item"><span class="arrow">→</span><span>Cuando el empresario incumple obligaciones de <strong>afiliación, alta o cotización</strong> y se genera derecho a prestación</span></div>
+    <div class="item"><span class="arrow">→</span><span>La entidad gestora dicta <strong>resolución administrativa de responsabilidad</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>La TGSS calcula y recauda el <strong>capital coste</strong> que garantice el pago vitalicio de la prestación</span></div>
+    <div class="sub-head">Procedimiento</div>
+    <div class="item"><span class="arrow">→</span><span>El <strong>INSS</strong> remite a la TGSS las resoluciones y acuerdos firmes declarando la responsabilidad</span></div>
+    <div class="item"><span class="arrow">→</span><span>La resolución incluye todos los datos necesarios para calcular el capital coste, fijar intereses y aplicar recargos</span></div>
+    <div class="item"><span class="arrow">→</span><span>Si es necesario, el INSS dictará resolución previa que agote la vía administrativa declarando la responsabilidad <strong>solidaria, subsidiaria o mortis causa</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>El INSS comunicará a la TGSS las <strong>sentencias firmes</strong> dictadas en procesos de impugnación</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Elementos del capital coste (art. 167 TRLGSS)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>a) Valor actual de las pensiones:</strong> importe actuarial para constituir renta cierta temporal (máx. 25 años al 30% del salario en AT sin beneficiarios) o vitalicia</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>b) Intereses de capitalización</strong> correspondientes</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>c) Subsidios e indemnizaciones a tanto alzado:</strong> prestaciones de cuantía fija o periódica no vitalicia a cargo de la Mutua o el empleador</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>d) Recargo del 5%</strong> por falta de aseguramiento</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 6: CONTINGENCIAS -->
+<div class="section-label">06 · Clasificación de contingencias (arts. 156-158 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Contingencias comunes</div>
+    <div class="item"><span class="arrow">→</span><span>Alteraciones de la salud que <strong>no tienen consideración legal</strong> de AT ni EP</span></div>
+    <div class="sub-head">Enfermedad común</div>
+    <div class="item"><span class="arrow">→</span><span>Alteraciones de la salud que no tengan la condición de AT ni EP</span></div>
+    <div class="sub-head">Accidente no laboral (art. 158)</div>
+    <div class="item"><span class="arrow">→</span><span>El que, conforme al art. 156, <strong>no tenga el carácter de AT</strong> por no guardar relación causal con la ejecución del trabajo por cuenta ajena</span></div>
+    <div class="note" style="margin-top:8px;">
+      <div class="nlabel">Protección CC</div>
+      Requieren carencia previa · 14 pagas · Automaticidad relativa
+    </div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Contingencias profesionales — AT y EP</div>
+    <div class="sub-head">Accidente de trabajo (art. 156.1)</div>
+    <div class="item"><span class="arrow">→</span><span>Toda <strong>lesión corporal</strong> que el trabajador sufra <strong>con ocasión o por consecuencia</strong> del trabajo que ejecute por cuenta ajena</span></div>
+    <div class="sub-head">Presunciones y extensiones del AT (art. 156.2-3)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>In itinere:</strong> accidente al ir o volver del trabajo</span></div>
+    <div class="item"><span class="arrow">→</span><span>Actos de salvamento relacionados con el trabajo</span></div>
+    <div class="item"><span class="arrow">→</span><span>Enfermedades no incluidas en la lista de EP pero contraídas <strong>a consecuencia del trabajo</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Enfermedades o defectos <strong>agravados</strong> por el accidente</span></div>
+    <div class="item"><span class="arrow">→</span><span>Lesiones <strong>durante el tiempo y lugar de trabajo</strong> (se presumen AT salvo prueba en contrario)</span></div>
+    <div class="note" style="margin-top:8px;">
+      <div class="nlabel">Protección AT/EP</div>
+      Sin carencia · 12 pagas · Automaticidad absoluta · Base reguladora más favorable
+    </div>
+  </div>
+</div>
+
+<!-- COMPARATIVA CC vs AT/EP -->
+<div class="section-label">07 · Comparativa CC vs AT/EP — Diferencias clave para el test</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Tabla comparativa de contingencias</div>
+  <table>
+    <thead><tr><th>Aspecto</th><th>Contingencias Comunes (CC)</th><th>AT y EP</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Carencia</strong></td>
+        <td>Sí exigen período mínimo de cotización</td>
+        <td><span class="pill pill-g">Carencia cero</span> — ningún día previo exigido</td>
+      </tr>
+      <tr>
+        <td><strong>Pagas</strong></td>
+        <td><span class="pill pill-b">14 pagas</span> (12 + extras junio y noviembre)</td>
+        <td><span class="pill pill-r">12 pagas</span> (extras prorrateadas)</td>
+      </tr>
+      <tr>
+        <td><strong>Automaticidad</strong></td>
+        <td><span class="pill pill-b">Relativa</span> — requiere alta real o asimilada</td>
+        <td><span class="pill pill-r">Absoluta</span> — aunque el empresario no haya dado de alta</td>
+      </tr>
+      <tr>
+        <td><strong>Base reguladora IT</strong></td>
+        <td>BC CC del mes anterior ÷ días del mes</td>
+        <td>Salario real (incluye HH.EE.) ÷ 365</td>
+      </tr>
+      <tr>
+        <td><strong>IT — cuantía desde día 1</strong></td>
+        <td>No: del 1-3 sin prestación; 4-20 al 60%; desde 21 al 75%</td>
+        <td>Sí: <span class="pill pill-g">75%</span> desde el día siguiente al accidente</td>
+      </tr>
+      <tr>
+        <td><strong>Recargo por falta medidas seguridad</strong></td>
+        <td>No aplica</td>
+        <td><span class="pill pill-r">+30% a +50%</span> a cargo del empresario (art. 164)</td>
+      </tr>
+      <tr>
+        <td><strong>Gestión</strong></td>
+        <td>INSS o Mutua (para IT CC si la empresa lo eligió)</td>
+        <td>Mutua colaboradora (o INSS si no hay cobertura)</td>
+      </tr>
+      <tr>
+        <td><strong>Prescripción</strong></td>
+        <td>5 años (art. 53 TRLGSS)</td>
+        <td>5 años (art. 53 TRLGSS)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 7</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>Principios de la acción protectora</td><td>Universalidad · Unidad · Solidaridad · <strong>Igualdad</strong></td></tr>
+      <tr><td>Prestaciones exentas de IRPF</td><td>IPA · Gran Invalidez · NYCM · Familiares NC · <strong>IMV</strong></td></tr>
+      <tr><td>Pagas contingencias comunes</td><td><strong>14</strong> (12 + extras junio y noviembre)</td></tr>
+      <tr><td>Pagas AT/EP</td><td><strong>12</strong> (extras prorrateadas)</td></tr>
+      <tr><td>Retención/cesión/compensación prestaciones</td><td><strong>Prohibida</strong> salvo obligaciones alimenticias y deudas con la SS</td></tr>
+      <tr><td>Reintegro prestaciones indebidas — prescripción</td><td><strong>4 años</strong> desde el cobro o desde que fue posible la acción</td></tr>
+      <tr><td>Fraccionamiento reintegro — mínimo mensual</td><td><strong>100 €/mes</strong></td></tr>
+      <tr><td>Fraccionamiento reintegro — plazo máximo</td><td><strong>5 años</strong></td></tr>
+      <tr><td>Fraccionamiento — caducidad</td><td>Impago de <strong>3 plazos</strong> → vía ejecutiva total</td></tr>
+      <tr><td>Procedimiento especial reintegro — plazo máximo</td><td><strong>5 años</strong> (descuento directo de prestaciones)</td></tr>
+      <tr><td>Alta de pleno derecho — contingencias cubiertas</td><td><strong>AT · EP · Desempleo</strong> + asistencia sanitaria (EC, ANL, maternidad)</td></tr>
+      <tr><td>Automaticidad absoluta — contingencias</td><td><strong>AT · EP · Desempleo · Asistencia sanitaria</strong></td></tr>
+      <tr><td>Automaticidad relativa — contingencias</td><td><strong>IT · NYCM · Jubilación · IP · MYS</strong> por CC (requiere alta real)</td></tr>
+      <tr><td>Anticipo prestaciones — límite</td><td><strong>2,5 × IPREM</strong> vigente en el momento del hecho causante</td></tr>
+      <tr><td>Anticipo — excluye</td><td>Recargo por falta de <strong>medidas de seguridad</strong> (art. 164)</td></tr>
+      <tr><td>Anticipo — empresa desaparecida</td><td>Procede <strong>igualmente</strong></td></tr>
+      <tr><td>Capital coste — recargo por falta aseguramiento</td><td><strong>5%</strong></td></tr>
+      <tr><td>Capital coste — renta cierta sin beneficiarios AT</td><td><strong>25 años</strong> al <strong>30% del salario</strong></td></tr>
+      <tr><td>Quién declara la responsabilidad empresarial</td><td><strong>INSS</strong> (resolución administrativa)</td></tr>
+      <tr><td>Quién calcula y recauda el capital coste</td><td><strong>TGSS</strong></td></tr>
+      <tr><td>Accidente de trabajo — definición</td><td>Lesión corporal con <strong>ocasión o consecuencia</strong> del trabajo por cuenta ajena</td></tr>
+      <tr><td>Accidente in itinere</td><td>Al ir o volver del trabajo → <strong>sí es AT</strong></td></tr>
+      <tr><td>Lesión durante tiempo y lugar de trabajo</td><td>Se <strong>presume AT</strong> salvo prueba en contrario</td></tr>
+      <tr><td>Carencia AT/EP/ANL</td><td><strong>Cero</strong> — no se exige período previo</td></tr>
+      <tr><td>Recargo AT/EP por falta medidas seguridad</td><td><strong>+30% a +50%</strong> a cargo del empresario (art. 164)</td></tr>
+      <tr><td>IT por AT — cuantía desde día 1</td><td><strong>75%</strong> de la BR desde el día siguiente al accidente</td></tr>
+      <tr><td>IT por CC — cuantía días 1-3</td><td><strong>Sin prestación</strong> (a cargo del empresario según ET)</td></tr>
+      <tr><td>IT por CC — cuantía días 4-20</td><td><strong>60%</strong> de la BR</td></tr>
+      <tr><td>IT por CC — cuantía desde día 21</td><td><strong>75%</strong> de la BR</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="nav">
+  <a href="tema6_especifico_recaudacion_ejecutiva.html">◀ Tema 06</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema8_especifico_ — Incapacidad.html">Tema 08 ▶</a>
+</div>
+</body>
+</html>

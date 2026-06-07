@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tema 10 — Jubilación Contributiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --ink: #1a2a3a;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #f7f3ed;
+      --warm-white: #faf8f5;
+      --muted: #6b7c8d;
+      --border: #ddd5c5;
+      --accent-blue: #2a5f8f;
+      --accent-red: #9b2335;
+      --table-head: #1a2a3a;
+      --table-alt: #f0ece4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--warm-white);
+      color: var(--ink);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── HERO HEADER ── */
+    .hero {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 64px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(201,168,76,0.04) 60px,
+        rgba(201,168,76,0.04) 61px
+      );
+    }
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+    }
+    .hero-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-label::after {
+      content: '';
+      height: 1px;
+      width: 60px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--gold-light); }
+    .hero-sub {
+      font-size: 15px;
+      color: rgba(247,243,237,0.6);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+    .hero-meta {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(201,168,76,0.25);
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(247,243,237,0.45);
+      letter-spacing: 1px;
+    }
+    .meta-item strong {
+      display: block;
+      color: var(--gold);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    /* ── SIDEBAR NAVIGATION ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 24px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 24px 20px;
+    }
+    .toc-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+    }
+    .toc ol li {
+      counter-increment: toc;
+      margin-bottom: 8px;
+    }
+    .toc ol li a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 400;
+      display: flex;
+      gap: 8px;
+      line-height: 1.4;
+      transition: color 0.15s;
+    }
+    .toc ol li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--gold);
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+    .toc ol li a:hover { color: var(--gold); }
+
+    /* ── CONTENT ── */
+    .content { min-width: 0; }
+
+    .section {
+      margin-bottom: 56px;
+      animation: fadeUp 0.4s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .section-ref {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: auto;
+      flex-shrink: 0;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 3px 8px;
+    }
+
+    .subsection {
+      margin: 28px 0;
+    }
+    .subsection h3 {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .subsection h3::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    p { margin-bottom: 14px; font-size: 15px; }
+
+    /* ── REQUIREMENT PILLS ── */
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .req-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 16px;
+    }
+    .req-card .req-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .req-card .req-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    /* ── TABLES ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    thead tr {
+      background: var(--table-head);
+      color: var(--cream);
+    }
+    thead th {
+      padding: 13px 16px;
+      text-align: left;
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 600;
+      font-size: 12.5px;
+      letter-spacing: 0.5px;
+    }
+    tbody tr:nth-child(even) { background: var(--table-alt); }
+    tbody tr:hover { background: rgba(201,168,76,0.08); }
+    tbody td {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    tbody td:first-child {
+      font-weight: 600;
+      color: var(--navy);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+    .highlight-row td { color: var(--gold); font-weight: 600 !important; }
+
+    /* ── FORMULA BLOCK ── */
+    .formula-block {
+      background: var(--navy);
+      color: var(--cream);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin: 24px 0;
+      font-family: 'JetBrains Mono', monospace;
+      position: relative;
+      overflow: hidden;
+    }
+    .formula-block::before {
+      content: 'FÓRMULA';
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+    .formula {
+      font-size: 18px;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .formula-legend {
+      font-size: 12px;
+      color: rgba(247,243,237,0.6);
+      line-height: 2;
+    }
+    .formula-legend span {
+      color: var(--gold);
+    }
+
+    /* ── CALLOUT / NOTE ── */
+    .note {
+      background: rgba(42,95,143,0.06);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 0 4px 4px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .note.warn {
+      background: rgba(155,35,53,0.05);
+      border-left-color: var(--accent-red);
+    }
+    .note strong {
+      font-weight: 600;
+      color: var(--accent-blue);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .note.warn strong { color: var(--accent-red); }
+
+    /* ── PERCENTAGE VISUAL ── */
+    .pct-visual {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .pct-card {
+      flex: 1;
+      min-width: 160px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 18px;
+      text-align: center;
+    }
+    .pct-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .pct-num sup { font-size: 18px; color: var(--gold); }
+    .pct-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* ── MODALITY CARDS ── */
+    .mod-grid {
+      display: grid;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .mod-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .mod-head {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .mod-head .mod-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .mod-head .mod-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .mod-head .mod-art {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(247,243,237,0.4);
+    }
+    .mod-body {
+      padding: 18px 20px;
+      font-size: 14px;
+      background: var(--warm-white);
+    }
+    .mod-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .mod-body ul li {
+      padding: 5px 0;
+      padding-left: 16px;
+      position: relative;
+      color: var(--ink);
+    }
+    .mod-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 12px;
+    }
+
+    /* ── GENDER GAP BLOCK ── */
+    .gender-block {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a2a3a 100%);
+      border-radius: 8px;
+      padding: 32px;
+      color: var(--cream);
+      margin: 20px 0;
+    }
+    .gender-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+    .gender-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 16px;
+    }
+    .gender-col h5 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .gender-col ul {
+      list-style: none;
+      font-size: 13.5px;
+      color: rgba(247,243,237,0.8);
+      line-height: 2;
+    }
+    .gender-col ul li::before { content: '· '; color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(247,243,237,0.3);
+      text-align: center;
+      padding: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      margin-top: 40px;
+    }
+    footer span { color: var(--gold); }
+
+    @media (max-width: 700px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { position: static; }
+      .gender-row { grid-template-columns: 1fr; }
+      .hero-meta { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Seguridad Social · Régimen General</div>
+    <h1>TEMA 10<br><span>Jubilación Contributiva</span></h1>
+    <p class="hero-sub">Modalidad contributiva — TRLGSS · Arts. 204–215</p>
+    <div class="hero-meta">
+      <div class="meta-item"><strong>Norma</strong>TRLGSS (RDLeg 8/2015)</div>
+      <div class="meta-item"><strong>Ámbito</strong>Régimen General</div>
+      <div class="meta-item"><strong>Referencia</strong>Arts. 204 a 215</div>
+      <div class="meta-item"><strong>Vigencia</strong>Transitoria hasta 2027</div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════ LAYOUT ══════════════ -->
+<div class="layout">
+
+  <!-- SIDEBAR TOC -->
+  <nav class="toc" aria-label="Índice">
+    <div class="toc-title">Contenido</div>
+    <ol>
+      <li><a href="#s1">Jubilación Ordinaria</a></li>
+      <li><a href="#s2">Base Reguladora</a></li>
+      <li><a href="#s3">Porcentaje Aplicable</a></li>
+      <li><a href="#s4">Complemento por Demora</a></li>
+      <li><a href="#s5">Brecha de Género</a></li>
+      <li><a href="#s6">Jubilación Anticipada</a></li>
+    </ol>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- ── SECCIÓN 1 ── -->
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Jubilación Ordinaria: Concepto y Requisitos</h2>
+        <span class="section-ref">Arts. 204–205</span>
+      </div>
+
+      <p>La prestación económica por jubilación es de modalidad contributiva, <strong>única para cada beneficiario</strong>, y consiste en una <strong>pensión vitalicia</strong> que se reconoce cuando, alcanzada la edad establecida, el trabajador cese en el trabajo por cuenta ajena.</p>
+
+      <div class="subsection">
+        <h3>Tres condiciones del Régimen General</h3>
+        <div class="req-grid">
+          <div class="req-card">
+            <div class="req-label">Condición 1</div>
+            <div class="req-value">Afiliación y Alta (o situación asimilada)</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Condición 2</div>
+            <div class="req-value">Edad mínima según año y cotización</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Condición 3</div>
+            <div class="req-value">Carencia: ≥ 15 años (2 en los últimos 15)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Tabla de edad de acceso ordinario (transitoria)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Año natural</th>
+                <th>Con ≥ 38 años y 3 meses cotizados</th>
+                <th>Con &lt; 38 años y 3 meses cotizados</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025</td>
+                <td>65 años</td>
+                <td>66 años y 8 meses</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>2026</td>
+                <td>65 años</td>
+                <td>66 años y 10 meses</td>
+              </tr>
+              <tr>
+                <td>2027 en adelante</td>
+                <td>65 años</td>
+                <td>67 años</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Casos especiales de acceso</h3>
+        <div class="note">
+          <strong>Desde situación de no alta</strong>
+          Puede causarse siempre que se reúnan los requisitos de edad y cotización general (15 años).
+        </div>
+        <div class="note">
+          <strong>Alta sin obligación de cotizar</strong>
+          La carencia específica de 2 años se buscará en los 15 años anteriores al cese de la obligación de cotizar.
+        </div>
+        <div class="note warn">
+          <strong>Formalización tardía (no alta)</strong>
+          Cotizaciones deben superponerse al menos 15 años. El HC se fija en la presentación de la solicitud; los 2 años de carencia específica se buscan en los <em>3 meses anteriores o posteriores</em> a dicha presentación.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 2 ── -->
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Determinación de la Base Reguladora</h2>
+        <span class="section-ref">Art. 209</span>
+      </div>
+
+      <p>La Base Reguladora (BR) es el cociente que resulta de dividir <strong>entre 378</strong> la suma de las bases de cotización del interesado durante los <strong>324 meses</strong> de mayor importe, seleccionados de los 348 meses consecutivos anteriores al mes previo al hecho causante.</p>
+
+      <div class="subsection">
+        <h3>Fórmula de cálculo</h3>
+        <div class="formula-block">
+          <div class="formula">
+            BR = [ Σ B<sub>i</sub> (i=1..24) + Σ (B<sub>i</sub> · I<sub>25</sub> / I<sub>i</sub>) (i=25..348) ] / 378
+          </div>
+          <div class="formula-legend">
+            <span>BR</span> — Base Reguladora<br>
+            <span>B<sub>i</sub></span> — Base de cotización del mes i-ésimo anterior al mes previo al HC<br>
+            <span>I<sub>25</sub></span> — IPC del mes 25 anterior al mes previo al HC<br>
+            <span>I<sub>i</sub></span> — IPC del mes i-ésimo (i = 1, 2 … 348)
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Mecanismo de cálculo paso a paso</h3>
+        <div class="req-grid">
+          <div class="req-card">
+            <div class="req-label">Paso 1 — Selección</div>
+            <div class="req-value">348 meses consecutivos anteriores al mes previo al HC</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Paso 2 — Elección de oficio (INSS)</div>
+            <div class="req-value">Las 324 bases de cotización de mayor importe</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Paso 3 — Valor nominal</div>
+            <div class="req-value">Las 24 bases más recientes se computan por valor nominal</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Paso 4 — Actualización IPC</div>
+            <div class="req-value">Las restantes se actualizan con la evolución del IPC</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Integración de lagunas</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Período de laguna</th><th>Integración aplicable</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Primeras 48 mensualidades</td>
+                <td>Base mínima de cotización del RG del mes respectivo</td>
+              </tr>
+              <tr>
+                <td>Mensualidades restantes</td>
+                <td>50% de la base mínima de cotización</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note warn">
+          <strong>Cláusula anti-incremento artificial</strong>
+          No se computarán los incrementos de bases en los 2 últimos años que superen el incremento medio interanual del convenio colectivo aplicable. Excepciones: normas generales, ascensos reglamentarios o antigüedad.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 3 ── -->
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Porcentaje Aplicable a la Pensión</h2>
+        <span class="section-ref">Art. 210</span>
+      </div>
+
+      <div class="pct-visual">
+        <div class="pct-card">
+          <div class="pct-num">50<sup>%</sup></div>
+          <div class="pct-desc">Por los primeros 15 años cotizados</div>
+        </div>
+        <div class="pct-card">
+          <div class="pct-num">0,21<sup>%</sup></div>
+          <div class="pct-desc">Por cada mes adicional (meses 1–49)<br>Escala 2023–2026</div>
+        </div>
+        <div class="pct-card">
+          <div class="pct-num">0,19<sup>%</sup></div>
+          <div class="pct-desc">Por cada mes adicional (meses 50–258)<br>Escala 2023–2026</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Escala transitoria detallada</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Período</th><th>Meses 1–49 (desde año 16)</th><th>Meses 50–258 siguientes</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2023–2026</td>
+                <td>0,21% / mes</td>
+                <td>0,19% / mes</td>
+              </tr>
+              <tr>
+                <td>Desde 2027</td>
+                <td>0,19% / mes (meses 1–248)</td>
+                <td>0,18% / mes (16 meses siguientes)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 4 ── -->
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Complemento Económico por Demora</h2>
+        <span class="section-ref">Art. 210</span>
+      </div>
+
+      <p>Cuando se accede a la jubilación a una edad superior a la ordinaria, cumpliendo el período mínimo de cotización, se reconoce un complemento en alguna de estas tres modalidades:</p>
+
+      <div class="mod-grid">
+        <div class="mod-card">
+          <div class="mod-head">
+            <span class="mod-letter">A</span>
+            <span class="mod-name">Porcentaje Adicional</span>
+            <span class="mod-art">Modalidad 1</span>
+          </div>
+          <div class="mod-body">
+            <ul>
+              <li>4% adicional por cada año completo cotizado desde la edad ordinaria hasta el HC</li>
+              <li>A partir del 2.º año: períodos &gt;6 meses e &lt;1 año → 2% adicional</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-head">
+            <span class="mod-letter">B</span>
+            <span class="mod-name">Cantidad a Tanto Alzado (Pago Único)</span>
+            <span class="mod-art">Modalidad 2</span>
+          </div>
+          <div class="mod-body">
+            <ul>
+              <li>&lt; 44 años y 6 meses cotizados: <strong>800 × (Pensión inicial anual / 500)^(1/1,65)</strong></li>
+              <li>≥ 44 años y 6 meses cotizados: importe anterior aumentado en un <strong>10%</strong></li>
+              <li>Desde el 2.º año, períodos &gt;6 meses e &lt;1 año → multiplicar por 0,5</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-head">
+            <span class="mod-letter">C</span>
+            <span class="mod-name">Combinación de Ambas</span>
+            <span class="mod-art">RD 371/2023</span>
+          </div>
+          <div class="mod-body">
+            <ul>
+              <li>En los términos que se determinen reglamentariamente (RD 371/2023)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="note warn">
+        <strong>Incompatibilidades</strong>
+        El complemento por demora no se aplica en supuestos de jubilación parcial, jubilación flexible, ni en accesos desde situación asimilada al alta.
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 5 ── -->
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Complemento para la Reducción de la Brecha de Género</h2>
+        <span class="section-ref">Art. 60</span>
+      </div>
+
+      <div class="gender-block">
+        <h4>Naturaleza y cuantía</h4>
+        <p style="font-size:14px; color:rgba(247,243,237,0.75); margin-bottom:0;">Tiene naturaleza jurídica de <strong style="color:var(--gold-light)">pensión pública contributiva</strong>. Se abona en <strong style="color:var(--gold-light)">14 pagas</strong> junto a la pensión principal. La cuantía máxima es de <strong style="color:var(--gold-light)">4 veces el importe mensual fijado por hijo/a</strong> (referencia 2025: <strong style="color:var(--gold-light)">35,90 €/mes por hijo</strong>).</p>
+        <div class="gender-row">
+          <div class="gender-col">
+            <h5>Mujeres (regla general)</h5>
+            <ul>
+              <li>Haber tenido uno o más hijos/as</li>
+              <li>Ser beneficiaria de pensión contributiva de jubilación, IP o viudedad</li>
+              <li>Reconocimiento automático sin solicitud</li>
+            </ul>
+          </div>
+          <div class="gender-col">
+            <h5>Hombres (acceso excepcional)</h5>
+            <ul>
+              <li>Pensión de viudedad por fallecimiento del otro progenitor, con hijo con derecho a orfandad; o</li>
+              <li>Pensión de jubilación/IP habiendo interrumpido la carrera profesional por nacimiento o adopción</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 6 ── -->
+    <section class="section" id="s6">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Jubilación Anticipada y Parcial</h2>
+        <span class="section-ref">Arts. 206–208, 215</span>
+      </div>
+
+      <div class="mod-grid">
+        <div class="mod-card">
+          <div class="mod-head">
+            <span class="mod-letter">A</span>
+            <span class="mod-name">Por razón de la actividad</span>
+            <span class="mod-art">Art. 206</span>
+          </div>
+          <div class="mod-body">
+            <ul>
+              <li>Actividades excepcionalmente penosas, peligrosas, tóxicas o insalubres con elevada mortalidad</li>
+              <li>Colectivos: minería, ferroviarios, personal de vuelo, bomberos, Ertzaintza, policías locales, Policía Foral de Navarra, Mossos d'Esquadra</li>
+              <li><strong>Límite:</strong> nunca con edad inferior a 52 años</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod-card">
+          <div class="mod-head">
+            <span class="mod-letter">B</span>
+            <span class="mod-name">En caso de discapacidad</span>
+            <span class="mod-art">Art. 206 bis</span>
+          </div>
+          <div class="mod-body">
+            <ul>
+              <li>Grado ≥ 65%: coeficiente reductor del 0,25% (o 0,50% si precisa ayuda de tercera persona)</li>
+              <li>Grado ≥ 45% con evidencia de reducción significativa de esperanza de vida → al menos 15 años de cotización efectiva</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod-card">
+          <div class="mod-head">
+            <span class="mod-letter">C</span>
+            <span class="mod-name">Por causa no imputable al trabajador</span>
+            <span class="mod-art">Art. 207</span>
+          </div>
+          <div class="mod-body">
+            <ul>
+              <li>Edad inferior en máximo 4 años a la ordinaria vigente</li>
+              <li>Inscrito como demandante de empleo ≥ 6 meses inmediatamente anteriores a la solicitud</li>
+              <li>Cotización efectiva mínima: 33 años</li>
+              <li>Cese por causa objetiva: despido colectivo (art. 51 ET), objetivo (art. 52 ET), concurso, muerte/jubilación/incapacidad del empresario, fuerza mayor o violencia de género</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod-card">
+          <div class="mod-head">
+            <span class="mod-letter">D</span>
+            <span class="mod-name">Por voluntad del interesado</span>
+            <span class="mod-art">Art. 208</span>
+          </div>
+          <div class="mod-body">
+            <ul>
+              <li>Edad inferior en máximo 2 años a la ordinaria aplicable</li>
+              <li>Cotización efectiva mínima: 35 años</li>
+              <li>La pensión a percibir debe ser superior a la pensión mínima correspondiente por situación familiar a los 65 años</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod-card">
+          <div class="mod-head">
+            <span class="mod-letter">E</span>
+            <span class="mod-name">Jubilación parcial</span>
+            <span class="mod-art">Art. 215</span>
+          </div>
+          <div class="mod-body">
+            <ul>
+              <li>Con contrato de relevo: reducción de jornada entre el <strong>25% y el 75%</strong> (o 85% si el contrato de relevo es indefinido a jornada completa)</li>
+              <li>Si no se ha alcanzado la edad ordinaria: edad inferior en máx. 3 años, cotización ≥ 33 años (25 años si discapacidad ≥ 33%), antigüedad en empresa ≥ 6 años</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Nota transversal</strong>
+        En el cómputo de todos los períodos se tomarán años y meses completos, sin que se equiparen a ellos las fracciones de los mismos.
+      </div>
+    </section>
+
+  </main>
+</div>
+<div class="nav">
+  <a href="tema9_especifico_nycm.html">◀ Tema 9</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema11_muerte_supervivencia.html">Tema 11 ▶</a>
+</div>
+<footer>
+  TRLGSS · Real Decreto Legislativo 8/2015 &nbsp;|&nbsp; <span>Tema 10</span> — Jubilación en la Modalidad Contributiva &nbsp;|&nbsp; Régimen General de la Seguridad Social
+</footer>
+
+</body>
+</html>

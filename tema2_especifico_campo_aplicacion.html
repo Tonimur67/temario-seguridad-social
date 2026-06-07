@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 2 Específico SS — Campo de Aplicación y RETA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #141720;
+    --border: #252a38;
+    --accent: #e8c840;
+    --accent2: #3d9eff;
+    --accent3: #ff5f5f;
+    --accent4: #4ade80;
+    --accent5: #c084fc;
+    --text: #d4d8e8;
+    --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 32px 24px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .header {
+    border-left: 4px solid var(--accent2);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    background: var(--surface);
+  }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+
+  .block-title {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+
+  .section-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--muted); margin: 22px 0 11px 0;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+
+  .note { background: rgba(232,200,64,0.05); border: 1px solid rgba(232,200,64,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+
+  .sub-head { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 10px 0 6px 0; }
+
+  .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 2 — Campo de Aplicación, Inclusiones y Exclusiones · RETA</h1>
+  <div class="sub">Art. 7-14 LGSS · RD 84/1996 · Arts. 305-350 LGSS · Ley 47/2015 · Sistemas Especiales</div>
+</div>
+
+<!-- BLOQUE I: CAMPO DE APLICACIÓN GENERAL -->
+<div class="section-label">01 · Campo de aplicación general (art. 7 LGSS)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Modalidad contributiva (art. 7.1)</div>
+    <div class="item"><span class="arrow">→</span><span>Españoles residentes en España + extranjeros residentes o legalmente en España que <strong>ejerzan actividad en territorio nacional</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Trabajadores por cuenta ajena</strong> (ET art. 1.1)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Trabajadores por cuenta propia / autónomos</strong> (RETA, mayores de 18 años)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Socios trabajadores</strong> de cooperativas de trabajo asociado</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Estudiantes</strong> (Seguro Escolar)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Funcionarios públicos</strong>, civiles y militares</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Modalidad no contributiva (art. 7.2) y exclusiones</div>
+    <div class="item"><span class="arrow">→</span><span>Españoles residentes en España + extranjeros con residencia legal (LO 4/2000)</span></div>
+    <div class="item"><span class="arrow">→</span><span>El Gobierno puede establecer protección para <strong>españoles no residentes</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Art. 7.5:</strong> El Gobierno puede excluir trabajos <strong>marginales</strong> que no constituyan el medio fundamental de vida</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Art. 8 — Prohibición doble inclusión obligatoria:</strong> No se puede estar incluido por el mismo trabajo en dos regímenes de previsión obligatoria simultáneamente</span></div>
+  </div>
+</div>
+
+<!-- EXCLUSIÓN PARENTESCO -->
+<div class="section-label">02 · Exclusión por razón de parentesco (art. 12 LGSS) — Trampa clásica de test</div>
+<div class="block full red" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Familiares del empresario — Regla y excepciones</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div>
+      <div class="alert">
+        <div class="alabel">⚠ Regla general</div>
+        <strong>NO</strong> tienen consideración de trabajadores por cuenta ajena (salvo prueba en contrario):<br>
+        Cónyuge, descendientes, ascendientes y demás parientes hasta el <span class="pill pill-r">2.º grado</span> por consanguinidad, afinidad o adopción, cuando:<br>
+        — Convivan en el hogar del empresario<br>
+        — Estén a su cargo<br>
+        — Trabajen en su centro de trabajo
+      </div>
+    </div>
+    <div>
+      <div class="note">
+        <div class="nlabel">✓ Excepciones — hijos contratables</div>
+        <strong>Menores de 30 años:</strong> aunque convivan. Quedan excluidos de la protección por <span class="pill pill-r">desempleo</span>.<br><br>
+        <strong>Mayores de 30 años</strong> con dificultades de inserción:<br>
+        — Parálisis cerebral, enf. mental o disc. intelectual <span class="pill pill-y">≥ 33%</span><br>
+        — Disc. física/sensorial <span class="pill pill-y">≥ 33% e &lt; 65%</span> (primera alta en el sistema)<br>
+        — Disc. física/sensorial <span class="pill pill-y">≥ 65%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RÉGIMEN GENERAL -->
+<div class="section-label">03 · Régimen General (art. 136-137 LGSS)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Inclusiones expresas destacadas (art. 136.2)</div>
+    <div class="item"><span class="arrow">→</span><span>Socios de <strong>sociedades de capital</strong> que NO desempeñan dirección/gerencia y NO poseen control</span></div>
+    <div class="item"><span class="arrow">→</span><span>Socios de <strong>sociedades laborales</strong> sin dirección/gerencia y sin control. <span class="pill pill-r">Excluidos de desempleo y FOGASA</span> si socios ≤ 25</span></div>
+    <div class="item"><span class="arrow">→</span><span>Personal de <strong>notarías y registros públicos</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Conductores de <strong>vehículos de turismo</strong> al servicio de particulares</span></div>
+    <div class="item"><span class="arrow">→</span><span>Personal civil <strong>no funcionario</strong> al servicio de AAPP</span></div>
+    <div class="item"><span class="arrow">→</span><span>Funcionarios al servicio de AAPP <strong>incluido período de prácticas</strong> (salvo Clases Pasivas)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Miembros de corporaciones locales con <strong>dedicación exclusiva o parcial</strong></span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Exclusiones del RG (art. 137)</div>
+    <div class="item"><span class="arrow">→</span><span>Trabajos por <strong>servicios amistosos, benévolos</strong> o de buena vecindad</span></div>
+    <div class="item"><span class="arrow">→</span><span>Trabajos que dan lugar a inclusión en <strong>otros regímenes</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Profesores universitarios eméritos</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Personal licenciado sanitario emérito</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Trabajos por cuenta ajena de carácter <strong>marginal</strong> (art. 7.5)</span></div>
+    <div class="sub-head" style="margin-top:10px;">Socios de cooperativas (art. 14)</div>
+    <div class="item"><span class="arrow">→</span><span>La cooperativa puede optar entre: asimilados a cuenta ajena en RG, régimen especial según actividad, o <strong>autónomos</strong></span></div>
+  </div>
+</div>
+
+<!-- RETA -->
+<div class="section-label">04 · RETA — Campo de aplicación (art. 305 LGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Inclusión ordinaria (art. 305.1)</div>
+    <div class="note">
+      <div class="nlabel">Requisitos acumulativos</div>
+      Personas físicas <span class="pill pill-g">mayores de 18 años</span> que realicen actividad económica/profesional de forma:<br>
+      <strong>Habitual · Personal · Directa · Por cuenta propia · Fuera del ámbito de dirección ajena · A título lucrativo</strong><br><br>
+      Con independencia de si dan o no ocupación a trabajadores por cuenta ajena.
+    </div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Inclusiones específicas (art. 305.2)</div>
+    <div class="item"><span class="arrow">→</span><span>SE para Trabajadores por Cuenta Propia Agrarios</span></div>
+    <div class="item"><span class="arrow">→</span><span>Administradores/consejeros de sociedades de capital que <strong>posean control efectivo</strong><br>
+    <span class="pill pill-b">≥ 50% capital</span> = presunción de control<br>
+    <span class="pill pill-b">≥ 1/3</span> si convive con socios y hay parentesco hasta 2.º grado<br>
+    <span class="pill pill-b">≥ 1/4</span> si tiene atribuidas funciones de dirección y gerencia</span></div>
+    <div class="item"><span class="arrow">→</span><span>Socios de <strong>sociedades colectivas y comanditarias</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Comuneros de <strong>comunidades de bienes</strong> y socios de sociedades civiles irregulares</span></div>
+    <div class="item"><span class="arrow">→</span><span>Socios de <strong>sociedades laborales</strong> con participación propia + cónyuge + parientes hasta 2.º grado <span class="pill pill-b">≥ 50%</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>TRADE</strong> (trabajadores autónomos económicamente dependientes)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Cónyuge y parientes hasta 2.º grado que <strong>colaboren de forma habitual</strong> y no sean asalariados</span></div>
+  </div>
+</div>
+
+<!-- AFILIACIÓN Y ALTAS RETA -->
+<div class="section-label">05 · Afiliación, altas y bajas en el RETA (RD 84/1996, art. 32 y 46)</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Plazos y efectos de altas y bajas</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div>
+      <div class="sub-head">Afiliación / Alta</div>
+      <div class="item"><span class="arrow">→</span><span>Solicitud: <strong>antes del inicio de la actividad</strong>, pudiendo presentarse hasta <span class="pill pill-b">60 días ANTES</span></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>1.ª a 3.ª alta del año:</strong> efectos desde el día en que concurran los requisitos de inclusión</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Resto de altas:</strong> efectos desde el <span class="pill pill-b">día 1 del mes natural</span> en que se reúnan los requisitos</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Alta fuera de plazo:</strong> efectos desde el día 1 del mes natural en que se reúnan los requisitos</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Alta de oficio (TGSS):</strong> efectos desde el día 1 del mes en que resulte acreditada la concurrencia</span></div>
+    </div>
+    <div>
+      <div class="sub-head">Baja</div>
+      <div class="item"><span class="arrow">→</span><span><strong>1.ª a 3.ª baja del año:</strong> efectos desde el día en que el trabajador cese en la actividad</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Resto de bajas:</strong> efectos al <span class="pill pill-b">último día del mes natural</span> en que cese la actividad</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Sin comunicar baja:</strong> la obligación de cotizar no se extingue salvo que la TGSS conozca el cese por la ITSS; en ese caso se extingue el último día del mes en que se realice la actuación</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Pluriactividad (art. 41):</strong> si realiza varias actividades en el RETA, el alta y la cotización son <span class="pill pill-b">únicas</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- COTIZACIÓN RETA -->
+<div class="section-label">06 · Cotización en el RETA — Sistema por rendimientos (art. 308 LGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Tipos de cotización 2026</div>
+    <table>
+      <thead><tr><th>Contingencia</th><th>Tipo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Contingencias comunes</strong></td><td><span class="pill pill-g">28,30%</span></td></tr>
+        <tr><td><strong>Contingencias profesionales</strong></td><td><span class="pill pill-g">1,30%</span></td></tr>
+        <tr><td><strong>Cese de actividad</strong></td><td><span class="pill pill-g">0,90%</span></td></tr>
+        <tr><td><strong>Formación Profesional</strong></td><td><span class="pill pill-g">0,10%</span></td></tr>
+        <tr><td><strong>MEI (2026)</strong></td><td><span class="pill pill-y">0,90%</span></td></tr>
+      </tbody>
+    </table>
+    <div class="item" style="margin-top:8px;"><span class="arrow">→</span><span>La base elegida se aplica a <strong>todas las coberturas</strong>: CC, CP, cese, MEI y FP</span></div>
+    <div class="item"><span class="arrow">→</span><span>MEI: período máximo de despliegue <span class="pill pill-g">9 años</span> con revisiones cada <span class="pill pill-g">3 años</span></span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Cambios de base y regularización anual</div>
+    <div class="item"><span class="arrow">→</span><span>Se pueden realizar hasta <span class="pill pill-y">6 cambios</span> de base al año</span></div>
+    <table style="margin-top:8px;">
+      <thead><tr><th>Solicitud entre...</th><th>Efectos desde</th></tr></thead>
+      <tbody>
+        <tr><td>1 ene — 28/29 feb</td><td><strong>1 marzo</strong></td></tr>
+        <tr><td>1 mar — 30 abr</td><td><strong>1 mayo</strong></td></tr>
+        <tr><td>1 may — 30 jun</td><td><strong>1 julio</strong></td></tr>
+        <tr><td>1 jul — 31 ago</td><td><strong>1 septiembre</strong></td></tr>
+        <tr><td>1 sep — 31 oct</td><td><strong>1 noviembre</strong></td></tr>
+        <tr><td>1 nov — 31 dic</td><td><strong>1 enero (año siguiente)</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="item" style="margin-top:8px;"><span class="arrow">→</span><span><strong>Regularización:</strong> cotización provisional ajustada a rendimientos reales del año anterior</span></div>
+    <div class="item"><span class="arrow">→</span><span>Si cotización provisional <strong>inferior</strong>: el deudor ingresa la diferencia hasta el <span class="pill pill-y">último día del mes siguiente</span> a la notificación</span></div>
+    <div class="item"><span class="arrow">→</span><span>Si cotización provisional <strong>superior</strong>: la TGSS devuelve de oficio antes del <span class="pill pill-y">30 de abril</span> del ejercicio siguiente</span></div>
+  </div>
+</div>
+
+<!-- PERÍODOS LIQUIDACIÓN Y COTIZACIÓN -->
+<div class="section-label">07 · Período de liquidación y extinción de la obligación de cotizar</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Período de liquidación (art. 47 RGCL)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Regla general:</strong> meses completos</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Excepción (3 primeras altas/bajas del año):</strong> solo los días de prestación efectiva. La cuota mensual se divide entre <span class="pill pill-b">30</span> en todo caso</span></div>
+    <div class="item"><span class="arrow">→</span><span>Sistema: <strong>Liquidación Simplificada</strong></span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Extinción de la obligación de cotizar</div>
+    <div class="item"><span class="arrow">→</span><span><strong>3 primeras bajas:</strong> desde el día en que cesen las condiciones de inclusión</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Resto de bajas:</strong> al vencimiento del último día del mes natural en que cesen las condiciones</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Sin comunicar baja:</strong> no se extingue salvo actuación de la ITSS o datos de la TGSS → último día del mes en que se realice</span></div>
+  </div>
+</div>
+
+<!-- ACCIÓN PROTECTORA RETA -->
+<div class="section-label">08 · Acción protectora en el RETA — Particularidades (art. 47 LGSS)</div>
+<div class="grid-2">
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Requisito de estar al corriente de pago</div>
+    <div class="alert">
+      <div class="alabel">⚠ Cepo de examen</div>
+      Es requisito imprescindible para acceder a prestaciones económicas. Si NO está al corriente en la fecha del hecho causante:<br><br>
+      La entidad gestora invita al pago en <span class="pill pill-r">30 días naturales</span>.<br>
+      — Si ingresa en plazo: se considera al corriente.<br>
+      — Si la prestación se realiza fuera de plazo: pagos únicos/subsidios con <span class="pill pill-r">20% de menoscabo</span>; pensiones con efectos desde el <span class="pill pill-r">1.er día del mes siguiente</span> al del ingreso.
+    </div>
+  </div>
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Especialidades por prestación</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Integración de lagunas:</strong> NO se aplica en el RETA</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>NYCM — BR diaria:</strong> suma de bases de los <span class="pill pill-g">6 meses</span> anteriores al mes previo al hecho causante ÷ 180</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>IT:</strong> cobertura obligatoria (salvo cubierta en otro régimen)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>IP Parcial:</strong> exige disminución <span class="pill pill-g">≥ 50%</span> en rendimiento normal sin impedir las tareas fundamentales</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Jubilación anticipada voluntaria:</strong> sí se reconoce. <span class="pill pill-g">NO</span> la involuntaria. Edad: <span class="pill pill-g">2 años</span> inferior a la ordinaria + mín. <span class="pill pill-g">35 años</span> cotizados</span></div>
+  </div>
+</div>
+
+<!-- CESE DE ACTIVIDAD -->
+<div class="section-label">09 · Cese de actividad en el RETA (arts. 327-350 LGSS)</div>
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Prestación por cese de actividad</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Carácter: <strong>obligatorio</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Requisitos:</strong> alta + mín. <span class="pill pill-p">12 meses</span> cotizados por cese + situación legal de cese + compromiso de actividad + al corriente de pago</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong> <span class="pill pill-p">70%</span> de la base reguladora</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Máximo:</strong> <span class="pill pill-p">175% IPREM</span> (200% o 225% con hijos a cargo)</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Mínimo:</strong> <span class="pill pill-p">107%</span> con hijos / <span class="pill pill-p">80%</span> sin hijos</span></div>
+      <div class="item"><span class="arrow">→</span><span>Duración: según meses cotizados en los <span class="pill pill-p">48 meses</span> anteriores al cese</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- RÉGIMEN DEL MAR -->
+<div class="section-label">10 · Régimen Especial del Mar (Ley 47/2015)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Campo de aplicación (arts. 3 y 4)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuenta ajena:</strong> trabajadores marítimo-pesqueros a bordo, acuicultura marina, buceadores, rederos, estibadores portuarios, investigadores y observadores de pesca</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuenta propia:</strong> autónomos en actividades marítimo-pesqueras, acuicultura, mariscadores, percebeiros, rederos, buceadores profesionales</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Exclusiones:</strong> buceadores deportivo-recreativos, prácticos de puerto</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Clasificación a efectos de cotización (art. 10)</div>
+    <table>
+      <thead><tr><th>Grupo</th><th>Descripción</th><th>Coeficiente corrector CC</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1.er Grupo</strong></td><td>Cta. ajena a salario; cta. propia; cta. ajena/armadores a la parte en embarcaciones <strong>&gt;150 T</strong></td><td>—</td></tr>
+        <tr><td><strong>2.º Grupo A</strong></td><td>Cta. ajena y propia en pesqueros <strong>50,01–150 T</strong></td><td><span class="pill pill-y">2/3</span></td></tr>
+        <tr><td><strong>2.º Grupo B</strong></td><td>Cta. ajena y propia en pesqueros <strong>10,01–50 T</strong></td><td><span class="pill pill-y">1/2</span></td></tr>
+        <tr><td><strong>3.er Grupo</strong></td><td>Cta. ajena a la parte en embarcaciones <strong>≤10 T</strong>; mariscadores, percebeiros, rederos, autónomos ≤10 T</td><td><span class="pill pill-y">1/3</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MINERÍA Y ESTUDIANTES -->
+<div class="section-label">11 · Minería del Carbón y Seguro Escolar</div>
+<div class="grid-2">
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Minería del Carbón (Decreto 298/1973)</div>
+    <div class="item"><span class="arrow">→</span><span>Trabajadores por cuenta ajena en extracción de carbón (minas subterráneas, cielo abierto, coquerías, aglomerados…)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Alta: plazo general del RG + obligación empresario de comunicar en <span class="pill pill-r">3 días naturales</span> haciendo constar <strong>categoría profesional y coeficiente reductor de jubilación</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Bonificación de edad de jubilación</strong> (art. 21): escala desde <span class="pill pill-r">0,50</span> (Picador y Barrenista) hasta <span class="pill pill-r">0,05</span> para trabajadores del exterior</span></div>
+  </div>
+  <div class="block purple">
+    <div class="block-title"><span class="dot"></span>Seguro Escolar (Ley 17/7/1953)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Inclusión obligatoria:</strong> españoles o extranjeros residentes legales; <span class="pill pill-p">menores de 28 años</span>; matriculados en ESO, Bachillerato, FP, estudios universitarios o doctorado</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Acción protectora:</strong> infortunio familiar · accidente · enfermedad · ayuda al graduado</span></div>
+  </div>
+</div>
+
+<!-- SISTEMAS ESPECIALES -->
+<div class="section-label">12 · Sistemas Especiales integrados en el RG (art. 11 LGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Catálogo de Sistemas Especiales</div>
+    <div class="item"><span class="arrow">→</span><span>SE para Trabajadores por <strong>Cuenta Ajena Agrarios</strong> (arts. 252-256)</span></div>
+    <div class="item"><span class="arrow">→</span><span>SE para <strong>Empleados del Hogar</strong> (arts. 250-251)</span></div>
+    <div class="item"><span class="arrow">→</span><span>SE de <strong>Frutas y Hortalizas</strong> e industrias de conservas vegetales</span></div>
+    <div class="item"><span class="arrow">→</span><span>SE para manipulado y empaquetado de <strong>Tomate Fresco</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>SE de la <strong>Resina</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>SE para servicios <strong>extraordinarios de Hostelería</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>SE de fijos discontinuos en <strong>exhibición cinematográfica</strong>, salas de baile, discotecas</span></div>
+    <div class="item"><span class="arrow">→</span><span>SE para fijos discontinuos en empresas de <strong>estudio de mercado y opinión pública</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Materias reguladas: solo <strong>encuadramiento, afiliación, cotización y recaudación</strong></span></div>
+  </div>
+
+  <!-- SE AGRARIO DETALLE -->
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>SE Agrario — Inactividad (art. 253 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Inactividad:</strong> jornadas reales &lt; <span class="pill pill-y">76,67%</span> de los días naturales del mes (salvo ≥ 5 jornadas semanales para mismo empresario)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Requisitos inclusión en inactividad:</strong> <span class="pill pill-y">30 jornadas reales</span> en <span class="pill pill-y">365 días</span> continuados + solicitud en los <span class="pill pill-y">3 meses</span> siguientes a la última jornada</span></div>
+    <div class="item"><span class="arrow">→</span><span>Efectos de la inclusión en inactividad: día <span class="pill pill-y">1 del mes siguiente</span> a la solicitud</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Exclusión de oficio:</strong> si no realiza 30 jornadas en 365 días → efectos día 1 del mes siguiente a la notificación</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Exclusión por falta de pago:</strong> <span class="pill pill-r">2 mensualidades consecutivas</span> → día 1 del mes siguiente a la 2.ª mensualidad no ingresada</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cotización en inactividad:</strong> base mínima grupo 7 RG al tipo del <span class="pill pill-y">11,50%</span>. Responsable: el <strong>trabajador</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Alta especial:</strong> trabajadores eventuales → el mismo día de comienzo; solicitud hasta las <span class="pill pill-y">12h</span> del inicio</span></div>
+  </div>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 2</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>Exclusión parientes — grado</td><td>Hasta <strong>2.º grado</strong> consanguinidad, afinidad o adopción</td></tr>
+      <tr><td>Hijo menor de 30 años del autónomo</td><td>Puede ser contratado; excluido de <strong>desempleo</strong></td></tr>
+      <tr><td>Socios soc. laborales excluidos de desempleo/FOGASA</td><td>Si número de socios <strong>≤ 25</strong></td></tr>
+      <tr><td>RETA — edad mínima</td><td><strong>18 años</strong></td></tr>
+      <tr><td>Control efectivo en sociedad de capital</td><td><strong>≥ 50%</strong> del capital (presunción)</td></tr>
+      <tr><td>Control con parentesco 2.º grado</td><td>Participación <strong>≥ 1/3</strong></td></tr>
+      <tr><td>Control con funciones dirección/gerencia</td><td>Participación <strong>≥ 1/4</strong></td></tr>
+      <tr><td>Plazo presentación alta RETA</td><td>Hasta <strong>60 días ANTES</strong> del inicio de actividad</td></tr>
+      <tr><td>1.ª a 3.ª alta RETA — efectos</td><td>Día en que concurren los requisitos</td></tr>
+      <tr><td>Resto de altas RETA — efectos</td><td>Día <strong>1 del mes natural</strong></td></tr>
+      <tr><td>1.ª a 3.ª baja RETA — efectos</td><td>Día del cese</td></tr>
+      <tr><td>Resto de bajas RETA — efectos</td><td><strong>Último día del mes natural</strong> del cese</td></tr>
+      <tr><td>Cambios de base al año (RETA)</td><td>Hasta <strong>6 veces</strong></td></tr>
+      <tr><td>Regularización — devolución de oficio</td><td>Antes del <strong>30 de abril</strong> del ejercicio siguiente</td></tr>
+      <tr><td>MEI (tipo 2026)</td><td><strong>0,90%</strong></td></tr>
+      <tr><td>Cese actividad — cotización previa mínima</td><td><strong>12 meses</strong></td></tr>
+      <tr><td>Cese actividad — cuantía</td><td><strong>70% BR</strong></td></tr>
+      <tr><td>Cese actividad — período cotizado a considerar</td><td>Últimos <strong>48 meses</strong></td></tr>
+      <tr><td>Invitación al pago RETA</td><td><strong>30 días naturales</strong></td></tr>
+      <tr><td>Penalización subsidios fuera de plazo RETA</td><td><strong>20% de menoscabo</strong></td></tr>
+      <tr><td>NYCM RETA — BR diaria</td><td>Suma bases <strong>6 meses</strong> anteriores ÷ <strong>180</strong></td></tr>
+      <tr><td>Mar — límite 1.er/2.º grupo</td><td><strong>150 T</strong></td></tr>
+      <tr><td>Mar — coeficiente corrector 3.er grupo</td><td><strong>1/3</strong></td></tr>
+      <tr><td>Minería — alta por empresario</td><td><strong>3 días naturales</strong></td></tr>
+      <tr><td>SE Agrario — inactividad umbral</td><td>Jornadas &lt; <strong>76,67%</strong> días naturales del mes</td></tr>
+      <tr><td>SE Agrario — requisito inclusión inactividad</td><td><strong>30 jornadas</strong> en <strong>365 días</strong></td></tr>
+      <tr><td>SE Agrario — plazo solicitud inclusión inactividad</td><td><strong>3 meses</strong> desde la última jornada</td></tr>
+      <tr><td>SE Agrario — exclusión por impago</td><td><strong>2 mensualidades</strong> consecutivas</td></tr>
+      <tr><td>SE Agrario — tipo cotización inactividad</td><td><strong>11,50%</strong> sobre base mínima grupo 7 RG</td></tr>
+      <tr><td>SE Agrario — alta trabajadores eventuales</td><td>Mismo día; solicitud hasta las <strong>12h</strong></td></tr>
+      <tr><td>Seguro Escolar — edad máxima</td><td><strong>28 años</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="nav">
+  <a href="tema1_especifico_esquema.html">◀ Tema 01</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema3_especifico_afiliacion_altas_bajas.html">Tema 03 ▶</a>
+</div>
+</html>

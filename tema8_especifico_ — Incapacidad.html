@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 8 Específico SS — IT e Incapacidad Permanente</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #0d0f14; --surface: #141720; --border: #252a38;
+    --accent: #e8c840; --accent2: #3d9eff; --accent3: #ff5f5f;
+    --accent4: #4ade80; --accent5: #c084fc;
+    --text: #d4d8e8; --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 13px; line-height: 1.6; padding: 32px 24px; max-width: 980px; margin: 0 auto; }
+  .header { border-left: 4px solid var(--accent2); padding: 16px 20px; margin-bottom: 32px; background: var(--surface); }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .block-title { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin: 22px 0 11px 0; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .info { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .info .ilabel { font-family: var(--mono); font-size: 9px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+  .sub-head { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 10px 0 6px 0; }
+
+  /* GRADOS IP */
+  .grados-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .grado-card { background: var(--surface); border: 1px solid var(--border); padding: 12px; }
+  .grado-num { font-family: var(--mono); font-size: 22px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .grado-name { font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 8 — Incapacidad Temporal e Incapacidad Permanente</h1>
+  <div class="sub">Arts. 169-175, 193-203 TRLGSS · Orden ISM/450/2023</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PARTE I: INCAPACIDAD TEMPORAL -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section-label">PARTE I · Incapacidad Temporal (arts. 169-175 TRLGSS)</div>
+
+<!-- BLOQUE 1: CONCEPTO Y CAUSAS -->
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Concepto y causas (art. 169)</div>
+    <div class="sub-head">Contingencias comunes</div>
+    <div class="item"><span class="arrow">→</span><span>Enfermedad común · Accidente no laboral</span></div>
+    <div class="sub-head">Contingencias profesionales</div>
+    <div class="item"><span class="arrow">→</span><span>Enfermedad profesional · Accidente de trabajo</span></div>
+    <div class="sub-head">Situaciones especiales de IT por CC</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Menstruación incapacitante secundaria (MIS)</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Interrupción del embarazo</strong> (voluntaria o no) mientras se recibe asistencia sanitaria y se está impedido para el trabajo</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Gestación</strong> desde el primer día de la semana <span class="pill pill-b">39</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Donación de órganos o tejidos:</strong> desde la preparación médica hasta el alta médica por curación. Subsidio: <span class="pill pill-b">100% BR</span> de IT por CC</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Duración y prórrogas</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Regla general:</strong> máximo <span class="pill pill-y">365 días</span>, prorrogables <span class="pill pill-y">180 días más</span> si se presume que el trabajador puede ser dado de alta por curación</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Duración máxima total: <span class="pill pill-y">545 días</span></strong> naturales</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Período de observación por EP:</strong> máximo <span class="pill pill-y">180 días</span>, prorrogables <span class="pill pill-y">180 días más</span> para estudio y diagnóstico</span></div>
+    <div class="sub-head">Carencia para IT</div>
+    <div class="item"><span class="arrow">→</span><span><strong>CC — Enfermedad común:</strong> <span class="pill pill-y">180 días</span> cotizados en los últimos <span class="pill pill-y">5 años</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>CC — Accidente no laboral:</strong> <span class="pill pill-g">Sin carencia</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>AT y EP:</strong> <span class="pill pill-g">Sin carencia</span></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 2: CUANTÍA IT -->
+<div class="block full red" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Base reguladora, cuantía y quién paga según contingencia</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="sub-head">Base Reguladora CC (grupos 1-7)</div>
+      <div class="item"><span class="arrow">→</span><span>BC CC del mes anterior al hecho causante <span class="pill pill-r">÷ 30</span></span></div>
+      <div class="sub-head">Base Reguladora CC (grupos 8-11)</div>
+      <div class="item"><span class="arrow">→</span><span>BC CC del mes anterior <span class="pill pill-r">÷ días naturales del mes</span></span></div>
+      <div class="sub-head">Base Reguladora AT/EP</div>
+      <div class="item"><span class="arrow">→</span><span>BC contingencias profesionales del mes anterior (sin HH.EE.) <strong>+</strong> cotización HH.EE. del año anterior <span class="pill pill-r">÷ 365</span></span></div>
+    </div>
+    <div>
+      <table>
+        <thead><tr><th>Período</th><th>CC</th><th>AT/EP</th><th>Quién paga</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Días 1-3</strong></td><td><span class="pill pill-r">0%</span> (a cargo empresa según ET)</td><td><span class="pill pill-g">75% BR</span></td><td>Empresa (CC) / Mutua (AT)</td></tr>
+          <tr><td><strong>Días 4-15</strong></td><td><span class="pill pill-y">60% BR</span></td><td><span class="pill pill-g">75% BR</span></td><td>Empresa (pago delegado)</td></tr>
+          <tr><td><strong>Días 16-20</strong></td><td><span class="pill pill-y">60% BR</span></td><td><span class="pill pill-g">75% BR</span></td><td>Entidad gestora/mutua (pago delegado por empresa)</td></tr>
+          <tr><td><strong>Desde día 21</strong></td><td><span class="pill pill-g">75% BR</span></td><td><span class="pill pill-g">75% BR</span></td><td>Entidad gestora/mutua (pago delegado por empresa)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 3: CONTROL Y EXTINCIÓN -->
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Control de la IT (art. 170 TRLGSS)</div>
+    <div class="sub-head">Primeros 365 días</div>
+    <div class="item"><span class="arrow">→</span><span><strong>SPS:</strong> emite bajas, confirmaciones y altas</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>INSS/ISM:</strong> inspección médica, alta a todos los efectos, inicio expediente IP</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Mutuas y empresas colaboradoras:</strong> control según contingencia</span></div>
+    <div class="sub-head">Tras 365 días</div>
+    <div class="item"><span class="arrow">→</span><span>La inspección médica del <strong>INSS exclusivamente</strong> puede:</span></div>
+    <div class="item"><span class="arrow">→</span><span>Emitir el alta médica · Prorrogar 180 días más · Iniciar expediente IP</span></div>
+    <div class="item"><span class="arrow">→</span><span>La falta de alta tras 365 días → el trabajador entra <strong>automáticamente en prórroga</strong></span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Extinción y denegación (arts. 174-175 TRLGSS)</div>
+    <div class="sub-head">Causas de extinción (art. 174)</div>
+    <div class="item"><span class="arrow">→</span><span>Transcurso del plazo máximo de <span class="pill pill-y">545 días</span></span></div>
+    <div class="item"><span class="arrow">→</span><span>Alta médica por curación o mejoría que permita realizar el trabajo habitual</span></div>
+    <div class="item"><span class="arrow">→</span><span>Ser dado de alta con o sin declaración de IP</span></div>
+    <div class="item"><span class="arrow">→</span><span>Jubilación · Fallecimiento</span></div>
+    <div class="item"><span class="arrow">→</span><span>Incomparecencia injustificada a exámenes del INSS o Mutua</span></div>
+    <div class="sub-head">Denegación/anulación/suspensión (art. 175)</div>
+    <div class="item"><span class="arrow">→</span><span>Actuación fraudulenta del beneficiario</span></div>
+    <div class="item"><span class="arrow">→</span><span>Rechazo/abandono del tratamiento sin causa razonable</span></div>
+    <div class="item"><span class="arrow">→</span><span>Incomparecencia injustificada → <strong>suspensión cautelar</strong></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 4: PAGO -->
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Dinámica del pago — Delegado vs Directo</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="sub-head">Pago Delegado</div>
+      <div class="item"><span class="arrow">→</span><span>La empresa abona con la misma periodicidad que los salarios</span></div>
+      <div class="item"><span class="arrow">→</span><span>Se mantiene hasta: notificación del alta médica · incomparecencia injustificada · último día del mes en que el INSS expida alta con propuesta de IP · cumplimiento de los <span class="pill pill-p">545 días</span></span></div>
+    </div>
+    <div>
+      <div class="sub-head">Pago Directo</div>
+      <div class="item"><span class="arrow">→</span><span>Lo abona directamente el <strong>INSS, ISM o Mutua</strong> cuando:</span></div>
+      <div class="item"><span class="arrow">→</span><span>Son entidades excluidas del pago delegado</span></div>
+      <div class="item"><span class="arrow">→</span><span>Por incumplimiento de la obligación empresarial de realizarlo</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PARTE II: INCAPACIDAD PERMANENTE -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section-label">PARTE II · Incapacidad Permanente (arts. 193-203 TRLGSS)</div>
+
+<!-- BLOQUE 5: CONCEPTO Y GRADOS -->
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Concepto (art. 193)</div>
+  <div class="item"><span class="arrow">→</span><span>Situación del trabajador que, tras haber estado sometido al tratamiento prescrito, presenta <strong>reducciones anatómicas o funcionales graves</strong>, susceptibles de determinación objetiva y previsiblemente definitivas, que disminuyan o anulen su capacidad laboral</span></div>
+  <div class="item"><span class="arrow">→</span><span>La posibilidad de recuperación médicamente <strong>incierta o a largo plazo</strong> no impide la calificación</span></div>
+  <div class="item"><span class="arrow">→</span><span>Por regla general deriva de una IT previa (salvo excepciones legales)</span></div>
+</div>
+
+<div class="grados-grid">
+  <div class="grado-card">
+    <div class="grado-num" style="color:var(--accent);">IPP</div>
+    <div class="grado-name">Incapacidad Permanente Parcial</div>
+    <div class="item"><span class="arrow">→</span><span>Disminución <span class="pill pill-y">≥ 33%</span> en rendimiento normal para la profesión habitual</span></div>
+    <div class="item"><span class="arrow">→</span><span>Sin impedir las tareas fundamentales</span></div>
+    <div class="item" style="margin-top:8px;"><span class="arrow">→</span><span><strong>Prestación:</strong> indemnización a tanto alzado</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuantía: <span class="pill pill-y">24 mensualidades</span></strong> de la BR que sirvió para calcular la IT previa</span></div>
+  </div>
+  <div class="grado-card">
+    <div class="grado-num" style="color:var(--accent2);">IPT</div>
+    <div class="grado-name">Incapacidad Permanente Total</div>
+    <div class="item"><span class="arrow">→</span><span>Inhabilita para <strong>todas o las fundamentales tareas</strong> de la profesión habitual (puede dedicarse a otra)</span></div>
+    <div class="item" style="margin-top:8px;"><span class="arrow">→</span><span><strong>Prestación:</strong> pensión vitalicia</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuantía: <span class="pill pill-b">55% BR</span></strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>IPT Cualificada</strong> (≥ 55 años + dificultad reinserción): <span class="pill pill-b">75% BR</span> (+20%)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Opción indemnización alzada si: &lt; 60 años + IPT irreversible + solicitud en 3 años</span></div>
+  </div>
+  <div class="grado-card">
+    <div class="grado-num" style="color:var(--accent3);">IPA</div>
+    <div class="grado-name">Incapacidad Permanente Absoluta</div>
+    <div class="item"><span class="arrow">→</span><span>Inhabilita por completo para <strong>toda profesión u oficio</strong></span></div>
+    <div class="item" style="margin-top:8px;"><span class="arrow">→</span><span><strong>Prestación:</strong> pensión vitalicia</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuantía: <span class="pill pill-r">100% BR</span></strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Exenta de <strong>IRPF</strong></span></div>
+  </div>
+  <div class="grado-card">
+    <div class="grado-num" style="color:var(--accent5);">GI</div>
+    <div class="grado-name">Gran Invalidez</div>
+    <div class="item"><span class="arrow">→</span><span>IP que requiere <strong>asistencia de otra persona</strong> para los actos esenciales de la vida</span></div>
+    <div class="item" style="margin-top:8px;"><span class="arrow">→</span><span><strong>Prestación:</strong> pensión vitalicia</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuantía: <span class="pill pill-p">100% BR</span></strong> + <strong>complemento</strong> para remunerar a la persona que atiende al inválido</span></div>
+    <div class="item"><span class="arrow">→</span><span>Exenta de <strong>IRPF</strong></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 6: BASE REGULADORA IP -->
+<div class="section-label">06 · Base Reguladora de la IP (art. 197 TRLGSS)</div>
+<div class="block full yellow" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Cálculo según contingencia y situación de alta</div>
+  <table>
+    <thead><tr><th>Contingencia / Situación</th><th>Fórmula de la BR</th><th>Grados aplicables</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Enfermedad común — En alta o asimilada</strong></td>
+        <td>Suma BC de los <span class="pill pill-y">96 meses</span> anteriores al mes previo al HC <span class="pill pill-y">÷ 112</span><br><em>24 meses previos: valor nominal · 72 meses restantes: actualizados por IPC</em></td>
+        <td>Todos los grados</td>
+      </tr>
+      <tr>
+        <td><strong>Enfermedad común — No alta (solo IPA y GI)</strong></td>
+        <td>Misma fórmula: 96 meses ÷ 112</td>
+        <td>Solo IPA y GI</td>
+      </tr>
+      <tr>
+        <td><strong>Accidente no laboral — En alta</strong></td>
+        <td>Suma de <span class="pill pill-b">24 BC</span> ininterrumpidas elegidas por el beneficiario dentro de los <span class="pill pill-b">7 años</span> anteriores al HC <span class="pill pill-b">÷ 28</span></td>
+        <td>Todos los grados</td>
+      </tr>
+      <tr>
+        <td><strong>Accidente no laboral — No alta (solo IPA y GI)</strong></td>
+        <td>Misma fórmula que enfermedad común: 96 meses ÷ 112</td>
+        <td>Solo IPA y GI</td>
+      </tr>
+      <tr>
+        <td><strong>AT o EP — cualquier grado</strong></td>
+        <td>Salario real del año anterior ÷ 365:<br>
+        • Sueldo + antigüedad diarios × 365<br>
+        • + Pagas extras año anterior<br>
+        • + (Pluses + HH.EE. + complementos año anterior ÷ días efectivamente trabajados) × 273</td>
+        <td>Todos los grados</td>
+      </tr>
+      <tr>
+        <td><strong>Menores de 52 años con cotización &lt; 8 años</strong></td>
+        <td>Suma BC ÷ meses × <span class="pill pill-g">1,1666</span></td>
+        <td>Regla especial</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BLOQUE 7: INTEGRACIÓN DE LAGUNAS -->
+<div class="grid-2">
+  <div class="block purple">
+    <div class="block-title"><span class="dot"></span>Integración de lagunas de cotización</div>
+    <div class="item"><span class="arrow">→</span><span>Si en el período de cómputo de la BR aparecen meses sin obligación de cotizar, se integran:</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Primeros 48 meses:</strong> <span class="pill pill-p">100%</span> de la base mínima vigente para mayores de 18 años</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Meses restantes (desde el 49):</strong> <span class="pill pill-p">50%</span> de dicha base mínima</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>No aplica:</strong> en IT por CC (no hay integración de lagunas)</span></div>
+  </div>
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Porcentaje según años cotizados (EC)</div>
+    <div class="item"><span class="arrow">→</span><span>Una vez calculada la BR, se aplica el <strong>mismo porcentaje que para jubilación ordinaria</strong> según los años cotizados</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Mínimo garantizado:</strong> si no alcanza 15 años cotizados → porcentaje base del <span class="pill pill-g">50%</span>, al que luego se aplica el porcentaje reductor del grado de IP</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 8: CARENCIA IP -->
+<div class="section-label">07 · Carencia para la IP (art. 195 TRLGSS)</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Períodos mínimos de cotización según grado y circunstancias</div>
+  <table>
+    <thead><tr><th>Grado / Situación</th><th>Carencia exigida</th><th>Observaciones</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>IPP — EC en alta</strong></td>
+        <td><span class="pill pill-b">1.800 días</span> dentro de los <span class="pill pill-b">10 años</span> anteriores a la extinción de la IT previa</td>
+        <td>Si &lt; 21 años en fecha baja IT: mitad de los días entre los 16 años y el inicio de la IT</td>
+      </tr>
+      <tr>
+        <td><strong>IPT, IPA, GI — EC · Menor de 31 años</strong></td>
+        <td><span class="pill pill-b">1/3</span> del tiempo transcurrido entre los <span class="pill pill-b">16 años</span> y el HC</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>IPT, IPA, GI — EC · 31 años o más</strong></td>
+        <td><strong>Carencia general:</strong> <span class="pill pill-b">1/4</span> del tiempo desde los <span class="pill pill-b">20 años</span> hasta el HC, mínimo <span class="pill pill-b">5 años</span><br><strong>Carencia específica:</strong> al menos <span class="pill pill-b">1/5</span> del período exigible dentro de los <span class="pill pill-b">10 años</span> anteriores al HC</td>
+        <td>Doble requisito acumulativo</td>
+      </tr>
+      <tr>
+        <td><strong>IPA y GI — EC o ANL · No alta</strong></td>
+        <td>Mínimo <span class="pill pill-r">15 años</span> cotizados, de los cuales <span class="pill pill-r">3 años</span> dentro de los <span class="pill pill-r">10 años</span> anteriores al HC</td>
+        <td>Solo válido para IPA y GI</td>
+      </tr>
+      <tr>
+        <td><strong>AT, EP o ANL (en alta) — cualquier grado</strong></td>
+        <td><span class="pill pill-g">Sin carencia</span> — carencia cero</td>
+        <td>Regla de oro de contingencias profesionales</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BLOQUE 9: COMPATIBILIDADES IP -->
+<div class="section-label">08 · Compatibilidades e incompatibilidades (art. 198 TRLGSS)</div>
+<div class="block full green" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Régimen de compatibilidades por grado</div>
+  <table>
+    <thead><tr><th>Grado</th><th>¿Compatible con trabajo?</th><th>Observaciones críticas</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>IPP</strong></td>
+        <td><span class="pill pill-g">Sí — totalmente compatible</span></td>
+        <td>Incluso con el mismo puesto de trabajo</td>
+      </tr>
+      <tr>
+        <td><strong>IPT</strong></td>
+        <td><span class="pill pill-y">Compatible con trabajo distinto</span></td>
+        <td>No puede ejercer las mismas tareas por las que se le incapacitó</td>
+      </tr>
+      <tr>
+        <td><strong>IPT Cualificada (+20%)</strong></td>
+        <td><span class="pill pill-r">Incompatible</span> con cualquier trabajo y con prestaciones sustitutivas del salario (desempleo)</td>
+        <td>El incremento del 20% se pierde al trabajar</td>
+      </tr>
+      <tr>
+        <td><strong>IPA y GI</strong></td>
+        <td><span class="pill pill-g">Compatible con actividades residuales</span></td>
+        <td>Si se realiza trabajo que implique inclusión en SS → la entidad gestora <strong>suspende la pensión</strong>; la reanuda al cese laboral</td>
+      </tr>
+      <tr>
+        <td><strong>A los 67 años</strong></td>
+        <td>—</td>
+        <td>Las pensiones de IP pasan a denominarse <strong>pensiones de jubilación</strong> (solo cambio de denominación, sin alteración de cuantía ni condiciones)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BLOQUE 10: REVISIÓN Y HECHO CAUSANTE -->
+<div class="grid-2">
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Revisión de la IP (art. 200 TRLGSS)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Competencia exclusiva:</strong> <span class="pill pill-r">INSS</span> a través del EVI (o ICAM donde no haya EVI)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Toda resolución fija un <strong>plazo mínimo de espera</strong> antes de poder revisar</span></div>
+    <div class="sub-head">Motivos de revisión</div>
+    <div class="item"><span class="arrow">→</span><span>Agravación · Mejoría · Error de diagnóstico · Trabajos realizados</span></div>
+    <div class="sub-head">Excepciones al plazo de espera — revisión inmediata</div>
+    <div class="item"><span class="arrow">→</span><span>Si el pensionista está <strong>ejerciendo cualquier trabajo</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Si se basa en <strong>error de diagnóstico</strong> (y no ha llegado a la edad de jubilación)</span></div>
+    <div class="sub-head">Límite de la revisión</div>
+    <div class="item"><span class="arrow">→</span><span>No se puede revisar por agravación o mejoría una vez cumplida la <strong>edad de jubilación ordinaria</strong> y acceda a esa pensión</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Hecho causante y nacimiento del derecho</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Supuesto general:</strong> fecha en que se <strong>extinga la IT</strong> de la que derive la IP</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Sin IT previa (o no extinguida):</strong> fecha de emisión del <strong>dictamen-propuesta del EVI</strong></span></div>
+    <div class="sub-head">Extinción de las prestaciones</div>
+    <div class="item"><span class="arrow">→</span><span>IPP/IPT: se extinguen si el trabajador opta por la indemnización a tanto alzado (si cumple requisitos)</span></div>
+    <div class="item"><span class="arrow">→</span><span>IPT, IPA, GI: pensiones <strong>vitalicias e indeterminadas</strong>, sujetas a revisión</span></div>
+    <div class="item"><span class="arrow">→</span><span>Causas generales: revisión con pérdida de grado · fallecimiento · transición a jubilación</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 11: LPNI -->
+<div class="section-label">09 · Lesiones Permanentes No Invalidantes — LPNI (arts. 201-203 TRLGSS)</div>
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Concepto, características e incompatibilidades</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Concepto:</strong> lesiones, mutilaciones y deformidades de carácter definitivo causadas por <span class="pill pill-p">AT o EP</span> que, sin constituir IP, suponen disminución de la integridad física</span></div>
+      <div class="item"><span class="arrow">→</span><span>Deben estar recogidas expresamente en el <strong>baremo oficial legal</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Actualización:</strong> Orden ISM/450/2023, de 4 de mayo</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Prestación:</strong> indemnización abonada por <strong>una sola vez</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong> cantidades alzadas del baremo oficial</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Compatible</strong> con la continuidad en la empresa</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Entidad pagadora:</strong> entidad gestora o mutua con cobertura de CP</span></div>
+      <div class="alert">
+        <div class="alabel">⚠ Incompatibilidad</div>
+        <strong>Incompatible</strong> con prestaciones de IP (IPP, IPT, IPA, GI), <strong>salvo</strong> que las lesiones sean totalmente independientes de las tomadas en consideración para declarar la IP y su grado.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 8</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>IT — gestación especial desde semana</td><td><strong>39</strong></td></tr>
+      <tr><td>IT — donación órganos, cuantía</td><td><strong>100% BR</strong> de IT por CC</td></tr>
+      <tr><td>IT — duración máxima total</td><td><strong>545 días</strong> naturales (365 + 180)</td></tr>
+      <tr><td>IT — observación EP duración máxima</td><td><strong>180 días</strong> prorrogables otros <strong>180</strong></td></tr>
+      <tr><td>IT — carencia EC</td><td><strong>180 días</strong> en los últimos <strong>5 años</strong></td></tr>
+      <tr><td>IT — carencia AT/EP/ANL</td><td><strong>Sin carencia</strong></td></tr>
+      <tr><td>IT CC — cuantía días 1-3</td><td><strong>0%</strong> (a cargo empresa según ET)</td></tr>
+      <tr><td>IT CC — cuantía días 4-20</td><td><strong>60% BR</strong></td></tr>
+      <tr><td>IT CC — cuantía desde día 21</td><td><strong>75% BR</strong></td></tr>
+      <tr><td>IT AT/EP — cuantía desde día 1</td><td><strong>75% BR</strong> (desde el día siguiente al accidente)</td></tr>
+      <tr><td>BR IT CC grupos 1-7</td><td>BC CC mes anterior <strong>÷ 30</strong></td></tr>
+      <tr><td>BR IT CC grupos 8-11</td><td>BC CC mes anterior <strong>÷ días naturales del mes</strong></td></tr>
+      <tr><td>Control IT tras 365 días</td><td>Solo la inspección médica del <strong>INSS</strong></td></tr>
+      <tr><td>Incomparecencia injustificada INSS/Mutua</td><td><strong>Suspensión cautelar</strong> de la IT</td></tr>
+      <tr><td>IPP — cuantía</td><td>Indemnización alzada de <strong>24 mensualidades</strong> de la BR de la IT previa</td></tr>
+      <tr><td>IPP — carencia EC</td><td><strong>1.800 días</strong> en los últimos <strong>10 años</strong></td></tr>
+      <tr><td>IPT — cuantía</td><td><strong>55% BR</strong></td></tr>
+      <tr><td>IPT Cualificada — cuantía</td><td><strong>75% BR</strong> (+20%)</td></tr>
+      <tr><td>IPT Cualificada — edad mínima</td><td><strong>55 años</strong></td></tr>
+      <tr><td>IPT Cualificada — compatible con trabajo</td><td><strong>No</strong> — incompatible con cualquier trabajo</td></tr>
+      <tr><td>IPA — cuantía</td><td><strong>100% BR</strong></td></tr>
+      <tr><td>GI — cuantía</td><td><strong>100% BR + complemento</strong> para cuidador</td></tr>
+      <tr><td>IPA y GI — exención IRPF</td><td><strong>Sí</strong></td></tr>
+      <tr><td>BR IP EC — meses computados</td><td><strong>96 meses</strong> anteriores ÷ <strong>112</strong></td></tr>
+      <tr><td>BR IP EC — actualización</td><td>24 meses: valor nominal · 72 restantes: <strong>actualizados por IPC</strong></td></tr>
+      <tr><td>BR IP ANL en alta</td><td>24 BC elegidas en 7 años anteriores <strong>÷ 28</strong></td></tr>
+      <tr><td>Integración lagunas — primeros 48 meses</td><td><strong>100%</strong> base mínima</td></tr>
+      <tr><td>Integración lagunas — desde mes 49</td><td><strong>50%</strong> base mínima</td></tr>
+      <tr><td>Carencia IP EC &lt; 31 años</td><td><strong>1/3</strong> del tiempo desde los <strong>16 años</strong> hasta el HC</td></tr>
+      <tr><td>Carencia IP EC ≥ 31 años — general</td><td><strong>1/4</strong> desde los <strong>20 años</strong>, mínimo <strong>5 años</strong></td></tr>
+      <tr><td>Carencia IP EC ≥ 31 años — específica</td><td>Al menos <strong>1/5</strong> dentro de los <strong>10 años</strong> anteriores al HC</td></tr>
+      <tr><td>Carencia IPA/GI no alta</td><td><strong>15 años</strong> totales, <strong>3 años</strong> en los últimos <strong>10</strong></td></tr>
+      <tr><td>Carencia AT/EP/ANL (en alta) — todos los grados</td><td><strong>Sin carencia</strong></td></tr>
+      <tr><td>IPA/GI + trabajo en SS → efecto pensión</td><td>La entidad gestora <strong>suspende la pensión</strong> hasta el cese</td></tr>
+      <tr><td>IP a los 67 años</td><td>Pasa a denominarse <strong>pensión de jubilación</strong> (sin cambio de cuantía)</td></tr>
+      <tr><td>Revisión IP — competencia</td><td>Exclusivamente el <strong>INSS</strong> (EVI/ICAM)</td></tr>
+      <tr><td>Revisión inmediata sin plazo de espera</td><td>Si el pensionista trabaja o si hay <strong>error de diagnóstico</strong></td></tr>
+      <tr><td>Revisión IP — límite de edad</td><td>No revisable por agravación/mejoría tras cumplir <strong>edad de jubilación ordinaria</strong></td></tr>
+      <tr><td>LPNI — contingencias</td><td>Solo <strong>AT y EP</strong></td></tr>
+      <tr><td>LPNI — forma de pago</td><td>Indemnización <strong>una sola vez</strong></td></tr>
+      <tr><td>LPNI — incompatibilidad</td><td>Con prestaciones de IP, <strong>salvo</strong> que las lesiones sean totalmente independientes</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="nav">
+  <a href="tema7_especifico_accion_protectora.html">◀ Tema 07</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema9_especifico_nycm.html">Tema 09 ▶</a>
+</div>
+</body>
+</html>

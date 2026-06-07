@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 9 Específico SS — NYCM, Lactancia y Riesgos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #0d0f14; --surface: #141720; --border: #252a38;
+    --accent: #e8c840; --accent2: #3d9eff; --accent3: #ff5f5f;
+    --accent4: #4ade80; --accent5: #c084fc;
+    --text: #d4d8e8; --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 13px; line-height: 1.6; padding: 32px 24px; max-width: 980px; margin: 0 auto; }
+  .header { border-left: 4px solid var(--accent5); padding: 16px 20px; margin-bottom: 32px; background: var(--surface); }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .block-title { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin: 22px 0 11px 0; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .info { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .info .ilabel { font-family: var(--mono); font-size: 9px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .rdl { background: rgba(192,132,252,0.06); border: 1px solid rgba(192,132,252,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .rdl .rlabel { font-family: var(--mono); font-size: 9px; color: var(--accent5); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+  .sub-head { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 10px 0 6px 0; }
+
+  /* SEMANAS VISUAL */
+  .semanas-bar { display: flex; height: 36px; border-radius: 3px; overflow: hidden; margin: 10px 0; font-size: 10px; }
+  .seg { display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 700; color: #fff; padding: 0 6px; text-align: center; line-height: 1.2; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 9 — NYCM · Corresponsabilidad Lactante · Riesgo Embarazo y Lactancia Natural</h1>
+  <div class="sub">Arts. 177-189 TRLGSS · Art. 48 ET · Art. 49 TREBEP · RDL 9/2025 · RD 295/2009</div>
+</div>
+
+<!-- BLOQUE 1: SITUACIONES PROTEGIDAS Y CARENCIA -->
+<div class="section-label">01 · Situaciones protegidas y carencia NYCM (arts. 177-178 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Situaciones protegidas (art. 177)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Nacimiento</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Adopción</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Guarda con fines de adopción</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Acogimiento familiar</strong> (temporal o permanente) y tutela sobre el menor cuando el tutor sea familiar y la ley no permita adoptarlo</span></div>
+    <div class="item"><span class="arrow">→</span><span>Condición: disfrutados durante los <strong>períodos de descanso legalmente establecidos</strong> (art. 48 ET / art. 49 TREBEP)</span></div>
+    <div class="rdl" style="margin-top:8px;">
+      <div class="rlabel">RDL 9/2025 — Madre biológica</div>
+      El término <strong>madre biológica</strong> incluye también a las <strong>personas trans gestantes</strong> a efectos de todos estos permisos.
+    </div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Carencia por edad (art. 178) — Pregunta fija de test</div>
+    <table>
+      <thead><tr><th>Edad</th><th>Carencia exigida</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Menos de 21 años</strong></td><td><span class="pill pill-g">Sin carencia</span> — ningún día</td></tr>
+        <tr><td><strong>21 a 25 años</strong> (cumplidos)</td><td><span class="pill pill-y">90 días</span> en los últimos <span class="pill pill-y">7 años</span><br>O bien <span class="pill pill-y">180 días</span> en toda la vida laboral</td></tr>
+        <tr><td><strong>26 años o más</strong> (cumplidos)</td><td><span class="pill pill-y">180 días</span> en los últimos <span class="pill pill-y">7 años</span><br>O bien <span class="pill pill-y">365 días</span> en toda la vida laboral</td></tr>
+      </tbody>
+    </table>
+    <div class="rdl" style="margin-top:10px;">
+      <div class="rlabel">RDL 9/2025 — Regla de oro (art. 178.4)</div>
+      Al inicio de <strong>cada período de descanso</strong> (por la posibilidad de fraccionamiento) el trabajador deberá encontrarse en situación de <strong>alta o asimilada</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 2: PRESTACIÓN ECONÓMICA -->
+<div class="section-label">02 · Prestación económica (art. 179 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Cuantía y base reguladora</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong> <span class="pill pill-b">100% de la BR</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>BR:</strong> BC por CC del mes inmediatamente anterior al del hecho causante ÷ número de días a que se refiere esa cotización</span></div>
+    <div class="item"><span class="arrow">→</span><span>Si el trabajador ingresó en la empresa ese mismo mes → se usa la <strong>BC de ese mes</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Resolución provisional:</strong> el INSS puede reconocerla con la última base que conste en sus sistemas. Si difiere, se emite resolución definitiva en máximo <span class="pill pill-b">3 meses</span> desde la provisional</span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Pérdida, suspensión y denegación (art. 180)</div>
+    <div class="item"><span class="arrow">→</span><span>Actuación <strong>fraudulenta</strong> para obtener o conservar la prestación</span></div>
+    <div class="item"><span class="arrow">→</span><span>Trabajar por <strong>cuenta propia o ajena</strong> durante los períodos de descanso</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 3: DURACIÓN Y DISTRIBUCIÓN RDL 9/2025 -->
+<div class="section-label">03 · Duración y distribución del permiso (RDL 9/2025 · art. 48 ET · art. 49 TREBEP)</div>
+
+<!-- TABLA COMPARATIVA BIPARENTAL / MONOPARENTAL -->
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Estructura del permiso — Reforma RDL 9/2025</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div>
+      <div class="sub-head" style="color:var(--accent2);">Familia Biparental — 19 semanas por progenitor</div>
+      <div class="semanas-bar">
+        <div class="seg" style="background:var(--accent3); flex:6;">6 sem<br>OBLIG.</div>
+        <div class="seg" style="background:var(--accent2); flex:11;">11 sem<br>VOLUNTARIAS</div>
+        <div class="seg" style="background:var(--accent5); flex:2;">2 sem<br>CUIDADO</div>
+      </div>
+      <div class="item"><span class="arrow">→</span><span><strong>6 semanas obligatorias:</strong> inmediatamente posteriores al parto/resolución · jornada completa · ininterrumpidas · obligatorias para ambos progenitores</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>11 semanas voluntarias:</strong> desde el fin del tramo obligatorio hasta que el hijo cumpla <span class="pill pill-b">12 meses</span> · por semanas completas · acumuladas o interrumpidas</span></div>
+      <div class="item"><span class="arrow">→</span><span>La <strong>madre biológica</strong> puede anticipar hasta <span class="pill pill-b">4 semanas antes</span> del parto previsto</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>2 semanas de cuidado parental:</strong> hasta que el hijo cumpla <span class="pill pill-b">8 años</span> · por semanas completas</span></div>
+    </div>
+    <div>
+      <div class="sub-head" style="color:var(--accent4);">Familia Monoparental — 32 semanas (STC 140/2024)</div>
+      <div class="semanas-bar">
+        <div class="seg" style="background:var(--accent3); flex:6;">6 sem<br>OBLIG.</div>
+        <div class="seg" style="background:var(--accent4); flex:22;">22 sem<br>VOLUNTARIAS</div>
+        <div class="seg" style="background:var(--accent5); flex:4;">4 sem<br>CUIDADO</div>
+      </div>
+      <div class="item"><span class="arrow">→</span><span><strong>6 semanas obligatorias:</strong> iguales que biparental</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>22 semanas voluntarias:</strong> hasta que el hijo cumpla <span class="pill pill-g">12 meses</span></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>4 semanas de cuidado parental:</strong> hasta que el hijo cumpla <span class="pill pill-g">8 años</span></span></div>
+      <div class="rdl" style="margin-top:8px;">
+        <div class="rlabel">Retroactividad RDL 9/2025</div>
+        Las semanas de cuidado parental adicionales se aplican retroactivamente a HC desde el <strong>2 de agosto de 2024</strong>. El disfrute y abono puede solicitarse desde el <strong>1 de enero de 2026</strong>.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 4: INCIDENCIAS Y ESPECIALIDADES -->
+<div class="section-label">04 · Incidencias durante el permiso y especialidades</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Prematuridad, hospitalización y fallecimiento</div>
+    <div class="sub-head">Hospitalización y prematuridad</div>
+    <div class="item"><span class="arrow">→</span><span>Partos prematuros con falta de peso o que requieran hospitalización <strong>&gt; 7 días</strong> tras el parto → el permiso se amplía en tantos días como el nacido esté hospitalizado, con un máximo de <span class="pill pill-y">13 semanas adicionales</span></span></div>
+    <div class="sub-head">Fallecimiento del hijo</div>
+    <div class="item"><span class="arrow">→</span><span>El período de suspensión <strong>no se reduce</strong>, salvo que, una vez transcurridas las 6 semanas obligatorias, el trabajador solicite la reincorporación</span></div>
+    <div class="sub-head">Fallecimiento de un progenitor</div>
+    <div class="item"><span class="arrow">→</span><span>El progenitor superviviente puede hacer uso de la <strong>totalidad o la parte restante</strong> del permiso</span></div>
+    <div class="sub-head">Adopción internacional</div>
+    <div class="item"><span class="arrow">→</span><span>El permiso puede iniciarse hasta <span class="pill pill-y">4 semanas antes</span> de la resolución judicial o decisión administrativa</span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Especialidades sector público (art. 49 TREBEP)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Ampliación por discapacidad del hijo:</strong> <span class="pill pill-b">+2 semanas</span> para ambos progenitores</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Ampliación por parto múltiple:</strong> <span class="pill pill-b">+1 semana</span> por cada progenitor por cada hijo a partir del segundo</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cómputo con lactancia acumulada:</strong> si un progenitor opta por el tramo voluntario interrumpido tras la semana 16 y el otro acumula lactancia en jornadas completas → las semanas restantes del permiso comienzan <strong>al terminar la acumulación</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cláusula de salvaguarda (cuidado parental):</strong> la Administración puede aplazar por escrito la concesión si altera seriamente el funcionamiento, ofreciendo alternativa flexible</span></div>
+    <div class="note" style="margin-top:8px;">
+      <div class="nlabel">Garantías funcionarios</div>
+      Tiempo computado como <strong>servicio efectivo</strong> a todos los efectos. Derecho a reincorporarse en condiciones no menos favorables y a beneficiarse de mejoras producidas durante la ausencia.
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 5: SIMULTANEIDAD Y PREAVISO -->
+<div class="block full green" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Preaviso, simultaneidad y limitaciones (art. 48.4 y 48.5 ET)</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Preaviso mínimo:</strong> <span class="pill pill-g">15 días</span> antes del disfrute de los tramos flexibles (voluntario de 11 semanas y cuidado parental de 2 semanas)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Los convenios colectivos pueden establecer un plazo diferente</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Misma empresa:</strong> si ambos progenitores trabajan en la misma empresa, la dirección puede <strong>limitar el ejercicio simultáneo</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Requisito: razones fundadas y objetivas, <strong>motivadas por escrito</strong></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 6: MODALIDAD NO CONTRIBUTIVA -->
+<div class="section-label">05 · NYCM modalidad no contributiva (arts. 181-182 TRLGSS)</div>
+<div class="block full red" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Subsidio no contributivo por nacimiento</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Beneficiarias:</strong> exclusivamente <strong>madres</strong> trabajadoras por cuenta ajena que reúnen todos los requisitos contributivos <strong>salvo la carencia</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong> <span class="pill pill-r">100% del IPREM</span> vigente (salvo que la BR ordinaria fuese inferior → se aplica esta)</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Duración general:</strong> solo el período de descanso <strong>obligatorio</strong> → <span class="pill pill-r">6 semanas</span> ininterrumpidas posteriores al parto a jornada completa</span></div>
+    </div>
+    <div>
+      <div class="sub-head">Ampliación de +14 días naturales</div>
+      <div class="item"><span class="arrow">→</span><span>Familia numerosa (o que adquiera esa condición)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Monoparentalidad</span></div>
+      <div class="item"><span class="arrow">→</span><span>Parto/adopción/acogimiento múltiple (≥ 2 hijos)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Discapacidad <span class="pill pill-r">≥ 65%</span> de la beneficiaria o del menor</span></div>
+      <div class="alert" style="margin-top:8px; margin-bottom:0;">
+        <div class="alabel">⚠ Límite de acumulación</div>
+        Solo <strong>+14 días</strong> aunque concurran varias causas simultáneamente
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 7: CORRESPONSABILIDAD LACTANTE -->
+<div class="section-label">06 · Corresponsabilidad en el cuidado del lactante (arts. 183-185 TRLGSS)</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Concepto, carencia, cuantía y extinción</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Situación protegida:</strong> reducción de jornada de <span class="pill pill-b">media hora</span> para el cuidado del lactante desde los <span class="pill pill-b">9 meses</span> hasta los <span class="pill pill-b">12 meses</span></span></div>
+      <div class="item"><span class="arrow">→</span><span>Requisito: <strong>ambos progenitores deben trabajar</strong> con carácter permanente</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Carencia:</strong> misma escala por edad que para NYCM contributivo</span></div>
+      <div class="alert">
+        <div class="alabel">⚠ Cepo de examen</div>
+        Aunque ambos progenitores reduzcan la jornada simultáneamente, el subsidio solo se reconoce a <strong>uno de los dos</strong>
+      </div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong> <span class="pill pill-b">100% de la BR</span> de IT por CC, en proporción a la reducción de jornada</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Extinción automática</strong> cuando el menor cumple <span class="pill pill-b">12 meses</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 8: RIESGO DURANTE EL EMBARAZO -->
+<div class="section-label">07 · Riesgo durante el embarazo (arts. 186-187 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Concepto, carencia y cuantía</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Situación protegida:</strong> suspensión del contrato cuando no sea posible adaptar o cambiar de puesto de trabajo por otro compatible con el estado de la trabajadora</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Naturaleza jurídica:</strong> prestación derivada de <span class="pill pill-g">contingencias comunes</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Carencia:</strong> <span class="pill pill-g">NINGUNA</span> (0 días)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong> <span class="pill pill-g">100% BR</span> calculada con las reglas de IT por <strong>contingencias profesionales</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Gestión:</strong> INSS o Mutua (según quién tenga concertada la cobertura de riesgos profesionales)</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Nacimiento y extinción del derecho</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Nace:</strong> el día en que se inicie la suspensión del contrato</span></div>
+    <div class="sub-head">Causas de extinción</div>
+    <div class="item"><span class="arrow">→</span><span>Inicio del permiso por <strong>nacimiento</strong> (tramo obligatorio)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Reincorporación al <strong>puesto anterior o compatible</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Desaparición del <strong>riesgo</strong></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 9: RIESGO LACTANCIA -->
+<div class="section-label">08 · Riesgo durante la lactancia natural (arts. 188-189 TRLGSS · RD 295/2009)</div>
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Concepto, carencia, cuantía y extinción</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Situación protegida:</strong> suspensión del contrato cuando no sea posible cambiar de puesto por otro compatible con la lactancia natural</span></div>
+      <div class="item"><span class="arrow">→</span><span>Excluye: patologías o riesgos comunes de salud intrínseca de madre o hijo → van por <strong>IT ordinaria</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Aplicable también a trabajadoras por <strong>cuenta propia</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Carencia:</strong> <span class="pill pill-p">NINGUNA</span> (0 días)</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong> <span class="pill pill-p">100% BR</span> de IT por contingencias <strong>profesionales</strong></span></div>
+    </div>
+    <div>
+      <div class="sub-head">Causas de extinción (art. 189)</div>
+      <div class="item"><span class="arrow">→</span><span><strong>a)</strong> El hijo cumple <span class="pill pill-p">9 meses</span></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>b)</strong> Reincorporación al puesto anterior o compatible</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>c)</strong> Extinción del contrato o cese por cuenta propia</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>d)</strong> Interrupción de la lactancia natural</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>e)</strong> Fallecimiento de la beneficiaria o del hijo lactante</span></div>
+      <div class="alert" style="margin-top:8px; margin-bottom:0;">
+        <div class="alabel">⚠ Cepo clave</div>
+        Se extingue cuando el hijo cumple <strong>9 meses</strong> (no 12). La corresponsabilidad del lactante va de los 9 a los 12 meses.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 10: PERMISO PARENTAL NO RETRIBUIDO -->
+<div class="section-label">09 · Permiso parental no retribuido sector público (art. 49.g TREBEP)</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Características del permiso parental</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Objeto:</strong> cuidado de hijo, hija o menor acogido por tiempo superior a un año, hasta que cumpla <span class="pill pill-b">8 años</span></span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Duración:</strong> no superior a <span class="pill pill-b">8 semanas</span>, continuas o discontinuas</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Naturaleza:</strong> <span class="pill pill-r">NO retribuido</span> (blindado por RDL 9/2025)</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Derecho <strong>individual e intransferible</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Preaviso mínimo: <span class="pill pill-b">15 días</span> · por semanas completas</span></div>
+      <div class="item"><span class="arrow">→</span><span>La Administración puede aplazarlo por escrito si altera seriamente el servicio</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLA COMPARATIVA FINAL -->
+<div class="section-label">10 · Tabla comparativa de todas las prestaciones del tema</div>
+<div class="block full yellow" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Resumen comparativo</div>
+  <table>
+    <thead><tr><th>Prestación</th><th>Carencia</th><th>Cuantía</th><th>BR — Reglas</th><th>Gestión</th><th>Extinción clave</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>NYCM Contributivo</strong></td>
+        <td>Escala por edad<br>(&lt;21: 0 / 21-25: 90d / ≥26: 180d)</td>
+        <td><span class="pill pill-g">100% BR</span></td>
+        <td>BC CC mes anterior ÷ días</td>
+        <td>INSS</td>
+        <td>Fin del descanso / fraude / trabajo</td>
+      </tr>
+      <tr>
+        <td><strong>NYCM No Contributivo</strong></td>
+        <td><span class="pill pill-g">Ninguna</span> (no cumple carencia)</td>
+        <td><span class="pill pill-b">100% IPREM</span></td>
+        <td>IPREM (o BR si inferior)</td>
+        <td>INSS</td>
+        <td>Fin de las <strong>6 semanas</strong> obligatorias (+14 días en casos especiales)</td>
+      </tr>
+      <tr>
+        <td><strong>Corresponsabilidad Lactante</strong></td>
+        <td>Misma escala NYCM</td>
+        <td><span class="pill pill-b">100% BR</span> (prop. jornada)</td>
+        <td>BR IT por CC</td>
+        <td>INSS</td>
+        <td>Hijo cumple <strong>12 meses</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Riesgo durante el Embarazo</strong></td>
+        <td><span class="pill pill-g">Ninguna</span></td>
+        <td><span class="pill pill-r">100% BR</span></td>
+        <td>BR IT por <strong>CP</strong></td>
+        <td>INSS / Mutua</td>
+        <td>Inicio permiso nacimiento / reincorporación / desaparición riesgo</td>
+      </tr>
+      <tr>
+        <td><strong>Riesgo durante la Lactancia</strong></td>
+        <td><span class="pill pill-g">Ninguna</span></td>
+        <td><span class="pill pill-p">100% BR</span></td>
+        <td>BR IT por <strong>CP</strong></td>
+        <td>INSS / Mutua</td>
+        <td>Hijo cumple <strong>9 meses</strong> / reincorporación / interrupción lactancia</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 9</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>Carencia NYCM &lt; 21 años</td><td><strong>Ninguna</strong></td></tr>
+      <tr><td>Carencia NYCM 21-25 años</td><td><strong>90 días</strong> en 7 años O <strong>180 días</strong> en toda la vida</td></tr>
+      <tr><td>Carencia NYCM ≥ 26 años</td><td><strong>180 días</strong> en 7 años O <strong>365 días</strong> en toda la vida</td></tr>
+      <tr><td>RDL 9/2025 — regla alta al inicio de cada descanso</td><td>Alta o asimilada al inicio de <strong>cada período</strong> de descanso (fraccionamiento)</td></tr>
+      <tr><td>BR NYCM contributivo</td><td>BC CC mes anterior <strong>÷ días</strong> a que se refiere la cotización</td></tr>
+      <tr><td>Resolución provisional INSS — plazo resolución definitiva</td><td>Máximo <strong>3 meses</strong> desde la provisional</td></tr>
+      <tr><td>Duración permiso biparental (RDL 9/2025)</td><td><strong>19 semanas</strong> por progenitor (6 + 11 + 2)</td></tr>
+      <tr><td>Duración permiso monoparental (RDL 9/2025)</td><td><strong>32 semanas</strong> (6 + 22 + 4)</td></tr>
+      <tr><td>Tramo obligatorio — duración</td><td><strong>6 semanas</strong> inmediatamente posteriores · ininterrumpidas · jornada completa</td></tr>
+      <tr><td>Tramo voluntario biparental</td><td><strong>11 semanas</strong> hasta los <strong>12 meses</strong> del hijo</td></tr>
+      <tr><td>Tramo cuidado parental biparental</td><td><strong>2 semanas</strong> hasta los <strong>8 años</strong> del hijo</td></tr>
+      <tr><td>Tramo cuidado parental monoparental</td><td><strong>4 semanas</strong> hasta los <strong>8 años</strong></td></tr>
+      <tr><td>Madre biológica — anticipación permiso</td><td>Hasta <strong>4 semanas antes</strong> del parto previsto</td></tr>
+      <tr><td>Adopción internacional — inicio permiso</td><td>Hasta <strong>4 semanas antes</strong> de la resolución judicial</td></tr>
+      <tr><td>Hospitalización neonato — ampliación máxima</td><td>Máximo <strong>13 semanas adicionales</strong></td></tr>
+      <tr><td>Retroactividad cuidado parental RDL 9/2025</td><td>HC desde <strong>2 agosto 2024</strong> · disfrute desde <strong>1 enero 2026</strong></td></tr>
+      <tr><td>Ampliación por discapacidad hijo (TREBEP)</td><td><strong>+2 semanas</strong> para ambos progenitores</td></tr>
+      <tr><td>Ampliación por parto múltiple (TREBEP)</td><td><strong>+1 semana</strong> por progenitor por cada hijo a partir del segundo</td></tr>
+      <tr><td>Preaviso tramos flexibles</td><td>Mínimo <strong>15 días</strong></td></tr>
+      <tr><td>Limitación simultaneidad misma empresa</td><td>La empresa puede limitarla con <strong>razones motivadas por escrito</strong></td></tr>
+      <tr><td>NYCM no contributivo — cuantía</td><td><strong>100% IPREM</strong></td></tr>
+      <tr><td>NYCM no contributivo — duración</td><td>Solo <strong>6 semanas</strong> obligatorias</td></tr>
+      <tr><td>NYCM no contributivo — ampliación</td><td><strong>+14 días</strong> (no acumulable aunque concurran varias causas)</td></tr>
+      <tr><td>NYCM no contributivo — causas ampliación</td><td>Familia numerosa · Monoparental · Múltiple (≥2) · Discapacidad ≥65% beneficiaria o menor</td></tr>
+      <tr><td>Corresponsabilidad lactante — período</td><td>De los <strong>9 a los 12 meses</strong> del bebé</td></tr>
+      <tr><td>Corresponsabilidad — quién cobra</td><td>Solo <strong>uno</strong> de los dos progenitores</td></tr>
+      <tr><td>Corresponsabilidad — cuantía</td><td><strong>100% BR IT por CC</strong> proporcional a la reducción de jornada</td></tr>
+      <tr><td>Riesgo embarazo — naturaleza</td><td>Derivada de <strong>contingencias comunes</strong></td></tr>
+      <tr><td>Riesgo embarazo — carencia</td><td><strong>Ninguna</strong></td></tr>
+      <tr><td>Riesgo embarazo — cuantía</td><td><strong>100% BR</strong> de IT por <strong>contingencias profesionales</strong></td></tr>
+      <tr><td>Riesgo embarazo — extinción</td><td>Inicio permiso nacimiento / reincorporación / desaparición del riesgo</td></tr>
+      <tr><td>Riesgo lactancia — extinción clave</td><td>Hijo cumple <strong>9 meses</strong></td></tr>
+      <tr><td>Riesgo lactancia — cuantía</td><td><strong>100% BR</strong> de IT por <strong>contingencias profesionales</strong></td></tr>
+      <tr><td>Riesgo lactancia — carencia</td><td><strong>Ninguna</strong></td></tr>
+      <tr><td>Riesgo lactancia — aplicable a autónomas</td><td><strong>Sí</strong></td></tr>
+      <tr><td>Permiso parental no retribuido TREBEP — duración</td><td>Máximo <strong>8 semanas</strong></td></tr>
+      <tr><td>Permiso parental no retribuido — hasta qué edad del menor</td><td><strong>8 años</strong></td></tr>
+      <tr><td>Permiso parental no retribuido — retribuido</td><td><strong>No</strong> (blindado por RDL 9/2025)</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="nav">
+  <a href="tema8_especifico_ — Incapacidad.html">◀ Tema 8</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema10_jubilacion.html">Tema 10 ▶</a>
+</div>
+</body>
+</html>

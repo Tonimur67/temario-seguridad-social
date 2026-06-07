@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 4 Específico SS — La Cotización a la Seguridad Social</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #0d0f14; --surface: #141720; --border: #252a38;
+    --accent: #e8c840; --accent2: #3d9eff; --accent3: #ff5f5f;
+    --accent4: #4ade80; --accent5: #c084fc;
+    --text: #d4d8e8; --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 13px; line-height: 1.6; padding: 32px 24px; max-width: 980px; margin: 0 auto; }
+  .header { border-left: 4px solid var(--accent); padding: 16px 20px; margin-bottom: 32px; background: var(--surface); }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .block-title { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin: 22px 0 11px 0; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+  .sub-head { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 10px 0 6px 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 4 — La Cotización a la Seguridad Social: Normas Comunes del Sistema</h1>
+  <div class="sub">Arts. 18, 141-153 bis TRLGSS · Arts. 6-7 RGCL · RD 2064/1995 · Tarifa de Primas AT/EP</div>
+</div>
+
+<!-- BLOQUE 1: OBLIGATORIEDAD Y SUJETOS -->
+<div class="section-label">01 · Obligatoriedad y sujetos de la cotización (arts. 18 y 141 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Obligatoriedad y objeto</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Obligatoria</strong> en todos los regímenes del sistema</span></div>
+    <div class="item"><span class="arrow">→</span><span>La cuota global financia también: <span class="pill pill-y">Desempleo</span> · <span class="pill pill-y">FOGASA</span> · <span class="pill pill-y">FP</span> (se recaudan conjuntamente)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Período de liquidación:</strong> unidad temporal fijada por ley que determina el tramo de cotización</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cuota:</strong> expresión económica de la obligación de cotizar durante un período de liquidación<br>Fórmula: <span class="pill pill-y">BC × Tipo = Cuota</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Nulidad de pactos (art. 143):</strong> es nulo el pacto por el que el trabajador asuma la cuota empresarial o se alteren las bases legales</span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Sujetos de la obligación (art. 7 RGCL · art. 141 TRLGSS)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Sujeto activo:</strong> <span class="pill pill-b">TGSS</span> — titular del crédito, competencia exclusiva para gestionar, exigir y recaudar</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Sujeto pasivo RG:</strong> el <strong>empresario</strong>, que ingresa su aportación + la de sus trabajadores</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Sujeto pasivo RETA:</strong> el propio trabajador autónomo</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>AT/EP:</strong> la cotización corre <strong>exclusivamente</strong> a cargo del <span class="pill pill-r">empresario</span></span></div>
+    <div class="alert">
+      <div class="alabel">⚠ Cepo clásico — cuota obrera</div>
+      Si el empresario <strong>no retiene la cuota obrera en el momento del pago del salario</strong>, pierde el derecho a descontarla después. Debe ingresarla a su <strong>exclusivo cargo</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 2: DINÁMICA DE LA OBLIGACIÓN -->
+<div class="section-label">02 · Dinámica de la obligación de cotizar (arts. 142-144 TRLGSS)</div>
+<div class="grid-3">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Nacimiento (art. 144.1)</div>
+    <div class="item"><span class="arrow">→</span><span>Desde el <strong>inicio de la prestación de servicios</strong>, incluido el <strong>período de prueba</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>La mera <strong>solicitud de afiliación o alta</strong> surte idéntico efecto</span></div>
+    <div class="item"><span class="arrow">→</span><span>El incumplimiento del empresario al no solicitar el alta <strong>no impide</strong> el nacimiento → nace desde el inicio real de la actividad</span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Mantenimiento (art. 144.2-4)</div>
+    <div class="item"><span class="arrow">→</span><span>Durante todo el período en <strong>alta o prestación de servicios</strong> aunque sea discontinuo</span></div>
+    <div class="item"><span class="arrow">→</span><span>Se mantiene en: <span class="pill pill-b">IT</span> · <span class="pill pill-b">NYCM</span> · <span class="pill pill-b">Riesgo embarazo</span> · <span class="pill pill-b">Riesgo lactancia</span></span></div>
+    <div class="item"><span class="arrow">→</span><span>Cumplimiento de <strong>deberes públicos</strong> o cargos de representación sindical (sin excedencia)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Permisos y licencias <strong>retribuidas</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Desempleo contributivo:</strong> el SEPE cotiza por el trabajador, descontando de la prestación la aportación obrera</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Suspensión:</strong> huelga y cierre patronal → obligación de cotizar <span class="pill pill-r">suspendida</span></span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Extinción (art. 144.3)</div>
+    <div class="item"><span class="arrow">→</span><span>Solo se extingue con la <strong>baja en regla</strong> (modelo oficial + plazo de 3 días naturales)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Baja fuera de plazo:</strong> la obligación NO se extingue hasta que la TGSS tenga constancia del cese (salvo que ITSS o TGSS acrediten la fecha real anterior)</span></div>
+    <div class="item"><span class="arrow">→</span><span>AT/EP: la obligación existe <strong>aunque la empresa no tuviera establecida la protección</strong>; las primas devengadas van a favor de la TGSS</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 3: BASE DE COTIZACIÓN -->
+<div class="section-label">03 · La Base de Cotización (art. 147 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Concepto y composición</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Concepto:</strong> remuneración total, en metálico o especie, que el trabajador <strong>tiene derecho a percibir</strong> mensualmente (o la que efectivamente perciba si es superior)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Pagas extras y percepciones superiores al mes:</strong> se <strong>prorratean</strong> obligatoriamente a lo largo de los 12 meses</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Vacaciones devengadas no disfrutadas al extinguir contrato:</strong> liquidación y cotización <strong>complementaria</strong> al mes de la extinción, por los días de duración (sin prorrateo)</span></div>
+    <div class="sub-head">Incluye</div>
+    <div class="item"><span class="arrow">→</span><span>Salario base · Complementos salariales · Pagas extra (prorrateadas) · Retribuciones en especie</span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Exclusiones de la base (art. 147.2 TRLGSS) — Pregunta fija de test</div>
+    <div class="item"><span class="arrow">→</span><span><strong>a) Gastos locomoción — transporte público:</strong> excluidos si se justifican con factura o documento equivalente (importe total)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>b) Gastos locomoción — vehículo propio:</strong> excluidos hasta el límite de <span class="pill pill-r">0,26 €/km</span> + peajes y aparcamiento justificados. El exceso cotiza</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>b) Dietas de manutención:</strong> excluidas en cuantía y alcance previstos en normativa del IRPF (con y sin pernocta, España o extranjero). El exceso cotiza</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>b) Gastos de estancia (hotel):</strong> excluidos en importe justificado <strong>en su totalidad</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>c) Indemnizaciones por fallecimiento, traslados y suspensiones:</strong> excluidas hasta cuantía máxima prevista en norma sectorial o convenio colectivo</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>c) Indemnizaciones por despido:</strong> excluidas hasta la cuantía <strong>obligatoria</strong> del ET (el exceso cotiza). Convenio/pacto no exime</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>d) Prestaciones SS</strong> y sus mejoras voluntarias por la empresa + asignaciones para formación/reciclaje exigida por la actividad</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>e) Horas extraordinarias:</strong> excluidas de CC, <span class="pill pill-r">pero cotizan por AT/EP</span> (y por cotización adicional específica)</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 4: TOPES Y GRUPOS -->
+<div class="section-label">04 · Topes y grupos de cotización (arts. 148-150 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Topes máximo y mínimo</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Tope máximo:</strong> único para todas las actividades, categorías y contingencias del RG → fijado anualmente en la <span class="pill pill-b">LPGE</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Tope mínimo:</strong> cuantía del art. 19.2 TRLGSS (SMI)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Pluriempleo:</strong> se aplica el tope máximo único. Las bases de cada empresa se distribuyen <strong>a prorrata</strong> de las remuneraciones de cada una. La TGSS comunica las bases prorrateadas</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Pluriactividad:</strong> cotización <strong>independiente</strong> en cada régimen según sus propias normas</span></div>
+  </div>
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Grupos de cotización RG — Los más relevantes en test</div>
+    <table>
+      <thead><tr><th>Grupo</th><th>Categoría profesional</th><th>Base</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1</strong></td><td>Ingenieros y Licenciados. Pers. alta dirección no art. 1.3.c ET</td><td>Mensual</td></tr>
+        <tr><td><strong>2</strong></td><td>Ingenieros Técnicos, Peritos y Ayudantes Titulados</td><td>Mensual</td></tr>
+        <tr><td><strong>3</strong></td><td>Jefes Administrativos y de Taller</td><td>Mensual</td></tr>
+        <tr><td><strong>4</strong></td><td>Ayudantes no Titulados</td><td>Mensual</td></tr>
+        <tr><td><strong>5</strong></td><td>Oficiales Administrativos</td><td>Mensual</td></tr>
+        <tr><td><strong>6</strong></td><td>Subalternos</td><td>Mensual</td></tr>
+        <tr><td><strong>7</strong></td><td>Auxiliares Administrativos</td><td>Mensual</td></tr>
+        <tr><td><strong>8</strong></td><td>Oficiales de 1.ª y 2.ª</td><td>Diaria</td></tr>
+        <tr><td><strong>9</strong></td><td>Oficiales de 3.ª y Especialistas</td><td>Diaria</td></tr>
+        <tr><td><strong>10</strong></td><td>Peones</td><td>Diaria</td></tr>
+        <tr><td><strong>11</strong></td><td>Trabajadores menores de 18 años (independ. del grupo)</td><td>Diaria</td></tr>
+      </tbody>
+    </table>
+    <div class="item" style="margin-top:8px;"><span class="arrow">→</span><span>Grupos <span class="pill pill-g">1-7</span>: base mensual. Grupos <span class="pill pill-g">8-11</span>: base diaria</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 5: TIPOS DE COTIZACIÓN -->
+<div class="section-label">05 · Tipos de cotización (art. 145 TRLGSS · LPGE vigente)</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Tipos generales Régimen General — Referencia para examen</div>
+  <table>
+    <thead><tr><th>Contingencia</th><th>Empresa</th><th>Trabajador</th><th>Total</th><th>Observaciones</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Contingencias Comunes (CC)</strong></td><td><span class="pill pill-b">23,60%</span></td><td><span class="pill pill-g">4,70%</span></td><td><strong>28,30%</strong></td><td>—</td></tr>
+      <tr><td><strong>AT y EP</strong></td><td>Tarifa de primas</td><td><span class="pill pill-r">0%</span></td><td>Variable</td><td>Exclusivamente a cargo del empresario</td></tr>
+      <tr><td><strong>Desempleo contrato indefinido</strong></td><td><span class="pill pill-b">5,50%</span></td><td><span class="pill pill-g">1,55%</span></td><td><strong>7,05%</strong></td><td>—</td></tr>
+      <tr><td><strong>Desempleo contrato temporal</strong></td><td><span class="pill pill-b">6,70%</span></td><td><span class="pill pill-g">1,60%</span></td><td><strong>8,30%</strong></td><td>—</td></tr>
+      <tr><td><strong>FOGASA</strong></td><td><span class="pill pill-b">0,20%</span></td><td><span class="pill pill-r">0%</span></td><td><strong>0,20%</strong></td><td>Solo empresa</td></tr>
+      <tr><td><strong>Formación Profesional</strong></td><td><span class="pill pill-b">0,60%</span></td><td><span class="pill pill-g">0,10%</span></td><td><strong>0,70%</strong></td><td>—</td></tr>
+      <tr><td><strong>MEI (2026)</strong></td><td><span class="pill pill-b">0,72%</span></td><td><span class="pill pill-g">0,18%</span></td><td><strong>0,90%</strong></td><td>No computable a efectos prestaciones</td></tr>
+      <tr><td><strong>Horas extraordinarias (tipo especial)</strong></td><td>Variable</td><td>Variable</td><td>—</td><td>Cotización adicional separada de CC</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BLOQUE 6: AT/EP -->
+<div class="section-label">06 · Cotización por AT y EP — Tarifa de primas (art. 146 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Reglas generales de la tarifa</div>
+    <div class="item"><span class="arrow">→</span><span>Tipos fijados por <strong>actividad económica, ocupación o situación</strong> (Tarifa de primas legal)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Para el cálculo se computa el coste de <strong>prestaciones + servicios preventivos y rehabilitadores</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Pueden establecerse <strong>tipos adicionales</strong> para empresas con riesgo de EP especial</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Reducción hasta el 10%:</strong> empresas con eficaces medios de prevención</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Aumento hasta el 10% (hasta 20% si reiterado):</strong> empresas que incumplen obligaciones en seguridad y salud</span></div>
+    <div class="item"><span class="arrow">→</span><span>Empresas con trabajadores con <strong>coeficiente reductor de jubilación</strong>: cotizan por el <strong>tipo más alto</strong> de la tarifa</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Horas extraordinarias (art. 149 TRLGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Las horas extraordinarias <strong>siempre cotizan</strong> por AT/EP (aunque estén excluidas de CC)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Además están sujetas a <strong>cotización adicional específica</strong> (empresario + trabajador) según tipos fijados en LPGE</span></div>
+    <div class="item"><span class="arrow">→</span><span>Las horas extraordinarias estructurales que superen las <span class="pill pill-y">80 horas</span> del art. 35.2 ET → tipo general de HH.EE.</span></div>
+    <div class="item"><span class="arrow">→</span><span>El Ministerio puede establecer el cómputo de HH.EE. en sectores donde la prolongación de jornada sea característica</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 7: SITUACIONES ESPECIALES DE COTIZACIÓN -->
+<div class="section-label">07 · Cotización en situaciones especiales</div>
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Reglas específicas por situación</div>
+  <table>
+    <thead><tr><th>Situación</th><th>Base de cotización aplicable</th><th>Quién cotiza</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>IT · NYCM · Riesgo embarazo · Riesgo lactancia</strong></td>
+        <td>BC por CC del <strong>mes anterior</strong> al de la baja/permiso ÷ días a que se refiera. Se mantiene fija durante todo el proceso</td>
+        <td>Empresario (con reducción del <span class="pill pill-p">75%</span> CC si trabajador ≥ 62 años)</td>
+      </tr>
+      <tr>
+        <td><strong>Desempleo total contributivo</strong></td>
+        <td>Promedio BC por CC de los últimos <strong>180 días</strong> de ocupación cotizada anteriores a la SLD</td>
+        <td>SEPE asume aportación empresarial; retiene de la prestación la aportación obrera</td>
+      </tr>
+      <tr>
+        <td><strong>ERTE / Reducción jornada o suspensión temporal</strong></td>
+        <td>Promedio BC en la empresa de los <strong>6 meses anteriores</strong> al mes previo al inicio de cada situación (reducida en proporción a jornada no realizada)</td>
+        <td>Aportación empresarial: la empresa. Aportación obrera (si hay prestación por desempleo): la entidad gestora</td>
+      </tr>
+      <tr>
+        <td><strong>Contrato a tiempo parcial</strong></td>
+        <td>Retribuciones por horas trabajadas (ordinarias + complementarias). Base mínima por hora = base mínima grupo × nº horas trabajadas</td>
+        <td>Empresario + trabajador según normas generales</td>
+      </tr>
+      <tr>
+        <td><strong>Jubilación compatible con trabajo (art. 153)</strong></td>
+        <td>BC por CC normales</td>
+        <td>Solo cotizan por <span class="pill pill-p">IT + CP</span>. Cotización especial de solidaridad del <span class="pill pill-p">9%</span> (empresa 7% + trabajador 2%)</td>
+      </tr>
+      <tr>
+        <td><strong>A partir de la edad de jubilación (art. 152)</strong></td>
+        <td>—</td>
+        <td><span class="pill pill-g">Exentos</span> de cotizar por CC (salvo IT/CC), desempleo, FOGASA y FP. No aplica a empleados de AAPP</td>
+      </tr>
+      <tr>
+        <td><strong>Contrato duración determinada &lt; 30 días (art. 151)</strong></td>
+        <td>—</td>
+        <td>Cotización adicional a la finalización = <span class="pill pill-r">3 × cuota</span> (base mínima diaria grupo 8 × tipo CC empresa). Excepciones: SE Agrario, SE Hogar, Minería Carbón, artistas, sustitución</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BLOQUE 8: RECLAMACIÓN DEUDA BASE ESTIMADA -->
+<div class="section-label">08 · Determinación de deudas — Base estimada (art. 35 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Regla general — Base conocida</div>
+    <div class="item"><span class="arrow">→</span><span>Si el responsable <strong>cumplió las obligaciones documentales en plazo</strong>: la reclamación se emite en función de las <strong>bases de cotización por las que efectuó la liquidación</strong></span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Regla supletoria — Base estimada</div>
+    <div class="item"><span class="arrow">→</span><span>Si <strong>no cumplió las obligaciones documentales</strong> o la ITSS no puede conocer la remuneración real: se toma como base la <strong>media entre la base mínima y máxima</strong> del último grupo de cotización conocido</span></div>
+    <div class="item"><span class="arrow">→</span><span>Misma regla aplica para las <strong>actas de liquidación</strong> de la Inspección cuando no puede conocer el importe real</span></div>
+  </div>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 4</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>AT/EP — quién cotiza</td><td>Exclusivamente el <strong>empresario</strong></td></tr>
+      <tr><td>Cuota obrera no retenida en el momento</td><td>Empresario pierde el derecho; la ingresa a <strong>exclusivo cargo suyo</strong></td></tr>
+      <tr><td>Nulidad de pactos</td><td>Nulo pacto por el que el trabajador asume cuota empresarial o se alteran bases legales</td></tr>
+      <tr><td>Nacimiento obligación cotizar</td><td>Desde el <strong>inicio de la prestación</strong>, incluido período de prueba</td></tr>
+      <tr><td>Solicitud de afiliación/alta — efecto cotización</td><td>Igual al inicio real de la actividad</td></tr>
+      <tr><td>Suspensión de la obligación</td><td>Huelga y <strong>cierre patronal</strong></td></tr>
+      <tr><td>BC — percepciones > mes</td><td>Se <strong>prorratean</strong> en 12 meses</td></tr>
+      <tr><td>Vacaciones no disfrutadas al extinguir contrato</td><td>Cotización <strong>complementaria</strong> al mes de extinción, sin prorrateo</td></tr>
+      <tr><td>Km vehículo propio — límite de exclusión</td><td><strong>0,26 €/km</strong> + peajes y aparcamiento justificados</td></tr>
+      <tr><td>Gastos de estancia — exclusión</td><td>Importe justificado <strong>en su totalidad</strong></td></tr>
+      <tr><td>Indemnización despido — exclusión</td><td>Hasta cuantía <strong>obligatoria ET</strong> (el exceso cotiza; convenio no exime)</td></tr>
+      <tr><td>Horas extraordinarias — cotización CC</td><td><strong>Excluidas</strong> de CC</td></tr>
+      <tr><td>Horas extraordinarias — cotización AT/EP</td><td><strong>Sí cotizan siempre</strong> por AT/EP + cotización adicional específica</td></tr>
+      <tr><td>Tope máximo BC — características</td><td>Único para todas las actividades y contingencias. Fijado en <strong>LPGE</strong></td></tr>
+      <tr><td>Grupos 1-7 — base</td><td><strong>Mensual</strong></td></tr>
+      <tr><td>Grupos 8-11 — base</td><td><strong>Diaria</strong></td></tr>
+      <tr><td>Pluriempleo — regla cotización</td><td>BC de cada empresa <strong>a prorrata</strong> de remuneraciones. Tope máximo único</td></tr>
+      <tr><td>Pluriactividad — regla cotización</td><td>Cotización <strong>independiente</strong> en cada régimen</td></tr>
+      <tr><td>BC durante IT/NYCM/Riesgo</td><td>BC CC del <strong>mes anterior</strong> a la baja ÷ días. Se mantiene fija</td></tr>
+      <tr><td>Reducción empresa CC — trabajador ≥ 62 años en IT</td><td><strong>75%</strong> de la cuota empresarial por CC</td></tr>
+      <tr><td>BC durante desempleo contributivo</td><td>Promedio BC CC últimos <strong>180 días</strong></td></tr>
+      <tr><td>Jubilación + trabajo — cotización especial solidaridad</td><td><strong>9%</strong> (empresa 7% + trabajador 2%). No computable</td></tr>
+      <tr><td>Exención cotización a partir de edad jubilación</td><td>Exentos de CC (salvo IT/CC), desempleo, FOGASA y FP. <strong>No aplica a AAPP</strong></td></tr>
+      <tr><td>Cotización adicional contratos &lt; 30 días</td><td><strong>3 × cuota</strong> base mínima diaria grupo 8 × tipo CC empresa</td></tr>
+      <tr><td>Reducción tarifa AT/EP por buena prevención</td><td>Hasta <strong>10%</strong></td></tr>
+      <tr><td>Aumento tarifa AT/EP por incumplimiento</td><td>Hasta <strong>10%</strong> (hasta <strong>20%</strong> si reiterado)</td></tr>
+      <tr><td>Base estimada — cuándo aplica</td><td>Cuando no se cumplen obligaciones documentales o no se conoce la remuneración real → <strong>media entre mínima y máxima</strong> del último grupo conocido</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="nav">
+  <a href="tema3_especifico_afiliacion_altas_bajas.html">◀ Tema 03</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema5_especifico_La Gestión Recaudatoria.html">Tema 05 ▶</a>
+</div>
+</html>

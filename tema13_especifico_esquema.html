@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 13 Específico SS — Recursos, Patrimonio y Fondo de Reserva</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #0d0f14; --surface: #141720; --border: #252a38;
+    --accent: #e8c840; --accent2: #3d9eff; --accent3: #ff5f5f;
+    --accent4: #4ade80; --accent5: #c084fc;
+    --text: #d4d8e8; --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 13px; line-height: 1.6; padding: 32px 24px; max-width: 980px; margin: 0 auto; }
+  .header { border-left: 4px solid var(--accent); padding: 16px 20px; margin-bottom: 32px; background: var(--surface); }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .block-title { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin: 22px 0 11px 0; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .info { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .info .ilabel { font-family: var(--mono); font-size: 9px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+  .sub-head { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 10px 0 6px 0; }
+
+  /* FINANCIACIÓN CARDS */
+  .fin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .fin-card { padding: 14px; }
+  .fin-label { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .fuentes-list { display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+  .fuente-item { background: rgba(37,42,56,0.5); border-left: 3px solid; padding: 6px 10px; font-size: 11.5px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 13 — Recursos Generales · Patrimonio · Fondo de Reserva · Gestión Financiera</h1>
+  <div class="sub">Arts. 103-107, 109-110, 117-121 TRLGSS · RD 696/2018 · Orden 22-feb-1996</div>
+</div>
+
+<!-- BLOQUE 1: RECURSOS Y FINANCIACIÓN -->
+<div class="section-label">01 · Recursos generales del sistema (arts. 109-110 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Fuentes de financiación (art. 109)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>a)</strong> Aportaciones progresivas del <span class="pill pill-y">Estado</span> (PGE o acordadas para atenciones especiales)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>b)</strong> <span class="pill pill-y">Cuotas</span> de las personas obligadas</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>c)</strong> Cantidades por <span class="pill pill-y">recargos, sanciones</span> y análogas</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>d)</strong> <span class="pill pill-y">Frutos, rentas e intereses</span> de sus recursos patrimoniales</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>e)</strong> <span class="pill pill-y">Cualesquiera otros ingresos</span></span></div>
+    <div class="note" style="margin-top:8px;">
+      <div class="nlabel">Principio de reparto</div>
+      El sistema financiero de todos los regímenes se basa en el <strong>principio de reparto</strong> para todas sus contingencias.
+    </div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Separación de fuentes (art. 110) — Pregunta fija de test</div>
+    <div class="sub-head" style="color:var(--accent2);">Modalidad No Contributiva → financia el Estado (PGE)</div>
+    <div class="item"><span class="arrow">→</span><span>Asistencia sanitaria SS (salvo AT/EP)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Servicios sociales (salvo AT/EP)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Pensiones no contributivas (invalidez y jubilación)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Subsidio maternidad arts. 181-182 TRLGSS</span></div>
+    <div class="item"><span class="arrow">→</span><span>Prestaciones familiares Cap. I Tít. VI</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>IMV</strong></span></div>
+    <div class="sub-head" style="color:var(--accent4);">Modalidad Contributiva → cuotas + recargos + rentas + otros (letras b-e)</div>
+    <div class="item"><span class="arrow">→</span><span>Prestaciones económicas del sistema (no expresamente no contributivas)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Totalidad</strong> de prestaciones por <span class="pill pill-g">AT y EP</span></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 2: MECANISMOS ESTABILIZACIÓN -->
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Mecanismos de estabilización y capitalización (art. 110)</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Fondo de Estabilización Único:</strong> constituido en la TGSS para atender desviaciones entre ingresos y gastos del sistema</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Capitalización AT/EP:</strong> las Mutuas o empresas responsables de pensiones de IP o muerte por AT/EP deben constituir en la TGSS los <strong>capitales coste</strong> correspondientes hasta el límite de su responsabilidad</span></div>
+      <div class="item"><span class="arrow">→</span><span>El capital coste se determina con <strong>tablas de mortalidad y tasas de interés</strong> aprobadas por el MISSM</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 3: PATRIMONIO -->
+<div class="section-label">02 · El patrimonio de la Seguridad Social (arts. 103-104 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Naturaleza y titularidad (art. 103)</div>
+    <div class="item"><span class="arrow">→</span><span>Las cuotas, bienes, derechos y recursos de cualquier género constituyen un <strong>patrimonio único</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Es <strong>distinto y separado</strong> del patrimonio del Estado</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Titularidad:</strong> corresponde a la <span class="pill pill-g">TGSS</span></span></div>
+    <div class="item"><span class="arrow">→</span><span>Afecto exclusivamente a los <strong>fines de la SS</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Marco legal supletorio: <strong>Ley 33/2003</strong> del Patrimonio de las AAPP</span></div>
+    <div class="item"><span class="arrow">→</span><span>Certificados del inventario oficial → suficientes para <strong>inscripción registral</strong></span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Adscripción, uso y reversión (art. 104)</div>
+    <div class="item"><span class="arrow">→</span><span>Los inmuebles pueden destinarse a fines de <strong>utilidad pública</strong> mediante adscripción o cesión de uso</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>La adscripción NO altera la titularidad</strong> de la TGSS, aunque sea a favor de la AGE</span></div>
+    <div class="item"><span class="arrow">→</span><span>Si se adscribe a la AGE → requiere <strong>aceptación formal</strong></span></div>
+    <div class="sub-head">Obligaciones del usuario del inmueble adscrito</div>
+    <div class="item"><span class="arrow">→</span><span>Reparaciones necesarias para conservación</span></div>
+    <div class="item"><span class="arrow">→</span><span>Obras de mejora · Acciones posesorias · Pago de obligaciones tributarias (subrogación)</span></div>
+    <div class="sub-head">Reversión (art. 104.4)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Causa:</strong> no uso o cambio de destino → revierte a la TGSS</span></div>
+    <div class="item"><span class="arrow">→</span><span>El usuario asume gastos hasta el <strong>fin del ejercicio económico</strong> en que se produce</span></div>
+    <div class="alert" style="margin-bottom:0;">
+      <div class="alabel">⚠ Excepción a la reversión</div>
+      No procede si el titular del <strong>MISSM autoriza formalmente</strong> el cambio de uso o destino
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 4: NEGOCIOS JURÍDICOS -->
+<div class="section-label">03 · Negocios jurídicos patrimoniales (arts. 105-107 TRLGSS)</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Tabla completa de operaciones patrimoniales</div>
+  <table>
+    <thead><tr><th>Operación</th><th>Procedimiento general</th><th>Excepción / adjudicación directa</th><th>Autorización</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Adquisición onerosa de inmuebles (art. 105)</strong></td>
+        <td><span class="pill pill-b">Concurso público</span></td>
+        <td>Peculiaridades de la necesidad o <strong>urgencia extrema</strong> (previo informe TGSS)</td>
+        <td><strong>MISSM</strong> (autoriza directa)</td>
+      </tr>
+      <tr>
+        <td><strong>Enajenación de inmuebles (art. 106)</strong></td>
+        <td><span class="pill pill-b">Subasta pública</span></td>
+        <td>Enajenación directa requiere autorización del <strong>Consejo de Ministros</strong> (o Ministro si no supera umbral legal)</td>
+        <td><strong>MISSM</strong> (si tasación ≤ límite Ley Patrimonio) o <strong>Gobierno</strong> (en los restantes)</td>
+      </tr>
+      <tr>
+        <td><strong>Venta de títulos valores (art. 106)</strong></td>
+        <td><span class="pill pill-b">Mercados Oficiales</span></td>
+        <td>Sin autorización previa si la venta cubre prestaciones reconocidas y el importe bruto no supera lo fijado por LPGE (informar de inmediato al MISSM)</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Arrendamiento de inmuebles (art. 107)</strong></td>
+        <td><span class="pill pill-b">Concurso público</span></td>
+        <td>Trato directo si el Ministerio lo estima necesario o conveniente</td>
+        <td><strong>MISSM</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Cesión gratuita de uso (art. 107)</strong></td>
+        <td>Para fines de utilidad pública o interés de la SS</td>
+        <td>—</td>
+        <td><strong>Titular del MISSM</strong>, a propuesta de la TGSS y con comunicación previa a la <strong>DG del Patrimonio del Estado</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BLOQUE 5: FONDO DE RESERVA -->
+<div class="section-label">04 · El Fondo de Reserva de la Seguridad Social (arts. 117-121 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Naturaleza, finalidad y fuentes (arts. 117-118)</div>
+    <div class="item"><span class="arrow">→</span><span>Constituido en el seno de la <strong>TGSS</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Finalidad única:</strong> atender necesidades financieras en materia de <strong>prestaciones contributivas</strong> ante desajustes económicos</span></div>
+    <div class="sub-head">Cuatro fuentes de financiación (art. 118)</div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">1</span> <strong>Excedentes de ingresos presupuestarios</strong> de la liquidación de prestaciones contributivas (si la coyuntura lo permite)</span></div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">2</span> <strong>Excedentes de Contingencias Comunes de las Mutuas</strong> tras dotar su reserva de estabilización (art. 96.3)</span></div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">3</span> <strong>Excedentes de Contingencias Profesionales de las Mutuas</strong> (art. 96.1.d)</span></div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">4</span> <strong>Cotización finalista del MEI</strong> (art. 127 bis.1)</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Dotación y capitalización automática (arts. 119-120)</div>
+    <div class="sub-head">Dotación ordinaria — requiere acuerdo político (art. 120)</div>
+    <div class="item"><span class="arrow">→</span><span>Acordada al menos <strong>una vez por ejercicio</strong> por el <span class="pill pill-y">Consejo de Ministros</span></span></div>
+    <div class="item"><span class="arrow">→</span><span>A propuesta <strong>conjunta</strong> de tres ministerios:</span></div>
+    <div class="item"><span class="arrow">→</span><span>① <strong>MISSM</strong> ② <strong>Ministerio de Asuntos Económicos</strong> ③ <strong>Ministerio de Hacienda y Función Pública</strong></span></div>
+    <div class="sub-head">Capitalización automática — sin acuerdo anual</div>
+    <div class="item"><span class="arrow">→</span><span>Recaudación líquida del <strong>MEI</strong> (art. 127 bis.1)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Rendimientos financieros</strong> de cualquier naturaleza de la cuenta y activos del Fondo</span></div>
+    <div class="sub-head">Reglas de cálculo (art. 119)</div>
+    <div class="item"><span class="arrow">→</span><span>Excedente = diferencia entre <strong>ingresos y gastos</strong> de operaciones no financieras de entidades gestoras y servicios comunes</span></div>
+    <div class="item"><span class="arrow">→</span><span>Corregido bajo criterios de <strong>máxima prudencia contable</strong> + Plan General de Contabilidad Pública</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 6: DISPOSICIÓN DEL FONDO -->
+<div class="block full red" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Disposición de activos del Fondo de Reserva (art. 121 TRLGSS)</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Finalidad exclusiva:</strong> financiación de <span class="pill pill-r">pensiones contributivas</span></span></div>
+      <div class="item"><span class="arrow">→</span><span>La LPGE establece el <strong>desembolso anual</strong> a efectuar por el Fondo</span></div>
+      <div class="item"><span class="arrow">→</span><span>Esta regulación es de aplicación desde <span class="pill pill-r">2033</span></span></div>
+    </div>
+    <div>
+      <div class="alert">
+        <div class="alabel">⚠ Límite de disposición</div>
+        El desembolso anual consistirá en un <strong>porcentaje del PIB</strong> determinado cada año por la LPGE, sujeto a límites máximos establecidos en puntos porcentuales del PIB por ejercicio.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 7: GESTIÓN FINANCIERA -->
+<div class="section-label">05 · Reglamento de gestión financiera — TGSS como caja única (RD 696/2018)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Objeto y ámbito (art. 1 RD 696/2018)</div>
+    <div class="item"><span class="arrow">→</span><span>Desarrolla la LGSS en lo referente a la <strong>gestión de recursos financieros</strong></span></div>
+    <div class="sub-head">Ámbito de aplicación</div>
+    <div class="item"><span class="arrow">→</span><span>Operaciones y actos relativos a la <strong>gestión de los ingresos</strong> en su circuito financiero</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Ordenación de pagos</strong> de las obligaciones de la SS</span></div>
+    <div class="item"><span class="arrow">→</span><span>Elaboración del <strong>presupuesto monetario</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Colaboración</strong> de las entidades financieras en la gestión financiera de la SS</span></div>
+  </div>
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Funciones exclusivas de la TGSS — caja única (art. 2)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>a)</strong> Organización de medios e ingreso de cuotas y demás recursos</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>b)</strong> Distribución temporal y territorial de disponibilidades dinerarias</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>c)</strong> Organización y gestión del <strong>circuito financiero</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>d)</strong> Autorización de apertura de <strong>cuentas en entidades financieras</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>e)</strong> Operaciones financieras, de tesorería, crédito y anticipos</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>f)</strong> Elaboración del <strong>presupuesto monetario</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>g)</strong> Ordenación y pago de obligaciones</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>h)</strong> Cualesquiera otras análogas encomendadas por el MISSM</span></div>
+    <div class="note" style="margin-top:8px;">
+      <div class="nlabel">Nota gestión conjunta</div>
+      Incluye cuotas de <strong>recaudación conjunta</strong> (desempleo, FOGASA, FP) e ingresos y pagos ajenos al sistema cuya gestión se le encomiende.
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 8: PAGO DE PRESTACIONES -->
+<div class="section-label">06 · Pago de prestaciones de la SS (art. 24 RD 696/2018 · Orden 22-feb-1996)</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Reglas generales del pago (art. 24 RD 696/2018)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Competencia normativa:</strong> el MISSM dicta las reglas especiales para el pago</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Plazos clave:</strong> los importes de pagos ordinarios periódicos deben estar disponibles:</span></div>
+    <div class="item"><span class="arrow">→</span><span>Desde el <span class="pill pill-y">primer día hábil</span> del mes</span></div>
+    <div class="item"><span class="arrow">→</span><span>Como máximo el <span class="pill pill-y">cuarto día natural</span> del mes</span></div>
+    <div class="sub-head">Procedimiento cuenta única centralizada</div>
+    <div class="item"><span class="arrow">→</span><span>Las entidades financieras cargan en la <strong>cuenta única centralizada</strong> de la TGSS</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Fecha valor del abono:</strong> primer día hábil del mes</span></div>
+    <div class="item"><span class="arrow">→</span><span>El cargo total hasta el <strong>cuarto día natural</strong> del mes</span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Garantías, gratuidad y Orden de 22-feb-1996</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Gratuidad:</strong> los pagos en territorio nacional no generan gasto alguno para el beneficiario</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Libre elección:</strong> el beneficiario elige la entidad pagadora entre las inscritas en el <strong>Registro de Colaboradores</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Residentes en el extranjero: condiciones especiales fijadas por normas de desarrollo</span></div>
+    <div class="sub-head">Orden 22-feb-1996 — primeros pagos</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Fase 1 — Entidades gestoras:</strong> emiten nóminas de primeros pagos y prestaciones periódicas (excluidas las de pago delegado)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Fase 2 — Remisión a TGSS:</strong> las DDPP de las entidades gestoras remiten <strong>diariamente</strong> a la DDPP de la TGSS la relación nominal de perceptores (con notificaciones y elección de medio de pago: transferencia o cheque)</span></div>
+  </div>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 13</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>Principio financiero del sistema</td><td><strong>Reparto</strong> para todas las contingencias</td></tr>
+      <tr><td>Fuentes de financiación — número</td><td><strong>5</strong> (a, b, c, d, e del art. 109)</td></tr>
+      <tr><td>Financiación modalidad no contributiva</td><td>Exclusivamente <strong>aportaciones del Estado (PGE)</strong></td></tr>
+      <tr><td>Financiación modalidad contributiva</td><td>Cuotas + recargos + sanciones + rentas + otros ingresos (letras b-e)</td></tr>
+      <tr><td>AT/EP — modalidad de financiación</td><td>Contributiva — <strong>totalidad</strong> de sus prestaciones</td></tr>
+      <tr><td>IMV — modalidad de financiación</td><td><strong>No contributiva</strong> → Estado (PGE)</td></tr>
+      <tr><td>Titularidad del patrimonio SS</td><td><strong>TGSS</strong></td></tr>
+      <tr><td>Patrimonio SS — separación del Estado</td><td>Completamente <strong>distinto y separado</strong> del patrimonio del Estado</td></tr>
+      <tr><td>Adscripción inmueble a la AGE</td><td><strong>No altera</strong> la titularidad de la TGSS</td></tr>
+      <tr><td>Adscripción a la AGE — requiere</td><td><strong>Aceptación formal</strong> según legislación patrimonial</td></tr>
+      <tr><td>Reversión del inmueble adscrito — causa</td><td>No uso o <strong>cambio de destino</strong></td></tr>
+      <tr><td>Excepción a la reversión</td><td>Autorización formal del <strong>titular del MISSM</strong></td></tr>
+      <tr><td>Gastos usuario hasta la reversión</td><td>Hasta fin del <strong>ejercicio económico</strong> en que se produce</td></tr>
+      <tr><td>Adquisición onerosa inmuebles — procedimiento</td><td><strong>Concurso público</strong></td></tr>
+      <tr><td>Adquisición directa inmuebles — autoriza</td><td><strong>MISSM</strong> por urgencia extrema (previo informe TGSS)</td></tr>
+      <tr><td>Enajenación inmuebles — procedimiento</td><td><strong>Subasta pública</strong></td></tr>
+      <tr><td>Enajenación directa inmuebles — autoriza</td><td><strong>Consejo de Ministros</strong> (o Ministro si ≤ umbral legal)</td></tr>
+      <tr><td>Venta títulos valores — mercado</td><td><strong>Mercados Oficiales</strong></td></tr>
+      <tr><td>Venta títulos sin autorización — condición</td><td>Para pagar prestaciones reconocidas + importe bruto ≤ límite LPGE + informar de inmediato al MISSM</td></tr>
+      <tr><td>Arrendamiento — procedimiento</td><td><strong>Concurso público</strong></td></tr>
+      <tr><td>Cesión gratuita — autoriza</td><td><strong>Titular del MISSM</strong>, a propuesta TGSS + comunicación DG Patrimonio del Estado</td></tr>
+      <tr><td>Fondo de Reserva — constituido en</td><td><strong>TGSS</strong></td></tr>
+      <tr><td>Fondo de Reserva — finalidad única</td><td>Solo <strong>prestaciones contributivas</strong></td></tr>
+      <tr><td>Fondo de Reserva — fuentes</td><td>4: excedentes presupuestarios + excedentes CC mutuas + excedentes CP mutuas + <strong>MEI</strong></td></tr>
+      <tr><td>Dotación ordinaria — aprueba</td><td><strong>Consejo de Ministros</strong>, a propuesta conjunta de 3 ministerios</td></tr>
+      <tr><td>3 ministerios que proponen la dotación</td><td><strong>MISSM + Asuntos Económicos + Hacienda y FP</strong></td></tr>
+      <tr><td>Capitalización automática sin acuerdo</td><td>Recaudación MEI + <strong>rendimientos financieros</strong> del Fondo</td></tr>
+      <tr><td>Disposición activos Fondo — límite</td><td>Porcentaje del <strong>PIB</strong> fijado en LPGE</td></tr>
+      <tr><td>Disposición activos — aplicación desde</td><td>Año <strong>2033</strong></td></tr>
+      <tr><td>TGSS — condición financiera</td><td><strong>Caja única</strong> del sistema</td></tr>
+      <tr><td>Autorización de cuentas bancarias</td><td>Exclusiva de la <strong>TGSS</strong></td></tr>
+      <tr><td>Pago prestaciones — disponibles desde</td><td><strong>Primer día hábil</strong> del mes</td></tr>
+      <tr><td>Pago prestaciones — máximo</td><td><strong>Cuarto día natural</strong> del mes</td></tr>
+      <tr><td>Fecha valor del abono</td><td><strong>Primer día hábil</strong> del mes</td></tr>
+      <tr><td>Gratuidad del pago</td><td>Sin gasto alguno para el beneficiario en <strong>territorio nacional</strong></td></tr>
+      <tr><td>Libre elección de entidad pagadora</td><td>Entre las inscritas en el <strong>Registro de Colaboradores</strong></td></tr>
+      <tr><td>Orden 22-feb-1996 — remisión datos a TGSS</td><td>Las DDPP de las entidades gestoras remiten <strong>diariamente</strong></td></tr>
+      <tr><td>Medios de pago elegibles por el beneficiario</td><td><strong>Transferencia</strong> o <strong>cheque</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="nav">
+  <a href="tema12_pnc_imv.html">◀ Tema 12</a>
+  <a href="index.html">🏠 Índice</a>
+
+</div>
+</body>
+</html>

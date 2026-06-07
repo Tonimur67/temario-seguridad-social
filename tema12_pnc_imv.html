@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tema 12 — Prestaciones No Contributivas e IMV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --ink: #1a2a3a;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #f7f3ed;
+      --warm-white: #faf8f5;
+      --muted: #6b7c8d;
+      --border: #ddd5c5;
+      --accent-blue: #2a5f8f;
+      --accent-red: #9b2335;
+      --accent-green: #2a7a4b;
+      --table-head: #1a2a3a;
+      --table-alt: #f0ece4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--warm-white);
+      color: var(--ink);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 64px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg, transparent, transparent 60px,
+        rgba(201,168,76,0.04) 60px, rgba(201,168,76,0.04) 61px
+      );
+    }
+    .hero-inner { max-width: 860px; margin: 0 auto; padding: 0 40px; position: relative; }
+    .hero-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-label::after { content: ''; height: 1px; width: 60px; background: var(--gold); opacity: 0.5; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px,5vw,50px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+    .hero h1 span { color: var(--gold-light); }
+    .hero-sub { font-size: 15px; color: rgba(247,243,237,0.6); font-weight: 300; }
+    .hero-meta { margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(201,168,76,0.25); display: flex; gap: 32px; flex-wrap: wrap; }
+    .meta-item { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(247,243,237,0.45); letter-spacing: 1px; }
+    .meta-item strong { display: block; color: var(--gold); font-size: 13px; margin-bottom: 2px; }
+
+    /* ── LAYOUT ── */
+    .layout { display: grid; grid-template-columns: 220px 1fr; max-width: 1080px; margin: 0 auto; padding: 48px 24px; gap: 48px; align-items: start; }
+
+    .toc { position: sticky; top: 24px; background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 24px 20px; }
+    .toc-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .toc ol { list-style: none; counter-reset: toc; }
+    .toc ol li { counter-increment: toc; margin-bottom: 7px; }
+    .toc ol li a { color: var(--ink); text-decoration: none; font-size: 12px; display: flex; gap: 8px; line-height: 1.4; transition: color 0.15s; }
+    .toc ol li a::before { content: counter(toc, decimal-leading-zero); font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); flex-shrink: 0; padding-top: 1px; }
+    .toc ol li a:hover { color: var(--gold); }
+    .toc ol.pnc { counter-reset: pnc; }
+    .toc ol.pnc li { counter-increment: pnc; }
+    .toc ol.pnc li a::before { content: 'P' counter(pnc); }
+
+    /* ── PART DIVIDER ── */
+    .part-divider { background: var(--ink); color: var(--cream); padding: 20px 28px; border-radius: 6px; margin-bottom: 40px; display: flex; align-items: center; gap: 20px; }
+    .part-divider .part-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .part-divider .part-text h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; }
+    .part-divider .part-text p { font-size: 12px; color: rgba(247,243,237,0.5); margin: 0; font-family: 'JetBrains Mono', monospace; }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 52px; animation: fadeUp 0.4s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+    .section-num { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .section-ref { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); margin-left: auto; flex-shrink: 0; background: var(--cream); border: 1px solid var(--border); border-radius: 3px; padding: 3px 8px; }
+
+    .subsection { margin: 28px 0; }
+    .subsection h3 { font-family: 'Source Sans 3', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .subsection h3::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    p { margin-bottom: 14px; font-size: 15px; }
+
+    /* ── CARDS ── */
+    .req-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; margin: 20px 0; }
+    .req-card { background: var(--cream); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; padding: 16px; }
+    .req-card .req-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .req-card .req-value { font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.4; }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; margin: 20px 0; border-radius: 4px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    thead tr { background: var(--table-head); color: var(--cream); }
+    thead th { padding: 13px 16px; text-align: left; font-weight: 600; font-size: 12.5px; letter-spacing: 0.5px; }
+    tbody tr:nth-child(even) { background: var(--table-alt); }
+    tbody tr:hover { background: rgba(201,168,76,0.08); }
+    tbody td { padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 14px; }
+    tbody td:first-child { font-weight: 600; color: var(--navy); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+
+    /* ── NOTES ── */
+    .note { background: rgba(42,95,143,0.06); border-left: 3px solid var(--accent-blue); border-radius: 0 4px 4px 0; padding: 14px 18px; margin: 14px 0; font-size: 14px; }
+    .note.warn { background: rgba(155,35,53,0.05); border-left-color: var(--accent-red); }
+    .note.ok { background: rgba(42,122,75,0.06); border-left-color: var(--accent-green); }
+    .note strong { font-weight: 600; color: var(--accent-blue); display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+    .note.warn strong { color: var(--accent-red); }
+    .note.ok strong { color: var(--accent-green); }
+
+    /* ── MOD CARDS ── */
+    .mod-grid { display: grid; gap: 14px; margin: 20px 0; }
+    .mod-card { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .mod-head { background: var(--ink); color: var(--cream); padding: 12px 20px; display: flex; align-items: center; gap: 12px; }
+    .mod-head .mod-letter { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .mod-head .mod-name { font-size: 14px; font-weight: 600; }
+    .mod-head .mod-art { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(247,243,237,0.4); }
+    .mod-body { padding: 18px 20px; font-size: 14px; background: var(--warm-white); }
+    .mod-body ul { list-style: none; padding: 0; }
+    .mod-body ul li { padding: 5px 0 5px 18px; position: relative; color: var(--ink); line-height: 1.5; }
+    .mod-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 12px; }
+
+    /* ── IMV CUANTÍA VISUAL ── */
+    .imv-scale {
+      display: flex; flex-direction: column; gap: 10px; margin: 20px 0;
+    }
+    .imv-row {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 14px 18px;
+    }
+    .imv-row .imv-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      background: var(--navy); color: var(--gold);
+      padding: 4px 10px; border-radius: 3px; flex-shrink: 0; letter-spacing: 1px;
+    }
+    .imv-row .imv-desc { font-size: 14px; flex: 1; }
+    .imv-row .imv-val { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--navy); flex-shrink: 0; }
+
+    /* ── INFANCIA CARDS ── */
+    .infancia-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 20px 0; }
+    .infancia-card { background: var(--navy); color: var(--cream); border-radius: 6px; padding: 20px; text-align: center; }
+    .infancia-card .edad { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: rgba(247,243,237,0.5); margin-bottom: 10px; text-transform: uppercase; }
+    .infancia-card .euros { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--gold-light); line-height: 1; }
+    .infancia-card .euros sup { font-size: 16px; }
+    .infancia-card .mes { font-size: 11px; color: rgba(247,243,237,0.4); margin-top: 6px; }
+
+    /* ── FORMULA BLOCK ── */
+    .formula-block { background: var(--navy); color: var(--cream); border-radius: 6px; padding: 28px 32px; margin: 20px 0; font-family: 'JetBrains Mono', monospace; position: relative; overflow: hidden; }
+    .formula-block::before { content: 'FÓRMULA'; position: absolute; top: 12px; right: 16px; font-size: 9px; letter-spacing: 3px; color: var(--gold); opacity: 0.7; }
+    .formula { font-size: 14px; color: var(--gold-light); margin-bottom: 16px; line-height: 2; }
+    .formula-legend { font-size: 12px; color: rgba(247,243,237,0.6); line-height: 2; }
+    .formula-legend span { color: var(--gold); }
+
+    /* ── OBLIGACIONES ── */
+    .oblig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .oblig-col { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .oblig-head { padding: 13px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+    .oblig-head.titular { background: var(--navy); color: var(--gold); }
+    .oblig-head.integrante { background: var(--accent-blue); color: #fff; }
+    .oblig-body { padding: 16px 18px; font-size: 13.5px; background: var(--cream); }
+    .oblig-body ul { list-style: none; }
+    .oblig-body ul li { padding: 5px 0 5px 16px; position: relative; line-height: 1.5; }
+    .oblig-body ul li::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+    /* ── DÍAS COTIZACIÓN ── */
+    .dias-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 14px; margin: 20px 0; }
+    .dias-card { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .dias-head { background: var(--accent-blue); color: #fff; padding: 10px 14px; font-size: 12px; font-weight: 600; }
+    .dias-body { padding: 16px 14px; background: var(--cream); }
+    .dias-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 6px; }
+    .dias-num span { font-size: 14px; color: var(--muted); font-family: 'Source Sans 3', sans-serif; font-weight: 300; }
+    .dias-body p { font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.4; }
+
+    /* ── PNC BLOCK ── */
+    .pnc-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .pnc-card { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .pnc-head { background: var(--ink); color: var(--cream); padding: 14px 18px; }
+    .pnc-head h4 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
+    .pnc-head .pnc-art { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(247,243,237,0.4); margin-top: 4px; }
+    .pnc-body { padding: 16px 18px; background: var(--cream); font-size: 14px; }
+    .pnc-body ul { list-style: none; }
+    .pnc-body ul li { padding: 5px 0 5px 16px; position: relative; line-height: 1.5; }
+    .pnc-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 12px; }
+    .pnc-body ul li strong { color: var(--navy); }
+
+    footer { background: var(--navy); color: rgba(247,243,237,0.3); text-align: center; padding: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; margin-top: 40px; }
+    footer span { color: var(--gold); }
+
+    @media (max-width: 700px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { position: static; }
+      .oblig-grid, .pnc-compare, .infancia-grid { grid-template-columns: 1fr; }
+      .hero-meta { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Seguridad Social · Modalidad No Contributiva</div>
+    <h1>TEMA 12<br><span>Prestaciones No Contributivas<br>e Ingreso Mínimo Vital</span></h1>
+    <p class="hero-sub">IMV · PNC Invalidez · PNC Jubilación · Cotización por cuidado</p>
+    <div class="hero-meta">
+      <div class="meta-item"><strong>Norma IMV</strong>Ley 19/2021</div>
+      <div class="meta-item"><strong>Norma PNC</strong>TRLGSS Arts. 363–373</div>
+      <div class="meta-item"><strong>Cotización</strong>TRLGSS Arts. 235–237</div>
+      <div class="meta-item"><strong>Gestión PNC</strong>IMSERSO / CCAA</div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <nav class="toc" aria-label="Índice">
+    <div class="toc-title">Parte I — IMV</div>
+    <ol>
+      <li><a href="#s1">Concepto y naturaleza</a></li>
+      <li><a href="#s2">Unidad de convivencia</a></li>
+      <li><a href="#s3">Titulares y edad</a></li>
+      <li><a href="#s4">Requisitos generales</a></li>
+      <li><a href="#s5">Cuantía y complementos</a></li>
+      <li><a href="#s6">Obligaciones</a></li>
+      <li><a href="#s7">Reintegro y gestión</a></li>
+    </ol>
+    <div class="toc-title" style="margin-top:16px;">Parte II — Cotización</div>
+    <ol class="pnc">
+      <li><a href="#c1">Períodos por parto</a></li>
+      <li><a href="#c2">Beneficios por cuidado</a></li>
+      <li><a href="#c3">Excedencias y reducciones</a></li>
+    </ol>
+    <div class="toc-title" style="margin-top:16px;">Parte III — PNC</div>
+    <ol class="pnc" style="counter-reset: pnc">
+      <li><a href="#p1">PNC de Invalidez</a></li>
+      <li><a href="#p2">PNC de Jubilación</a></li>
+    </ol>
+  </nav>
+
+  <main class="content">
+
+    <!-- ══ PARTE I — IMV ══ -->
+    <div class="part-divider">
+      <div class="part-num">I</div>
+      <div class="part-text">
+        <h2>Ingreso Mínimo Vital (IMV)</h2>
+        <p>Ley 19/2021 · Modalidad no contributiva de la SS</p>
+      </div>
+    </div>
+
+    <!-- S1 -->
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Concepto y Naturaleza Jurídica</h2>
+        <span class="section-ref">Arts. 2–3</span>
+      </div>
+      <p>El IMV se configura como un <strong>derecho subjetivo</strong> a una prestación económica que garantiza un nivel mínimo de renta a quienes se encuentren en situación de vulnerabilidad económica. Forma parte de la acción protectora de la SS en su <strong>modalidad no contributiva</strong>.</p>
+      <div class="req-grid">
+        <div class="req-card">
+          <div class="req-label">Cálculo</div>
+          <div class="req-value">Diferencia entre la renta garantizada y los recursos económicos reales de la persona o unidad</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Intransferibilidad</div>
+          <div class="req-value">No puede ofrecerse en garantía, cederse, retenerse ni embargarse (salvo límites legales)</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Duración</div>
+          <div class="req-value">Mientras persista la situación de vulnerabilidad y se mantengan los requisitos</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S2 -->
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">La Unidad de Convivencia</h2>
+        <span class="section-ref">Arts. 4, 6, 7 y 8</span>
+      </div>
+      <p>Constituida por todas las personas que residan en un mismo domicilio unidas por <strong>vínculo matrimonial, pareja de hecho o vínculo hasta el segundo grado de consanguineidad, afinidad, adopción</strong> o guarda con fines de adopción/acogimiento permanente.</p>
+      <div class="note">
+        <strong>Continuidad de la convivencia</strong>
+        El fallecimiento de un integrante o la separación transitoria por estudios, trabajo u hospitalización <strong>no rompe</strong> la convivencia. Nadie puede formar parte de más de una unidad de convivencia.
+      </div>
+
+      <div class="subsection">
+        <h3>Situaciones que generan unidad de convivencia independiente</h3>
+        <div class="mod-grid">
+          <div class="mod-card">
+            <div class="mod-head">
+              <span class="mod-letter">A</span>
+              <span class="mod-name">Víctimas de violencia de género</span>
+              <span class="mod-art">Art. 7</span>
+            </div>
+            <div class="mod-body">
+              <ul><li>Mujeres que hayan abandonado su domicilio familiar</li></ul>
+            </div>
+          </div>
+          <div class="mod-card">
+            <div class="mod-head">
+              <span class="mod-letter">B</span>
+              <span class="mod-name">Trámites de separación, nulidad o divorcio</span>
+              <span class="mod-art">Art. 7</span>
+            </div>
+            <div class="mod-body">
+              <ul><li>Personas que hayan abandonado el domicilio por dichos trámites</li></ul>
+            </div>
+          </div>
+          <div class="mod-card">
+            <div class="mod-head">
+              <span class="mod-letter">C</span>
+              <span class="mod-name">Desahucio, accidente o fuerza mayor</span>
+              <span class="mod-art">Art. 8</span>
+            </div>
+            <div class="mod-body">
+              <ul><li>Personas que hayan abandonado el domicilio por causa de quiebra residencial justificada</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S3 -->
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Titulares del IMV: Requisitos de Edad</h2>
+        <span class="section-ref">Art. 5</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Supuesto</th><th>Edad mínima</th><th>Excepciones</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Integrados en unidad de convivencia</td>
+              <td>23 años (o mayor emancipado con menores a cargo)</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Sin unidad de convivencia — regla general</td>
+              <td>23 años</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Víctimas de violencia de género o trata</td>
+              <td>Sin límite inferior</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Ex-centros de menores de CCAA (últimos 3 años) o huérfanos absolutos solos</td>
+              <td>18–22 años</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Liberados de centro penitenciario (&gt;6 meses de privación)</td>
+              <td>Sin límite específico</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S4 -->
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Requisitos Generales de Acceso</h2>
+        <span class="section-ref">Art. 10</span>
+      </div>
+      <div class="req-grid">
+        <div class="req-card">
+          <div class="req-label">Residencia</div>
+          <div class="req-value">Legal y efectiva en España de forma continuada durante <strong>al menos 1 año</strong> anterior a la solicitud</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Salidas al extranjero</div>
+          <div class="req-value">No se rompe la continuidad si no superan <strong>90 días naturales/año</strong> o están motivadas por enfermedad justificada</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Vulnerabilidad económica</div>
+          <div class="req-value">Por carecer de rentas, ingresos o patrimonio suficientes conforme al Art. 11</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Independencia — &lt;30 años</div>
+          <div class="req-value">Haber vivido de forma independiente en España durante <strong>los 2 años anteriores</strong> (alta en SS ≥ 12 meses)</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Independencia — &gt;30 años</div>
+          <div class="req-value">Domicilio distinto al de progenitores durante el año anterior a la solicitud</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Antigüedad de la unidad</div>
+          <div class="req-value">Si se solicita como unidad, constituida de forma continuada <strong>≥ 6 meses</strong> antes de la solicitud</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Cuantía, Complementos y Nacimiento del Derecho</h2>
+        <span class="section-ref">Arts. 13–15</span>
+      </div>
+
+      <p>La cuantía mensual es la <strong>diferencia entre la renta garantizada y el conjunto de rentas e ingresos</strong>. Mínimo perceptible: <strong>10 €/mes</strong>. La renta garantizada individual equivale al <strong>100% de la pensión no contributiva anual ÷ 12</strong>.</p>
+
+      <div class="subsection">
+        <h3>Escala de incrementos por composición de la unidad</h3>
+        <div class="imv-scale">
+          <div class="imv-row">
+            <span class="imv-tag">BASE</span>
+            <span class="imv-desc">Persona individual o primer miembro de la unidad</span>
+            <span class="imv-val">100%</span>
+          </div>
+          <div class="imv-row">
+            <span class="imv-tag">+MIEMBRO</span>
+            <span class="imv-desc">Por cada miembro adicional a partir del segundo</span>
+            <span class="imv-val">+30%</span>
+          </div>
+          <div class="imv-row">
+            <span class="imv-tag">MÁXIMO</span>
+            <span class="imv-desc">Techo máximo acumulable por miembros adicionales</span>
+            <span class="imv-val">220%</span>
+          </div>
+          <div class="imv-row">
+            <span class="imv-tag">MONOPAREN.</span>
+            <span class="imv-desc">Complemento si la unidad es monoparental</span>
+            <span class="imv-val">+22%</span>
+          </div>
+          <div class="imv-row">
+            <span class="imv-tag">DISCAPAC.</span>
+            <span class="imv-desc">Complemento si algún miembro tiene discapacidad ≥ 65%</span>
+            <span class="imv-val">+22%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Complemento de ayuda para la infancia</h3>
+        <div class="infancia-grid">
+          <div class="infancia-card">
+            <div class="edad">Menor de 3 años</div>
+            <div class="euros">100<sup>€</sup></div>
+            <div class="mes">por menor y mes</div>
+          </div>
+          <div class="infancia-card">
+            <div class="edad">3 a 5 años</div>
+            <div class="euros">70<sup>€</sup></div>
+            <div class="mes">por menor y mes</div>
+          </div>
+          <div class="infancia-card">
+            <div class="edad">6 a 17 años</div>
+            <div class="euros">50<sup>€</sup></div>
+            <div class="mes">por menor y mes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note ok">
+        <strong>Nacimiento del derecho y pago</strong>
+        El derecho nace el <strong>primer día del mes siguiente</strong> al de la presentación de la solicitud. El pago es mensual y por transferencia bancaria.
+      </div>
+      <div class="note">
+        <strong>Resolución del INSS</strong>
+        El INSS resolverá y notificará en el plazo de <strong>30 días naturales</strong> las circunstancias que afecten al cumplimiento de los requisitos.
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section class="section" id="s6">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Obligaciones de los Beneficiarios</h2>
+        <span class="section-ref">Art. 36</span>
+      </div>
+      <div class="oblig-grid">
+        <div class="oblig-col">
+          <div class="oblig-head titular">Obligaciones del TITULAR</div>
+          <div class="oblig-body">
+            <ul>
+              <li>Proporcionar documentación para la conservación de la prestación</li>
+              <li>Comunicar cualquier cambio de situación en <strong>30 días naturales</strong></li>
+              <li>Comunicar cambios de domicilio o padrón en 30 días</li>
+              <li>Reintegrar las prestaciones indebidamente percibidas</li>
+              <li>Comunicar <strong>con carácter previo</strong> cualquier salida al extranjero &gt; 90 días</li>
+              <li>Presentar anualmente la <strong>declaración del IRPF</strong></li>
+              <li>Cumplir las condiciones de compatibilidad con ingresos del trabajo</li>
+              <li>Participar en las estrategias de inclusión del MISSM</li>
+            </ul>
+          </div>
+        </div>
+        <div class="oblig-col">
+          <div class="oblig-head integrante">Obligaciones de los INTEGRANTES</div>
+          <div class="oblig-body">
+            <ul>
+              <li>Comunicar el fallecimiento del titular</li>
+              <li>Poner en conocimiento hechos que distorsionen el fin de la prestación</li>
+              <li>Presentar anualmente la <strong>declaración del IRPF</strong></li>
+              <li>Cumplir las obligaciones de compatibilidad si trabajan</li>
+              <li>Participar en las estrategias de inclusión</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S7 -->
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Reintegro de Prestaciones Indebidas</h2>
+        <span class="section-ref">Art. 19</span>
+      </div>
+      <div class="req-grid">
+        <div class="req-card">
+          <div class="req-label">Revisión de oficio</div>
+          <div class="req-value">El INSS puede revisar de oficio en un plazo máximo de <strong>4 años</strong> desde la resolución no impugnada</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Rectificación</div>
+          <div class="req-value">Errores materiales, de hecho o aritméticos: rectificables <strong>en cualquier momento</strong></div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Responsabilidad solidaria</div>
+          <div class="req-value">Beneficiario principal + todas las personas que participen en obtención fraudulenta (incluye recargos, intereses y costas)</div>
+        </div>
+      </div>
+      <div class="note ok">
+        <strong>Excepción con menores en la unidad</strong>
+        No son exigibles las cantidades que <strong>no superen el 65% de la cuantía mensual de una PNC</strong> cuando en la unidad haya al menos un menor de edad. Si supera ese umbral, el INSS solo reclama la diferencia.
+      </div>
+    </section>
+
+    <!-- ══ PARTE II — COTIZACIÓN ══ -->
+    <div class="part-divider" style="margin-top: 56px;">
+      <div class="part-num">II</div>
+      <div class="part-text">
+        <h2>Cotización Efectiva por Cuidado</h2>
+        <p>TRLGSS Arts. 235–237</p>
+      </div>
+    </div>
+
+    <!-- C1 -->
+    <section class="section" id="c1">
+      <div class="section-header">
+        <span class="section-num">C1</span>
+        <h2 class="section-title">Períodos de Cotización Asimilados por Parto</h2>
+        <span class="section-ref">Art. 235</span>
+      </div>
+      <p>A efectos de pensiones contributivas de <strong>jubilación e IP</strong>:</p>
+      <div class="dias-grid">
+        <div class="dias-card">
+          <div class="dias-head">Parto de un solo hijo</div>
+          <div class="dias-body">
+            <div class="dias-num">112 <span>días</span></div>
+            <p>Computados como cotización efectiva</p>
+          </div>
+        </div>
+        <div class="dias-card">
+          <div class="dias-head">Por cada hijo adicional (parto múltiple)</div>
+          <div class="dias-body">
+            <div class="dias-num">+14 <span>días</span></div>
+            <p>A partir del segundo hijo, inclusive</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- C2 -->
+    <section class="section" id="c2">
+      <div class="section-header">
+        <span class="section-num">C2</span>
+        <h2 class="section-title">Beneficios por Cuidado de Hijos o Menores</h2>
+        <span class="section-ref">Art. 236</span>
+      </div>
+      <p>Se computa como período cotizado el tiempo de interrupción de la cotización por extinción de la relación laboral o fin del subsidio por desempleo, ocurrida entre los <strong>9 meses anteriores al nacimiento</strong> (o 3 meses antes de la adopción/acogimiento) y la <strong>finalización del sexto año posterior</strong>.</p>
+      <div class="req-grid">
+        <div class="req-card">
+          <div class="req-label">Límite por hijo</div>
+          <div class="req-value">Máximo <strong>260 días por hijo</strong> o menor</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Beneficiario</div>
+          <div class="req-value">Solo se reconoce a <strong>uno de los progenitores</strong>. En caso de controversia, a la madre</div>
+        </div>
+        <div class="req-card">
+          <div class="req-label">Límite total</div>
+          <div class="req-value">El cómputo total por todos los hijos <strong>no puede superar los 5 años</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- C3 -->
+    <section class="section" id="c3">
+      <div class="section-header">
+        <span class="section-num">C3</span>
+        <h2 class="section-title">Excedencias y Reducciones de Jornada</h2>
+        <span class="section-ref">Art. 237</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Supuesto</th><th>Período con cotización efectiva</th><th>Contingencias cubiertas</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Excedencia por cuidado de hijo o menor</td>
+              <td>Los <strong>3 primeros años</strong></td>
+              <td>Jubilación, IP, MYS, maternidad y paternidad</td>
+            </tr>
+            <tr>
+              <td>Excedencia por cuidado de otros familiares (hasta 2.º grado)</td>
+              <td>Los <strong>3 primeros años</strong></td>
+              <td>Jubilación, IP, MYS, maternidad y paternidad</td>
+            </tr>
+            <tr>
+              <td>Reducción de jornada por cuidado de menor (Art. 37.6 TRET)</td>
+              <td>Los <strong>3 primeros años</strong></td>
+              <td>Cotizaciones incrementadas al <strong>100%</strong> de la jornada completa (jubilación, IP, MYS, NYCM, riesgo embarazo/lactancia, IT)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ PARTE III — PNC ══ -->
+    <div class="part-divider" style="margin-top: 56px;">
+      <div class="part-num">III</div>
+      <div class="part-text">
+        <h2>Pensiones No Contributivas (PNC)</h2>
+        <p>TRLGSS Arts. 363–373 · Gestión: IMSERSO / CCAA</p>
+      </div>
+    </div>
+
+    <!-- P1 -->
+    <section class="section" id="p1">
+      <div class="section-header">
+        <span class="section-num">P1</span>
+        <h2 class="section-title">Pensión de Invalidez No Contributiva</h2>
+        <span class="section-ref">Arts. 363–368</span>
+      </div>
+
+      <div class="subsection">
+        <h3>Requisitos de acceso</h3>
+        <div class="req-grid">
+          <div class="req-card">
+            <div class="req-label">Edad</div>
+            <div class="req-value">Entre <strong>18 y 64 años</strong> (a los 65 pasan a ser PNC de jubilación)</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Discapacidad</div>
+            <div class="req-value">Grado reconocido <strong>≥ 65%</strong></div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Residencia</div>
+            <div class="req-value">Legal en España durante <strong>5 años</strong>, de los cuales <strong>2 inmediatamente anteriores</strong> a la solicitud</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Carencia de rentas</div>
+            <div class="req-value">Ingresos anuales inferiores al importe de la PNC fijado en la LPGE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Límites de acumulación de recursos con convivencia familiar</h3>
+        <div class="formula-block">
+          <div class="formula">
+            Límite (descendientes/ascendientes 1.er grado) =<br>
+            Cuantía Anual PNC + 0,70 × Cuantía Anual PNC × (N.º convivientes − 1)<br><br>
+            Límite (otros parientes hasta 2.º grado) =<br>
+            [fórmula anterior] × corrector 0,25
+          </div>
+          <div class="formula-legend">
+            <span>Cuantía Anual PNC</span> — importe fijado anualmente por la LPGE<br>
+            <span>N.º convivientes</span> — total de miembros de la unidad económica
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Cuantía, compatibilidad e incompatibilidades</h3>
+        <div class="req-grid">
+          <div class="req-card">
+            <div class="req-label">Complemento por tercera persona</div>
+            <div class="req-value">Discapacidad ≥ 75% que necesite ayuda de otra persona → <strong>+50% de la PNC</strong></div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Efectos económicos</div>
+            <div class="req-value">Desde el <strong>día 1 del mes siguiente</strong> a la solicitud</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Compatibilidad laboral</div>
+            <div class="req-value">Actividades laborales compatibles si los ingresos <strong>no superan el 35%</strong> de la PNC anual</div>
+          </div>
+          <div class="req-card">
+            <div class="req-label">Incompatibilidad</div>
+            <div class="req-value">Incompatible con la <strong>PNC de jubilación</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note warn">
+        <strong>Causas de extinción</strong>
+        Salidas de España &gt;90 días · Mejoría de la discapacidad por debajo del 65% · Disposición de rentas suficientes · Fallecimiento.
+      </div>
+    </section>
+
+    <!-- P2 -->
+    <section class="section" id="p2">
+      <div class="section-header">
+        <span class="section-num">P2</span>
+        <h2 class="section-title">Pensión de Jubilación No Contributiva</h2>
+        <span class="section-ref">Arts. 369–373</span>
+      </div>
+
+      <div class="pnc-compare">
+        <div class="pnc-card">
+          <div class="pnc-head">
+            <h4>Requisitos de acceso</h4>
+            <div class="pnc-art">Arts. 369–372</div>
+          </div>
+          <div class="pnc-body">
+            <ul>
+              <li>Tener <strong>65 años</strong> de edad</li>
+              <li>Carencia de rentas en los mismos términos que la PNC de invalidez</li>
+              <li>Residencia legal en España durante <strong>10 años</strong> entre los 16 años y la edad de devengo</li>
+              <li>De esos 10 años, <strong>2 deben ser consecutivos e inmediatamente anteriores</strong> a la solicitud</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pnc-card">
+          <div class="pnc-head">
+            <h4>Gestión de las PNC</h4>
+            <div class="pnc-art">Art. 373</div>
+          </div>
+          <div class="pnc-body">
+            <ul>
+              <li>Corresponde al <strong>IMSERSO</strong> con carácter general</li>
+              <li>Todas las CCAA tienen transferida la gestión</li>
+              <li><strong>Excepción:</strong> Ceuta y Melilla, donde la gestión la realiza directamente el IMSERSO</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+<div class="nav">
+  <a href="tema11_muerte_supervivencia.html">◀ Tema 11</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema13_especifico_esquema.html">Tema 13 ▶</a>
+</div>
+<footer>
+  TRLGSS · RDLeg 8/2015 · Ley 19/2021 &nbsp;|&nbsp; <span>Tema 12</span> — Prestaciones No Contributivas e Ingreso Mínimo Vital &nbsp;|&nbsp; Régimen General de la Seguridad Social
+</footer>
+
+</body>
+</html>

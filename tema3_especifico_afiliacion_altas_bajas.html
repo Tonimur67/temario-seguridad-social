@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 3 Específico SS — Afiliación, Altas, Bajas y Convenio Especial</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #0d0f14; --surface: #141720; --border: #252a38;
+    --accent: #e8c840; --accent2: #3d9eff; --accent3: #ff5f5f;
+    --accent4: #4ade80; --accent5: #c084fc;
+    --text: #d4d8e8; --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 13px; line-height: 1.6; padding: 32px 24px; max-width: 980px; margin: 0 auto; }
+  .header { border-left: 4px solid var(--accent4); padding: 16px 20px; margin-bottom: 32px; background: var(--surface); }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent4); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .block-title { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin: 22px 0 11px 0; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+  .sub-head { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 10px 0 6px 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 3 — Afiliación · Altas y Bajas en el RG · Convenio Especial · Inscripción de Empresas</h1>
+  <div class="sub">Art. 15-17 LGSS · RD 84/1996 arts. 6-15, 23, 29, 32, 35 · Orden TAS/2865/2003 · Art. 138 LGSS</div>
+</div>
+
+<!-- BLOQUE 1: AFILIACIÓN -->
+<div class="section-label">01 · Afiliación al sistema (art. 15 LGSS · art. 6 RD 84/1996)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Concepto y características</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Concepto:</strong> acto administrativo por el que la TGSS reconoce la condición de incluida en el sistema a la persona física que <strong>por primera vez</strong> realiza una actividad determinante de su inclusión</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Obligatoria:</strong> para todas las personas en modalidad contributiva</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Única y general:</strong> para todos los regímenes del sistema</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Vitalicia:</strong> se extiende a toda la vida de la persona</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Exclusiva:</strong> no se puede estar obligatoriamente incluido en otro régimen por la misma actividad</span></div>
+    <div class="item"><span class="arrow">→</span><span>Indispensable poseer el <strong>NUSS</strong> (Número de la Seguridad Social) asignado por la TGSS</span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Formas de promover la afiliación (art. 23 RD 84/1996)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>A instancia del empresario:</strong> obligado a solicitarla para quienes ingresen a su servicio y no estén afiliados</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>A instancia del interesado:</strong> trabajador por cuenta propia o ajena que inicie actividad. Si el empresario incumple, el trabajador puede solicitarla directamente a la DPTGSS <span class="pill pill-b">en cualquier momento</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>De oficio por la TGSS:</strong> cuando se compruebe incumplimiento vía ITSS, datos de entidades gestoras u otros procedimientos</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Lugar:</strong> DPTGSS o administración de la misma, en la provincia donde esté domiciliada la empresa o donde radique el establecimiento del autónomo</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Plazo:</strong> con anterioridad al inicio de la prestación de servicios</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Variación de datos:</strong> <span class="pill pill-b">3 días naturales</span> siguientes a la variación</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 2: ALTAS -->
+<div class="section-label">02 · Altas en el Régimen General (arts. 7, 29, 35 RD 84/1996)</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Concepto, formas y plazos</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Concepto:</strong> acto administrativo por el que la TGSS reconoce a quien inicia una actividad la condición de comprendida en el campo de aplicación del régimen que proceda</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Formas:</strong> mismas que la afiliación (empresario, interesado, de oficio)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Lugar:</strong> DPTGSS o administración donde esté domiciliada la empresa</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Plazo alta:</strong> previamente al inicio de la prestación de servicios, no antes de los <span class="pill pill-y">60 días naturales</span> anteriores</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Plazo baja y variaciones:</strong> dentro de los <span class="pill pill-y">3 días naturales</span> siguientes al cese o variación</span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Efectos de las altas (art. 35 RD 84/1996)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Alta en plazo:</strong> surte efectos desde el día en que se <strong>inicie la actividad</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Alta fuera de plazo:</strong> efectos desde el día en que se <strong>formule la solicitud</strong>, salvo que el ingreso de cuotas se hubiera producido en tiempo reglamentario → se retrotrae a la fecha del ingreso de las primeras cuotas</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Solicitudes defectuosas:</strong> surten efectos si se subsanan en el plazo de <span class="pill pill-b">10 días</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Alta de oficio:</strong> retrotraen efectos a la fecha en que los hechos que las motiven hayan sido conocidos. Si es por ITSS: fecha de la actuación inspectora</span></div>
+  </div>
+</div>
+
+<!-- ALTAS INDEBIDAS -->
+<div class="block full red" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Altas indebidas</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+    <div class="item"><span class="arrow">→</span><span>Determinan la <strong>reposición a la situación anterior</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Cotizaciones efectuadas: <strong>no surtirán efecto alguno</strong>. Si hubo malicia: derecho a devolución previa deducción de prestaciones percibidas (prescribe <span class="pill pill-r">4 años</span>)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Si se incluyó en régimen incorrecto: las cotizaciones son <strong>válidas hasta la fecha de la resolución</strong> que declare el error</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 3: BAJAS -->
+<div class="section-label">03 · Bajas en el Régimen General</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Efectos de las bajas</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Baja en plazo:</strong> extingue la obligación de cotizar desde el <strong>cese en el trabajo</strong> (siempre que se comunique en modelo oficial y plazo)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Baja fuera de plazo:</strong> NO extingue la obligación de cotizar hasta el día en que la TGSS conozca el cese, salvo que se demuestre el cese real por la ITSS o medios de prueba</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Baja de oficio:</strong> la TGSS la cursa por conocer el cese mediante la ITSS o entidades gestoras. La obligación de cotizar se extingue el día del <strong>cese real</strong></span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Bajas indebidas</div>
+    <div class="alert">
+      <div class="alabel">⚠ Cepo de examen</div>
+      La resolución que declare la baja indebida determinará que el trabajador se considere en <strong>alta a todos los efectos</strong>, debiendo reclamarse las cuotas correspondientes al período intermedio.
+    </div>
+    <div class="item"><span class="arrow">→</span><span>El alta indebida o baja fuera de plazo <strong>mantiene la obligación de cotizar</strong></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 4: SITUACIONES ASIMILADAS AL ALTA -->
+<div class="section-label">04 · Situaciones asimiladas al alta (art. 166 LGSS)</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Catálogo completo de situaciones asimiladas</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Situación legal de <strong>desempleo total</strong> (contributivo o asistencial) manteniendo inscripción como desempleado</span></div>
+      <div class="item"><span class="arrow">→</span><span>Período de <strong>vacaciones anuales retribuidas no disfrutadas</strong> antes de la finalización del contrato <span class="pill pill-b">con cotización</span>, salvo riesgo embarazo y lactancia</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Excedencia forzosa</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Excedencia para cuidado de hijo/menor acogido/familiares</strong> que exceda del período de cotización efectiva del art. 237 LGSS</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Traslado por la empresa fuera del territorio nacional</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Suscripción de <strong>convenio especial</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Períodos de <strong>inactividad entre trabajos de temporada</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Períodos de <strong>prisión</strong> por supuestos Ley 46/1977 de Amnistía</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Situación de <strong>IT que subsista una vez extinguido el contrato</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Prórroga de efectos</strong> de la IT</span></div>
+      <div class="item"><span class="arrow">→</span><span>Situación de <strong>maternidad/paternidad</strong> que subsista tras extinguirse el contrato o que se inicie durante la prestación por desempleo</span></div>
+      <div class="item"><span class="arrow">→</span><span>Ayuda equivalente a <strong>jubilación anticipada</strong> y ayuda previa a la jubilación ordinaria</span></div>
+      <div class="item"><span class="arrow">→</span><span>Trabajadores afectados por el <strong>síndrome tóxico</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Suspensión del contrato por <strong>víctima de violencia de género</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Huelga y cierre patronal:</strong> situación de <span class="pill pill-b">alta especial</span></span></div>
+      <div class="note" style="margin-top:8px;">
+        <div class="nlabel">Alta de pleno derecho (art. 166.4)</div>
+        Aunque el empresario incumpla sus obligaciones, el trabajador se considera de pleno derecho en alta a efectos de: <strong>AT, EP, desempleo</strong> y asistencia sanitaria por enfermedad común, maternidad y accidente no laboral.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 5: CONVENIO ESPECIAL -->
+<div class="section-label">05 · El Convenio Especial (Orden TAS/2865/2003)</div>
+<div class="grid-2">
+  <div class="block purple">
+    <div class="block-title"><span class="dot"></span>Finalidad, objeto y cobertura</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Finalidad:</strong> determinar la iniciación o continuación de la situación de alta o asimilada al alta en el régimen correspondiente</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Objeto:</strong> mantener la cotización para cubrir:</span></div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">✓ Incluye:</span> jubilación · incapacidad permanente · muerte y supervivencia (contingencias comunes)</span></div>
+    <div class="alert">
+      <div class="alabel">⚠ Excluidas expresamente</div>
+      IT · AT y EP · Riesgo embarazo · Desempleo · FOGASA · Formación Profesional
+    </div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Requisitos de acceso (art. 3)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Solicitud:</strong> ante la DPTGSS o administración</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Plazo de solicitud:</strong> <span class="pill pill-y">1 año</span> desde el día siguiente al cese o situación que dé derecho</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Cotización previa:</strong> haber cotizado <span class="pill pill-y">1.080 días</span> en los <span class="pill pill-y">12 años</span> inmediatamente anteriores a la baja</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Formalización:</strong> la TGSS notifica la suscripción dentro de los <span class="pill pill-y">3 meses</span> siguientes a la entrada de la solicitud. Si no hay respuesta → <span class="pill pill-g">silencio positivo</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Plazo de conformidad:</strong> hasta el último día del mes siguiente al de recibir la notificación</span></div>
+  </div>
+</div>
+
+<!-- BENEFICIARIOS CONVENIO -->
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Quiénes pueden suscribir el Convenio Especial (art. 2.2)</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Trabajadores que causen <strong>baja en un régimen</strong> y no estén comprendidos en otro</span></div>
+      <div class="item"><span class="arrow">→</span><span>Trabajadores con contrato indefinido y cotizaciones rezagadas que cumplan <strong>65 años o más</strong> y acrediten <strong>35 años cotizados</strong> → <span class="pill pill-b">exentos de cotizar</span></span></div>
+      <div class="item"><span class="arrow">→</span><span>Trabajadores en <strong>pluriempleo o pluriactividad</strong> que cesen en alguna actividad</span></div>
+      <div class="item"><span class="arrow">→</span><span>Trabajadores que causen baja por nuevo empleo con <strong>remuneración inferior</strong> al promedio de los 12 meses anteriores</span></div>
+      <div class="item"><span class="arrow">→</span><span>Pensionistas de <strong>IPT</strong> para la profesión habitual que pierdan o causen baja en el alta que tuviesen</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Perceptores de <strong>subsidio de desempleo o prestación contributiva</strong> que se extinga</span></div>
+      <div class="item"><span class="arrow">→</span><span>Pensionistas de IP declarados <strong>plenamente capaces o con IP Parcial</strong> tras revisión por mejoría</span></div>
+      <div class="item"><span class="arrow">→</span><span>Pensionistas de IP o jubilación a quienes se les <strong>anule la pensión</strong> por sentencia firme</span></div>
+      <div class="item"><span class="arrow">→</span><span>Trabajadores que causen baja por solicitar pensión y esta les sea <strong>denegada</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Demás trabajadores por cuenta propia o ajena en <strong>supuestos especiales</strong></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EFECTOS TEMPORALES CONVENIO -->
+<div class="block full yellow" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Fecha de efectos del Convenio Especial (art. 5 Orden TAS/2865/2003)</div>
+  <table>
+    <thead>
+      <tr><th>Momento de la solicitud</th><th>Efectos del convenio</th><th>Opción del suscriptor</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dentro de los <strong>90 días naturales</strong> siguientes al cese</td>
+        <td>Se retrotraen al <strong>día siguiente a la fecha del cese</strong></td>
+        <td>Puede optar entre esa fecha o el día de presentación de la solicitud</td>
+      </tr>
+      <tr>
+        <td>Fuera de los 90 días (pero dentro del año)</td>
+        <td>Efectos obligatoriamente desde el <strong>día de presentación de la solicitud</strong></td>
+        <td>Sin opción</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="item" style="margin-top:10px;"><span class="arrow">→</span><span><strong>Cotización:</strong> obligatoria desde la fecha en que surta efectos el convenio mientras este siga vigente (art. 6)</span></div>
+</div>
+
+<!-- BLOQUE 6: INSCRIPCIÓN DE EMPRESAS -->
+<div class="section-label">06 · Encuadramiento e Inscripción de Empresas (art. 138 LGSS · arts. 10-15 RD 84/1996)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Concepto de empresario y requisitos</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Empresario SS:</strong> toda persona física, jurídica o entidad sin personalidad jurídica (pública o privada) a la que presten servicios trabajadores por cuenta ajena o asimilados</span></div>
+    <div class="note">
+      <div class="nlabel">Clave de examen</div>
+      La condición de empresario se adquiere <strong>con independencia del ánimo de lucro</strong>. Una fundación sin ánimo de lucro con trabajadores: ES empresario.
+    </div>
+    <div class="item"><span class="arrow">→</span><span><strong>Inscripción:</strong> requisito previo e indispensable antes de iniciar cualquier actividad</span></div>
+    <div class="item"><span class="arrow">→</span><span>En la solicitud debe hacer constar: entidad gestora (INSS) o <strong>Mutua colaboradora</strong> elegida para cubrir: <span class="pill pill-g">CP</span> + <span class="pill pill-g">IT por CC</span></span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Documentación y tramitación (arts. 11-13 RD 84/1996)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Persona física:</strong> DNI o, si es extranjero, pasaporte o documento equivalente</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Persona jurídica:</strong> identificación del representante + escritura de constitución o certificación del registro correspondiente</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Lugar:</strong> DPTGSS o administración donde radique el domicilio del empresario</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Plazo de subsanación:</strong> <span class="pill pill-b">10 días</span> si la solicitud no reúne los requisitos</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>CCC Principal:</strong> vinculado al domicilio de la empresa. Se pueden asignar <strong>otros CCC</strong> en la misma o distintas provincias</span></div>
+  </div>
+</div>
+
+<!-- EFECTOS INSCRIPCIÓN -->
+<div class="block full green" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Efectos generales de la inscripción (art. 15 RD 84/1996) y obligaciones de comunicación</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Es <strong>única y general</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Válida para todo el <strong>territorio del Estado</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Se extiende a <strong>toda la vida</strong> de la persona (física o jurídica)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Identifica plenamente al empresario y determina las condiciones de inclusión de sus trabajadores</span></div>
+    </div>
+    <div>
+      <div class="sub-head">Obligaciones de comunicación</div>
+      <div class="item"><span class="arrow">→</span><span>Variaciones de los datos de inscripción inicial</span></div>
+      <div class="item"><span class="arrow">→</span><span>Cambios en la entidad gestora o Mutua (coberturas CP e IT/CC)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Actividades económicas distintas a las declaradas inicialmente</span></div>
+      <div class="item"><span class="arrow">→</span><span>Datos de trabajadores con especialidades en cotización</span></div>
+      <div class="item"><span class="arrow">→</span><span>Cualquier otra que determine el MISSM</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 3</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>Afiliación — características</td><td>Obligatoria · Única · Vitalicia · General · Exclusiva</td></tr>
+      <tr><td>Variación de datos afiliación</td><td><strong>3 días naturales</strong> siguientes a la variación</td></tr>
+      <tr><td>Alta — plazo máximo anticipado</td><td>No antes de <strong>60 días naturales</strong> antes del inicio</td></tr>
+      <tr><td>Alta — plazo obligatorio</td><td><strong>Antes del inicio</strong> de la prestación de servicios</td></tr>
+      <tr><td>Baja y variaciones — plazo</td><td><strong>3 días naturales</strong> siguientes al cese o variación</td></tr>
+      <tr><td>Alta en plazo — efectos</td><td>Desde el día del <strong>inicio de la actividad</strong></td></tr>
+      <tr><td>Alta fuera de plazo — efectos</td><td>Desde el día de la <strong>solicitud</strong> (salvo cuotas en plazo → retroacción)</td></tr>
+      <tr><td>Alta de oficio ITSS — efectos</td><td>Fecha de la <strong>actuación inspectora</strong></td></tr>
+      <tr><td>Solicitud defectuosa — subsanación</td><td><strong>10 días</strong></td></tr>
+      <tr><td>Alta indebida en régimen incorrecto</td><td>Válida hasta la <strong>resolución que declare el error</strong></td></tr>
+      <tr><td>Alta indebida — devolución cotizaciones con malicia</td><td>Prescribe a los <strong>4 años</strong></td></tr>
+      <tr><td>Alta especial en huelga/cierre patronal</td><td>El trabajador permanece en <strong>alta especial</strong></td></tr>
+      <tr><td>Alta de pleno derecho (aunque no esté en alta real)</td><td><strong>AT · EP · Desempleo</strong> + asistencia sanitaria enf. común, maternidad, accidente no laboral</td></tr>
+      <tr><td>Vacaciones no disfrutadas — asimilada al alta</td><td>Sí, <strong>con cotización</strong>, salvo riesgo embarazo y lactancia</td></tr>
+      <tr><td>Convenio Especial — cotización previa exigida</td><td><strong>1.080 días</strong> en los últimos <strong>12 años</strong></td></tr>
+      <tr><td>Convenio Especial — plazo de solicitud</td><td><strong>1 año</strong> desde el día siguiente al cese</td></tr>
+      <tr><td>Convenio Especial — plazo de notificación TGSS</td><td><strong>3 meses</strong> desde la entrada de la solicitud</td></tr>
+      <tr><td>Convenio Especial — silencio administrativo</td><td><strong>Positivo</strong> (estimado)</td></tr>
+      <tr><td>Convenio Especial — plazo de conformidad</td><td>Último día del <strong>mes siguiente</strong> a recibir la notificación</td></tr>
+      <tr><td>Convenio Especial — efectos si solicitud ≤ 90 días</td><td>Se retrotraen al <strong>día siguiente al cese</strong> (con opción del suscriptor)</td></tr>
+      <tr><td>Convenio Especial — efectos si solicitud > 90 días</td><td>Desde el <strong>día de presentación</strong> de la solicitud</td></tr>
+      <tr><td>Convenio Especial — contingencias excluidas</td><td>IT · AT/EP · Riesgo embarazo · Desempleo · FOGASA · FP</td></tr>
+      <tr><td>65 años + 35 cotizados con contrato indefinido</td><td>Pueden suscribir convenio especial <strong>exentos de cotizar</strong></td></tr>
+      <tr><td>Empresario SS — ánimo de lucro</td><td>Irrelevante: empresario aunque <strong>no tenga ánimo de lucro</strong></td></tr>
+      <tr><td>Inscripción empresas — obligación previa</td><td>Debe indicar <strong>Mutua o INSS</strong> para CP e IT/CC</td></tr>
+      <tr><td>Inscripción empresa persona física — documento</td><td><strong>DNI</strong> o pasaporte si es extranjero</td></tr>
+      <tr><td>Inscripción — subsanación solicitud defectuosa</td><td><strong>10 días</strong></td></tr>
+      <tr><td>CCC — número asignado</td><td><strong>CCC Principal</strong> vinculado al domicilio + otros CCC posibles</td></tr>
+      <tr><td>Inscripción — ámbito de validez</td><td>Única · General · Todo el <strong>territorio del Estado</strong> · Vitalicia</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="nav">
+  <a href="tema2_especifico_campo_aplicacion.html">◀ Tema 02</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema4_especifico_cotizacion.html">Tema 04 ▶</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 6 Específico SS — Recaudación en Vía Ejecutiva</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+  :root {
+    --bg: #0d0f14; --surface: #141720; --border: #252a38;
+    --accent: #e8c840; --accent2: #3d9eff; --accent3: #ff5f5f;
+    --accent4: #4ade80; --accent5: #c084fc;
+    --text: #d4d8e8; --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 13px; line-height: 1.6; padding: 32px 24px; max-width: 980px; margin: 0 auto; }
+  .header { border-left: 4px solid var(--accent3); padding: 16px 20px; margin-bottom: 32px; background: var(--surface); }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent3); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .block-title { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin: 22px 0 11px 0; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .info { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .info .ilabel { font-family: var(--mono); font-size: 9px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+  .sub-head { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin: 10px 0 6px 0; }
+  .flow { display: flex; align-items: stretch; gap: 0; overflow-x: auto; margin-bottom: 10px; }
+  .flow-step { flex: 1; min-width: 110px; text-align: center; position: relative; }
+  .flow-step:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 16px; z-index: 1; }
+  .flow-box { background: rgba(37,42,56,0.6); border: 1px solid var(--border); padding: 8px 6px; font-size: 11px; line-height: 1.4; height: 100%; }
+  .flow-box .flabel { font-family: var(--mono); font-size: 9px; color: var(--muted); margin-bottom: 3px; letter-spacing: 1px; }
+  .flow-box .fname { font-weight: 600; color: #fff; font-size: 11px; }
+  .flow-box .fdetail { color: var(--muted); font-size: 10px; margin-top: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 6 — Recaudación en Vía Ejecutiva</h1>
+  <div class="sub">Arts. 37-38 TRLGSS · Arts. 84-95, 110, 120, 133 RGRSS · Arts. 605-607 LEC · Art. 27.2 ET</div>
+</div>
+
+<!-- BLOQUE 1: CONCEPTO Y COMPETENCIA -->
+<div class="section-label">01 · Concepto, competencia y períodos (arts. 2.3, 21 TRLGSS · art. 6 RGRSS)</div>
+<div class="grid-2">
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Concepto y atribución orgánica</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Concepto:</strong> actividad administrativa para hacer efectivos los créditos y derechos de la SS una vez vencido el plazo voluntario de ingreso</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Competencia exclusiva:</strong> <span class="pill pill-r">TGSS</span> — desarrollo y resolución de incidencias del procedimiento en vía de apremio</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>URE</strong> (Unidades de Recaudación Ejecutiva): actuaciones de aseguramiento de la ejecución forzosa o regularización del pago</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Características del procedimiento:</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Exclusivamente <strong>administrativo</strong> · Competencia exclusiva TGSS · Impulsado de oficio en todas sus fases · Recargos e intereses automáticos · Costas a cargo del responsable</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Flujo del procedimiento ejecutivo</div>
+    <div class="flow" style="flex-direction:column; gap:6px;">
+      <div style="display:flex; align-items:center; gap:8px; font-size:11px;">
+        <div style="background:rgba(74,222,128,0.1); border:1px solid rgba(74,222,128,0.3); padding:6px 10px; flex:1; text-align:center;"><span style="color:var(--accent4); font-family:var(--mono); font-size:9px; display:block;">PERÍODO VOLUNTARIO</span>Inicio plazo → Vencimiento</div>
+        <span style="color:var(--muted);">↓</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; font-size:11px;">
+        <div style="background:rgba(232,200,64,0.08); border:1px solid rgba(232,200,64,0.3); padding:6px 10px; flex:1; text-align:center;"><span style="color:var(--accent); font-family:var(--mono); font-size:9px; display:block;">RECARGOS AUTOMÁTICOS</span>Desde el día siguiente al vencimiento</div>
+        <span style="color:var(--muted);">↓</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; font-size:11px;">
+        <div style="background:rgba(255,95,95,0.08); border:1px solid rgba(255,95,95,0.3); padding:6px 10px; flex:1; text-align:center;"><span style="color:var(--accent3); font-family:var(--mono); font-size:9px; display:block;">PROVIDENCIA DE APREMIO</span>Título ejecutivo — Inicio período ejecutivo</div>
+        <span style="color:var(--muted);">↓</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; font-size:11px;">
+        <div style="background:rgba(255,95,95,0.08); border:1px solid rgba(255,95,95,0.3); padding:6px 10px; flex:1; text-align:center;"><span style="color:var(--accent3); font-family:var(--mono); font-size:9px; display:block;">15 DÍAS SIN PAGO</span>Devengos de intereses exigibles → Embargo</div>
+        <span style="color:var(--muted);">↓</span>
+      </div>
+      <div style="background:rgba(192,132,252,0.08); border:1px solid rgba(192,132,252,0.3); padding:6px 10px; text-align:center; font-size:11px;"><span style="color:var(--accent5); font-family:var(--mono); font-size:9px; display:block;">EMBARGO Y ENAJENACIÓN</span>URE ejecuta sobre patrimonio del deudor</div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 2: PROVIDENCIA DE APREMIO -->
+<div class="section-label">02 · La Providencia de Apremio (art. 38 TRLGSS · arts. 84-85 RGRSS)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Naturaleza y contenido mínimo obligatorio</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Título ejecutivo suficiente</strong> para iniciar el procedimiento. Misma fuerza que sentencias judiciales</span></div>
+    <div class="item"><span class="arrow">→</span><span>Se inicia cuando la reclamación de deuda o acta de liquidación adquieren <strong>firmeza en vía administrativa</strong> sin haberse pagado</span></div>
+    <div class="sub-head">Contenido mínimo (art. 84.2 RGRSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Datos identificativos del sujeto responsable</span></div>
+    <div class="item"><span class="arrow">→</span><span>Concepto e importe de la deuda + recargo aplicado</span></div>
+    <div class="item"><span class="arrow">→</span><span>Indicación de que la deuda <strong>no ha sido satisfecha</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Fecha de expedición</span></div>
+    <div class="item"><span class="arrow">→</span><span>Advertencia: si no se paga en <span class="pill pill-b">15 días naturales</span> → se devengan intereses</span></div>
+    <div class="item"><span class="arrow">→</span><span>Advertencia de <strong>ejecución forzosa</strong> (embargo) si no se atiende</span></div>
+    <div class="item"><span class="arrow">→</span><span>Mención expresa de que solo cabe <strong>recurso de alzada</strong> por motivos tasados del art. 85</span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Emisión sin reclamación previa (art. 85 RGRSS)</div>
+    <div class="note">
+      <div class="nlabel">Providencia directa — sin trámite previo</div>
+      Se dicta directamente en los siguientes supuestos:
+    </div>
+    <div class="item"><span class="arrow">→</span><span>Falta de ingreso de cuotas reflejadas en <strong>documentos presentados en plazo</strong> (autoliquidaciones no pagadas)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Falta de ingreso de cuotas de trabajadores del <strong>RETA, RETMAR</strong>, cuenta ajena agrarios en inactividad y <strong>empleados de hogar</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Transcurso del plazo de una <strong>reclamación de deuda o acta de liquidación</strong> sin ingreso voluntario</span></div>
+    <div class="sub-head">Devengo de intereses (art. 28 TRLGSS)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Principal:</strong> desde el día siguiente al vencimiento reglamentario</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Recargo:</strong> desde el día siguiente a los <span class="pill pill-y">15 días naturales</span> tras notificación de la providencia</span></div>
+    <div class="item"><span class="arrow">→</span><span>Devengo continúa hasta el ingreso <strong>total</strong> en la TGSS</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 3: OPOSICIÓN -->
+<div class="section-label">03 · Oposición frente al apremio (art. 46 RGRSS · art. 38 TRLGSS · art. 86 RGRSS)</div>
+<div class="block full red" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Recurso de Alzada contra la Providencia de Apremio — Motivos tasados</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Plazo:</strong> <span class="pill pill-r">1 mes</span> desde la notificación</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Efecto general:</strong> <span class="pill pill-r">NO suspende</span> el procedimiento de apremio</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Excepción — suspensión:</strong> si el recurrente garantiza la deuda mediante <strong>aval o garantía</strong> hasta la resolución</span></div>
+    </div>
+    <div>
+      <div class="sub-head">Motivos tasados de oposición (art. 86 RGRSS)</div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">1</span> Pago</span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">2</span> Prescripción</span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">3</span> Error material o aritmético en la determinación de la deuda</span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">4</span> Condonación, aplazamiento de la deuda o suspensión del procedimiento</span></div>
+      <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">5</span> Falta de notificación de la reclamación de deuda, acta de liquidación o resoluciones que las determinen</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 4: MEDIDAS CAUTELARES -->
+<div class="section-label">04 · Medidas cautelares y aseguramiento del cobro (art. 37 TRLGSS)</div>
+<div class="grid-2">
+  <div class="block purple">
+    <div class="block-title"><span class="dot"></span>Presupuesto y tipos</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Presupuesto:</strong> indicios racionales de que el cobro puede verse frustrado o gravemente dificultado. Deben ser <strong>proporcionales</strong> al daño que se pretende evitar</span></div>
+    <div class="sub-head">Tipos de medidas provisionales</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Retención</strong> del pago de devoluciones u otros pagos que deba realizar la TGSS (notificándolo al interesado)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Embargo preventivo</strong> de bienes o derechos, con anotación registral o depósito de bienes muebles</span></div>
+    <div class="item"><span class="arrow">→</span><span>Cualquier otra <strong>legalmente prevista</strong></span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Supuestos especiales y vigencia</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Deuda no liquidada aún:</strong> la TGSS puede adoptar medidas cautelares fijando cifra máxima de responsabilidad, previa autorización del <strong>Director General TGSS</strong> o Directores Provinciales por delegación</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Embargo preventivo de dinero y mercancías (art. 37.5):</strong> sobre establecimientos de deudores no afiliados, no dados de alta, o que no hayan cotizado por sus trabajadores</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Vigencia máxima: <span class="pill pill-b">6 meses</span></strong> desde su adopción, salvo prórroga expresa</span></div>
+    <div class="item"><span class="arrow">→</span><span>Se levantan si la deuda se paga o desaparecen las circunstancias justificativas</span></div>
+    <div class="item"><span class="arrow">→</span><span>Pueden convertirse en <strong>definitivas</strong> en el marco del procedimiento de apremio</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 5: EMBARGO -->
+<div class="section-label">05 · Desarrollo del embargo de bienes (arts. 87-92 RGRSS)</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Inicio y ejecución de garantías (arts. 87-88 RGRSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Una vez firme la providencia sin ingreso → el recaudador ejecutivo insta el <strong>embargo de bienes y derechos</strong> del responsable</span></div>
+    <div class="sub-head">Si hay garantías constituidas (art. 88)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Aval o garantía personal/real:</strong> se requiere al garante el pago inmediato o se ejecuta la garantía. Si insuficiente → embargo de otros bienes del deudor</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Prenda e hipoteca sobre bienes del deudor:</strong> se procede a su enajenación con <strong>preferencia</strong> a otros bienes</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Dinero consignado en efectivo:</strong> se requiere al depositario el ingreso en <span class="pill pill-y">24 horas</span></span></div>
+  </div>
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Localización de bienes y práctica del embargo (arts. 89, 91 RGRSS)</div>
+    <div class="sub-head">Fuentes de información (art. 89)</div>
+    <div class="item"><span class="arrow">→</span><span>Administración SS y demás AAPP · Registros públicos · Entidades obligadas por ley (art. 36 TRLGSS) · Manifestación del propio responsable</span></div>
+    <div class="alert">
+      <div class="alabel">⚠ Cepo de examen</div>
+      Si el responsable <strong>no manifiesta sus bienes</strong>, no podrá impugnar alegando alteración del <strong>orden de prelación</strong> de los bienes embargados.
+    </div>
+    <div class="sub-head">Orden de embargo (art. 91)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Regla general:</strong> primero los bienes que ofrezcan <strong>mayor facilidad de enajenación y menor onerosidad</strong> para el apremiado</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Supletoriamente:</strong> orden del art. 592 <span class="pill pill-g">LEC</span></span></div>
+    <div class="item"><span class="arrow">→</span><span>A solicitud del interesado: puede alterarse el orden si se garantiza el cobro <strong>con la misma eficacia</strong></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 6: INEMBARGABILIDAD -->
+<div class="section-label">06 · Reglas de inembargabilidad (art. 92 RGRSS · art. 607 LEC · art. 27.2 ET)</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Escala de embargabilidad de salarios, sueldos y pensiones</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="alert">
+        <div class="alabel">⚠ Inembargabilidad absoluta</div>
+        Son totalmente inembargables los salarios, sueldos, pensiones o retribuciones equivalentes que <strong>no excedan del SMI</strong> vigente.
+      </div>
+      <div class="item"><span class="arrow">→</span><span>Los bienes exceptuados en los arts. 605 y 606 LEC tampoco pueden ser objeto de embargo</span></div>
+    </div>
+    <div>
+      <div class="sub-head">Escala de embargabilidad — Exceso sobre el SMI (art. 607 LEC)</div>
+      <table>
+        <thead><tr><th>Tramo sobre el SMI</th><th>Porcentaje embargable</th></tr></thead>
+        <tbody>
+          <tr><td>1.er exceso (hasta 2× SMI)</td><td><span class="pill pill-b">30%</span></td></tr>
+          <tr><td>2.º exceso (de 2× a 3× SMI)</td><td><span class="pill pill-b">40%</span></td></tr>
+          <tr><td>3.er exceso (de 3× a 4× SMI)</td><td><span class="pill pill-b">50%</span></td></tr>
+          <tr><td>4.º exceso (de 4× a 5× SMI)</td><td><span class="pill pill-b">60%</span></td></tr>
+          <tr><td>A partir de 5× SMI</td><td><span class="pill pill-b">75%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 7: DEPÓSITO Y EXTINCIÓN -->
+<div class="section-label">07 · Depósito, extinción y alza de los embargos (arts. 92, 95 RGRSS)</div>
+<div class="grid-2">
+  <div class="block purple">
+    <div class="block-title"><span class="dot"></span>Lugar de depósito (art. 92 RGRSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Los bienes embargados se depositan en:</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>1.º</strong> Locales o entidades que ofrezcan garantías de seguridad y solvencia (a juicio del recaudador ejecutivo)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>2.º</strong> Locales de la propia <strong>TGSS</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>3.º</strong> Locales de entes públicos o privados dedicados habitualmente a esta actividad</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Excepción:</strong> locales del propio deudor o de terceras personas si se ofrece garantía de seguridad</span></div>
+  </div>
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Extinción y alza del embargo (arts. 19.4, 95 RGRSS)</div>
+    <div class="item"><span class="arrow">→</span><span>El pago extingue la deuda y libera a los responsables de todos los requisitos exigidos</span></div>
+    <div class="item"><span class="arrow">→</span><span>Tan pronto como se haya satisfecho íntegramente la deuda, el recaudador ejecutivo debe:</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Alzar los embargos</strong> trabados</span></div>
+    <div class="item"><span class="arrow">→</span><span>Dirigir los <strong>mandamientos de cancelación</strong> de anotaciones preventivas a los registros públicos</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 8: ENAJENACIÓN Y VALORACIÓN -->
+<div class="section-label">08 · Enajenación de bienes — Valoración (art. 110 RGRSS)</div>
+<div class="block full yellow" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Proceso de valoración previa a la subasta</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+    <div>
+      <div class="sub-head">1. Valoración TGSS</div>
+      <div class="item"><span class="arrow">→</span><span>Precios de mercado + criterios habituales. Puede nombrar peritos especializados</span></div>
+      <div class="item"><span class="arrow">→</span><span>Notificada formalmente al deudor</span></div>
+    </div>
+    <div>
+      <div class="sub-head">2. Valoración contradictoria del deudor</div>
+      <div class="item"><span class="arrow">→</span><span>Puede presentar valoración alternativa en <span class="pill pill-y">15 días</span> desde la notificación</span></div>
+    </div>
+    <div>
+      <div class="sub-head">3. Resolución de discrepancias</div>
+      <div class="item"><span class="arrow">→</span><span>Diferencia <span class="pill pill-g">≤ 20%</span> de la menor: se toma la <strong>tasación más alta</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span>Diferencia <span class="pill pill-r">> 20%</span>: la URE solicita <strong>tercer perito</strong> (colegios/asociaciones) en máximo <span class="pill pill-y">15 días</span> desde designación. Su valoración debe estar dentro de los límites previos</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 9: SUBASTA -->
+<div class="section-label">09 · Subasta de bienes (art. 120 RGRSS)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Reglas de la subasta</div>
+    <div class="item"><span class="arrow">→</span><span>Posturas verbales en el acto de celebración: iguales o superiores al <span class="pill pill-b">75%</span> del tipo de enajenación</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Segunda subasta (bienes sin postor):</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Puede aprobarse el remate a favor de una mejor postura inferior al <span class="pill pill-b">30%</span> que no cubra el importe adeudado, siempre que supere al menos el <span class="pill pill-b">25%</span> del tipo de subasta, mediante resolución motivada del <strong>director provincial</strong> de la TGSS</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Adjudicación a la SS:</strong> si en la segunda subasta tampoco hay postor, la TGSS puede adjudicarse los bienes por el <span class="pill pill-b">25%</span> del tipo de enajenación</span></div>
+  </div>
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Responsable subsidiario — Bienes realizables (art. 14 RGRSS)</div>
+    <div class="item"><span class="arrow">→</span><span>El responsable subsidiario puede alegar bienes realizables del deudor principal → suspensión de la ejecución forzosa sobre su patrimonio</span></div>
+    <div class="item"><span class="arrow">→</span><span>Requisitos para que prospere la alegación:</span></div>
+    <div class="item"><span class="arrow">→</span><span>Que NO se hubiera autorizado la enajenación de bienes del responsable subsidiario</span></div>
+    <div class="item"><span class="arrow">→</span><span>Que los bienes se identifiquen suficientemente, radiquen en territorio nacional y alcancen una valoración que justifique la enajenación forzosa</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 10: TERCERÍAS -->
+<div class="section-label">10 · Tercerías en el procedimiento ejecutivo (art. 133 RGRSS)</div>
+<div class="block full purple" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Tipos de tercería, efectos y límites temporales</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div>
+      <div class="sub-head" style="color:var(--accent2);">Tercería de dominio</div>
+      <div class="item"><span class="arrow">→</span><span>El tercero alega ser propietario del bien embargado</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Efecto:</strong> <span class="pill pill-b">suspende</span> la enajenación del bien concreto (no el procedimiento entero)</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Límite preclusivo:</strong> NO admisible después de haber sido otorgada la <strong>escritura pública</strong>, consumada la <strong>venta</strong> o formalizada la <strong>adjudicación en pago</strong> a la SS</span></div>
+      <div class="sub-head" style="color:var(--accent5); margin-top:12px;">Tercería de mejor derecho</div>
+      <div class="item"><span class="arrow">→</span><span>El tercero alega tener un crédito preferente al de la SS</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Efecto:</strong> <span class="pill pill-p">NO suspende</span> la vía ejecutiva. El procedimiento prosigue hasta la realización de los bienes; el producto se consigna en depósito a resultas de la tercería</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Límite preclusivo:</strong> NO admisible después de que el recaudador ejecutivo haya recibido <strong>efectivamente el precio</strong> de la venta</span></div>
+    </div>
+    <div>
+      <div class="sub-head">Procedimiento de presentación (art. 133 RGRSS)</div>
+      <div class="item"><span class="arrow">→</span><span><strong>Forma:</strong> por escrito</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Órgano:</strong> ante la <span class="pill pill-p">URE</span> competente</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Documentos:</strong> debe acompañarse obligatoriamente de los <strong>documentos originales</strong> en los que el tercerista funde su derecho</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Devolución de originales:</strong> si el interesado desea recuperarlos, debe aportar obligatoriamente una <strong>copia</strong> para cotejo previo</span></div>
+      <div class="note" style="margin-top:10px;">
+        <div class="nlabel">Clave para el test</div>
+        Tercería de dominio → <strong>suspende enajenación</strong> del bien concreto<br>
+        Tercería de mejor derecho → <strong>NO suspende nada</strong> → producto a depósito
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 6</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>Competencia vía ejecutiva</td><td><strong>TGSS exclusiva</strong> — URE en período ejecutivo</td></tr>
+      <tr><td>Providencia de apremio — naturaleza</td><td><strong>Título ejecutivo</strong> con fuerza de sentencia judicial</td></tr>
+      <tr><td>Providencia — inicio período ejecutivo</td><td>Desde la <strong>emisión</strong> de la providencia de apremio</td></tr>
+      <tr><td>Intereses principal — devengo desde</td><td>Día siguiente al <strong>vencimiento reglamentario</strong></td></tr>
+      <tr><td>Intereses recargo — exigibles desde</td><td><span class="pill pill-r">15 días naturales</span> tras notificación de la providencia</td></tr>
+      <tr><td>Recurso contra la providencia</td><td><strong>Alzada</strong> — plazo <strong>1 mes</strong></td></tr>
+      <tr><td>Alzada — efecto sobre el procedimiento</td><td><strong>NO suspende</strong> (salvo aval o garantía)</td></tr>
+      <tr><td>Motivos tasados de oposición</td><td>Pago · Prescripción · Error material · Condonación/aplazamiento/suspensión · Falta de notificación</td></tr>
+      <tr><td>Medidas cautelares — presupuesto</td><td>Indicios racionales de frustración del cobro + <strong>proporcionalidad</strong></td></tr>
+      <tr><td>Medidas cautelares — vigencia máxima</td><td><strong>6 meses</strong> desde su adopción (salvo prórroga)</td></tr>
+      <tr><td>Deuda no liquidada — autoriza medidas cautelares</td><td><strong>Director General TGSS</strong> o Directores Provinciales por delegación</td></tr>
+      <tr><td>Dinero consignado — plazo ingreso al recaudador</td><td><strong>24 horas</strong></td></tr>
+      <tr><td>Deudor que no manifiesta sus bienes</td><td>No puede impugnar el <strong>orden de prelación</strong> de los bienes embargados</td></tr>
+      <tr><td>Orden de embargo — regla general</td><td>Mayor facilidad de enajenación + menor onerosidad para el apremiado</td></tr>
+      <tr><td>Orden de embargo — supletorio</td><td>Art. <strong>592 LEC</strong></td></tr>
+      <tr><td>Inembargabilidad absoluta</td><td>Cuantía igual o inferior al <strong>SMI</strong></td></tr>
+      <tr><td>Escala embargo — 1.er tramo (hasta 2× SMI)</td><td><strong>30%</strong></td></tr>
+      <tr><td>Escala embargo — 2.º tramo (2× a 3× SMI)</td><td><strong>40%</strong></td></tr>
+      <tr><td>Escala embargo — 3.er tramo (3× a 4× SMI)</td><td><strong>50%</strong></td></tr>
+      <tr><td>Escala embargo — 4.º tramo (4× a 5× SMI)</td><td><strong>60%</strong></td></tr>
+      <tr><td>Escala embargo — a partir de 5× SMI</td><td><strong>75%</strong></td></tr>
+      <tr><td>Valoración deudor — plazo para presentarla</td><td><strong>15 días</strong> desde la notificación de la tasación de la TGSS</td></tr>
+      <tr><td>Discrepancia valoración ≤ 20%</td><td>Se toma la <strong>tasación más alta</strong></td></tr>
+      <tr><td>Discrepancia valoración > 20%</td><td>Se solicita <strong>tercer perito</strong> en máximo <strong>15 días</strong> desde designación</td></tr>
+      <tr><td>Posturas en subasta — mínimo</td><td><strong>75%</strong> del tipo de enajenación</td></tr>
+      <tr><td>Segunda subasta — remate inferior al 30%</td><td>Admisible si supera el <strong>25%</strong> del tipo; resuelve el <strong>director provincial</strong></td></tr>
+      <tr><td>Adjudicación a la SS — porcentaje</td><td><strong>25%</strong> del tipo de enajenación</td></tr>
+      <tr><td>Tercería de dominio — efecto</td><td><strong>Suspende la enajenación</strong> del bien concreto</td></tr>
+      <tr><td>Tercería de dominio — límite preclusivo</td><td>Tras <strong>escritura pública, venta consumada o adjudicación en pago</strong></td></tr>
+      <tr><td>Tercería de mejor derecho — efecto</td><td><strong>NO suspende</strong> el procedimiento; producto a <strong>depósito</strong></td></tr>
+      <tr><td>Tercería de mejor derecho — límite preclusivo</td><td>Tras recibir efectivamente el <strong>precio de la venta</strong></td></tr>
+      <tr><td>Tercería — presentación ante</td><td><strong>URE</strong> competente, por escrito con documentos originales</td></tr>
+      <tr><td>Devolución originales tercería</td><td>Solo si se aporta <strong>copia</strong> para cotejo previo</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="nav">
+  <a href="tema5_especifico_La Gestión Recaudatoria.html">◀ Tema 05</a>
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema7_especifico_accion_protectora.html">Tema 07 ▶</a>
+</div>
+</body>
+</html>

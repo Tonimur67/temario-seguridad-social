@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 5 Específico SS — Gestión Recaudatoria</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #141720;
+    --border: #252a38;
+    --accent: #e8c840;
+    --accent2: #3d9eff;
+    --accent3: #ff5f5f;
+    --accent4: #4ade80;
+    --text: #d4d8e8;
+    --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 32px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    background: var(--surface);
+  }
+  .header .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .header .sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    font-family: var(--mono);
+  }
+
+  /* GRID */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .full { grid-column: 1 / -1; }
+
+  /* BLOCK */
+  .block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+  }
+  .block-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .block-title .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .yellow .block-title .dot { background: var(--accent); }
+  .blue .block-title .dot { background: var(--accent2); }
+  .red .block-title .dot { background: var(--accent3); }
+  .green .block-title .dot { background: var(--accent4); }
+
+  .yellow .block-title { color: var(--accent); }
+  .blue .block-title { color: var(--accent2); }
+  .red .block-title { color: var(--accent3); }
+  .green .block-title { color: var(--accent4); }
+
+  /* ITEMS */
+  .item {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 7px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow {
+    color: var(--muted);
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .item strong { color: #fff; font-weight: 600; }
+
+  /* HIGHLIGHT PILL */
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 2px;
+    margin: 0 2px;
+  }
+  .pill-yellow { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-blue { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-red { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-green { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+  }
+  th {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 7px 8px;
+    border-bottom: 1px solid rgba(37,42,56,0.5);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+
+  /* FLOW */
+  .flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .flow-step {
+    flex: 1;
+    min-width: 90px;
+    text-align: center;
+    position: relative;
+  }
+  .flow-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 14px;
+    z-index: 1;
+  }
+  .flow-box {
+    background: rgba(37,42,56,0.6);
+    border: 1px solid var(--border);
+    padding: 8px 6px;
+    font-size: 11px;
+    line-height: 1.4;
+    height: 100%;
+  }
+  .flow-box .num {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .flow-box .label { font-weight: 600; color: #fff; font-size: 11px; }
+  .flow-box .detail { color: var(--muted); font-size: 10px; margin-top: 3px; }
+
+  /* DIVIDER */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 24px 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ALERT */
+  .alert {
+    background: rgba(255,95,95,0.08);
+    border: 1px solid rgba(255,95,95,0.25);
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .alert .label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  /* CRIBA TABLE */
+  .criba {
+    background: rgba(232,200,64,0.05);
+    border: 1px solid rgba(232,200,64,0.2);
+  }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+  .criba td strong { color: var(--accent); }
+
+  /* BADGE */
+  .badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    padding: 2px 6px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  @media print {
+    body { background: white; color: black; padding: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 5 — La Gestión Recaudatoria</h1>
+  <div class="sub">Concepto · Competencia · Responsables · Plazos · Recargos · Aplazamientos · Devoluciones · Capital Coste</div>
+</div>
+
+<!-- BLOQUE 1: CONCEPTO Y COMPETENCIA -->
+<div class="section-label">01 · Concepto, competencia y objeto</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Concepto y competencia</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Gestión Recaudatoria:</strong> actividad administrativa para la realización de los créditos y derechos de la SS (cuotas, sanciones, recargos, capitales coste…)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Competencia exclusiva:</strong> <span class="pill pill-yellow">TGSS</span> como caja única, bajo dirección y tutela del Estado (art. 21 LGSS)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Actúa a través de sus <strong>Direcciones Provinciales</strong>, salvo atribución expresa a otros órganos</span></div>
+    <div class="item"><span class="arrow">→</span><span>Puede concertar servicios con <strong>Administraciones Públicas o entidades particulares</strong> habilitadas. Conciertos con entidades privadas → autorización del <span class="pill pill-yellow">Consejo de Ministros</span></span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Sistemas de liquidación (art. 22 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Autoliquidación:</strong> el sujeto responsable transmite liquidaciones por medios electrónicos (Sistema RED) hasta el <span class="pill pill-blue">último día natural</span> del plazo</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Liquidación directa:</strong> la TGSS calcula por trabajador. El responsable transmite datos hasta el <span class="pill pill-blue">penúltimo día natural</span> del plazo</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Liquidación simplificada:</strong> autónomos RETA, Sistema Especial Hogar, agrarios inactividad, Seguro Escolar, convenios especiales</span></div>
+    <div class="item"><span class="arrow">→</span><span>Documentos clave: <strong>RNT</strong> (Relación Nominal de Trabajadores) + <strong>RLC</strong> (Recibo de Liquidación de Cotizaciones)</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 2: RESPONSABLES -->
+<div class="section-label">02 · Responsables del pago (RD 1415/2004 — Cap. IV)</div>
+<div class="grid-2">
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Tipos de responsables</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Obligado directo:</strong> empresario + trabajador (Régimen General)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Responsable del ingreso:</strong> exclusivamente el <strong>empresario</strong> (ingresa cuota propia + retiene e ingresa cuota obrera)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Responsable solidario:</strong> se puede exigir a todos o cualquiera; el procedimiento contra uno no suspende el de los demás</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Responsable subsidiario:</strong> solo exigible tras constatar <strong>insolvencia del deudor principal</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Sucesores mortis causa:</strong> responden solidariamente con bienes de la herencia y patrimonio propio, salvo <em>beneficio de inventario</em></span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Trampa clásica — cuota obrera olvidadiza</div>
+    <div class="alert">
+      <div class="label">⚠ Cepo de examen</div>
+      Si el empresario paga la nómina pero <strong>no retiene la cuota obrera en ese momento</strong>, pierde el derecho a descontársela posteriormente al trabajador.<br><br>
+      La TGSS le exigirá el <span class="pill pill-red">100%</span> de la cuota obrera a <strong>su exclusivo cargo</strong> como penalización.
+    </div>
+    <div class="item"><span class="arrow">→</span><span>La retención debe practicarse <strong>en el momento del pago del salario</strong>, no después</span></div>
+    <div class="item"><span class="arrow">→</span><span>Principio: el empresario es el único responsable frente a la TGSS en todo caso</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 3: PLAZOS Y MEDIOS -->
+<div class="section-label">03 · Plazos de ingreso y medios de pago</div>
+<div class="block full blue" style="margin-bottom:16px;">
+  <div class="block-title"><span class="dot"></span>Plazo voluntario general de ingreso</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Cuotas devengadas en un mes → ingreso hasta el <span class="pill pill-blue">último día natural del mes siguiente</span> (a mes vencido)</span></div>
+      <div class="item"><span class="arrow">→</span><span>El día de pago de la nómina es irrelevante; cuenta el límite mensual</span></div>
+      <div class="item"><span class="arrow">→</span><span>Ingreso obligatorio por <strong>medios electrónicos</strong> vía Sistema RED</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Autoliquidación:</strong> transmisión hasta último día natural</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Liquidación directa:</strong> transmisión de datos hasta penúltimo día natural</span></div>
+      <div class="item"><span class="arrow">→</span><span>Error de la Administración → no se aplica recargo ni intereses (art. 28 LGSS)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 4: RECARGOS -->
+<div class="section-label">04 · Efectos de la falta de cotización — Escala de recargos (art. 30 LGSS)</div>
+<div class="block full red" style="margin-bottom:16px;">
+  <div class="block-title"><span class="dot"></span>Recargos por ingreso fuera de plazo</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Situación del deudor</th>
+        <th>Momento del pago tardío</th>
+        <th>Recargo aplicable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>SÍ presentó documentos (RNT/RLC) en plazo</strong></td>
+        <td>Dentro del 1.er mes siguiente al vencimiento</td>
+        <td><span class="pill pill-yellow">10%</span></td>
+      </tr>
+      <tr>
+        <td><strong>SÍ presentó documentos en plazo</strong></td>
+        <td>A partir del 2.º mes siguiente al vencimiento</td>
+        <td><span class="pill pill-red">20%</span></td>
+      </tr>
+      <tr>
+        <td><strong>NO presentó documentos en plazo</strong></td>
+        <td>Antes de terminación del plazo de reclamación de deuda/acta</td>
+        <td><span class="pill pill-red">20%</span></td>
+      </tr>
+      <tr>
+        <td><strong>NO presentó documentos en plazo</strong></td>
+        <td>A partir de la terminación del plazo de ingreso de la reclamación</td>
+        <td><span class="pill pill-red">35%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Incumplimiento aplazamiento</strong></td>
+        <td>Providencia de apremio (si obligaciones art. 29.1/2 cumplidas)</td>
+        <td><span class="pill pill-red">20%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Incumplimiento aplazamiento</strong></td>
+        <td>Providencia de apremio (si obligaciones art. 29.1/2 NO cumplidas)</td>
+        <td><span class="pill pill-red">35%</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BLOQUE 5: INTERÉS DE DEMORA -->
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Interés de demora (art. 31 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Exigible si no se abona la deuda pasados <span class="pill pill-yellow">15 días</span> desde notificación de la providencia de apremio</span></div>
+    <div class="item"><span class="arrow">→</span><span>Tipo: <strong>interés legal del dinero + 25%</strong>, salvo que PGE establezca otro diferente</span></div>
+    <div class="item"><span class="arrow">→</span><span>Se devenga desde el vencimiento del plazo reglamentario de ingreso</span></div>
+    <div class="item"><span class="arrow">→</span><span>También exigibles si la ejecución se suspende por recurso contencioso-administrativo</span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Imputación de pagos (art. 32 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>El cobro parcial de deuda apremiada se imputa <strong>primero</strong> al bien embargado que generó el cobro</span></div>
+    <div class="item"><span class="arrow">→</span><span>Luego al resto de la deuda, aplicándose <strong>primero a costas</strong>, después a los <strong>títulos más antiguos</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Distribución proporcional entre <strong>principal, recargo e intereses</strong></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 6: RECLAMACIÓN Y ACTAS -->
+<div class="section-label">05 · Reclamación de deudas y actas de liquidación</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Reclamación de deuda (art. 33 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>La emite la <strong>TGSS</strong> cuando transcurre el plazo sin ingreso de cuotas</span></div>
+    <div class="item"><span class="arrow">→</span><span>Plazo de pago de la reclamación notificada:<br>
+    — Días <strong>1-15</strong> del mes → hasta el <span class="pill pill-yellow">día 5 del mes siguiente</span> (o siguiente hábil)<br>
+    — Días <strong>16-último</strong> → hasta el <span class="pill pill-yellow">día 20 del mes siguiente</span> (o siguiente hábil)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Recurso de alzada: solo suspende el procedimiento con <strong>aval suficiente o consignación</strong></span></div>
+  </div>
+  <div class="block blue">
+    <div class="block-title"><span class="dot"></span>Actas de liquidación (art. 34 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Las extiende la <strong>Inspección de Trabajo y SS</strong> (no la TGSS)</span></div>
+    <div class="item"><span class="arrow">→</span><span>Supuestos: falta de afiliación/alta, diferencias de cotización, derivación de responsabilidad, bonificaciones indebidas</span></div>
+    <div class="item"><span class="arrow">→</span><span>Carácter de <strong>liquidación provisional</strong> hasta que se eleven a definitivas por la TGSS</span></div>
+    <div class="item"><span class="arrow">→</span><span>Plazo de pago: hasta el <span class="pill pill-blue">último día del mes siguiente</span> a la notificación del acto definitivo</span></div>
+    <div class="item"><span class="arrow">→</span><span>Si el infractor da conformidad a la liquidación: sanción reducida al <span class="pill pill-blue">50%</span></span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 7: APLAZAMIENTOS -->
+<div class="section-label">06 · Aplazamientos y fraccionamientos (art. 23 LGSS)</div>
+<div class="block full green" style="margin-bottom:16px;">
+  <div class="block-title"><span class="dot"></span>Aplazamiento de deudas</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span>Concedido por la <strong>TGSS</strong> a solicitud del deudor; suspende el procedimiento recaudatorio</span></div>
+      <div class="item"><span class="arrow">→</span><span>Comprende: principal + recargos + intereses + costas exigibles en la fecha de solicitud</span></div>
+      <div class="item"><span class="arrow">→</span><span>Requiere <strong>garantías suficientes</strong> para cubrir principal + recargos + intereses + costas (salvo exención reglamentaria)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Devenga <strong>interés de demora</strong> desde la concesión hasta el pago. Si se exime de garantías por causas extraordinarias: interés + <span class="pill pill-green">2 puntos adicionales</span></span></div>
+    </div>
+    <div>
+      <div class="alert" style="background:rgba(255,95,95,0.08); border-color:rgba(255,95,95,0.25);">
+        <div class="label" style="color:var(--accent3);">⚠ Inaplazables absolutos — pregunta fija de test</div>
+        Aunque la empresa esté en quiebra total, la TGSS <strong>NUNCA</strong> permite aplazar:<br><br>
+        <span class="pill pill-red">1</span> Cuotas de <strong>contingencias profesionales</strong> (AT + EP)<br>
+        <span class="pill pill-red">2</span> <strong>Aportación de los trabajadores</strong> (cuota obrera)<br><br>
+        El deudor debe ingresarlas en el plazo máximo de <span class="pill pill-yellow">1 mes</span> desde la notificación de la concesión, o la resolución no surte efecto.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 8: DEVOLUCIÓN Y PRESCRIPCIÓN -->
+<div class="section-label">07 · Devolución de ingresos indebidos y prescripción</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Devolución de ingresos indebidos (art. 26 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Derecho a recuperar lo pagado de más por error material o de cálculo</span></div>
+    <div class="item"><span class="arrow">→</span><span>El importe a devolver incluye:<br>
+    — El ingreso indebido<br>
+    — Recargos, intereses y costas (si se pagó en vía de apremio)<br>
+    — Interés de demora desde el ingreso hasta la propuesta de pago</span></div>
+    <div class="item"><span class="arrow">→</span><span>Prescripción: <span class="pill pill-green">4 años</span> desde el día siguiente al ingreso</span></div>
+    <div class="item"><span class="arrow">→</span><span>No procede devolución de cuotas ingresadas <strong>maliciosamente</strong></span></div>
+  </div>
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Prescripción general (art. 24 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Prescriben a los <span class="pill pill-yellow">4 años</span>:</span></div>
+    <div class="item"><span class="arrow">→</span><span>El derecho de la Administración para <strong>determinar deudas</strong> por cuotas</span></div>
+    <div class="item"><span class="arrow">→</span><span>La acción para <strong>exigir el pago</strong> de deudas por cuotas</span></div>
+    <div class="item"><span class="arrow">→</span><span>La acción para <strong>imponer sanciones</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Interrupción:</strong> cualquier actuación administrativa con conocimiento formal del responsable; reclamación de deuda o acta de liquidación; actuaciones de la Inspección</span></div>
+  </div>
+</div>
+
+<!-- BLOQUE 9: CAPITAL COSTE -->
+<div class="section-label">08 · Capital coste de pensiones</div>
+<div class="block full blue" style="margin-bottom:16px;">
+  <div class="block-title"><span class="dot"></span>Capital coste de pensiones</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Concepto:</strong> cantidad global en pago único que la TGSS exige a Mutuas Colaboradoras o a empresarios negligentes para financiar de por vida la pensión causada por un trabajador</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Supuesto típico:</strong> trabajador no dado de alta que sufre AT o queda en IP → el empresario debe costear el capital necesario para sufragar la pensión</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span>El dinero se <strong>inyecta directamente en el sistema</strong> para garantizar el pago delegado de la prestación</span></div>
+      <div class="item"><span class="arrow">→</span><span>Es un recurso más de la gestión recaudatoria (art. 1.1.d RGR)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Responsables: <strong>Mutuas</strong> y <strong>empresarios declarados responsables</strong> por resolución administrativa</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 10: PRELACIÓN DE CRÉDITOS -->
+<div class="section-label">09 · Prelación de créditos y transacciones (arts. 25 y 27 LGSS)</div>
+<div class="grid-2">
+  <div class="block yellow">
+    <div class="block-title"><span class="dot"></span>Prelación de créditos (art. 25 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>Créditos por cuotas SS + recargos + intereses: misma preferencia que el <strong>art. 1924.1.º Código Civil</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Demás créditos de la SS: preferencia del <strong>art. 1924.2.ºE CC</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>En concurso de acreedores: se aplica la <strong>legislación concursal</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span>Concurrencia con otros procedimientos de ejecución: preferente el que <strong>primero efectuó el embargo</strong></span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Transacciones (art. 27 LGSS)</div>
+    <div class="item"><span class="arrow">→</span><span>NO se puede transigir ni someter a arbitraje los derechos de la SS <strong>salvo mediante Real Decreto</strong> acordado en Consejo de Ministros, previa audiencia del Consejo de Estado</span></div>
+    <div class="item"><span class="arrow">→</span><span>La TGSS tiene derecho de <strong>abstención en procesos concursales</strong> por el carácter privilegiado de sus créditos</span></div>
+    <div class="item"><span class="arrow">→</span><span>Puede suscribir acuerdos concursales siempre que no sean más favorables al deudor que los del convenio judicial</span></div>
+  </div>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba" style="margin-bottom:0;">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 5</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th>Dato clave</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Competencia recaudatoria</td><td><strong>TGSS exclusiva</strong> (caja única)</td></tr>
+      <tr><td>Autoliquidación — último día transmisión</td><td><strong>Último día natural</strong> del plazo reglamentario</td></tr>
+      <tr><td>Liquidación directa — último día transmisión datos</td><td><strong>Penúltimo día natural</strong> del plazo reglamentario</td></tr>
+      <tr><td>Plazo voluntario general de ingreso</td><td><strong>Último día del mes siguiente</strong> al de devengo</td></tr>
+      <tr><td>Cuota obrera no retenida en su momento</td><td>El empresario pierde el derecho; lo paga <strong>él al 100%</strong></td></tr>
+      <tr><td>Recargo — con papeles en plazo, 1.er mes</td><td><strong>10%</strong></td></tr>
+      <tr><td>Recargo — con papeles en plazo, 2.º mes+</td><td><strong>20%</strong></td></tr>
+      <tr><td>Recargo — sin papeles en plazo</td><td><strong>20%</strong> directo (antes del plazo de reclamación)</td></tr>
+      <tr><td>Recargo — sin papeles, tras plazo reclamación</td><td><strong>35%</strong></td></tr>
+      <tr><td>Interés de demora</td><td>Interés legal + <strong>25%</strong></td></tr>
+      <tr><td>Interés de demora — exigible desde</td><td><strong>15 días</strong> tras notificación providencia de apremio</td></tr>
+      <tr><td>Inaplazables absolutos</td><td><strong>Cuota obrera</strong> + <strong>AT/EP</strong></td></tr>
+      <tr><td>Plazo ingreso cuotas inaplazables (desde notificación)</td><td>Máximo <strong>1 mes</strong></td></tr>
+      <tr><td>Interés extra si se exime de garantías</td><td>Interés demora <strong>+ 2 puntos</strong></td></tr>
+      <tr><td>Prescripción general (cuotas, sanciones)</td><td><strong>4 años</strong></td></tr>
+      <tr><td>Prescripción devolución ingresos indebidos</td><td><strong>4 años</strong> desde día siguiente al ingreso</td></tr>
+      <tr><td>Reducción sanción por conformidad acta liquidación</td><td><strong>50%</strong></td></tr>
+      <tr><td>Transacción sobre derechos SS</td><td>Solo por <strong>Real Decreto en Consejo de Ministros</strong></td></tr>
+      <tr><td>Recargo impago actas de liquidación — Inspección</td><td>Requerimiento previo: plazo mínimo <strong>1 mes</strong>, máximo <strong>4 meses</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+<a class="back" href="index.html">🏠 Volver al índice</a>
+</body>
+</html>

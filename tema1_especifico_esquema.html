@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 1 Específico SS — La SS en la CE y Niveles de Protección</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #141720;
+    --border: #252a38;
+    --accent: #e8c840;
+    --accent2: #3d9eff;
+    --accent3: #ff5f5f;
+    --accent4: #4ade80;
+    --accent5: #c084fc;
+    --text: #d4d8e8;
+    --muted: #6b7292;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 32px 24px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .header {
+    border-left: 4px solid var(--accent5);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    background: var(--surface);
+  }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent5); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+
+  .block { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+
+  .block-title {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+
+  .item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: #fff; font-weight: 600; }
+
+  .pill { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 2px; margin: 0 2px; }
+  .pill-y { background: rgba(232,200,64,0.15); color: var(--accent); border: 1px solid rgba(232,200,64,0.3); }
+  .pill-b { background: rgba(61,158,255,0.15); color: var(--accent2); border: 1px solid rgba(61,158,255,0.3); }
+  .pill-r { background: rgba(255,95,95,0.15); color: var(--accent3); border: 1px solid rgba(255,95,95,0.3); }
+  .pill-g { background: rgba(74,222,128,0.15); color: var(--accent4); border: 1px solid rgba(74,222,128,0.3); }
+  .pill-p { background: rgba(192,132,252,0.15); color: var(--accent5); border: 1px solid rgba(192,132,252,0.3); }
+
+  .section-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--muted); margin: 22px 0 11px 0;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: #fff; }
+
+  .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .alert .alabel { font-family: var(--mono); font-size: 9px; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+
+  .note { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 10px 14px; font-size: 12px; margin-bottom: 8px; }
+  .note .nlabel { font-family: var(--mono); font-size: 9px; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+
+  .criba { background: rgba(232,200,64,0.04); border: 1px solid rgba(232,200,64,0.2); }
+  .criba .block-title { color: var(--accent); }
+  .criba th { color: var(--accent); }
+
+  /* NIVEL CARDS */
+  .nivel-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .nivel-card { background: var(--surface); border: 1px solid var(--border); padding: 14px; }
+  .nivel-num { font-family: var(--mono); font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+  .nivel-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+  /* ÍNDICE TRLGSS */
+  .titulo-block { background: var(--surface); border: 1px solid var(--border); padding: 12px 14px; margin-bottom: 8px; }
+  .titulo-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .titulo-num { font-family: var(--mono); font-size: 10px; font-weight: 700; }
+  .titulo-name { font-size: 12px; font-weight: 700; color: #fff; }
+  .cap-list { display: flex; flex-wrap: wrap; gap: 5px; }
+  .cap-pill { font-size: 10.5px; background: rgba(37,42,56,0.8); border: 1px solid var(--border); padding: 2px 8px; color: var(--muted); line-height: 1.4; }
+  .cap-pill strong { color: var(--text); font-weight: 400; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Bloque Específico · Seguridad Social · Convocatoria 2026</div>
+  <h1>TEMA 1 — La Seguridad Social en la CE · Niveles de Protección · Estructura del TRLGSS</h1>
+  <div class="sub">CE arts. 25, 39, 41, 43, 49, 50, 129, 148, 149 · RDL 8/2015 TRLGSS · Art. 109.3 LGSS</div>
+</div>
+
+<!-- BLOQUE I: ART. 41 CE -->
+<div class="section-label">01 · El núcleo constitucional — Art. 41 CE</div>
+<div class="block full yellow" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Art. 41 CE — Mandato constitucional expreso</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Mandato:</strong> Los poderes públicos mantendrán un régimen <strong>público</strong> de SS para <strong>todos los ciudadanos</strong></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Finalidad:</strong> Garantizar asistencia y prestaciones sociales <strong>suficientes</strong> ante situaciones de necesidad</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Contingencia prioritaria:</strong> Protección especial en caso de <span class="pill pill-y">desempleo</span></span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Complementariedad libre:</strong> La asistencia y prestaciones complementarias serán <strong>libres</strong> (carácter privado y voluntario)</span></div>
+    </div>
+    <div>
+      <div class="note">
+        <div class="nlabel">Ubicación constitucional</div>
+        Art. 41 se ubica en el <strong>Título I, Cap. 3.º</strong> → Principios rectores de la política social y económica.<br><br>
+        Garantía constitucional <strong>más débil</strong>: requiere desarrollo legislativo previo para ser alegado.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE II: OTROS PRECEPTOS -->
+<div class="section-label">02 · Otros preceptos constitucionales relacionados</div>
+<div class="block full blue" style="margin-bottom:14px;">
+  <div class="block-title"><span class="dot"></span>Artículos de la CE vinculados a la SS</div>
+  <table>
+    <thead>
+      <tr><th>Artículo</th><th>Contenido</th><th>Naturaleza</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Art. 25.2</strong></td>
+        <td>El condenado a pena de prisión tiene derecho a <strong>trabajo remunerado</strong> y a los beneficios de la <strong>Seguridad Social</strong></td>
+        <td><span class="pill pill-r">Derecho fundamental</span><br>Tít. I Cap. 2.º Sec. 1.ª</td>
+      </tr>
+      <tr>
+        <td><strong>Art. 39.1</strong></td>
+        <td>Los poderes públicos asegurarán la <strong>protección social, económica y jurídica de la familia</strong></td>
+        <td><span class="pill pill-b">Principio rector</span></td>
+      </tr>
+      <tr>
+        <td><strong>Art. 41</strong></td>
+        <td>Régimen público de SS para todos los ciudadanos; protección especial ante <strong>desempleo</strong>; complementariedad libre</td>
+        <td><span class="pill pill-b">Principio rector</span></td>
+      </tr>
+      <tr>
+        <td><strong>Art. 43</strong></td>
+        <td>Reconocimiento del <strong>derecho a la protección de la salud</strong>; organización de la sanidad pública</td>
+        <td><span class="pill pill-b">Principio rector</span></td>
+      </tr>
+      <tr>
+        <td><strong>Art. 49</strong></td>
+        <td>Protección especial a las <strong>personas con discapacidad</strong>; plena autonomía personal e inclusión social</td>
+        <td><span class="pill pill-b">Principio rector</span></td>
+      </tr>
+      <tr>
+        <td><strong>Art. 50</strong></td>
+        <td>Pensiones adecuadas y periódicamente <strong>actualizadas</strong> para la <strong>tercera edad</strong>; servicios sociales (salud, vivienda, cultura, ocio)</td>
+        <td><span class="pill pill-b">Principio rector</span></td>
+      </tr>
+      <tr>
+        <td><strong>Art. 129</strong></td>
+        <td>La ley determinará las formas de <strong>participación de los interesados</strong> en la SS y en organismos públicos que afecten a la calidad de vida</td>
+        <td><span class="pill pill-b">Principio rector</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert" style="margin-top:12px; margin-bottom:0;">
+    <div class="alabel">⚠ Trampa clásica de test — Naturaleza de los preceptos</div>
+    Solo el <strong>art. 25.2</strong> (SS de penados) es <span class="pill pill-r">derecho fundamental</span> (Sec. 1.ª, Cap. 2.º, Tít. I) → máximas garantías: amparo constitucional, reserva de ley orgánica.<br>
+    El resto (arts. 39, 41, 43, 49, 50, 129) son <span class="pill pill-b">principios rectores</span> (Cap. 3.º) → garantía más débil; necesitan desarrollo legislativo previo.
+  </div>
+</div>
+
+<!-- BLOQUE III: COMPETENCIAS -->
+<div class="section-label">03 · Distribución de competencias territoriales (arts. 148-149 CE)</div>
+<div class="grid-2">
+  <div class="block green">
+    <div class="block-title"><span class="dot"></span>Competencias de las CCAA (art. 148 CE)</div>
+    <div class="item"><span class="arrow">→</span><span>Las CCAA podrán asumir competencias <strong>exclusivas</strong> en:</span></div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">148.1.20.ª</span> <strong>Asistencia social</strong></span></div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">148.1.21.ª</span> <strong>Sanidad e higiene</strong></span></div>
+    <div class="item" style="margin-top:6px;"><span class="arrow">→</span><span>También pueden <strong>ejecutar los servicios</strong> de la SS cuando el Estado les atribuya esta función (art. 149.1.17.ª in fine)</span></div>
+  </div>
+  <div class="block red">
+    <div class="block-title"><span class="dot"></span>Competencia exclusiva del Estado (art. 149 CE)</div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">149.1.16.ª</span> <strong>Sanidad exterior</strong>. Bases y coordinación general de la sanidad. Legislación sobre productos farmacéuticos</span></div>
+    <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">149.1.17.ª</span> <strong>Legislación básica y régimen económico de la SS</strong>, sin perjuicio de la ejecución de sus servicios por las CCAA</span></div>
+    <div class="note" style="margin-top:8px;">
+      <div class="nlabel">Clave de examen</div>
+      El Estado tiene la <strong>legislación básica + régimen económico</strong>.<br>
+      Las CCAA pueden tener la <strong>ejecución</strong>, no la legislación básica.
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE IV: NIVELES DE PROTECCIÓN -->
+<div class="section-label">04 · Los tres niveles de protección del sistema español</div>
+<div class="nivel-grid">
+
+  <!-- NIVEL 1 -->
+  <div class="nivel-card">
+    <div class="nivel-num" style="color:var(--accent2);">01</div>
+    <div class="nivel-name">Nivel Básico<br><span style="color:var(--accent2); font-size:11px; font-weight:400;">(Prestaciones No Contributivas)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Extensión:</strong> Universal — todos los ciudadanos</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Objetivo:</strong> Prestaciones uniformes ante situaciones de necesidad</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Gestión:</strong> Pública</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Financiación:</strong> <span class="pill pill-b">PGE</span> (imposición general)</span></div>
+    <div style="margin-top:10px; padding-top:8px; border-top:1px solid var(--border);">
+      <div style="font-family:var(--mono); font-size:9px; color:var(--accent2); letter-spacing:1px; margin-bottom:6px;">PRESTACIONES (art. 109.3)</div>
+      <div class="item"><span class="arrow">→</span><span>Asistencia sanitaria SS (salvo AT/EP)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Pensiones no contributivas: invalidez y jubilación</span></div>
+      <div class="item"><span class="arrow">→</span><span>Subsidio por maternidad (arts. 181-182 LGSS)</span></div>
+      <div class="item"><span class="arrow">→</span><span>Prestaciones familiares no contributivas (Tít. VI, Cap. I)</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>IMV</strong> — Ingreso Mínimo Vital</span></div>
+    </div>
+  </div>
+
+  <!-- NIVEL 2 -->
+  <div class="nivel-card">
+    <div class="nivel-num" style="color:var(--accent4);">02</div>
+    <div class="nivel-name">Nivel Profesional<br><span style="color:var(--accent4); font-size:11px; font-weight:400;">(Prestaciones Contributivas)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Extensión:</strong> Población trabajadora del territorio nacional</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Objetivo:</strong> Rentas de sustitución de las rentas salariales</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Nexo causal:</strong> Relación directa con cotizaciones previas</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Gestión:</strong> Pública</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Financiación:</strong> <span class="pill pill-g">Cuotas</span> trabajadores + empresarios (+ aportaciones del Estado)</span></div>
+    <div style="margin-top:10px; padding-top:8px; border-top:1px solid var(--border);">
+      <div style="font-family:var(--mono); font-size:9px; color:var(--accent4); letter-spacing:1px; margin-bottom:6px;">PRESTACIONES (art. 109.3)</div>
+      <div class="item"><span class="arrow">→</span><span>Pensiones de IP y jubilación ordinaria</span></div>
+      <div class="item"><span class="arrow">→</span><span>IT, NYCM, Lactante, Riesgo embarazo, Riesgo lactancia, Cuidado menores cáncer, MYS</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Totalidad</strong> de prestaciones derivadas de <span class="pill pill-g">AT y EP</span></span></div>
+      <div class="item"><span class="arrow">→</span><span>Prestaciones familiares económicas (excedencias y cuidado)</span></div>
+    </div>
+  </div>
+
+  <!-- NIVEL 3 -->
+  <div class="nivel-card">
+    <div class="nivel-num" style="color:var(--accent5);">03</div>
+    <div class="nivel-name">Nivel Complementario<br><span style="color:var(--accent5); font-size:11px; font-weight:400;">(Voluntario)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Extensión:</strong> Selectiva — quienes voluntariamente aporten</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Naturaleza:</strong> <span class="pill pill-p">Voluntario</span></span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Objetivo:</strong> Mejorar la acción protectora general (ej. plan de pensiones privado)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Gestión:</strong> Privada (reglamentariamente también puede ser pública)</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Financiación:</strong> Aportaciones exclusivas de partícipes y entidades que presten servicios económicos</span></div>
+  </div>
+
+</div>
+
+<!-- BLOQUE V: ESTRUCTURA TRLGSS -->
+<div class="section-label">05 · Estructura del TRLGSS (RDL 8/2015, de 30 de octubre)</div>
+
+<div class="titulo-block">
+  <div class="titulo-header">
+    <span class="titulo-num" style="color:var(--accent2);">TÍTULO I</span>
+    <span class="titulo-name">Normas generales del sistema de la Seguridad Social</span>
+  </div>
+  <div class="cap-list">
+    <div class="cap-pill"><strong>Cap. I</strong> Normas preliminares</div>
+    <div class="cap-pill"><strong>Cap. II</strong> Campo de aplicación y estructura</div>
+    <div class="cap-pill"><strong>Cap. III</strong> Afiliación, cotización y recaudación</div>
+    <div class="cap-pill"><strong>Cap. IV</strong> Acción protectora</div>
+    <div class="cap-pill"><strong>Cap. V</strong> Gestión de la SS</div>
+    <div class="cap-pill"><strong>Cap. VI</strong> Colaboración en la gestión</div>
+    <div class="cap-pill"><strong>Cap. VII</strong> Régimen económico</div>
+    <div class="cap-pill"><strong>Cap. VIII</strong> Procedimientos y notificaciones</div>
+    <div class="cap-pill"><strong>Cap. IX</strong> Inspección, infracciones y sanciones</div>
+  </div>
+</div>
+
+<div class="titulo-block">
+  <div class="titulo-header">
+    <span class="titulo-num" style="color:var(--accent4);">TÍTULO II</span>
+    <span class="titulo-name">Régimen General de la Seguridad Social</span>
+  </div>
+  <div class="cap-list">
+    <div class="cap-pill"><strong>Cap. I</strong> Campo de aplicación</div>
+    <div class="cap-pill"><strong>Cap. II</strong> Inscripción, afiliación, cotización y recaudación</div>
+    <div class="cap-pill"><strong>Cap. III</strong> Aspectos comunes acción protectora</div>
+    <div class="cap-pill"><strong>Cap. IV</strong> Normas generales prestaciones</div>
+    <div class="cap-pill"><strong>Cap. V</strong> Incapacidad temporal</div>
+    <div class="cap-pill"><strong>Cap. VI</strong> Nacimiento y cuidado del menor</div>
+    <div class="cap-pill"><strong>Cap. VII</strong> Corresponsabilidad cuidado lactante</div>
+    <div class="cap-pill"><strong>Cap. VIII</strong> Riesgo durante el embarazo</div>
+    <div class="cap-pill"><strong>Cap. IX</strong> Riesgo durante la lactancia natural</div>
+    <div class="cap-pill"><strong>Cap. X</strong> Cuidado menores afectados por cáncer</div>
+    <div class="cap-pill"><strong>Cap. XI</strong> Incapacidad permanente contributiva</div>
+    <div class="cap-pill"><strong>Cap. XII</strong> Lesiones permanentes no incapacitantes</div>
+    <div class="cap-pill"><strong>Cap. XIII</strong> Jubilación contributiva</div>
+    <div class="cap-pill"><strong>Cap. XIV</strong> Muerte y supervivencia</div>
+    <div class="cap-pill"><strong>Cap. XV</strong> Protección a la familia</div>
+    <div class="cap-pill"><strong>Cap. XVI</strong> Disposiciones comunes RG</div>
+    <div class="cap-pill"><strong>Cap. XVII</strong> Disposiciones determinados trabajadores RG</div>
+    <div class="cap-pill"><strong>Cap. XVIII</strong> SE Empleados Hogar y Agrarios</div>
+    <div class="cap-pill"><strong>Cap. XIX</strong> Gestión</div>
+    <div class="cap-pill"><strong>Cap. XX</strong> Régimen financiero</div>
+    <div class="cap-pill"><strong>Cap. XXI</strong> Aplicación normas generales</div>
+  </div>
+</div>
+
+<div class="titulo-block">
+  <div class="titulo-header">
+    <span class="titulo-num" style="color:var(--accent3);">TÍTULO III</span>
+    <span class="titulo-name">Protección por desempleo</span>
+  </div>
+  <div class="cap-list">
+    <div class="cap-pill"><strong>Cap. I</strong> Normas generales</div>
+    <div class="cap-pill"><strong>Cap. II</strong> Nivel contributivo</div>
+    <div class="cap-pill"><strong>Cap. III</strong> Nivel asistencial</div>
+    <div class="cap-pill"><strong>Cap. IV</strong> Régimen de las prestaciones</div>
+    <div class="cap-pill"><strong>Cap. V</strong> Disposiciones especiales determinados colectivos</div>
+    <div class="cap-pill"><strong>Cap. VI</strong> Régimen financiero y gestión</div>
+    <div class="cap-pill"><strong>Cap. VII</strong> Obligaciones, infracciones y sanciones</div>
+    <div class="cap-pill"><strong>Cap. VIII</strong> Derecho supletorio</div>
+  </div>
+</div>
+
+<div class="titulo-block">
+  <div class="titulo-header">
+    <span class="titulo-num" style="color:var(--accent5);">TÍTULO IV</span>
+    <span class="titulo-name">Régimen Especial de Trabajadores por Cuenta Propia o Autónomos (RETA)</span>
+  </div>
+  <div class="cap-list">
+    <div class="cap-pill"><strong>Cap. I</strong> Campo de aplicación</div>
+    <div class="cap-pill"><strong>Cap. II</strong> Afiliación, cotización y recaudación</div>
+    <div class="cap-pill"><strong>Cap. III</strong> Acción protectora</div>
+    <div class="cap-pill"><strong>Cap. IV</strong> SE para Trabajadores por Cuenta Propia Agrarios</div>
+  </div>
+</div>
+
+<div class="titulo-block">
+  <div class="titulo-header">
+    <span class="titulo-num" style="color:var(--accent);">TÍTULO V</span>
+    <span class="titulo-name">Protección por cese de actividad</span>
+  </div>
+  <div class="cap-list">
+    <div class="cap-pill"><strong>Cap. I</strong> Disposiciones generales</div>
+    <div class="cap-pill"><strong>Cap. II</strong> Situación legal de cese en supuestos especiales</div>
+    <div class="cap-pill"><strong>Cap. III</strong> Régimen de la protección</div>
+    <div class="cap-pill"><strong>Cap. IV</strong> Régimen financiero y gestión</div>
+    <div class="cap-pill"><strong>Cap. V</strong> Obligaciones, infracciones y sanciones</div>
+  </div>
+</div>
+
+<div class="titulo-block" style="margin-bottom:14px;">
+  <div class="titulo-header">
+    <span class="titulo-num" style="color:var(--accent2);">TÍTULO VI</span>
+    <span class="titulo-name">Prestaciones no contributivas</span>
+  </div>
+  <div class="cap-list">
+    <div class="cap-pill"><strong>Cap. I</strong> Prestaciones familiares no contributivas</div>
+    <div class="cap-pill"><strong>Cap. II</strong> Pensiones no contributivas</div>
+    <div class="cap-pill"><strong>Cap. III</strong> Disposiciones comunes PNC</div>
+  </div>
+</div>
+
+<!-- CRIBA FINAL -->
+<div class="section-label">🎯 · Kit de criba directa para el test</div>
+<div class="block full criba">
+  <div class="block-title"><span class="dot"></span>Datos críticos — Tema 1</div>
+  <table>
+    <thead><tr><th>Concepto</th><th>Dato clave</th></tr></thead>
+    <tbody>
+      <tr><td>Art. 41 CE — contingencia expresamente citada</td><td><strong>Desempleo</strong></td></tr>
+      <tr><td>Art. 41 CE — carácter de la complementariedad</td><td><strong>Libre</strong> (privado y voluntario)</td></tr>
+      <tr><td>Art. 41 CE — ubicación constitucional</td><td>Tít. I, <strong>Cap. 3.º</strong> → Principios rectores</td></tr>
+      <tr><td>Único precepto SS con rango de derecho fundamental</td><td><strong>Art. 25.2</strong> (SS de penados)</td></tr>
+      <tr><td>Preceptos SS como principios rectores</td><td><strong>39, 41, 43, 49, 50, 129</strong></td></tr>
+      <tr><td>Garantía de los principios rectores</td><td>Más débil; requieren <strong>desarrollo legislativo</strong> previo</td></tr>
+      <tr><td>Competencia exclusiva Estado — SS</td><td>Art. <strong>149.1.17.ª</strong>: legislación básica + régimen económico</td></tr>
+      <tr><td>Competencias CCAA — SS</td><td>Art. <strong>148.1.20.ª</strong> asistencia social; <strong>148.1.21.ª</strong> sanidad e higiene; ejecución servicios SS</td></tr>
+      <tr><td>Nivel básico — financiación</td><td><strong>PGE</strong> (imposición general)</td></tr>
+      <tr><td>Nivel profesional — financiación</td><td><strong>Cuotas</strong> trabajadores + empresarios (+ aportaciones Estado)</td></tr>
+      <tr><td>Nivel complementario — carácter</td><td><strong>Voluntario</strong> · gestión privada</td></tr>
+      <tr><td>Prestaciones nivel básico (art. 109.3)</td><td>Asistencia sanitaria SS (salvo AT/EP) · PNC invalidez/jubilación · Subsidio maternidad arts. 181-182 · Prestaciones familiares NC · IMV</td></tr>
+      <tr><td>AT/EP — nivel al que pertenecen íntegramente</td><td>Nivel <strong>profesional/contributivo</strong></td></tr>
+      <tr><td>TRLGSS — norma</td><td><strong>RDL 8/2015, de 30 de octubre</strong></td></tr>
+      <tr><td>TRLGSS — número de Títulos</td><td><strong>6 Títulos</strong></td></tr>
+      <tr><td>Título que regula el desempleo</td><td><strong>Título III</strong></td></tr>
+      <tr><td>Título que regula el RETA</td><td><strong>Título IV</strong></td></tr>
+      <tr><td>Título que regula el cese de actividad</td><td><strong>Título V</strong></td></tr>
+      <tr><td>Título que regula las PNC</td><td><strong>Título VI</strong></td></tr>
+      <tr><td>Cap. del Título II que regula la jubilación</td><td><strong>Cap. XIII</strong></td></tr>
+      <tr><td>Cap. del Título II que regula la IP</td><td><strong>Cap. XI</strong></td></tr>
+      <tr><td>Cap. del Título II que regula la IT</td><td><strong>Cap. V</strong></td></tr>
+      <tr><td>Cap. del Título II que regula MYS</td><td><strong>Cap. XIV</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="nav">
+
+  <a href="index.html">🏠 Índice</a>
+  <a href="tema2_especifico_campo_aplicacion.html">Tema 02 ▶</a>
+</div>
+</body>
+</html>
