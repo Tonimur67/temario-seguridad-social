@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 8 — Supuestos 1 al 15 (IT e Incapacidad Permanente)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --accent: #b45309;       /* Ámbar/Amarillo oscuro */
+    --accent2: #0284c7;      /* Azul */
+    --accent3: #dc2626;      /* Rojo */
+    --accent4: #16a34a;      /* Verde */
+    --accent5: #7c3aed;      /* Morado */
+    --accent6: #db2777;      /* Rosa */
+    --text: #1e293b;
+    --text-strong: #0f172a;
+    --muted: #64748b;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 32px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header {
+    border-left: 4px solid var(--accent2);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    background: var(--surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .header .tag { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600; }
+  .header h1 { font-size: 20px; font-weight: 700; color: var(--text-strong); line-height: 1.3; }
+  .header .sub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+
+  .section-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--muted); margin: 28px 0 14px 0;
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 600;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .block-title {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+  .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+  .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+  .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+  .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+  .pink .block-title { color: var(--accent6); } .pink .dot { background: var(--accent6); }
+
+  .item { display: flex; gap: 8px; margin-bottom: 5px; font-size: 12px; line-height: 1.5; }
+  .item:last-child { margin-bottom: 0; }
+  .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+  .item strong { color: var(--text-strong); font-weight: 600; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 2px;
+    margin: 0 2px;
+  }
+  .pill-y { background: #fef3c7; color: var(--accent); border: 1px solid #fde68a; }
+  .pill-b { background: #e0f2fe; color: var(--accent2); border: 1px solid #bae6fd; }
+  .pill-r { background: #fee2e2; color: var(--accent3); border: 1px solid #fecaca; }
+  .pill-g { background: #dcfce7; color: var(--accent4); border: 1px solid #bbf7d0; }
+  .pill-p { background: #f3e8ff; color: var(--accent5); border: 1px solid #e9d5ff; }
+  .pill-m { background: #fce7f3; color: var(--accent6); border: 1px solid #fbcfe8; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+
+  .alert {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-left: 3px solid var(--accent3);
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: #991b1b;
+  }
+  .alert .alabel {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  .note {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: #0369a1;
+  }
+  .note .nlabel {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  .formula-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 3px solid #d97706;
+    padding: 10px 14px;
+    font-family: var(--mono);
+    font-size: 13px;
+    margin: 8px 0 10px 0;
+    color: #92400e;
+  }
+  .formula-box strong { color: #78350f; }
+
+  .resultado-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 3px solid var(--accent4);
+    padding: 12px 16px;
+    margin: 12px 0 0 0;
+    color: #166534;
+  }
+  .resultado-box strong { color: #14532d; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+  }
+  th {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--border);
+    background: #f1f5f9;
+    font-weight: 700;
+  }
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  td strong { color: var(--text-strong); }
+
+  .tabla-wrapper { overflow-x: auto; margin: 12px 0 14px 0; border: 1px solid var(--border); background: var(--surface); }
+
+  .indice-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .indice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 6px 20px;
+  }
+  .indice-grid a {
+    color: var(--accent2);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .indice-grid a:hover { text-decoration: underline; color: var(--accent5); }
+
+  .nav {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .nav a { color: var(--muted); text-decoration: none; }
+  .nav a:hover { color: var(--accent2); }
+
+  @media (max-width: 700px) {
+    body { padding: 16px 12px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .indice-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Tema 8 · Incapacidad Temporal e Incapacidad Permanente</div>
+  <h1>Supuestos Prácticos — IT e IP (TRLGSS)</h1>
+  <div class="sub">Supuestos 1 al 15 · Bloque Teórico-Práctico · Base Reguladora y Cálculo de Pensiones</div>
+</div>
+
+<!-- ÍNDICE DE PÁGINAS DEL TEMA 8 -->
+<div class="indice-block">
+  <div style="font-family:var(--mono); font-size:9px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; font-weight:600;">Navegación del Tema 8 (3 Páginas)</div>
+  <div class="indice-grid">
+    <a href="#" style="color: var(--accent2); font-weight: 700;">📄 Página 1: Supuestos 1 al 15 (Actual)</a>
+    <a href="TEMA 8 Supuestos Prácticos — IT e IP (TRLGSS)2.html">📄 Página 2: Supuestos 16 al 20</a>
+    <a href="TEMA 8 Supuestos Prácticos — IT e IP (TRLGSS)3.html">📄 Página 3: Supuestos 21 al 29</a>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN: CÁLCULOS BASE REGULADORA (IT) -->
+<!-- ============================================================ -->
+<div class="section-label">01-05 · Incapacidad Temporal (Cálculo de BR)</div>
+
+<div class="block yellow">
+  <div class="block-title"><span class="dot"></span>Supuesto 1 — Enfermedad Común (Mensual)</div>
+  <div class="item"><span class="arrow">→</span><span>Trabajador con salario mensual. Baja el 14 de mayo por EC.</span></div>
+  <div class="item"><span class="arrow">→</span><span><strong>BC mes anterior (abril):</strong> 1.500,00 €</span></div>
+  <div class="formula-box">BR = 1.500,00 / 30 = <strong>50,00 €/día</strong></div>
+  <div class="note">
+    <div class="nlabel">Subsidio</div>
+    Días 1-3: 0% | Días 4-20: 60% (30,00 €/día) | Días 21+: 75% (37,50 €/día)
+  </div>
+</div>
+
+<div class="block blue">
+  <div class="block-title"><span class="dot"></span>Supuesto 2 — Accidente de Trabajo (Diario)</div>
+  <div class="item"><span class="arrow">→</span><span>Baja el 10 de junio por AT. Salario diario.</span></div>
+  <div class="item"><span class="arrow">→</span><span><strong>BC Contingencias Profesionales (mayo, 31 días):</strong> 1.860,00 € (excluidas horas extra).</span></div>
+  <div class="item"><span class="arrow">→</span><span><strong>Horas extraordinarias año anterior:</strong> 730,00 €</span></div>
+  <div class="formula-box">
+    BR = (1.860,00 / 31) + (730,00 / 365) = 60,00 + 2,00 = <strong>62,00 €/día</strong>
+  </div>
+  <div class="resultado-box">Subsidio AT: 75% desde el día siguiente a la baja = <strong>46,50 €/día</strong></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECCIÓN: INCAPACIDAD PERMANENTE -->
+<!-- ============================================================ -->
+<div class="section-label">06-15 · Incapacidad Permanente (Grados y Cuantías)</div>
+
+<div class="block red">
+  <div class="block-title"><span class="dot"></span>Supuesto 12 — Incapacidad Permanente Total (Derivada de EC)</div>
+  <div class="grid-2">
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Edad:</strong> 45 años (requiere carencia)</span></div>
+      <div class="item"><span class="arrow">→</span><span><strong>Suma de bases (96 meses):</strong> 134.400,00 €</span></div>
+    </div>
+    <div>
+      <div class="item"><span class="arrow">→</span><span><strong>Fórmula BR:</strong> Suma de bases / 112</span></div>
+    </div>
+  </div>
+  <div class="formula-box">BR = 134.400,00 / 112 = <strong>1.200,00 €/mes</strong></div>
+  <div class="resultado-box">
+    Pensión IPT (55%): 1.200,00 × 0,55 = <strong>660,00 €/mes</strong> (14 pagas)
+  </div>
+</div>
+
+<div class="block purple">
+  <div class="block-title"><span class="dot"></span>Supuesto 15 — Comparativa de Contingencias (Mismo Salario Real)</div>
+  <div class="item"><span class="arrow">→</span><span>Demostración de cómo varía la BR según la causa determinante con un salario base de 1.500 € + 2 pagas extra + horas extra (3.000 €/año).</span></div>
+  
+  <div style="margin-top:10px;">
+    <div style="font-family:var(--mono); font-size:10px; color:var(--accent5); letter-spacing:1px; margin-bottom:4px; font-weight:600;">Desglose AT (Salario Real/365)</div>
+    <div class="item"><span class="arrow">→</span><span><strong>Base c. communes anualizada:</strong> 21.000 € + 3.500 € = 24.500 €</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Complementos prorrateados:</strong> (3.000 / 365) × 273 = 2.246 €</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>Total anual:</strong> 21.000 + 3.500 + 2.246 = 26.746 €</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>BR diaria:</strong> 26.746 / 365 = 73,28 €/día</span></div>
+    <div class="item"><span class="arrow">→</span><span><strong>BR mensual:</strong> 73,28 × 30 = <strong>2.198,40 €/mes</strong></span></div>
+  </div>
+
+  <div class="tabla-wrapper">
+    <table>
+      <thead><tr><th>Contingencia</th><th>Fórmula</th><th>BR mensual</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill pill-b">EC en alta</span></td><td>96/112</td><td>1.468,00 €</td></tr>
+        <tr><td><span class="pill pill-g">ANL en alta</span></td><td>24/28</td><td>1.500,00 €</td></tr>
+        <tr><td><span class="pill pill-y">AT</span></td><td>Salario real/365</td><td>2.198,40 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert">
+    <div class="alabel">🔑 Conclusión clave</div>
+    A igualdad de retribución, la contingencia profesional (AT) siempre genera una Base Reguladora sustancialmente superior al incluir las horas extraordinarias del año anterior y computar sobre días reales del año.
+  </div>
+</div>
+
+<!-- NAVEGACIÓN INFERIOR -->
+<div class="nav">
+  <a href="#">🏠 Ir arriba</a>
+  <span style="color:var(--border);">|</span>
+  <a href="TEMA 8 Supuestos Prácticos — IT e IP (TRLGSS)2.html">Página 2 (Supuestos 16-20) ▶</a>
+  <span style="color:var(--border);">|</span>
+  <a href="TEMA 8 Supuestos Prácticos — IT e IP (TRLGSS)3.html">Página 3 (Supuestos 21-29) ▶</a>
+</div>
+<!-- NAVEGACIÓN INFERIOR -->
+<div class="nav">
+  <a href="../tema8_fusionado_completo.html">📚 Volver al Tema 8 (Teoría)</a>
+  <span style="color:var(--border);">|</span>
+</div>
+<div style="margin-top:30px; padding-top:16px; border-top:1px solid var(--border); text-align:center; color:var(--muted); font-size:11px; font-family:var(--mono);">
+  Tema 8 — IT e Incapacidad Permanente · Supuestos 1 al 15
+</div>
+
+
+</body>
+</html>
