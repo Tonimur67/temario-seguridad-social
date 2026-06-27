@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 7 - Acción Protectora (Fusión completa)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+        /* === RESET Y ESTILOS GENERALES (Estilo claro uniforme con fuentes grandes originales) === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --accent: #b45309;       /* Ámbar/Amarillo oscuro */
+            --accent2: #0284c7;      /* Azul principal */
+            --accent3: #dc2626;      /* Rojo / Trampas */
+            --accent4: #16a34a;      /* Verde */
+            --accent5: #7c3aed;      /* Morado */
+            --accent6: #db2777;      /* Rosa */
+            --text: #1e293b;
+            --text-strong: #0f172a;
+            --muted: #64748b;
+            --mono: 'IBM Plex Mono', monospace;
+            --sans: 'IBM Plex Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.05);
+            padding: 40px 50px;
+        }
+
+        .header {
+            border-bottom: 4px solid var(--accent2);
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--text-strong);
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .badge-fusion {
+            display: inline-block;
+            background: #e0f2fe;
+            color: var(--accent2);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-top: 10px;
+            border: 1px solid #bae6fd;
+            font-family: var(--mono);
+        }
+
+        .badge-update {
+            display: inline-block;
+            background: #dcfce7;
+            color: var(--accent4);
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+            border: 1px solid #bbf7d0;
+            font-family: var(--mono);
+        }
+
+        .nav {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .nav a {
+            color: var(--accent2);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: var(--accent5);
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--text-strong);
+            margin-top: 45px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent2);
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0 25px 0;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: #1e293b;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+            color: var(--text);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td { background: #f8fafc; }
+        td strong { color: var(--text-strong); }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+            font-family: var(--mono);
+        }
+
+        .tag-web { background: #e0f2fe; color: var(--accent2); border: 1px solid #bae6fd; }
+        .tag-video { background: #fef3c7; color: var(--accent); border: 1px solid #fde68a; }
+        .tag-fusion { background: #f3e8ff; color: var(--accent5); border: 1px solid #e9d5ff; }
+        .tag-update { background: #fce7f3; color: var(--accent6); border: 1px solid #fbcfe8; }
+
+        .trampa { background: #fffbeb; border: 1px solid #fde68a; border-left: 6px solid #d97706; padding: 18px 24px; border-radius: 0 14px 14px 0; margin: 22px 0; font-size: 0.95rem;}
+        .trampa strong { color: #78350f; }
+        .cepo { background: #fef2f2; border: 1px solid #fca5a5; border-left: 6px solid var(--accent3); padding: 18px 24px; border-radius: 0 14px 14px 0; margin: 22px 0; font-size: 0.95rem;}
+        .cepo strong { color: #7f1d1d; }
+        .destacado { background: #f0f9ff; border: 1px solid #bae6fd; border-left: 6px solid var(--accent2); padding: 16px 22px; border-radius: 14px; margin: 18px 0; font-size: 0.95rem;}
+        .destacado strong { color: #0c4a6e; }
+        .caja-dato { background: #1e293b; color: #f8fafc; padding: 14px 22px; border-radius: 14px; margin: 18px 0; font-size: 0.95rem; }
+        .caja-dato strong { color: #f59e0b; }
+
+        ul, ol { padding-left: 28px; margin: 12px 0 18px 0; }
+        li { margin-bottom: 6px; font-size: 0.95rem; }
+
+        .back-top { display: inline-block; margin-top: 40px; background: var(--accent2); color: #fff; padding: 10px 28px; border-radius: 40px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: background 0.2s; font-family: var(--mono); }
+        .back-top:hover { background: #0369a1; }
+        .footer { margin-top: 50px; padding-top: 20px; border-top: 2px solid var(--border); font-size: 0.85rem; color: var(--muted); text-align: center; font-family: var(--mono); }
+
+        /* === GRID Y CONFIGURACIÓN DE BLOQUES === */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .full { grid-column: 1 / -1; }
+        .block { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+
+        .block-title { font-family: var(--mono); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        
+        .yellow .block-title { color: var(--accent); } .yellow .dot { background: var(--accent); }
+        .blue .block-title { color: var(--accent2); } .blue .dot { background: var(--accent2); }
+        .red .block-title { color: var(--accent3); } .red .dot { background: var(--accent3); }
+        .green .block-title { color: var(--accent4); } .green .dot { background: var(--accent4); }
+        .purple .block-title { color: var(--accent5); } .purple .dot { background: var(--accent5); }
+        .orange .block-title { color: #ca8a04; } .orange .dot { background: #eab308; }
+
+        .item { display: flex; gap: 10px; margin-bottom: 6px; font-size: 0.95rem; line-height: 1.5; }
+        .item:last-child { margin-bottom: 0; }
+        .item .arrow { color: var(--muted); flex-shrink: 0; font-family: var(--mono); font-size: 0.9rem; }
+        .item strong { color: var(--text-strong); font-weight: 600; }
+
+        .pill { display: inline-block; font-family: var(--mono); font-size: 0.8rem; font-weight: 700; padding: 1px 8px; border-radius: 4px; margin: 0 2px; }
+        .pill-y { background: #fef3c7; color: var(--accent); border: 1px solid #fde68a; }
+        .pill-b { background: #e0f2fe; color: var(--accent2); border: 1px solid #bae6fd; }
+        .pill-r { background: #fee2e2; color: var(--accent3); border: 1px solid #fecaca; }
+        .pill-g { background: #dcfce7; color: var(--accent4); border: 1px solid #bbf7d0; }
+        .pill-p { background: #f3e8ff; color: var(--accent5); border: 1px solid #e9d5ff; }
+
+        .info { background: #f0f9ff; border: 1px solid #bae6fd; padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; color: #0369a1; }
+        .info .ilabel { font-family: var(--mono); font-size: 0.75rem; color: var(--accent2); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; }
+        .sub-head { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 12px 0 6px 0; }
+
+        /* === MINI-TEST STYLES === */
+        .test-question { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+        .test-q-num { display: inline-block; background: var(--text-strong); color: #fff; font-size: 0.75rem; font-family: var(--mono); font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-right: 8px; }
+        .test-q-text { font-weight: 600; color: var(--text-strong); font-size: 1rem; margin-bottom: 14px; }
+        .test-options { display: flex; flex-direction: column; gap: 8px; }
+        .test-option { display: flex; align-items: flex-start; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; cursor: pointer; font-size: 0.93rem; transition: border-color 0.15s, background 0.15s; user-select: none; }
+        .test-option:hover { border-color: var(--accent2); background: #f0f9ff; }
+        .test-option.correct { border-color: var(--accent4); background: #f0fdf4; color: #166534; font-weight: 600; }
+        .test-option.wrong { border-color: var(--accent3); background: #fef2f2; color: #991b1b; }
+        .test-option.disabled { pointer-events: none; }
+        .test-feedback { margin-top: 10px; padding: 10px 16px; border-radius: 8px; font-size: 0.9rem; display: none; }
+        .test-feedback.show { display: block; }
+        .test-feedback.ok { background: #f0fdf4; border-left: 4px solid var(--accent4); color: #166534; }
+        .test-feedback.ko { background: #fef2f2; border-left: 4px solid var(--accent3); color: #991b1b; }
+        
+        .test-score { background: #1e293b; color: #f8fafc; border-radius: 14px; padding: 20px 28px; text-align: center; display: none; margin-top: 20px; }
+        .test-score .score-num { font-size: 2.8rem; font-weight: 700; color: #f59e0b; font-family: var(--mono); }
+        .test-score .score-label { font-size: 1rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; font-family: var(--mono); }
+        .test-score .score-msg { font-size: 0.95rem; margin-top: 10px; color: #cbd5e1; }
+        .btn-reiniciar { background: var(--accent2); color: #fff; border: none; border-radius: 30px; padding: 10px 28px; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 14px; transition: background 0.2s; font-family: var(--mono); }
+        .btn-reiniciar:hover { background: #0369a1; }
+
+        /* === CONFIGURACIÓN DE LA TARJETA FLIP === */
+        .flip-card {
+            margin: 30px auto;
+            width: 100%;
+            max-width: 500px;
+            height: 280px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 18px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.02);
+        }
+
+        .flip-card-front {
+            background: var(--surface);
+            border: 2px dashed var(--accent2);
+            color: var(--text-strong);
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .flip-card-back {
+            background: var(--text-strong);
+            color: #f8fafc;
+            transform: rotateY(180deg);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        #btn-otra {
+            padding: 12px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            background-color: var(--accent3);
+            color: white;
+            border: none;
+            transition: all 0.2s ease;
+            font-family: var(--mono);
+            text-transform: uppercase;
+        }
+        #btn-otra:hover { background-color: #b91c1c; }
+        #btn-otra.verde { background-color: var(--accent4) !important; }
+
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border); font-family: var(--mono); font-size: 0.95rem;}
+        .nav-bar a { text-decoration: none; color: var(--accent2); font-weight: 600; }
+        .nav-bar .indice { background: #e2e8f0; padding: 8px 20px; border-radius: 20px; color: var(--text-strong); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ======= HEADER ======= -->
+    <div class="header">
+        <h1>Tema 7 · Acción Protectora de la Seguridad Social</h1>
+        <div class="subtitle">Contenido · Clasificación · Reintegro · Responsabilidades · Contingencias</div>
+        <span class="badge-fusion">📚 Fusión completa · Esquema web + Transcripciones de video</span>
+        <span class="badge-update">✅ Con diferencias RETA y matices prácticos</span>
+        <div style="margin-top: 8px; font-size: 0.95rem; color: var(--muted); font-family: var(--mono);">
+            Arts. 2, 42, 44, 46, 55, 156-158, 165-167 TRLGSS · RD 1415/2004 · RD 148/1996
+        </div>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ======= -->
+    <div class="nav">
+        <a href="#p1">01. Concepto y principios</a>
+        <a href="#p2">02. Contenido</a>
+        <a href="#p3">03. Clasificación</a>
+        <a href="#p4">04. Características</a>
+        <a href="#p5">05. Reintegro de indebidos</a>
+        <a href="#p6">06. Requisitos generales</a>
+        <a href="#p7">07. Automaticidad y anticipo</a>
+        <a href="#p8">08. Responsabilidades</a>
+        <a href="#p9">09. Contingencias</a>
+        <a href="#p10">10. Diferencias RETA</a>
+        <a href="#kit">🎯 Kit de criba</a>
+        <a href="#mini-test">🧪 Mini-test</a>
+        <a href="#seccion-tarjetas">🃏 Tarjetas</a>
+    </div>
+
+    <!-- ======= 01. CONCEPTO Y PRINCIPIOS ======= -->
+    <h2 id="p1">01. Concepto y principios de la acción protectora</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Definición</div>
+            <div class="item"><span class="arrow">→</span><span>La acción protectora es el <strong>conjunto de medidas, prestaciones y servicios</strong> que el sistema de Seguridad Social pone a disposición de los ciudadanos para <strong>prevenir, reparar o superar</strong> situaciones de necesidad o estados de vulnerabilidad (enfermedad, vejez, desempleo, nacimiento, etc.).</span></div>
+            <div class="item"><span class="arrow">→</span><span>Está fundamentada en el <strong>artículo 41 de la Constitución Española</strong>[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Órgano gestor:</strong> el <span class="pill pill-b">INSS</span> (Instituto Nacional de la Seguridad Social) es quien gestiona y reconoce las prestaciones[cite: 4].</span></div>
+            <div class="info">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>La acción protectora es el <strong>"catálogo oficial de todo lo que la SS te puede echar una mano"</strong> si cumples los requisitos[cite: 4]. Su función es garantizar un <strong>mínimo de seguridad económica y asistencia sanitaria</strong> ante situaciones de necesidad[cite: 4].</p>
+            </div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Principios rectores</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Universalidad:</strong> extensión progresiva de la cobertura a todos los ciudadanos[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Unidad:</strong> el sistema es único para todos los regímenes[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Solidaridad intergeneracional:</strong> las cotizaciones de los activos financian las pensiones de los pasivos (sistema de reparto)[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Igualdad y equidad:</strong> mismas condiciones de acceso para todos los que cumplan los requisitos, independientemente de su lugar de residencia[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Contributividad:</strong> existe una proporción entre lo que se cotiza y la cuantía de las prestaciones (en la modalid contributiva)[cite: 4].</span></div>
+            <div class="caja-dato">
+                <strong>📌 Clave para el examen:</strong> La acción protectora se articula bajo los principios de <strong>universalidad y solidaridad</strong>[cite: 4].
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 02. CONTENIDO DE LA ACCIÓN PROTECTORA ======= -->
+    <h2 id="p2">02. Contenido de la acción protectora (art. 42 TRLGSS)</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Asistencia sanitaria y recuperación</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Asistencia sanitaria:</strong> atención médica ante enfermedad común, profesional, accidente laboral o no laboral, maternidad, riesgo durante el embarazo y lactancia[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Recuperación profesional:</strong> medidas para rehabilitar y reintegrar laboralmente a trabajadores cuya capacidad se ha visto limitada de forma temporal o permanente[cite: 4].</span></div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Prestaciones económicas</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Incapacidad Temporal (IT)</strong>[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Nacimiento y cuidado de menor</strong> (maternidad/paternidad)[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Riesgo durante el embarazo y lactancia</strong>[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Cuidado de menores afectados por cáncer u otra enfermedad grave</strong>[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Incapacidad Permanente (IP)</strong> (parcial, total, absoluta, gran invalidez)[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Jubilación</strong> (ordinaria, anticipada, parcial)[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Desempleo</strong>[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Muerte y supervivencia</strong> (viudedad, orfandad, favor de familiares)[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Ingreso Mínimo Vital (IMV)</strong>[cite: 4]</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prestaciones familiares</strong> (ayudas económicas para familias con hijos u otros dependientes)[cite: 4]</span></div>
+        </div>
+    </div>
+
+    <div class="block full green">
+        <div class="block-title"><span class="dot"></span>Servicios sociales y beneficios complementarios</div>
+        <div class="grid-2">
+            <div>
+                <div class="sub-head">Prestaciones de servicios sociales</div>
+                <div class="item"><span class="arrow">→</span><span>Formación y programas de rehabilitación para personas con discapacidad[cite: 4].</span></div>
+                <div class="item"><span class="arrow">→</span><span>Asistencia a mayores y otros servicios que recoja la normativa[cite: 4].</span></div>
+                <div class="item"><span class="arrow">→</span><span>Apoyos no económicos para la inserción social y laboral[cite: 4].</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Beneficios complementarios</div>
+                <div class="item"><span class="arrow">→</span><span>Apoyos adicionales que pueden añadir un plus a las prestaciones básicas[cite: 4].</span></div>
+                <div class="item"><span class="arrow">→</span><span>Refuerzan la protección legal básica[cite: 4].</span></div>
+                <div class="info">
+                    <div class="ilabel">📌 Aportación del video</div>
+                    <p><strong>El contenido</strong> nos dice <strong>qué hace</strong> cada prestación[cite: 4]. La <strong>clasificación</strong> nos dice <strong>qué tipo</strong> de prestación es[cite: 4].</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 03. CLASIFICACIÓN DE LAS PRESTACIONES ======= -->
+    <h2 id="p3">03. Clasificación de las prestaciones</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Modalidad contributiva</div>
+            <div class="item"><span class="arrow">→</span><span>Dependen de las <strong>cotizaciones previas</strong> del trabajador[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Se calculan sobre lo que se ha aportado al sistema[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Pueden ser <strong>mejoradas voluntariamente</strong> por la empresa o el trabajador[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Ejemplos:</strong> jubilación, incapacidad permanente, viudedad, desempleo contributivo[cite: 4].</span></div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Modalidad no contributiva</div>
+            <div class="item"><span class="arrow">→</span><span>No dependen de las cotizaciones, sino de la <strong>necesidad económica</strong>[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Protegen a quienes <strong>no tienen suficiente historial de cotización</strong>[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Ejemplos:</strong> pensiones no contributivas de jubilación e invalidez, IMV[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Se financian con <strong>aportaciones del Estado</strong> (PGE)[cite: 4].</span></div>
+        </div>
+    </div>
+
+    <!-- ======= 04. CARACTERÍSTICAS DE LAS PRESTACIONES ======= -->
+    <h2 id="p4">04. Características de las prestaciones (arts. 44 y 46 TRLGSS)</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Inembargabilidad y exenciones</div>
+            <div class="item"><span class="arrow">→</span><span>Las prestaciones <strong>no pueden ser objeto de retención, cesión, compensación o descuento</strong>, salvo:[cite: 4]</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>1.</strong> Obligaciones alimenticias a favor del cónyuge e hijos (embargos judiciales)[cite: 4].</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>2.</strong> Obligaciones contraídas por el beneficiario con la propia SS[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Exención fiscal (IRPF):</strong> pensiones por IP Absoluta y Gran Invalidez, prestaciones por nacimiento/cuidado de menor, prestaciones familiares no contributivas e IMV[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Gratuidad administrativa:</strong> no se exigen tasas por certificaciones, solicitudes o gestiones relacionadas con prestaciones[cite: 4].</span></div>
+            <div class="cepo">
+                <strong>⚠️ Cepo de examen (video):</strong> Las dos excepciones a la inembargabilidad son <strong>obligaciones alimenticias</strong> y <strong>deudas con la SS</strong>[cite: 4]. Memorízalas bien.
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Número de pagas (art. 46 TRLGSS)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pensiones contributivas por contingencias comunes:</strong> <span class="pill pill-y">14 pagas</span> (12 mensualidades + 2 extraordinarias en <strong>junio y noviembre</strong>)[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pensiones derivadas de AT/EP:</strong> <span class="pill pill-b">12 pagas</span> (las extras están <strong>prorrateadas</strong> dentro de las mensualidades)[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pensiones no contributivas de jubilación e invalidez:</strong> 14 pagas (12 + 2 en junio y noviembre)[cite: 4].</span></div>
+            <div class="info">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>Las prestaciones son <strong>tuyas</strong>, no te las pueden quitar, pero <strong>sí tributan</strong> (salvo excepciones) y <strong>no cuestan dinero</strong> por la gestión[cite: 4].</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="block red">
+        <div class="block-title"><span class="dot"></span>Incompatibilidades</div>
+        <div class="grid-2">
+            <div>
+                <div class="item"><span class="arrow">→</span><span>Las pensiones del Régimen General son <strong>incompatibles entre sí</strong>, salvo disposición legal expresa[cite: 4].</span></div>
+                <div class="item"><span class="arrow">→</span><span>Si un beneficiario adquiere derecho a una nueva pensión incompatible, la SS le paga la <strong>de mayor cuantía</strong> y <strong>suspende</strong> la otra[cite: 4].</span></div>
+            </div>
+            <div>
+                <div class="item"><span class="arrow">→</span><span>El interesado puede solicitar percibir la pensión <strong>suspendida</strong> con efectos económicos desde el <strong>primer día del mes siguiente</strong> a la solicitud[cite: 4].</span></div>
+                <div class="item"><span class="arrow">→</span><span>Esto también se aplica a indemnizaciones a tanto alzado que sustituyan pensiones de IP total[cite: 4].</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 05. REINTEGRO DE PRESTACIONES INDEBIDAS ======= -->
+    <h2 id="p5">05. Reintegro de prestaciones indebidas (art. 55 TRLGSS)</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Obligación y prescripción</div>
+            <div class="item"><span class="arrow">→</span><span>Los trabajadores y demás personas que hayan percibido <strong>indebidamente</strong> prestaciones están obligados a <strong>reintegrar su importe</strong>[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Quien contribuya a la percepción indebida responde <strong>subsidiariamente</strong>, salvo que pruebe la buena fe[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prescripción:</strong> <span class="pill pill-r">4 años</span> desde la fecha de cobro o desde que fue posible ejercitar la acción de devolución[cite: 4].</span></div>
+            <div class="info">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>Si cobras algo que no te corresponde, la SS puede pedirte que lo devuelvas <strong>y además</strong> te pueden sancionar[cite: 4]. El tiempo límite para exigírtelo son <strong>4 años</strong> desde que cobraste[cite: 4].</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Procedimientos de reintegro</div>
+            <div class="sub-head">Procedimiento general (RD 1415/2004)</div>
+            <div class="item"><span class="arrow">→</span><span>Reclamación de la TGSS[cite: 4]. Plazo voluntario: <strong>último día hábil del mes siguiente</strong> a la notificación[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Fraccionamiento:</strong> mínimo 100 €/mes, máximo 5 años[cite: 4]. Falta de ingreso de 3 plazos → vía ejecutiva[cite: 4].</span></div>
+            <div class="sub-head">Procedimiento especial (RD 148/1996)</div>
+            <div class="item"><span class="arrow">→</span><span>Por <strong>descuento directo</strong> cuando el deudor es simultáneamente acreedor de prestaciones económicas corrientes[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Plazo máximo de reintegro: <strong>5 años</strong>[cite: 4].</span></div>
+        </div>
+    </div>
+
+    <!-- ======= 06. REQUISITES GENERALES ======= -->
+    <h2 id="p6">06. Requisitos generales para acceder a las prestaciones (art. 165 TRLGSS)</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Afiliación y alta</div>
+            <div class="item"><span class="arrow">→</span><span>Para acceder a prestaciones contributivas se requiere estar <strong>afiliado y en alta</strong> en el régimen correspondiente, o en <strong>situación asimilada al alta</strong>[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Excepción:</strong> no se exige periodo previo de cotización para prestaciones derivadas de <strong>AT, EP o accidente no laboral</strong>[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Alta de pleno derecho (art. 166 TRLGSS):</strong> los trabajadores se consideran en alta a efectos de <strong>AT, EP y desempleo</strong>, aunque el empresario haya incumplido totalmente sus obligaciones[cite: 4].</span></div>
+            <div class="info">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>Las comunidades autónomas <strong>pueden establecer ayudas adicionales</strong> sin perjuicio de las prestaciones estatales[cite: 4].</p>
+                <p>El Régimen General <strong>no incluye</strong> la protección por cese de actividad (es del RETA)[cite: 4].</p>
+            </div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Estar al corriente de pago</div>
+            <div class="item"><span class="arrow">→</span><span>Es requisito fundamental estar al corriente en el pago de las cotizaciones[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Si existen deudas, la Administración puede enviar una <strong>invitación al pago</strong> para regularizar la situación antes de resolver la solicitud[cite: 4].</span></div>
+            <div class="trampa">
+                <strong>⚠️ Trampa de examen:</strong> La obligación de cotizar nace desde el <strong>inicio real de la actividad</strong>, aunque el empresario no haya dado de alta al trabajador[cite: 4].
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 07. AUTOMATICIDAD Y ANTICIPO ======= -->
+    <h2 id="p7">07. Automaticidad y anticipo de prestaciones (art. 167 TRLGSS)</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Automaticidad absoluta (plena)</div>
+            <div class="item"><span class="arrow">→</span><span>El trabajador tiene derecho a la <strong>protección total inmediata</strong> aunque el empresario no le haya dado de alta[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>¿A qué prestaciones aplica?</strong> <span class="pill pill-g">Accidentes de Trabajo (AT), Enfermedades Profesionales (EP), Desempleo, y Asistencia Sanitaria</span>[cite: 4].</span></div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Automaticidad relativa</div>
+            <div class="item"><span class="arrow">→</span><span>Requiere que el trabajador esté en <strong>alta o situación asimilada</strong> en el momento del hecho causante[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>¿A qué prestaciones aplica?</strong> <span class="pill pill-y">Incapacidad Temporal (IT), Nacimiento y cuidado de menor (NYCM), Jubilación, Incapacidad Permanente (IP), Muerte y Supervivencia (MYS)</span> derivadas de contingencias comunes[cite: 4].</span></div>
+            <div class="caja-dato">
+                <strong>📌 Clave para el examen:</strong> Automaticidad <strong>absoluta</strong> → AT, EP, desempleo y asistencia sanitaria[cite: 4]. Automaticidad <strong>relativa</strong> → IT, NYCM, jubilación, IP, MYS (por CC)[cite: 4].
+            </div>
+        </div>
+    </div>
+
+    <div class="block full red">
+        <div class="block-title"><span class="dot"></span>Anticipo de prestaciones</div>
+        <div class="item"><span class="arrow">→</span><span>El principio de automaticidad garantiza que el trabajador <strong>no quede desprotegido</strong> ante el incumplimiento del empresario[cite: 4].</span></div>
+        <div class="item"><span class="arrow">→</span><span>Las entidades gestoras, mutuas o servicios comunes proceden al <strong>pago anticipado</strong> de las prestaciones[cite: 4].</span></div>
+        <div class="item"><span class="arrow">→</span><span><strong>Límite del anticipo:</strong> no puede exceder de <span class="pill pill-r">2,5 veces el IPREM</span> vigente en el momento del hecho causante[cite: 4].</span></div>
+        <div class="info">
+            <div class="ilabel">📌 Aportación del video</div>
+            <p>El <strong>trabajador siempre cobra</strong>[cite: 4]. La entidad que adelantó el dinero se encarga de cobrar la deuda al responsable[cite: 4].</p>
+        </div>
+    </div>
+
+    <!-- ======= 08. RESPONSABILIDADES POR INCUMPLIMIENTO ======= -->
+    <h2 id="p8">08. Responsabilidades por incumplimiento (arts. 167 TRLGSS)</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Responsabilidad empresarial</div>
+            <div class="item"><span class="arrow">→</span><span>Cuando el empresario incumple sus obligaciones, la <strong>responsabilidad del pago</strong> de la prestación se imputa al causante del perjuicio[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Capital Coste (art. 167):</strong> la TGSS calcula y recauda del empresario el capital necesario para garantizar el pago de la prestación de por vida[cite: 4].</span></div>
+        </div>
+        <div class="block red">
+            <div class="block-title"><span class="dot"></span>Recargos por AT/EP</div>
+            <div class="item"><span class="arrow">→</span><span>En caso de accidente de trabajo o enfermedad profesional, se aplican recargos del <span class="pill pill-r">30% al 50%</span> al empresario si los equipos o instalaciones no cumplen con las normas de seguridad[cite: 4].</span></div>
+            <div class="cepo">
+                <strong>⚠️ Cepo de examen:</strong> Si el empresario no protege a sus trabajadores, <strong>le va a costar bastante más dinero</strong>[cite: 4]. Los recargos por AT/EP son del <strong>30% al 50%</strong>[cite: 4].
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 09. CONTINGENCIAS: COMUNES Y PROFESIONALES ======= -->
+    <h2 id="p9">09. Contingencias: comunes y profesionales (arts. 156-158 TRLGSS)</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Contingencias comunes</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Enfermedad común:</strong> alteraciones de la salud que no tienen la condición de AT ni EP[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Accidente no laboral (ANL) (art. 158):</strong> el que no tiene carácter de AT por no guardar relación causal con el trabajo[cite: 4].</span></div>
+        </div>
+        <div class="block red">
+            <div class="block-title"><span class="dot"></span>Contingencias profesionales</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Accidente de Trabajo (AT) (art. 156.1):</strong> toda lesión corporal que el trabajador sufra con ocasión o por consecuencia del trabajo por cuenta ajena[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Enfermedad Profesional (EP):</strong> enfermedad contraída a consecuencia del trabajo en actividades específicas del cuadro oficial[cite: 4].</span></div>
+        </div>
+    </div>
+
+    <div class="block full green">
+        <div class="block-title"><span class="dot"></span>Presunción de laboralidad</div>
+        <div class="item"><span class="arrow">→</span><span>Se <strong>presume</strong> que cualquier lesión sufrida en <strong>tiempo y lugar de trabajo</strong> es un accidente laboral, salvo que se pruebe lo contrario[cite: 4].</span></div>
+        <div class="cepo">
+            <strong>⚠️ Cepo de examen:</strong> Si el trabajador no utiliza los EPIs que la empresa facilita, las consecuencias son que <strong>cobrará menos</strong> al poder no considerarse accidente laboral[cite: 4].
+        </div>
+    </div>
+
+    <!-- ======= 10. DIFERENCIAS CLAVE RETA ======= -->
+    <h2 id="p10">10. Diferencias clave de la acción protectora en el RETA</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Nuevo</span></p>
+
+    <div class="grid-2">
+        <div class="block orange">
+            <div class="block-title"><span class="dot"></span>1. Estar al corriente de pago</div>
+            <div class="item"><span class="arrow">→</span><span>Para cobrar cualquier prestación hay que estar al corriente de pago[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Si hay deuda, se envía una <strong>invitación al pago</strong>[cite: 4]. Se tienen <span class="pill pill-y">30 días naturales</span> para pagar toda la deuda[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Si se paga después:</strong> para <strong>subsidios</strong> (ej. IT), se aplica un <strong>recargo del 20%</strong> sobre la prestación[cite: 4].</span></div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>2. Accidente de trabajo in itinere</div>
+            <div class="item"><span class="arrow">→</span><span>Los autónomos <strong>sí</strong> tienen accidente de trabajo in itinere, pero <strong>solo si el lugar de trabajo NO es su domicilio</strong>[cite: 4].</span></div>
+            <div class="trampa">
+                <strong>⚠️ Trampa de examen:</strong> Si trabajas desde casa y te caes por las escaleras para ir a Correos, <strong>no es accidente de trabajo</strong>[cite: 4].
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:10px;">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>3. Incapacidad Permanente Parcial</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Régimen General:</strong> disminución del rendimiento de al menos el <span class="pill pill-b">33%</span>[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>RETA:</strong> disminución <strong>no menor del <span class="pill pill-p">50%</span></strong> en el rendimiento normal[cite: 4].</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>4. IT larga en el RETA</div>
+            <div class="item"><span class="arrow">→</span><span>Durante los <strong>primeros 60 días</strong> de IT, el autónomo sigue pagando su cuota[cite: 4].</span></div>
+            <div class="item"><span class="arrow">→</span><span>Transcurridos <strong>60 días</strong>, la mutua o entidad gestora se hace cargo de pagar las cuotas[cite: 4].</span></div>
+        </div>
+    </div>
+
+    <!-- ======= KIT DE CRIBA ======= -->
+    <h2 id="kit">🎯 Kit de criba directa para el test (datos críticos)</h2>
+    <p style="margin-bottom: 12px;"><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Concepto</th><th>Dato clave</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Inembargabilidad — excepciones</td><td>Obligaciones <strong>alimenticias</strong> y <strong>deudas con la SS</strong>[cite: 4]</td></tr>
+                <tr><td>Número de pagas — CC (RG)</td><td><strong>14 pagas</strong> (12 + 2 en junio y noviembre)[cite: 4]</td></tr>
+                <tr><td>Número de pagas — AT/EP</td><td><strong>12 pagas</strong> (extras prorrateadas)[cite: 4]</td></tr>
+                <tr><td>Reintegro de indebidos — prescripción</td><td><strong>4 años</strong>[cite: 4]</td></tr>
+                <tr><td>Automaticidad absoluta</td><td><strong>AT, EP, desempleo, asistencia sanitaria</strong>[cite: 4]</td></tr>
+                <tr><td>Automaticidad relativa</td><td><strong>IT, NYCM, jubilación, IP, MYS</strong> (por CC)[cite: 4]</td></tr>
+                <tr><td>Recargos AT/EP por incumplimiento</td><td><strong>30% – 50%</strong> a cargo exclusivo del empresario[cite: 4]</td></tr>
+                <tr><td>IP Parcial — RG vs RETA</td><td>RG: Disminución ≥ <strong>33%</strong> / RETA: Disminución ≥ <strong>50%</strong>[cite: 4]</td></tr>
+                <tr><td>RETA — invitación al pago</td><td><strong>30 días naturales</strong> para regularizar la deuda[cite: 4]</td></tr>
+                <tr><td>RETA — IT prolongada cuotas</td><td>A partir de los <strong>60 días</strong> la mutua asume la cuota[cite: 4]</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ======= CONTENEDOR EXCLUSIVO MINI-TEST INTERACTIVO ======= -->
+    <h2 id="mini-test">🧪 Mini-test de criba · Tema 7 (15 preguntas)</h2>
+    <p style="margin-bottom:16px; color:var(--muted); font-size:0.95rem;">Preguntas reales de oposición sobre Acción Protectora. Haz clic en la opción correcta.</p>
+
+    <div id="testContainer">
+        <!-- Pregunta 1 -->
+        <div class="test-question" data-q="0">
+            <div class="test-q-text"><span class="test-q-num">1</span>¿Cuál es el plazo de prescripción de la Seguridad Social para exigir el reintegro de las prestaciones percibidas indebidamente?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 año</div>
+                <div class="test-option" data-ans="0">B) 3 años</div>
+                <div class="test-option" data-ans="1">C) 4 años ✓</div>
+                <div class="test-option" data-ans="0">D) 5 años</div>
+            </div>
+            <div class="test-feedback" data-ok="El plazo de prescripción para reclamar prestaciones cobradas indebidamente es de <strong>4 años</strong>[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="test-question" data-q="1">
+            <div class="test-q-text"><span class="test-q-num">2</span>¿Cuántas pagas anuales tienen reconocidas las pensiones contributivas derivadas de accidente de trabajo o enfermedad profesional?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) 12 pagas (las extraordinarias están prorrateadas) ✓</div>
+                <div class="test-option" data-ans="0">B) 14 pagas</div>
+                <div class="test-option" data-ans="0">C) 13 pagas</div>
+                <div class="test-option" data-ans="0">D) 12 pagas sin derecho a extras de ningún tipo</div>
+            </div>
+            <div class="test-feedback" data-ok="Las pensiones por contingencia profesional tienen <strong>12 pagas</strong> al año porque las pagas extras van prorrateadas mensualmente en la base reguladora[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="test-question" data-q="2">
+            <div class="test-q-text"><span class="test-q-num">3</span>¿Cuál de las siguientes opciones NO constituye una excepción legal a la inembargabilidad de las prestaciones de la Seguridad Social?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Obligaciones alimenticias a favor de los hijos por sentencia judicial</div>
+                <div class="test-option" data-ans="0">B) Deudas contraídas por el propio beneficiario con la Seguridad Social</div>
+                <div class="test-option" data-ans="1">C) Deudas derivadas de préstamos bancarios o hipotecarios personales ✓</div>
+                <div class="test-option" data-ans="0">D) Obligaciones alimenticias a favor del cónyuge</div>
+            </div>
+            <div class="test-feedback" data-ok="Las únicas excepciones válidas son las <strong>obligaciones alimenticias familiares</strong> y las <strong>deudas con la propia Seguridad Social</strong>[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="test-question" data-q="3">
+            <div class="test-q-text"><span class="test-q-num">4</span>¿Qué grupo de prestaciones goza del principio de automaticidad absoluta o plena en el Régimen General?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Jubilación, Incapacidad Temporal y Viudedad</div>
+                <div class="test-option" data-ans="1">B) Accidente de Trabajo, Enfermedad Profesional, Desempleo y Asistencia Sanitaria ✓</div>
+                <div class="test-option" data-ans="0">D) Nacimiento y cuidado de menor únicamente</div>
+            </div>
+            <div class="test-feedback" data-ok="La automaticidad absoluta ampara al **Accidente de Trabajo, Enfermedad Profesional, Desempleo y Asistencia Sanitaria**[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="test-question" data-q="4">
+            <div class="test-q-text"><span class="test-q-num">5</span>¿Cuál de las siguientes prestaciones se rige por el principio de automaticidad relativa?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Asistencia sanitaria por accidente de trabajo</div>
+                <div class="test-option" data-ans="1">B) Incapacidad Temporal derivada de enfermedad común ✓</div>
+                <div class="test-option" data-ans="0">C) Prestación contributiva por desempleo</div>
+                <div class="test-option" data-ans="0">D) Subsidio económico por enfermedad profesional</div>
+            </div>
+            <div class="test-feedback" data-ok="Las contingencias comunes (como la IT por enfermedad común) tienen **automaticidad relativa**, exigiendo que el trabajador estuviera en alta real o asimilada[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 6 -->
+        <div class="test-question" data-q="5">
+            <div class="test-q-text"><span class="test-q-num">6</span>Cuando una entidad gestora o mutua adelanta el abono de una prestación ante un impago empresarial (anticipo), ¿cuál es el límite general de dicho anticipo?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El 100% del Salario Mínimo Interprofesional</div>
+                <div class="test-option" data-ans="1">B) Un máximo de 2,5 veces el IPREM vigente ✓</div>
+                <div class="test-option" data-ans="0">C) No tiene límites, se abona la prestación íntegra indefinidamente</div>
+                <div class="test-option" data-ans="0">D) 1,5 veces el valor medio de la base de cotización sectorial</div>
+            </div>
+            <div class="test-feedback" data-ok="El límite legal del anticipo de prestaciones por subrogación se fija en **2,5 veces el IPREM**[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 7 -->
+        <div class="test-question" data-q="6">
+            <div class="test-q-text"><span class="test-q-num">7</span>¿A qué contingencias ampara la situación protectora denominada 'Alta de pleno derecho'?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Jubilación, Incapacidad Permanente y Muerte</div>
+                <div class="test-option" data-ans="1">B) Accidente de Trabajo, Enfermedad Profesional y Desempleo ✓</div>
+                <div class="test-option" data-ans="0">C) Exclusivamente a la Asistencia Sanitaria Común</div>
+                <div class="test-option" data-ans="0">D) A todo el catálogo de prestaciones contributivas por igual</div>
+            </div>
+            <div class="test-feedback" data-ok="El alta de pleno derecho cubre de forma automática los supuestos de <strong>AT, EP y Desempleo</strong> aunque el empresario no haya tramitado el alta oficial[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 8 -->
+        <div class="test-question" data-q="7">
+            <div class="test-q-text"><span class="test-q-num">8</span>¿Qué porcentaje de recargo se puede imponer al empresario sobre las prestaciones derivadas de un AT o EP si se demuestra el incumplimiento de las medidas de seguridad?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Del 10% al 20%</div>
+                <div class="test-option" data-ans="0">B) Del 20% al 40%</div>
+                <div class="test-option" data-ans="1">C) Del 30% al 50% ✓</div>
+                <div class="test-option" data-ans="0">D) Un 100% fijo de recargo punitivo</div>
+            </div>
+            <div class="test-feedback" data-ok="El recargo de prestaciones por infracción de seguridad laboral oscila **entre el 30% y el 50%**, recayendo exclusivamente sobre el empresario[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 9 -->
+        <div class="test-question" data-q="8">
+            <div class="test-q-text"><span class="test-q-num">9</span>Para causar el derecho a una Incapacidad Permanente Parcial, ¿qué grado de disminución del rendimiento normal se exige en el Régimen General?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) Una disminución no inferior al 33% ✓</div>
+                <div class="test-option" data-ans="0">B) Una disminución no inferior al 50%</div>
+                <div class="test-option" data-ans="0">C) Una pérdida absoluta de capacidad de al menos el 25%</div>
+                <div class="test-option" data-ans="0">D) Cualquier disminución superior al 10% evaluada por el EVI</div>
+            </div>
+            <div class="test-feedback" data-ok="En el Régimen General se exige una disminución del rendimiento de **al menos el 33%** para la profesión habitual[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 10 -->
+        <div class="test-question" data-q="9">
+            <div class="test-q-text"><span class="test-q-num">10</span>¿Qué porcentaje de disminución en el rendimiento normal para la profesión habitual se exige en el RETA (Autónomos) para reconocer una IP Parcial?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El mismo que en el Régimen General (33%)</div>
+                <div class="test-option" data-ans="1">B) Una disminución no inferior al 50% ✓</div>
+                <div class="test-option" data-ans="0">C) Una disminución del 65%</div>
+                <div class="test-option" data-ans="0">D) No existe la prestación de IP Parcial para los trabajadores autónomos</div>
+            </div>
+            <div class="test-feedback" data-ok="Trampa típica: el RETA es más exigente y requiere **como mínimo el 50% de disminución** del rendimiento laboral[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 11 -->
+        <div class="test-question" data-q="10">
+            <div class="test-q-text"><span class="test-q-num">11</span>Si un trabajador autónomo solicita una prestación y consta que tiene deudas con la Seguridad Social, ¿de qué plazo dispone tras la 'invitación al pago' para regularizar su situación?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 15 días hábiles</div>
+                <div class="test-option" data-ans="0">B) 30 días hábiles</div>
+                <div class="test-option" data-ans="1">C) 30 días naturales ✓</div>
+                <div class="test-option" data-ans="0">D) 3 meses prorrogables</div>
+            </div>
+            <div class="test-feedback" data-ok="La invitación al pago en el RETA otorga un plazo improrrogable de <strong>30 días naturales</strong> para liquidar la deuda[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 12 -->
+        <div class="test-question" data-q="11">
+            <div class="test-q-text"><span class="test-q-num">12</span>¿Cuál de las siguientes prestaciones públicas está totalmente EXENTA de tributación por el impuesto de la renta (IRPF)?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Pensión de jubilación ordinaria contributiva</div>
+                <div class="test-option" data-ans="0">B) Pensión por Incapacidad Permanente Total</div>
+                <div class="test-option" data-ans="1">C) Pensión por Gran Invalidez o Incapacidad Permanente Absoluta ✓</div>
+                <div class="test-option" data-ans="0">D) Subsidio por Incapacidad Temporal común</div>
+            </div>
+            <div class="test-feedback" data-ok="Las pensiones por **Incapacidad Permanente Absoluta y Gran Invalidez** están totalmente exentas de IRPF[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 13 -->
+        <div class="test-question" data-q="12">
+            <div class="test-q-text"><span class="test-q-num">13</span>¿Cuándo opera legalmente la presunción 'iuris tantum' de que una lesión corporal constituye un Accidente de Trabajo?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Siempre que se produzca dentro del término municipal de la empresa</div>
+                <div class="test-option" data-ans="1">B) Cuando la lesión ocurra en tiempo y lugar de trabajo ✓</div>
+                <div class="test-option" data-ans="0">C) Solo si está presente un delegado de prevención o testigo real</div>
+                <div class="test-option" data-ans="0">D) Únicamente si el diagnóstico es emitido por el médico de la Mutua</div>
+            </div>
+            <div class="test-feedback" data-ok="Se presume accidente laboral toda lesión acontecida <strong>en tiempo y lugar de trabajo</strong>, correspondiendo la carga de la prueba a quien afirme lo contrario[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 14 -->
+        <div class="test-question" data-q="13">
+            <div class="test-q-text"><span class="test-q-num">14</span>¿Qué instrumento financiero utiliza la TGSS para reclamar de forma coactiva a una empresa el importe necesario para abonar una pensión de por vida debida a su falta de alta?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Acta de liquidación ordinaria de cuotas pendientes</div>
+                <div class="test-option" data-ans="1">B) Reclamación de Capital Coste de la pensión ✓</div>
+                <div class="test-option" data-ans="0">C) Fondo de garantía pensional extraordinario</div>
+                <div class="test-option" data-ans="0">D) Póliza subsidiaria de retención directa de activos</div>
+            </div>
+            <div class="test-feedback" data-ok="La TGSS exige al empresario infractor la constitución del <strong>Capital Coste</strong> pensional para asegurar los pagos vitalicios del trabajador[cite: 4]."></div>
+        </div>
+
+        <!-- Pregunta 15 -->
+        <div class="test-question" data-q="14">
+            <div class="test-q-text"><span class="test-q-num">15</span>En un proceso de Incapacidad Temporal de larga duración de un autónomo (RETA), ¿cuándo pasa la Mutua o la entidad gestora a asumir el pago de sus cuotas mensuales?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Desde el primer día de emisión del parte de baja médica</div>
+                <div class="test-option" data-ans="0">B) A partir del día 16 de la baja</div>
+                <div class="test-option" data-ans="1">C) Transcurridos 60 días naturales desde el inicio de la baja médica ✓</div>
+                <div class="test-option" data-ans="0">D) Al agotarse los primeros 365 días del subsidio económico</div>
+            </div>
+            <div class="test-feedback" data-ok="El autónomo paga su cuota los primeros 60 días; **a partir del día 61 de la baja (60 días transcurridos)**, la Mutua se encarga de abonar sus cuotas de cotización[cite: 4]."></div>
+        </div>
+    </div>
+
+    <!-- Puntuación final del Mini-test -->
+    <div class="test-score" id="testScore">
+        <div class="score-num" id="scoreNum">0/15</div>
+        <div class="score-label">Respuestas correctas</div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <br>
+        <button class="btn-reiniciar" onclick="reiniciarTest()">🔄 Reiniciar test</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= 🃏 SECCIÓN DE PREGUNTA ALEATORIA (TARJETAS) ======= -->
+    <h2>🃏 Práctica con Tarjetas Aleatorias (Tema 7)</h2>
+    <p style="margin-bottom:16px; color:var(--muted); font-size:0.95rem;">Haz clic sobre la tarjeta para voltearla y ver la solución oficial. Pulsa el botón para cambiar de pregunta.</p>
+
+    <!-- Tarjeta Interactiva -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+            <div class="flip-card-front" id="pregunta">
+                Cargando pregunta...
+            </div>
+            <div class="flip-card-back" id="respuesta">
+                Cargando respuesta...
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de Control -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <button id="btn-otra" onclick="cargarPreguntaAleatoria()">Otra pregunta</button>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ENTRE TEMAS ======= -->
+    <div class="nav-bar">
+        <a href="tema6_fusionado_completo.html">⬅ Tema 6</a>
+        <a href="index.html" class="indice">🏠 Índice de Temas</a>
+        <a href="tema8_fusionado_completo.html">Tema 8 ➡</a>
+    </div>
+
+    <!-- ======= FOOTER ======= -->
+    <div class="footer">
+        Tema 7 — Acción Protectora de la Seguridad Social · Seguridad Social · Convocatoria 2026<br>
+        Material unificado: esquema web + transcripciones completas con control de errores<br>
+        <span style="color:#27ae60;">✅ Conexión automatizada con el archivo externo 'preguntas7.js'</span>
+    </div>
+
+</div> <!-- /fin container -->
+
+<!-- ========================================== -->
+<!-- SCRIPTS Y CONTROLADORES JAVASCRIPT         -->
+<!-- ========================================== -->
+
+<script src="preguntas7.js"></script>
+
+<script>
+    // --- LÓGICA DEL MINI-TEST INTERACTIVO ---
+    (function(){
+        var correct = 0, answered = 0, total = 15;
+        document.querySelectorAll('.test-question').forEach(function(q){
+            var opts = q.querySelectorAll('.test-option');
+            var fb = q.querySelector('.test-feedback');
+            var okText = fb.getAttribute('data-ok');
+            opts.forEach(function(opt){
+                opt.addEventListener('click', function(){
+                    if(q.dataset.done) return;
+                    q.dataset.done = '1';
+                    var isCorrect = opt.getAttribute('data-ans') === '1';
+                    opts.forEach(function(o){
+                        o.classList.add('disabled');
+                        if(o.getAttribute('data-ans') === '1') o.classList.add('correct');
+                    });
+                    if(!isCorrect) opt.classList.add('wrong');
+                    fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + okText;
+                    fb.classList.add('show', isCorrect ? 'ok' : 'ko');
+                    if(isCorrect) correct++;
+                    answered++;
+                    if(answered === total){
+                        var score = document.getElementById('testScore');
+                        document.getElementById('scoreNum').textContent = correct + '/' + total;
+                        var msg = correct >= 13 ? '🏆 ¡Excelente! Dominas la Acción Protectora a la perfección.' : correct >= 10 ? '👍 Muy buen nivel. Revisa bien las diferencias del RETA.' : correct >= 7 ? '⚠️ Regular. Échale otro vistazo al Kit de criba o a la tabla inicial.' : '🔁 Necesitas más estudio. Vuelve a repasar los conceptos de automaticidad.';
+                        document.getElementById('scoreMsg').textContent = msg;
+                        score.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        window.reiniciarTest = function(){
+            document.querySelectorAll('.test-question').forEach(function(q){
+                delete q.dataset.done;
+                q.querySelectorAll('.test-option').forEach(function(o){ o.classList.remove('correct','wrong','disabled'); });
+                var fb = q.querySelector('.test-feedback');
+                fb.classList.remove('show','ok','ko');
+            });
+            correct = 0; answered = 0;
+            document.getElementById('testScore').style.display = 'none';
+            window.scrollTo({top: document.getElementById('mini-test').offsetTop - 20, behavior:'smooth'});
+        };
+    })();
+
+    // --- LÓGICA DE LAS TARJETAS ALEATORIAS ---
+    function cargarPreguntaAleatoria() {
+        if (typeof preguntas === 'undefined' || preguntas.length === 0) {
+            document.getElementById("pregunta").innerHTML = "<span style='color:var(--accent3);'>⚠️ Archivo 'preguntas7.js' no detectado o vacío.</span><br><br>Crea el archivo JS en esta misma carpeta para activar las tarjetas.";
+            document.getElementById("respuesta").innerText = "No se pudieron cargar las soluciones.";
+            return;
+        }
+
+        const random = Math.floor(Math.random() * preguntas.length);
+        document.getElementById("pregunta").innerText = preguntas[random].pregunta;
+        document.getElementById("respuesta").innerText = preguntas[random].respuesta;
+
+        const card = document.querySelector('.flip-card');
+        card.classList.remove('flipped');
+        
+        const btn = document.getElementById("btn-otra");
+        btn.classList.add("verde");
+        setTimeout(() => { btn.classList.remove("verde"); }, 400);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        cargarPreguntaAleatoria();
+    });
+</script>
+
+</body>
+</html>

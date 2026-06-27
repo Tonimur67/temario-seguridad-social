@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 10 - Jubilación en la modalidad contributiva</title>
+    <style>
+        /* === RESET Y ESTILOS GENERALES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1a2a3a;
+            line-height: 1.7;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.12);
+            padding: 40px 50px;
+        }
+
+        .header {
+            border-bottom: 4px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #2e6b8a;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .badge-fusion {
+            display: inline-block;
+            background: #1a5276;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        .badge-update {
+            display: inline-block;
+            background: #27ae60;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .nav {
+            background: #eaf2f8;
+            border-radius: 16px;
+            padding: 18px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .nav a {
+            color: #1a5276;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav a:hover {
+            border-bottom-color: #1a5276;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            margin-top: 45px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #d4e6f1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a5276;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0 25px 0;
+            border-radius: 14px;
+            border: 1px solid #dce6ed;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        th {
+            background: #1a3a4f;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid #e9edf2;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-highlight td {
+            background: #fef9e8;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+        }
+
+        .tag-web {
+            background: #d4e6f1;
+            color: #1a5276;
+        }
+
+        .tag-video {
+            background: #fdebd0;
+            color: #a04000;
+        }
+
+        .tag-fusion {
+            background: #d5f5e3;
+            color: #1a6e4b;
+        }
+
+        .tag-update {
+            background: #abebc6;
+            color: #1a6e4b;
+        }
+
+        .trampa {
+            background: #fef9e7;
+            border-left: 6px solid #f39c12;
+            padding: 18px 24px;
+            border-radius: 0 14px 14px 0;
+            margin: 22px 0;
+        }
+        .trampa strong { color: #b9770e; }
+
+        .cepo {
+            background: #fdedec;
+            border-left: 6px solid #e74c3c;
+            padding: 18px 24px;
+            border-radius: 0 14px 14px 0;
+            margin: 22px 0;
+        }
+        .cepo strong { color: #b03a2e; }
+
+        .destacado {
+            background: #eaf2f8;
+            padding: 16px 22px;
+            border-radius: 14px;
+            margin: 18px 0;
+            border: 1px solid #bdd7e8;
+        }
+        .destacado strong { color: #1a5276; }
+
+        .caja-dato {
+            background: #1a2a3a;
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 14px;
+            margin: 18px 0;
+            font-size: 0.95rem;
+        }
+        .caja-dato strong { color: #f1c40f; }
+
+        ul, ol {
+            padding-left: 28px;
+            margin: 12px 0 18px 0;
+        }
+        li { margin-bottom: 6px; }
+
+        .back-top {
+            display: inline-block;
+            margin-top: 40px;
+            background: #1a5276;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .back-top:hover { background: #0d3b55; }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #d4e6f1;
+            font-size: 0.85rem;
+            color: #5d6d7e;
+            text-align: center;
+        }
+
+        /* === BLOQUES DE COLOR === */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .full { grid-column: 1 / -1; }
+
+        .block {
+            background: #f8fafc;
+            border: 1px solid #dce6ed;
+            border-radius: 14px;
+            padding: 18px 22px;
+            transition: box-shadow 0.2s;
+        }
+        .block:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+        .block-title {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dce6ed;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .yellow .block-title { color: #b7950b; }
+        .yellow .dot { background: #f1c40f; }
+        .blue .block-title { color: #1a5276; }
+        .blue .dot { background: #2980b9; }
+        .red .block-title { color: #b03a2e; }
+        .red .dot { background: #e74c3c; }
+        .green .block-title { color: #1e7e34; }
+        .green .dot { background: #27ae60; }
+        .purple .block-title { color: #6c3483; }
+        .purple .dot { background: #8e44ad; }
+        .orange .block-title { color: #b9770e; }
+        .orange .dot { background: #f39c12; }
+
+        .item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .item:last-child { margin-bottom: 0; }
+        .item .arrow {
+            color: #6b7292;
+            flex-shrink: 0;
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.9rem;
+        }
+        .item strong { color: #0d2b3e; }
+
+        .pill {
+            display: inline-block;
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+        .pill-y { background: #fef9e7; color: #b7950b; border: 1px solid #f9e79f; }
+        .pill-b { background: #eaf2f8; color: #1a5276; border: 1px solid #aed6f1; }
+        .pill-r { background: #fdedec; color: #b03a2e; border: 1px solid #f5b7b1; }
+        .pill-g { background: #eafaf1; color: #1e7e34; border: 1px solid #a9dfbf; }
+        .pill-p { background: #f4ecf7; color: #6c3483; border: 1px solid #d7bde2; }
+        .pill-o { background: #fef9e7; color: #b9770e; border: 1px solid #f9e79f; }
+
+        .note {
+            background: rgba(74,222,128,0.05);
+            border: 1px solid rgba(74,222,128,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .note .nlabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #1e7e34;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .alert {
+            background: rgba(255,95,95,0.08);
+            border: 1px solid rgba(255,95,95,0.25);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .alert .alabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #b03a2e;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info {
+            background: rgba(61,158,255,0.05);
+            border: 1px solid rgba(61,158,255,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .info .ilabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #1a5276;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .sub-head {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 12px 0 6px 0;
+        }
+
+        .ejemplo {
+            background: #f0f7fb;
+            border-left: 4px solid #2980b9;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 10px 0;
+            font-size: 0.92rem;
+        }
+        .ejemplo strong { color: #1a5276; }
+
+        .formula {
+            background: #eaf2f8;
+            padding: 16px 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0d2b3e;
+            margin: 10px 0;
+            border: 1px solid #bdd7e8;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
+            .header h1 { font-size: 1.7rem; }
+            .nav { flex-direction: column; gap: 4px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            h2 { font-size: 1.5rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 10px 12px; }
+        }
+        /* === TABLA DATOS CLAVE === */
+        .datos-table th { background: #0d2b3e; }
+        .datos-table tr:hover td { background: #f0f7fb; }
+        .pb-red { background:#fdedec; color:#b03a2e; border:1px solid #f5b7b1; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-blue { background:#eaf2f8; color:#1a5276; border:1px solid #aed6f1; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-green { background:#eafaf1; color:#1e7e34; border:1px solid #a9dfbf; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-yellow { background:#fef9e7; color:#b7950b; border:1px solid #f9e79f; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-purple { background:#f5eef8; color:#6c3483; border:1px solid #d2b4de; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        /* === MINI-TEST === */
+        .test-question { background:#f8fafc; border:1px solid #dce6ed; border-radius:14px; padding:20px 24px; margin-bottom:16px; }
+        .test-q-num { display:inline-block; background:#1a3a4f; color:#fff; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:20px; margin-right:8px; }
+        .test-q-text { font-weight:600; color:#0d2b3e; font-size:1rem; margin-bottom:14px; }
+        .test-options { display:flex; flex-direction:column; gap:8px; }
+        .test-option { display:flex; align-items:flex-start; gap:10px; background:#fff; border:2px solid #dce6ed; border-radius:10px; padding:12px 16px; cursor:pointer; font-size:0.93rem; transition:border-color 0.15s, background 0.15s; user-select:none; }
+        .test-option:hover { border-color:#2980b9; background:#eaf2f8; }
+        .test-option.correct { border-color:#27ae60; background:#eafaf1; color:#1e7e34; font-weight:600; }
+        .test-option.wrong { border-color:#e74c3c; background:#fdedec; color:#b03a2e; }
+        .test-option.disabled { pointer-events:none; }
+        .test-feedback { margin-top:10px; padding:10px 16px; border-radius:8px; font-size:0.9rem; display:none; }
+        .test-feedback.show { display:block; }
+        .test-feedback.ok { background:#eafaf1; border-left:4px solid #27ae60; color:#1e7e34; }
+        .test-feedback.ko { background:#fdedec; border-left:4px solid #e74c3c; color:#b03a2e; }
+        .test-score { background:#1a2a3a; color:#fff; border-radius:14px; padding:20px 28px; text-align:center; display:none; margin-top:20px; }
+        .test-score .score-num { font-size:2.8rem; font-weight:700; color:#f1c40f; }
+        .test-score .score-label { font-size:1rem; color:#aab; margin-top:4px; }
+        .test-score .score-msg { font-size:0.95rem; margin-top:10px; color:#ddd; }
+        .btn-reiniciar { background:#1a5276; color:#fff; border:none; border-radius:30px; padding:10px 28px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:14px; transition:background 0.2s; }
+        .btn-reiniciar:hover { background:#0d3b55; }
+            /* --- ESTILO DE LA TARJETA --- */
+.flip-card {
+  margin: 20px auto;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.flip-card-front {
+  border: 2px solid #004aad;
+}
+
+.flip-card-back {
+  background: #004aad;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+/* --- BOTÓN OTRA PREGUNTA --- */
+#btn-otra {
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #d40000; /* rojo */
+  color: white;
+  border: none;
+  transition: background-color 0.4s ease;
+}
+
+#btn-otra.verde {
+  background-color: #00a000; /* verde */
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ======= HEADER ======= -->
+    <div class="header">
+        <h1>Tema 10 · Jubilación en la modalidad contributiva</h1>
+        <div class="subtitle">Jubilación ordinaria · Base reguladora · Porcentajes · Complementos · Anticipada · Parcial</div>
+        <span class="badge-fusion">📚 Desarrollo completo · Esquema web</span>
+        <span class="badge-update">✅ Con tablas, fórmulas y alertas de examen</span>
+        <div style="margin-top: 8px; font-size: 0.85rem; color: #5d6d7e;">
+            Arts. 204-215 TRLGSS · RD 371/2023 · LPGE 2025-2026
+        </div>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ======= -->
+    <div class="nav">
+        <a href="#datos-clave">⚡ Datos clave</a>
+        <a href="#p1">01. Jubilación ordinaria</a>
+        <a href="#p2">02. Base reguladora</a>
+        <a href="#p3">03. Porcentaje</a>
+        <a href="#p4">04. Complemento por demora</a>
+        <a href="#p5">05. Brecha de género</a>
+        <a href="#p6">06. Jubilación anticipada</a>
+        <a href="#p7">07. Jubilación parcial</a>
+        <a href="#kit">🎯 Kit de criba</a>
+        <a href="#minitest">🧪 Mini-test</a>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= TABLA DATOS CLAVE ======= -->
+    <h2 id="datos-clave" style="color:#0d2b3e; border-bottom:3px solid #f1c40f;">⚡ Datos clave del tema (lo más preguntado)</h2>
+    <p style="margin-bottom:14px; color:#5d6d7e; font-size:0.93rem;">Este tema concentra muchos <strong>números y requisitos concretos</strong>. Consulta esta tabla antes de estudiar cada sección para que los datos se anclen.</p>
+
+    <div class="table-wrap">
+        <table class="datos-table">
+            <thead>
+                <tr>
+                    <th style="width:38%">Concepto</th>
+                    <th style="width:22%">Dato</th>
+                    <th style="width:15%">Bloque</th>
+                    <th style="width:25%">Truco / Alerta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">JUBILACIÓN ORDINARIA — REQUISITOS</td>
+                </tr>
+                <tr>
+                    <td>Carencia general</td>
+                    <td><strong>15 años</strong></td>
+                    <td><span class="pb-blue">Ordinaria</span></td>
+                    <td>Período mínimo de cotización total</td>
+                </tr>
+                <tr>
+                    <td>Carencia específica</td>
+                    <td><strong>2 años</strong> en los últimos <strong>15</strong></td>
+                    <td><span class="pb-blue">Ordinaria</span></td>
+                    <td>⚠️ Los 2 años deben estar en los 15 años anteriores al hecho causante</td>
+                </tr>
+                <tr>
+                    <td>Edad 2026 — con ≥ 38 años y 3 meses cotizados</td>
+                    <td><strong>65 años</strong></td>
+                    <td><span class="pb-blue">Ordinaria</span></td>
+                    <td>Tramo de transición; 2025 también es 65 años</td>
+                </tr>
+                <tr>
+                    <td>Edad 2026 — con &lt; 38 años y 3 meses cotizados</td>
+                    <td><strong>66 años y 10 meses</strong></td>
+                    <td><span class="pb-blue">Ordinaria</span></td>
+                    <td>⚠️ 2025 = 66 años y 8 meses; 2027 en adelante = 67 años</td>
+                </tr>
+                <tr>
+                    <td>Edad definitiva 2027 en adelante — con &lt; 38,3 años cotizados</td>
+                    <td><strong>67 años</strong></td>
+                    <td><span class="pb-blue">Ordinaria</span></td>
+                    <td>Con ≥ 38,3 años sigue siendo 65 años</td>
+                </tr>
+                <tr>
+                    <td>Edad mínima por coeficientes reductores (actividades penosas)</td>
+                    <td><strong>52 años</strong></td>
+                    <td><span class="pb-blue">Ordinaria</span></td>
+                    <td>Límite infranqueable: no puede bajar de 52</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">BASE REGULADORA</td>
+                </tr>
+                <tr>
+                    <td>Período de cálculo total (meses disponibles)</td>
+                    <td><strong>348 meses</strong></td>
+                    <td><span class="pb-green">BR</span></td>
+                    <td>De estos 348, el INSS elige de oficio los 324 de mayor importe</td>
+                </tr>
+                <tr>
+                    <td>Bases que entran en el cálculo</td>
+                    <td><strong>324 meses</strong></td>
+                    <td><span class="pb-green">BR</span></td>
+                    <td>Las 324 de mayor importe de los 348</td>
+                </tr>
+                <tr>
+                    <td>Denominador de la fórmula</td>
+                    <td><strong>378</strong></td>
+                    <td><span class="pb-green">BR</span></td>
+                    <td>= 324 bases + 54 pagas extras (12 meses × 4,5 años)</td>
+                </tr>
+                <tr>
+                    <td>Meses en valor nominal (sin actualizar)</td>
+                    <td><strong>24 meses</strong></td>
+                    <td><span class="pb-green">BR</span></td>
+                    <td>Los 24 meses más recientes se computan a valor nominal</td>
+                </tr>
+                <tr>
+                    <td>Integración de lagunas — primeras 48 mensualidades</td>
+                    <td><strong>Base mínima RG</strong></td>
+                    <td><span class="pb-green">BR</span></td>
+                    <td>Del mes correspondiente</td>
+                </tr>
+                <tr>
+                    <td>Integración de lagunas — resto de mensualidades</td>
+                    <td><strong>50%</strong> de la base mínima</td>
+                    <td><span class="pb-green">BR</span></td>
+                    <td>⚠️ Solo para meses SIN obligación de cotizar</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">PORCENTAJE APLICABLE</td>
+                </tr>
+                <tr>
+                    <td>Porcentaje por los primeros 15 años</td>
+                    <td><strong>50%</strong></td>
+                    <td><span class="pb-yellow">%</span></td>
+                    <td>Fijo, siempre igual</td>
+                </tr>
+                <tr>
+                    <td>Escala 2023-2026: meses 1 a 49 (desde año 16)</td>
+                    <td><strong>0,21% / mes</strong></td>
+                    <td><span class="pb-yellow">%</span></td>
+                    <td>49 meses adicionales al ritmo de 0,21%</td>
+                </tr>
+                <tr>
+                    <td>Escala 2023-2026: meses 50 a 258</td>
+                    <td><strong>0,19% / mes</strong></td>
+                    <td><span class="pb-yellow">%</span></td>
+                    <td>Baja el ritmo a partir del mes 50</td>
+                </tr>
+                <tr>
+                    <td>Escala 2027+: meses 1 a 248</td>
+                    <td><strong>0,19% / mes</strong></td>
+                    <td><span class="pb-yellow">%</span></td>
+                    <td>Unifica el ritmo desde el principio</td>
+                </tr>
+                <tr>
+                    <td>Escala 2027+: meses 249 a 264</td>
+                    <td><strong>0,18% / mes</strong></td>
+                    <td><span class="pb-yellow">%</span></td>
+                    <td>Últimos 16 meses</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">COMPLEMENTO POR DEMORA Y BRECHA DE GÉNERO</td>
+                </tr>
+                <tr>
+                    <td>Complemento por demora — porcentaje adicional</td>
+                    <td><strong>4% / año completo</strong></td>
+                    <td><span class="pb-purple">Demora</span></td>
+                    <td>Desde la edad ordinaria hasta el hecho causante</td>
+                </tr>
+                <tr>
+                    <td>Complemento por demora — períodos &gt; 6 meses</td>
+                    <td><strong>2%</strong> adicional</td>
+                    <td><span class="pb-purple">Demora</span></td>
+                    <td>Solo desde el segundo año completo de demora</td>
+                </tr>
+                <tr>
+                    <td>Incompatibilidades complemento demora</td>
+                    <td>Parcial · Flexible · Asimilada al alta</td>
+                    <td><span class="pb-purple">Demora</span></td>
+                    <td>⚠️ NO se aplica en ninguno de estos tres casos</td>
+                </tr>
+                <tr>
+                    <td>Brecha de género — importe 2025</td>
+                    <td><strong>35,90 €/mes por hijo</strong></td>
+                    <td><span class="pb-purple">Brecha</span></td>
+                    <td>En 14 pagas · Límite: 4 × 35,90 = 143,60 €/mes</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">JUBILACIÓN ANTICIPADA</td>
+                </tr>
+                <tr>
+                    <td>Anticipada por discapacidad (art. 206 bis)</td>
+                    <td><strong>≥65%</strong> (edad ≥52) | <strong>≥45%</strong> (edad fija 56)</td>
+                    <td><span class="pb-red">Anticipada</span></td>
+                    <td>⚠️ Exige 15 años de cotización efectiva con la discapacidad acreditada</td>
+                </tr>
+                <tr>
+                    <td>Anticipada por causa no imputable — antelación máxima</td>
+                    <td><strong>4 años</strong> antes</td>
+                    <td><span class="pb-red">Anticipada</span></td>
+                    <td>+ demandante de empleo ≥ 6 meses</td>
+                </tr>
+                <tr>
+                    <td>Anticipada por causa no imputable — cotización mínima</td>
+                    <td><strong>33 años</strong></td>
+                    <td><span class="pb-red">Anticipada</span></td>
+                    <td>⚠️ Cotización <em>efectiva</em> (no asimilada)</td>
+                </tr>
+                <tr>
+                    <td>Anticipada voluntaria — antelación máxima</td>
+                    <td><strong>2 años</strong> antes</td>
+                    <td><span class="pb-red">Anticipada</span></td>
+                    <td>Pensión debe superar la mínima a los 65 años</td>
+                </tr>
+                <tr>
+                    <td>Anticipada voluntaria — cotización mínima</td>
+                    <td><strong>35 años</strong></td>
+                    <td><span class="pb-red">Anticipada</span></td>
+                    <td>⚠️ 2 años más que la no imputable (33 vs 35)</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">JUBILACIÓN PARCIAL</td>
+                </tr>
+                <tr>
+                    <td>Reducción de jornada mínima / máxima</td>
+                    <td><strong>25% – 75%</strong></td>
+                    <td><span class="pb-green">Parcial</span></td>
+                    <td>85% si el relevo es a jornada completa e indefinido</td>
+                </tr>
+                <tr>
+                    <td>Anticipación máxima sin edad ordinaria</td>
+                    <td><strong>3 años</strong> antes</td>
+                    <td><span class="pb-green">Parcial</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Cotización mínima (caso general)</td>
+                    <td><strong>33 años</strong></td>
+                    <td><span class="pb-green">Parcial</span></td>
+                    <td>25 años si discapacidad ≥ 33%</td>
+                </tr>
+                <tr>
+                    <td>Antigüedad mínima en la empresa</td>
+                    <td><strong>6 años</strong></td>
+                    <td><span class="pb-green">Parcial</span></td>
+                    <td>Inmediatamente anteriores al hecho causante</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="caja-dato" style="margin-bottom:30px;">
+        <strong>🧠 Regla rápida:</strong> Anticipada <strong>no imputable</strong> = 4 años antes + <strong>33</strong> años cotizados. Anticipada <strong>voluntaria</strong> = 2 años antes + <strong>35</strong> años cotizados. BR = <strong>324</strong> bases ÷ <strong>378</strong>. Lagunas: primeras 48 → base mínima; resto → 50%.
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= 01. JUBILACIÓN ORDINARIA ======= -->
+    <h2 id="p1">01. Jubilación ordinaria (arts. 204-205 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Concepto y requisitos</div>
+            <div class="item"><span class="arrow">→</span><span>La pensión de jubilación es <strong>única para cada beneficiario</strong> y consiste en una <strong>pensión vitalicia</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Se reconoce cuando, alcanzada la edad establecida, el trabajador <strong>cese o haya cesado</strong> en el trabajo por cuenta ajena.</span></div>
+            <div class="sub-head">Tres condiciones para causar derecho</div>
+            <div class="item"><span class="arrow">→</span><span><strong>1.</strong> Estar <span class="pill pill-b">afiliado y en alta</span> (o situación asimilada al alta).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>2.</strong> Tener cumplida la <strong>edad mínima</strong> (según año natural y cotización).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>3.</strong> Acreditar el <strong>período mínimo de cotización</strong> (carencia): <span class="pill pill-g">15 años</span>, de los cuales <span class="pill pill-g">2 años</span> deben estar comprendidos en los <span class="pill pill-g">15 años inmediatamente anteriores</span> al hecho causante.</span></div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Edad de acceso ordinario (periodo transitorio)</div>
+            <div class="table-wrap" style="margin:10px 0;">
+                <table>
+                    <thead>
+                        <tr><th>Año</th><th>Con ≥ 38 años y 3 meses cotizados</th><th>Con < 38 años y 3 meses cotizados</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>2025</strong></td><td>65 años</td><td>66 años y 8 meses</td></tr>
+                        <tr><td><strong>2026</strong></td><td><span class="pill pill-y">65 años</span></td><td><span class="pill pill-y">66 años y 10 meses</span></td></tr>
+                        <tr><td><strong>2027 en adelante</strong></td><td>65 años</td><td>67 años</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Clave para el examen</div>
+                <p>Para <strong>2026</strong>: si tienes <span class="pill pill-y">38 años y 3 meses</span> o más cotizados → <strong>65 años</strong>. Si tienes menos → <strong>66 años y 10 meses</strong>.</p>
+                <p>Desde <strong>2027</strong>: 65 años (con ≥ 38,3 años) o 67 años (con menos).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="block full green">
+        <div class="block-title"><span class="dot"></span>Casos especiales de acceso</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Desde situación de <strong>NO alta</strong></div>
+                <div class="item"><span class="arrow">→</span><span>Se puede causar la pensión <strong>siempre que se reúnan</strong> los requisitos de edad y cotización general (15 años).</span></div>
+                <div class="item"><span class="arrow">→</span><span>La fecha del hecho causante se fija el <strong>día de presentación de la solicitud</strong>.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Alta sin obligación de cotizar</div>
+                <div class="item"><span class="arrow">→</span><span>El período específico de <strong>2 años</strong> (carencia específica) debe estar comprendido dentro de los <strong>15 años inmediatamente anteriores</strong> a la fecha en que <strong>cesó la obligación de cotizar</strong>.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Formalización tardía (No alta)</div>
+                <div class="item"><span class="arrow">→</span><span>Las cotizaciones acreditadas deben <strong>superponerse al menos 15 años</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>La carencia específica de 2 años se busca dentro de los <strong>3 meses anteriores o posteriores</strong> al día de presentación de la solicitud.</span></div>
+            </div>
+        </div>
+        <div class="trampa" style="margin-top:12px;">
+            <strong>⚠️ Trampa de examen:</strong> Para el cómputo de los períodos se toman <strong>años y meses completos</strong>, sin que se equiparen a ellos las fracciones de los mismos.
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 02. BASE REGULADORA ======= -->
+    <h2 id="p2">02. Base Reguladora (art. 209 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Cálculo de la Base Reguladora</div>
+            <div class="item"><span class="arrow">→</span><span>Se divide <span class="pill pill-b">entre 378</span> la suma de las bases de cotización del interesado durante los <span class="pill pill-b">324 meses</span> anteriores al mes previo al hecho causante.</span></div>
+            <div class="sub-head">Pasos para el cálculo</div>
+            <div class="item"><span class="arrow">→</span><span><strong>1. Selección:</strong> se toman <strong>348 meses consecutivos</strong> inmediatamente anteriores al mes previo al hecho causante.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>2. Elección de oficio:</strong> el INSS elige <strong>de oficio las 324 bases de mayor importe</strong> de esos 348 meses.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>3. Actualización por IPC:</strong> las bases de los <strong>24 meses anteriores</strong> se computan por su <strong>valor nominal</strong>. Las restantes se <strong>actualizan con el IPC</strong> desde el mes correspondiente hasta el mes inmediato anterior al período de valor nominal.</span></div>
+            <div class="formula">
+                BR = (Suma de 324 bases actualizadas) ÷ 378
+            </div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Detalle</div>
+                <p>El <strong>24</strong> se refiere a los meses sin actualizar. El <strong>378</strong> = 324 bases + 54 pagas extras (12 × 4,5 años).</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Integración de lagunas</div>
+            <div class="item"><span class="arrow">→</span><span>Si en el período de cálculo aparecen meses <strong>sin obligación de cotizar</strong> (lagunas), se integran así:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Primeras 48 mensualidades:</strong> con la <span class="pill pill-y">base mínima</span> de cotización del RG del mes respectivo.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Resto de mensualidades:</strong> con el <span class="pill pill-y">50%</span> de dicha base mínima.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Cláusula de control</div>
+            <div class="item"><span class="arrow">→</span><span>No se computan incrementos de bases de cotización en los <strong>últimos 2 años</strong> que sean superiores al incremento medio interanual del convenio colectivo aplicable.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Excepciones:</strong> ascensos reglamentarios, antigüedad o normas generales.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pluriempleo:</strong> las bases de las diversas empresas se suman, sin que la suma <strong>supere el límite máximo</strong> de cotización vigente.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> La integración de lagunas se aplica solo a meses <strong>sin obligación de cotizar</strong>, no a meses con cotización efectiva aunque sea por bases bajas.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 03. PORCENTAJE APLICABLE ======= -->
+    <h2 id="p3">03. Porcentaje aplicable a la pensión (art. 210 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="block full purple">
+        <div class="block-title"><span class="dot"></span>Escala de porcentajes según años cotizados</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Base general</div>
+                <div class="item"><span class="arrow">→</span><span>Por los primeros <span class="pill pill-g">15 años</span> de cotización: <span class="pill pill-b">50%</span> de la base reguladora.</span></div>
+                <div class="sub-head" style="margin-top:14px;">Escala transitoria (2023-2026)</div>
+                <div class="item"><span class="arrow">→</span><span>A partir del año 16:</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Meses 1 a 49:</strong> <span class="pill pill-y">0,21%</span> adicional por mes.</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Meses 50 a 258 (209 meses):</strong> <span class="pill pill-y">0,19%</span> adicional por mes.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Escala a partir de 2027</div>
+                <div class="item"><span class="arrow">→</span><span>A partir del año 16:</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Meses 1 a 248:</strong> <span class="pill pill-y">0,19%</span> adicional por mes.</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Meses 249 a 264 (16 meses):</strong> <span class="pill pill-y">0,18%</span> adicional por mes.</span></div>
+                <div class="ejemplo" style="margin-top:12px;">
+                    <strong>📌 Ejemplo:</strong> Una persona con <strong>30 años</strong> de cotización en 2026 tendrá: 50% (15 años) + (49 × 0,21%) + (131 × 0,19%) = 50% + 10,29% + 24,89% = <strong>85,18%</strong>.
+                </div>
+            </div>
+        </div>
+        <div class="caja-dato" style="margin-top:14px;">
+            <strong>📌 Clave para el examen:</strong> El <strong>50%</strong> por los primeros 15 años es fixed. Los porcentajes adicionales dependen del año de acceso (2023-2026 vs 2027 en adelante).
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 04. COMPLEMENTO POR DEMORA ======= -->
+    <h2 id="p4">04. Complemento económico por demora</h2>
+
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="grid-2">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Modalidades del complemento</div>
+            <div class="item"><span class="arrow">→</span><span>Cuando se accede a la jubilación a una edad <strong>superior a la ordinaria</strong>, se reconoce un complemento a elección del interesado.</span></div>
+            <div class="sub-head">1. Porcentaje adicional</div>
+            <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">4%</span> adicional por cada año completo cotizado desde la edad ordinaria hasta el hecho causante.</span></div>
+            <div class="item"><span class="arrow">→</span><span>A partir del <strong>segundo año completo</strong> de demora, se pueden computar periodos superiores a 6 meses e inferiores a 1 año → <span class="pill pill-g">2%</span> adicional.</span></div>
+            <div class="sub-head">2. Cantidad a tanto alzado (pago único)</div>
+            <div class="item"><span class="arrow">→</span><span>Por cada año completo cotizado entre la edad ordinaria y el hecho causante.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Si cotizó &lt; 44 años y 6 meses:</strong></span></div>
+            <div class="formula" style="font-size:0.9rem; background:#fef9e7; border-color:#f9e79f;">
+                Pago único = 800 × (Pensión inicial anual / 500)^(1/1,65)
+            </div>
+            <div class="item"><span class="arrow">→</span><span><strong>Si cotizó ≥ 44 años y 6 meses:</strong> la cifra anterior se <span class="pill pill-g">aumenta en un 10%</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span>A partir del segundo año completo de demora, por períodos &gt; 6 meses y &lt; 1 año, se multiplica la cuantía por <span class="pill pill-g">0,5</span>.</span></div>
+            <div class="sub-head">3. Combinación de ambas</div>
+            <div class="item"><span class="arrow">→</span><span>En los términos que se determinen reglamentariamente (RD 371/2023).</span></div>
+        </div>
+        <div class="block red">
+            <div class="block-title"><span class="dot"></span>Incompatibilidades del complemento por demora</div>
+            <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">NO</span> se aplica en los siguientes supuestos:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Jubilación <strong>parcial</strong>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Jubilación <strong>flexible</strong>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Acceso desde una <strong>situación asimilada al alta</strong>.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> El complemento por demora <strong>NO</strong> se aplica en jubilación parcial, flexible ni desde situación asimilada al alta. Son incompatibles.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 05. COMPLEMENTO DE BRECHA DE GÉNERO ======= -->
+    <h2 id="p5">05. Complemento para la reducción de la brecha de género (art. 60 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Beneficiarios y requisitos</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Regla general:</strong> las <span class="pill pill-p">mujeres</span> que hayan tenido uno o más hijos y sean beneficiarias de una pensión contributiva de <strong>jubilación, IP o viudedad</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span>El derecho se reconoce de forma <strong>automática</strong>, salvo que medie solicitud y reconocimiento en favor del otro progenitor.</span></div>
+            <div class="sub-head">Acceso para hombres</div>
+            <div class="item"><span class="arrow">→</span><span>Pueden tener derecho si concurre <strong>uno</strong> de estos requisitos:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>1.</strong> Tener reconocida una pensión de <strong>viudedad</strong> por fallecimiento del otro progenitor, y algún hijo tenga derecho a orfandad.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>2.</strong> Causar pensión de jubilación o IP y haber <strong>interrumpido o visto afectada su carrera profesional</strong> por nacimiento o adopción.</span></div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Naturaleza y cuantía</div>
+            <div class="item"><span class="arrow">→</span><span>Naturaleza jurídica de <strong>pensión pública contributiva</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Importe fijado en la LPGE. Para <strong>2025</strong>: <span class="pill pill-y">35,90 €</span> mensuales por hijo/a.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Límite: <span class="pill pill-y">4 veces</span> el importe mensual por hijo/a.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Se abona en <span class="pill pill-y">14 pagas</span> junto con la pensión.</span></div>
+            <div class="ejemplo">
+                <strong>📌 Ejemplo:</strong> Una mujer con <strong>2 hijos</strong> en 2025 recibirá 2 × 35,90 = <strong>71,80 €/mes</strong> en 14 pagas (1005,20 €/año).
+            </div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Clave para el examen</div>
+                <p>El complemento de brecha de género es <strong>automático</strong> para mujeres con hijos, y no requiere solicitud expresa (salvo que se quiera renunciar o que el padre lo solicite).</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 06. JUBILACIÓN ANTICIPADA ======= -->
+    <h2 id="p6">06. Jubilación anticipada (arts. 206-208 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="grid-2">
+        <div class="block red">
+            <div class="block-title"><span class="dot"></span>A) Por razón de la actividad (art. 206)</div>
+            <div class="item"><span class="arrow">→</span><span>La edad ordinaria se puede rebajar por RD en actividades <strong>penosas, peligrosas, tóxicas o insalubres</strong> (Minería, Ferroviarios, Personal de vuelo, Bomberos, Ertzaintza, Policías Locales, etc.).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Límite infranqueable:</strong> la aplicación de coeficientes reductores de la edad <span class="pill pill-r">NO</span> puede dar lugar a una edad <span class="pill pill-r">inferior a 52 años</span>.</span></div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>B) Por discapacidad (art. 206 bis)</div>
+            <div class="sub-head">Discapacidad ≥ 65%</div>
+            <div class="item"><span class="arrow">→</span><span>Aplicación de coeficientes reductores de <span class="pill pill-b">0,25</span> o de <span class="pill pill-b">0,50</span> (si acredita necesidad de tercera persona).</span></div>
+            <div class="item"><span class="arrow">→</span><span>La edad resultante de aplicar la reducción nunca podrá ser inferior a los <span class="pill pill-b">52 años</span> (edad resultante ≥ 52 años).</span></div>
+            
+            <div class="sub-head">Discapacidad ≥ 45%</div>
+            <div class="item"><span class="arrow">→</span><span>Aplicable a patologías del listado reglamentario (con reducción significativa de esperanza de vida).</span></div>
+            <div class="item"><span class="arrow">→</span><span>Establece una edad mínima fija de acceso de <span class="pill pill-b">56 años</span>.</span></div>
+            
+            <div class="sub-head">Requisito de cotización</div>
+            <div class="item"><span class="arrow">→</span><span>Requiere acreditar al menos <span class="pill pill-b">15 años de cotización efectiva</span> estando afectado por dicha discapacidad.</span></div>
+        </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:10px;">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>C) Por causa no imputable (art. 207)</div>
+            <div class="item"><span class="arrow">→</span><span>Derivada del <strong>cese involuntario</strong> en el trabajo.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Requisitos:</strong></span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Edad inferior en <span class="pill pill-g">4 años como máximo</span> a la edad ordinaria.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Inscrito como demandante de empleo <span class="pill pill-g">≥ 6 meses</span> inmediatamente anteriores.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Período mínimo de cotización efectiva: <span class="pill pill-g">33 años</span>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Cese por causas de reestructuración empresarial (despido colectivo, objetivo, extinción judicial, muerte/jubilación/incapacidad del empresario, fuerza mayor o violencia de género).</span></div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>D) Por voluntad del interesado (art. 208)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Requisitos:</strong></span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Edad inferior en <span class="pill pill-y">2 años como máximo</span> a la edad ordinaria.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Período mínimo de cotización efectiva: <span class="pill pill-y">35 años</span>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>El importe de la pensión debe ser <strong>superior a la pensión mínima</strong> que le correspondería a los 65 años.</span></div>
+            <div class="trampa" style="margin-top:10px;">
+                <strong>⚠️ Trampa de examen:</strong> Anticipada <strong>no imputable</strong> → 33 años de cotización. Anticipada <strong>voluntaria</strong> → 35 años de cotización.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= JUBILACIÓN PARCIAL ======= -->
+    <h2 id="p7">07. Jubilación parcial (art. 215 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="block full orange">
+        <div class="block-title"><span class="dot"></span>Jubilación parcial con contrato de relevo</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Requisitos generales</div>
+                <div class="item"><span class="arrow">→</span><span>Trabajadores que, habiendo cumplido la edad legal, acuerden una <strong>reducción de jornada</strong> de entre el <span class="pill pill-y">25% y el 75%</span> (o <span class="pill pill-y">85%</span> si el contrato de relevo es a jornada completa e indefinido).</span></div>
+                <div class="item"><span class="arrow">→</span><span>Se debe celebrar simultáneamente un <strong>contrato de relevo</strong>.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Requisitos si NO se ha alcanzado la edad ordinaria</div>
+                <div class="item"><span class="arrow">→</span><span><strong>1.</strong> Edad inferior en <span class="pill pill-y">3 años como máximo</span> a la ordinaria.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>2.</strong> Período de cotización de <span class="pill pill-y">33 años</span> (<span class="pill pill-y">25 años</span> en caso de discapacidad ≥ 33%).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>3.</strong> Antigüedad en la empresa de al menos <span class="pill pill-y">6 años</span> inmediatamente anteriores.</span></div>
+                <div class="cepo" style="margin-top:10px;">
+                    <strong>⚠️ Cepo de examen:</strong> La jubilación parcial requiere <strong>contrato de relevo</strong> simultáneo. La reducción de jornada <strong>mínima es del 25%</strong> y <strong>máxima del 75%</strong> (85% en casos especiales).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= KIT DE CRIBA ======= -->
+    <h2 id="kit">🎯 Kit de criba directa para el test (datos críticos)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Concepto</th><th>Dato clave</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Jubilación — naturaleza</td><td><strong>Única</strong> para cada beneficiario, <strong>vitalicias</strong></td></tr>
+                <tr><td>Jubilación — carencia general</td><td><strong>15 años</strong> de cotización</td></tr>
+                <tr><td>Jubilación — carencia específica</td><td><strong>2 años</strong> dentro de los <strong>15 años</strong> inmediatamente anteriores al hecho causante</td></tr>
+                <tr><td>Edad 2026 (con ≥ 38,3 años)</td><td><strong>65 años</strong></td></tr>
+                <tr><td>Edad 2026 (con < 38,3 años)</td><td><strong>66 años y 10 meses</strong></td></tr>
+                <tr><td>Edad 2027 en adelante</td><td>65 años (con ≥ 38,3) o <strong>67 años</strong> (con menos)</td></tr>
+                <tr><td>Base Reguladora — período de cálculo</td><td><strong>324 meses</strong> (de 348 elegidos de oficio)</span></td></tr>
+                <tr><td>BR — denominador</td><td><strong>378</strong> (324 bases + 54 pagas extras)</td></tr>
+                <tr><td>BR — actualización</td><td>Últimos <strong>24 meses</strong> en valor nominal; resto actualizados por <strong>IPC</strong></td></tr>
+                <tr><td>BR — integración de lagunas (primeras 48)</td><td><strong>Base mínima</strong> del RG</td></tr>
+                <tr><td>BR — integración de lagunas (resto)</td><td><strong>50%</strong> de la base mínima</td></tr>
+                <tr><td>Porcentaje — primeros 15 años</td><td><strong>50%</strong></td></tr>
+                <tr><td>Porcentaje — 2023-2026 (meses 1-49)</td><td><strong>0,21%</strong> adicional por mes</td></tr>
+                <tr><td>Porcentaje — 2023-2026 (meses 50-258)</td><td><strong>0,19%</strong> adicional por mes</td></tr>
+                <tr><td>Porcentaje — desde 2027 (meses 1-248)</td><td><strong>0,19%</strong> adicional por mes</td></tr>
+                <tr><td>Porcentaje — desde 2027 (meses 249-264)</td><td><strong>0,18%</strong> adicional por mes</td></tr>
+                <tr><td>Complemento por demora — porcentaje adicional</td><td><strong>4%</strong> por año completo</td></tr>
+                <tr><td>Complemento por demora — incompatibilidades</td><td>Jubilación <strong>parcial, flexible</strong> y desde <strong>situación asimilada</strong></td></tr>
+                <tr><td>Brecha de género — importe 2025</td><td><strong>35,90 €</strong> mensuales por hijo</td></tr>
+                <tr><td>Brecha de género — pagas</td><td><strong>14 pagas</strong></td></tr>
+                <tr><td>Brecha de género — límite</td><td><strong>4 veces</strong> el importe mensual por hijo</td></tr>
+                <tr><td>Jubilación anticipada por causa no imputable — edad</td><td>Hasta <strong>4 años</strong> antes</td></tr>
+                <tr><td>Jubilación anticipada por causa no imputable — cotización</td><td><strong>33 años</strong></td></tr>
+                <tr><td>Jubilación anticipada voluntaria — edad</td><td>Hasta <strong>2 años</strong> antes</td></tr>
+                <tr><td>Jubilación anticipada voluntaria — cotización</td><td><strong>35 años</strong></td></tr>
+                <tr><td>Jubilación parcial — reducción de jornada</td><td><strong>25% – 75%</strong> (85% en casos especiales)</td></tr>
+                <tr><td>Jubilación parcial — cotización (general)</td><td><strong>33 años</strong></td></tr>
+                <tr><td>Jubilación parcial — cotización (discapacidad ≥ 33%)</td><td><strong>25 años</strong></td></tr>
+                <tr><td>Jubilación parcial — antigüedad en la empresa</td><td><strong>6 años</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="destacado" style="margin-top:20px;">
+        <p><span class="tag tag-web">Esquema web</span></p>
+        <p><strong>✅ Desarrollo completo del Tema 10:</strong> se han integrado todos los apartados del esquema: jubilación ordinaria (edad, cotización), base reguladora (fórmula, actualización, lagunas), porcentaje aplicable (50% + escala transitoria), complemento por demora (4%, pago único, combinación), complemento de brecha de género (35,90 €/mes, 14 pagas), jubilación anticipada (por actividad, discapacidad, causas no imputables, voluntad), y jubilación parcial (contrato de relevo, reducción de jornada, requisitos).</p>
+    </div>
+    <!-- ============================================================ -->
+    <!-- ======= MINI-TEST ======= -->
+    <h2 id="minitest">🧪 Mini-test de criba · Tema 10 (15 preguntas)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Preguntas tipo examen sobre la pensión de jubilación. Haz clic en la opción correcta.</p>
+
+    <div id="testContainer">
+
+        <div class="test-question" data-q="0">
+            <div class="test-q-text"><span class="test-q-num">1</span>¿Cuál es el período mínimo de cotización (carencia general) para causar derecho a la pensión de jubilación?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 10 años</div>
+                <div class="test-option" data-ans="1">B) 15 años ✓</div>
+                <div class="test-option" data-ans="0">C) 20 años</div>
+                <div class="test-option" data-ans="0">D) 25 años</div>
+            </div>
+            <div class="test-feedback" data-ok="La carencia general para jubilación es de <strong>15 años</strong> de cotización, de los cuales 2 deben estar comprendidos en los 15 años inmediatamente anteriores al hecho causante (carencia específica)."></div>
+        </div>
+
+        <div class="test-question" data-q="1">
+            <div class="test-q-text"><span class="test-q-num">2</span>Un trabajador que en 2026 tiene acreditados 40 años de cotización, ¿a qué edad puede acceder a la jubilación ordinaria?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 66 años y 10 meses</div>
+                <div class="test-option" data-ans="1">B) 65 años ✓</div>
+                <div class="test-option" data-ans="0">C) 67 años</div>
+                <div class="test-option" data-ans="0">D) 66 años</div>
+            </div>
+            <div class="test-feedback" data-ok="En 2026, si se tienen <strong>38 años y 3 meses o más</strong> de cotización → edad ordinaria <strong>65 años</strong>. Con 40 años acreditados, cumple este requisito."></div>
+        </div>
+
+        <div class="test-question" data-q="2">
+            <div class="test-q-text"><span class="test-q-num">3</span>En la fórmula de la Base Reguladora, ¿cuántas bases de cotización se suman en el numerador?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 348 bases</div>
+                <div class="test-option" data-ans="1">B) 324 bases ✓</div>
+                <div class="test-option" data-ans="0">C) 378 bases</div>
+                <div class="test-option" data-ans="0">D) 300 bases</div>
+            </div>
+            <div class="test-feedback" data-ok="El INSS selecciona de oficio las <strong>324 bases de mayor importe</strong> de los 348 meses disponibles, y las divide entre <strong>378</strong> (que incluye las 54 pagas extras)."></div>
+        </div>
+
+        <div class="test-question" data-q="3">
+            <div class="test-q-text"><span class="test-q-num">4</span>¿Cómo se integran las primeras 48 mensualidades de laguna (sin obligación de cotizar) al calcular la Base Reguladora?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Con cero (no se computan)</div>
+                <div class="test-option" data-ans="0">B) Con el 50% de la base mínima del RG</div>
+                <div class="test-option" data-ans="1">C) Con la base mínima del RG del mes correspondiente ✓</div>
+                <div class="test-option" data-ans="0">D) Con la base de cotización del mes anterior a la laguna</div>
+            </div>
+            <div class="test-feedback" data-ok="Lagunas: las <strong>primeras 48 mensualidades</strong> se integran con la <strong>base mínima del RG</strong>. Las mensualidades restantes se integran con el <strong>50%</strong> de dicha base mínima."></div>
+        </div>
+
+        <div class="test-question" data-q="4">
+            <div class="test-q-text"><span class="test-q-num">5</span>¿Qué porcentaje de la base reguladora corresponde a quien acredita exactamente 15 años de cotización?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 30%</div>
+                <div class="test-option" data-ans="0">B) 40%</div>
+                <div class="test-option" data-ans="1">C) 50% ✓</div>
+                <div class="test-option" data-ans="0">D) 60%</div>
+            </div>
+            <div class="test-feedback" data-ok="Los primeros <strong>15 años</strong> de cotización dan derecho al <strong>50%</strong> de la base reguladora. Este porcentaje es fijo e igual para todos los años de acceso."></div>
+        </div>
+
+        <div class="test-question" data-q="5">
+            <div class="test-q-text"><span class="test-q-num">6</span>En la escala transitoria 2023-2026, ¿qué porcentaje adicional se aplica por cada mes cotizado de los primeros 49 meses a partir del año 16?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 0,19% por mes</div>
+                <div class="test-option" data-ans="1">B) 0,21% por mes ✓</div>
+                <div class="test-option" data-ans="0">C) 0,25% por mes</div>
+                <div class="test-option" data-ans="0">D) 0,18% por mes</div>
+            </div>
+            <div class="test-feedback" data-ok="Escala 2023-2026: meses <strong>1 a 49</strong> (desde el año 16) → <strong>0,21%</strong> adicional por mes. Meses 50 a 258 → 0,19% por mes."></div>
+        </div>
+
+        <div class="test-question" data-q="6">
+            <div class="test-q-text"><span class="test-q-num">7</span>El complemento económico por demora consistente en un porcentaje adicional, ¿qué porcentaje se aplica por cada año completo de retraso?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 2% por año</div>
+                <div class="test-option" data-ans="0">B) 3% por año</div>
+                <div class="test-option" data-ans="1">C) 4% por año ✓</div>
+                <div class="test-option" data-ans="0">D) 5% por año</div>
+            </div>
+            <div class="test-feedback" data-ok="El complemento por demora aplica un <strong>4%</strong> adicional por cada año completo cotizado desde la edad ordinaria. Desde el segundo año, periodos &gt; 6 meses generan un 2% adicional."></div>
+        </div>
+
+        <div class="test-question" data-q="7">
+            <div class="test-q-text"><span class="test-q-num">8</span>¿En cuál de estos casos es INCOMPATIBLE el complemento por demora?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Jubilación ordinaria con 68 años</div>
+                <div class="test-option" data-ans="1">B) Jubilación parcial ✓</div>
+                <div class="test-option" data-ans="0">C) Jubilación ordinaria accediendo desde alta</div>
+                <div class="test-option" data-ans="0">D) Jubilación diferida con 35 años cotizados</div>
+            </div>
+            <div class="test-feedback" data-ok="El complemento por demora es <strong>incompatible</strong> con la jubilación <strong>parcial</strong>, la jubilación <strong>flexible</strong> y el acceso desde <strong>situación asimilada al alta</strong>."></div>
+        </div>
+
+        <div class="test-question" data-q="8">
+            <div class="test-q-text"><span class="test-q-num">9</span>El complemento para la reducción de la brecha de género, ¿a qué pensiones se puede reconocer?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Solo a la pensión de jubilación</div>
+                <div class="test-option" data-ans="0">B) Solo a la jubilación y la incapacidad permanente</div>
+                <div class="test-option" data-ans="1">C) A la jubilación, la incapacidad permanente y la viudedad ✓</div>
+                <div class="test-option" data-ans="0">D) A todas las pensiones contributivas y no contributivas</div>
+            </div>
+            <div class="test-feedback" data-ok="El complemento de brecha de género se reconoce a mujeres con hijos que sean beneficiarias de pensión contributiva de <strong>jubilación, incapacidad permanente o viudedad</strong>."></div>
+        </div>
+
+        <div class="test-question" data-q="9">
+            <div class="test-q-text"><span class="test-q-num">10</span>¿Cuál es el importe del complemento de brecha de género por hijo en 2025?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 28,50 €/mes por hijo</div>
+                <div class="test-option" data-ans="1">B) 35,90 €/mes por hijo ✓</div>
+                <div class="test-option" data-ans="0">C) 42,00 €/mes por hijo</div>
+                <div class="test-option" data-ans="0">D) 50,00 €/mes por hijo</div>
+            </div>
+            <div class="test-feedback" data-ok="El complemento de brecha de género en 2025 es de <strong>35,90 €/mes por hijo</strong>, abonado en 14 pagas. El límite máximo es 4 veces ese importe (143,60 €/mes)."></div>
+        </div>
+
+        <div class="test-question" data-q="10">
+            <div class="test-q-text"><span class="test-q-num">11</span>Para acceder a la jubilación anticipada por causa no imputable al trabajador, ¿cuál es el período mínimo de cotización efectiva exigido?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 30 años</div>
+                <div class="test-option" data-ans="1">B) 33 años ✓</div>
+                <div class="test-option" data-ans="0">C) 35 años</div>
+                <div class="test-option" data-ans="0">D) 38 años y 3 meses</div>
+            </div>
+            <div class="test-feedback" data-ok="Anticipada por causa <strong>no imputable</strong>: cotización efectiva mínima <strong>33 años</strong> + inscripción como demandante de empleo ≥ 6 meses + edad hasta 4 años antes de la ordinaria."></div>
+        </div>
+
+        <div class="test-question" data-q="11">
+            <div class="test-q-text"><span class="test-q-num">12</span>¿En cuántos años como máximo puede anticiparse la jubilación voluntaria respecto a la edad ordinaria?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 4 años</div>
+                <div class="test-option" data-ans="0">B) 3 años</div>
+                <div class="test-option" data-ans="1">C) 2 años ✓</div>
+                <div class="test-option" data-ans="0">D) 1 año</div>
+            </div>
+            <div class="test-feedback" data-ok="Anticipada <strong>voluntaria</strong>: máximo <strong>2 años</strong> antes de la ordinaria + 35 años de cotización efectiva. Más restrictiva que la no imputable (4 años antes + 33 años)."></div>
+        </div>
+
+        <div class="test-question" data-q="12">
+            <div class="test-q-text"><span class="test-q-num">13</span>¿Qué reducción mínima de jornada se exige para acceder a la jubilación parcial?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 10%</div>
+                <div class="test-option" data-ans="0">B) 20%</div>
+                <div class="test-option" data-ans="1">C) 25% ✓</div>
+                <div class="test-option" data-ans="0">D) 50%</div>
+            </div>
+            <div class="test-feedback" data-ok="La jubilación parcial exige una reducción de jornada de entre el <strong>25% y el 75%</strong>. El máximo sube al 85% si el contrato de relevo es a jornada completa e indefinido."></div>
+        </div>
+
+        <div class="test-question" data-q="13">
+            <div class="test-q-text"><span class="test-q-num">14</span>Para acceder a la jubilación parcial antes de la edad ordinaria, ¿qué antigüedad mínima en la empresa se exige?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 año</div>
+                <div class="test-option" data-ans="0">B) 3 años</div>
+                <div class="test-option" data-ans="1">C) 6 años ✓</div>
+                <div class="test-option" data-ans="0">D) 10 años</div>
+            </div>
+            <div class="test-feedback" data-ok="Jubilación parcial antes de la edad ordinaria: antigüedad mínima en la empresa de <strong>6 años</strong> inmediatamente anteriores al hecho causante."></div>
+        </div>
+
+        <div class="test-question" data-q="14">
+            <div class="test-q-text"><span class="test-q-num">15</span>¿Cuál es el límite infranqueable de edad mínima que pueden establecer los coeficientes reductores en actividades penosas, tóxicas o peligrosas?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 55 años</div>
+                <div class="test-option" data-ans="1">B) 52 años ✓</div>
+                <div class="test-option" data-ans="0">C) 60 años</div>
+                <div class="test-option" data-ans="0">D) 50 años</div>
+            </div>
+            <div class="test-feedback" data-ok="Los coeficientes reductores de edad para actividades penosas, tóxicas o peligrosas tienen un <strong>límite infranqueable: no pueden dar lugar a una edad inferior a 52 años</strong>.</div>
+        </div>
+
+    </div><!-- /testContainer -->
+
+    <div class="test-score" id="testScore">
+        <div class="score-num" id="scoreNum">0/15</div>
+        <div class="score-label">Respuestas correctas</div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <br>
+        <button class="btn-reiniciar" onclick="reiniciarTest()">🔄 Reiniciar test</button>
+    </div>
+
+    <script>
+    (function(){
+        var correct = 0, answered = 0, total = 15;
+        document.querySelectorAll('.test-question').forEach(function(q){
+            var opts = q.querySelectorAll('.test-option');
+            var fb = q.querySelector('.test-feedback');
+            var okText = fb.getAttribute('data-ok');
+            opts.forEach(function(opt){
+                opt.addEventListener('click', function(){
+                    if(q.dataset.done) return;
+                    q.dataset.done = '1';
+                    var isCorrect = opt.getAttribute('data-ans') === '1';
+                    opts.forEach(function(o){
+                        o.classList.add('disabled');
+                        if(o.getAttribute('data-ans') === '1') o.classList.add('correct');
+                    });
+                    if(!isCorrect) opt.classList.add('wrong');
+                    fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + okText;
+                    fb.classList.add('show', isCorrect ? 'ok' : 'ko');
+                    if(isCorrect) correct++;
+                    answered++;
+                    if(answered === total){
+                        var score = document.getElementById('testScore');
+                        document.getElementById('scoreNum').textContent = correct + '/' + total;
+                        var msg = correct >= 13 ? '🏆 Excelente — dominas la jubilación.' : correct >= 10 ? '👍 Bien — repasa los requisitos de la anticipada y los porcentajes.' : correct >= 7 ? '⚠️ Regular — vuelve a la tabla de datos clave.' : '🔁 Necesitas más repaso — empieza por la tabla del inicio.';
+                        document.getElementById('scoreMsg').textContent = msg;
+                        score.style.display = 'block';
+                    }
+                });
+            });
+        });
+        window.reiniciarTest = function(){
+            document.querySelectorAll('.test-question').forEach(function(q){
+                delete q.dataset.done;
+                q.querySelectorAll('.test-option').forEach(function(o){ o.classList.remove('correct','wrong','disabled'); });
+                var fb = q.querySelector('.test-feedback');
+                fb.classList.remove('show','ok','ko');
+            });
+            correct = 0; answered = 0;
+            document.getElementById('testScore').style.display = 'none';
+            window.scrollTo({top: document.getElementById('minitest').offsetTop - 20, behavior:'smooth'});
+        };
+    })();
+    </script>
+
+ <!-- ====== NAVEGACIÓN SUPERIOR ====== -->
+    <div class="nav-bar">
+        <a href="tema9_fusionado_completo.html">⬅ Tema 9</a>
+        <a href="index.html" class="indice">🏠 Índice</a>
+        <a href="tema11_fusionado_completo.html">Tema 11 ➡</a>
+       
+        <a href="Supuesto práctico · Jubilación anticipada (comparativa actualizada).html" style="background: #eaf2f8; padding: 8px 16px; border-radius: 20px; color: #1a5276;">📋 Supuesto Práctico: Jubilación Anticipada ➡</a>
+    </div>
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ======= FOOTER ======= -->
+    <div class="footer">
+        Tema 10 — Jubilación en la modalidad contributiva · Seguridad Social · Convocatoria 2026<br>
+        Material desarrollado a partir del esquema web
+    </div>
+
+</div>
+<!-- fin container -->
+<!-- ========================= -->
+<!--  PREGUNTA ALEATORIA TEMA 10 -->
+<!-- ========================= -->
+<h2>Pregunta aleatoria del Tema 10</h2>
+
+
+
+<!-- Cargar base de datos -->
+<script src="preguntas10.js"></script>
+
+<!-- Tarjeta -->
+<div class="flip-card" onclick="this.classList.toggle('flipped')">
+  <div class="flip-card-inner">
+    
+    <div class="flip-card-front" id="pregunta">
+      Cargando pregunta...
+    </div>
+
+    <div class="flip-card-back" id="respuesta">
+      Cargando respuesta...
+    </div>
+
+  </div>
+</div>
+
+<!-- Botón -->
+<div style="text-align:center; margin-bottom: 40px;">
+  <button id="btn-otra" onclick="cargarPreguntaAleatoria()">Otra pregunta</button>
+</div>
+
+<!-- Función JS -->
+<script>
+  function cargarPreguntaAleatoria() {
+    if (typeof preguntas === 'undefined' || preguntas.length === 0) {
+      document.getElementById("pregunta").innerText = "No se encontraron preguntas en preguntas10.js";
+      return;
+    }
+
+    const random = Math.floor(Math.random() * preguntas.length);
+    document.getElementById("pregunta").innerText = preguntas[random].pregunta;
+    document.getElementById("respuesta").innerText = preguntas[random].respuesta;
+
+    const card = document.querySelector('.flip-card');
+    card.classList.remove('flipped');
+    
+    const btn = document.getElementById("btn-otra");
+    btn.classList.add("verde");
+
+    setTimeout(() => {
+      btn.classList.remove("verde");
+    }, 400);
+  }
+
+  window.onload = function() {
+    cargarPreguntaAleatoria();
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 5 - Gestión Recaudatoria (Fusión completa)</title>
+    <style>
+        /* === RESET Y ESTILOS GENERALES (Estilo claro) === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1a2a3a;
+            line-height: 1.7;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.12);
+            padding: 40px 50px;
+        }
+
+        .header {
+            border-bottom: 4px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #2e6b8a;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .badge-fusion {
+            display: inline-block;
+            background: #1a5276;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        .badge-update {
+            display: inline-block;
+            background: #27ae60;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .nav {
+            background: #eaf2f8;
+            border-radius: 16px;
+            padding: 18px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .nav a {
+            color: #1a5276;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav a:hover {
+            border-bottom-color: #1a5276;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            margin-top: 45px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #d4e6f1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a5276;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0 25px 0;
+            border-radius: 14px;
+            border: 1px solid #dce6ed;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        th {
+            background: #1a3a4f;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid #e9edf2;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+        }
+
+        .tag-web { background: #d4e6f1; color: #1a5276; }
+        .tag-video { background: #fdebd0; color: #a04000; }
+        .tag-fusion { background: #d5f5e3; color: #1a6e4b; }
+        .tag-update { background: #abebc6; color: #1a6e4b; }
+
+        .trampa { background: #fef9e7; border-left: 6px solid #f39c12; padding: 18px 24px; border-radius: 0 14px 14px 0; margin: 22px 0; }
+        .trampa strong { color: #b9770e; }
+        .cepo { background: #fdedec; border-left: 6px solid #e74c3c; padding: 18px 24px; border-radius: 0 14px 14px 0; margin: 22px 0; }
+        .cepo strong { color: #b03a2e; }
+        .destacado { background: #eaf2f8; padding: 16px 22px; border-radius: 14px; margin: 18px 0; border: 1px solid #bdd7e8; }
+        .destacado strong { color: #1a5276; }
+        .caja-dato { background: #1a2a3a; color: #fff; padding: 14px 22px; border-radius: 14px; margin: 18px 0; font-size: 0.95rem; }
+        .caja-dato strong { color: #f1c40f; }
+
+        ul, ol { padding-left: 28px; margin: 12px 0 18px 0; }
+        li { margin-bottom: 6px; }
+
+        .back-top { display: inline-block; margin-top: 40px; background: #1a5276; color: #fff; padding: 10px 28px; border-radius: 40px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: background 0.2s; }
+        .back-top:hover { background: #0d3b55; }
+        .footer { margin-top: 50px; padding-top: 20px; border-top: 2px solid #d4e6f1; font-size: 0.85rem; color: #5d6d7e; text-align: center; }
+
+        /* === BLOQUES DE COLOR === */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .full { grid-column: 1 / -1; }
+        .block { background: #f8fafc; border: 1px solid #dce6ed; border-radius: 14px; padding: 18px 22px; transition: box-shadow 0.2s; }
+        .block:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+        .block-title { font-family: 'Segoe UI', sans-serif; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #dce6ed; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .yellow .block-title { color: #b7950b; }
+        .yellow .dot { background: #f1c40f; }
+        .blue .block-title { color: #1a5276; }
+        .blue .dot { background: #2980b9; }
+        .red .block-title { color: #b03a2e; }
+        .red .dot { background: #e74c3c; }
+        .green .block-title { color: #1e7e34; }
+        .green .dot { background: #27ae60; }
+        .purple .block-title { color: #6c3483; }
+        .purple .dot { background: #8e44ad; }
+        .orange .block-title { color: #b9770e; }
+        .orange .dot { background: #f39c12; }
+
+        .item { display: flex; gap: 10px; margin-bottom: 6px; font-size: 0.95rem; line-height: 1.5; }
+        .item:last-child { margin-bottom: 0; }
+        .item .arrow { color: #6b7292; flex-shrink: 0; font-family: 'Segoe UI', monospace; font-size: 0.9rem; }
+        .item strong { color: #0d2b3e; }
+
+        .pill { display: inline-block; font-family: 'Segoe UI', monospace; font-size: 0.8rem; font-weight: 700; padding: 1px 8px; border-radius: 4px; margin: 0 2px; }
+        .pill-y { background: #fef9e7; color: #b7950b; border: 1px solid #f9e79f; }
+        .pill-b { background: #eaf2f8; color: #1a5276; border: 1px solid #aed6f1; }
+        .pill-r { background: #fdedec; color: #b03a2e; border: 1px solid #f5b7b1; }
+        .pill-g { background: #eafaf1; color: #1e7e34; border: 1px solid #a9dfbf; }
+        .pill-p { background: #f4ecf7; color: #6c3483; border: 1px solid #d7bde2; }
+
+        .info { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+        .info .ilabel { font-family: 'Segoe UI', monospace; font-size: 0.7rem; color: #1a5276; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+        .alert .alabel { font-family: 'Segoe UI', monospace; font-size: 0.7rem; color: #b03a2e; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .sub-head { font-family: 'Segoe UI', monospace; font-size: 0.8rem; font-weight: 700; color: #2c3e50; text-transform: uppercase; letter-spacing: 0.5px; margin: 12px 0 6px 0; }
+
+        /* === MINI-TEST STYLES === */
+        .test-question { background:#f8fafc; border:1px solid #dce6ed; border-radius:14px; padding:20px 24px; margin-bottom:16px; }
+        .test-q-num { display:inline-block; background:#1a3a4f; color:#fff; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:20px; margin-right:8px; }
+        .test-q-text { font-weight:600; color:#0d2b3e; font-size:1rem; margin-bottom:14px; }
+        .test-options { display:flex; flex-direction:column; gap:8px; }
+        .test-option { display:flex; align-items:flex-start; gap:10px; background:#fff; border:2px solid #dce6ed; border-radius:10px; padding:12px 16px; cursor:pointer; font-size:0.93rem; transition:border-color 0.15s, background 0.15s; user-select:none; }
+        .test-option:hover { border-color:#2980b9; background:#eaf2f8; }
+        .test-option.correct { border-color:#27ae60; background:#eafaf1; color:#1e7e34; font-weight:600; }
+        .test-option.wrong { border-color:#e74c3c; background:#fdedec; color:#b03a2e; }
+        .test-option.disabled { pointer-events:none; }
+        .test-feedback { margin-top:10px; padding:10px 16px; border-radius:8px; font-size:0.9rem; display:none; }
+        .test-feedback.show { display:block; }
+        .test-feedback.ok { background:#eafaf1; border-left:4px solid #27ae60; color:#1e7e34; }
+        .test-feedback.ko { background:#fdedec; border-left:4px solid #e74c3c; color:#b03a2e; }
+        .test-score { background:#1a2a3a; color:#fff; border-radius:14px; padding:20px 28px; text-align:center; display:none; margin-top:20px; }
+        .test-score .score-num { font-size:2.8rem; font-weight:700; color:#f1c40f; }
+        .test-score .score-label { font-size:1rem; color:#aab; margin-top:4px; }
+        .test-score .score-msg { font-size:0.95rem; margin-top:10px; color:#ddd; }
+        .btn-reiniciar { background:#1a5276; color:#fff; border:none; border-radius:30px; padding:10px 28px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:14px; transition:background 0.2s; }
+        .btn-reiniciar:hover { background:#0d3b55; }
+
+        /* === CONFIGURACIÓN DE LA TARJETA FLIP === */
+        .flip-card {
+            margin: 30px auto;
+            width: 100%;
+            max-width: 500px;
+            height: 280px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 18px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .flip-card-front {
+            background: #f8fafc;
+            border: 2px dashed #1a5276;
+            color: #0d2b3e;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .flip-card-back {
+            background: #1a5276;
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        #btn-otra {
+            padding: 12px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+        #btn-otra:hover { background-color: #c0392b; transform: translateY(-2px); }
+        #btn-otra.verde { background-color: #27ae60 !important; box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3); }
+
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eaf2f8; }
+        .nav-bar a { text-decoration: none; color: #1a5276; font-weight: 600; font-size: 0.95rem; }
+        .nav-bar .indice { background: #eaf2f8; padding: 8px 20px; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ======= HEADER ======= -->
+    <div class="header">
+        <h1>Tema 5 · Gestión Recaudatoria · Periodo Voluntario</h1>
+        <div class="subtitle">Concepto · Responsables · Plazos · Recargos · Aplazamientos · Devoluciones · Capital Coste</div>
+        <span class="badge-fusion">📚 Fusión completa · Esquema web + Transcripciones de video</span>
+        <span class="badge-update">✅ Actualizado con sistemas de liquidación, art. 85 y matices prácticos</span>
+        <div style="margin-top: 8px; font-size: 0.85rem; color: #5d6d7e;">
+            Arts. 21-34 TRLGSS · Arts. 84-85, 110, 120, 133 RGRSS · RD 1415/2004
+        </div>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ======= -->
+    <div class="nav">
+        <a href="#p0">00. Sistemas de liquidación</a>
+        <a href="#p1">01. Concepto</a>
+        <a href="#p2">02. Responsables</a>
+        <a href="#p3">03. Plazos</a>
+        <a href="#p4">04. Recargos</a>
+        <a href="#p5">05. Reclamaciones y Actas</a>
+        <a href="#p6">06. Aplazamientos</a>
+        <a href="#p7">07. Devoluciones</a>
+        <a href="#p8">08. Capital Coste</a>
+        <a href="#p9">09. Art. 85 y matices</a>
+        <a href="#kit">🎯 Kit de criba</a>
+        <a href="#mini-test">🧪 Mini-test</a>
+        <a href="#seccion-tarjetas">🃏 Tarjetas</a>
+    </div>
+
+    <!-- ======= 00. SISTEMAS DE LIQUIDACIÓN ======= -->
+    <h2 id="p0">00. Sistemas de liquidación de cuotas (nuevo del video)</h2>
+    <p><span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Nuevo</span></p>
+
+    <div class="grid-3">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>1. Autoliquidación</div>
+            <div class="item"><span class="arrow">→</span><span><strong>¿Quién calcula?</strong> El propio sujeto responsable (empresario).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Obligación:</strong> transmitir la liquidación (RLC/TC1) o documento de cotización (RNT/TC2).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Plazo:</strong> <span class="pill pill-g">Último día natural</span> del plazo reglamentario (mes siguiente al devengo).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Compensaciones:</strong> las aplica el propio sujeto responsable.</span></div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>2. Liquidación directa</div>
+            <div class="item"><span class="arrow">→</span><span><strong>¿Quién calcula?</strong> La TGSS (a solicitud del empresario).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Obligación:</strong> solicitar el cálculo y transmitir los datos necesarios.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Plazo:</strong> <span class="pill pill-b">Penúltimo día natural</span> del plazo reglamentario.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Compensaciones:</strong> las aplica la TGSS.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Truco</div>
+                <p>El plazo es el <strong>penúltimo día</strong> porque el empresario necesita un margen para que la TGSS calcule y devuelva la liquidación.</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>3. Liquidación simplificada</div>
+            <div class="item"><span class="arrow">→</span><span><strong>¿Quién calcula?</strong> La TGSS (automáticamente).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Obligación:</strong> <span class="pill pill-y">NO aplican obligaciones</span> (todo está premeditado).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>¿A quién aplica?</strong> RETA, REMAR, empleados de hogar, agrarios en inactividad, seguro escolar y convenios especiales.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Compensaciones:</strong> NO aplican (no hay pago delegado en estos casos).</span></div>
+            <div class="alert" style="margin-top:10px;">
+                <div class="alabel">⚠ Excepción</div>
+                <p>Si el autónomo <strong>no está dado de alta en plazo</strong>, no puede usar liquidación simplificada para esa liquidación; debe usar autoliquidación o liquidación directa.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="block full purple">
+        <div class="block-title"><span class="dot"></span>Documentos clave: RLC (TC1) y RNT (TC2)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">RLC — Recibo de Liquidación de Cotizaciones (antes TC1)</div>
+                <div class="item"><span class="arrow">→</span><span>Informa de <strong>una cuantía económica global</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Contiene el importe total a ingresar por todos los trabajadores.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Se utiliza en el sistema de <strong>autoliquidación</strong>.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">RNT — Relación Nominal de Trabajadores (antes TC2)</div>
+                <div class="item"><span class="arrow">→</span><span>Desglosa la información <strong>trabajador por trabajador</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Incluye bases de contingencias comunes y profesionales de cada trabajador.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Se utiliza en el sistema de <strong>autoliquidación</strong> junto con el RLC.</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 01. CONCEPTO Y COMPETENCIA ======= -->
+    <h2 id="p1">01. Concepto, competencia y objeto (arts. 21-22 TRLGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Concepto y competencia</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Gestión Recaudatoria:</strong> actividad administrativa para la realización de los créditos y derechos de la SS (cuotas, sanciones, recargos, capitales coste…).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Competencia exclusiva:</strong> <span class="pill pill-y">TGSS</span> como caja única, bajo dirección y tutela del Estado (art. 21 LGSS).</span></div>
+            <div class="item"><span class="arrow">→</span><span>Conciertos con entidades privadas → autorización del <strong>Consejo de Ministros</strong>.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>El objetivo de la tesorería es <strong>"que paguemos"</strong>. La gestión recaudatoria comienza cuando se notifica la liquidación.</p>
+            </div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Sistemas de liquidación (art. 22 LGSS)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Autoliquidación:</strong> el sujeto responsable transmite liquidaciones por medios electrónicos (Sistema RED) hasta el <strong>último día natural</strong> del plazo.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Liquidación directa:</strong> la TGSS calcula por trabajador. El responsable transmite datos hasta el <strong>penúltimo día natural</strong> del plazo.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Liquidación simplificada:</strong> autónomos RETA, Sistema Especial Hogar, agrarios inactividad, Seguro Escolar, convenios especiales.</span></div>
+        </div>
+    </div>
+
+    <!-- ======= 02. RESPONSABLES DEL PAGO ======= -->
+    <h2 id="p2">02. Responsables del pago (RD 1415/2004 — Cap. IV)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Tipos de responsables</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Obligado directo:</strong> empresario + trabajador (Régimen General).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Responsable del ingreso:</strong> exclusivamente el empresario (ingresa cuota propia + retiene e ingresa cuota obrera).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Responsable solidario:</strong> se puede exigir a todos o cualquiera; incluye <strong>principal + recargos + intereses + costas</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Responsable subsidiario:</strong> solo tras constatar insolvencia del deudor principal. Solo responde del <strong>principal (sin recargos ni intereses)</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Sucesores mortis causa:</strong> responden solidariamente, salvo <strong>beneficio de inventario</strong>.</span></div>
+        </div>
+        <div class="block red">
+            <div class="block-title"><span class="dot"></span>⚠ Enrevesada de examen — Cuota obrera olvidada</div>
+            <div class="item"><span class="arrow">→</span><span>Si el empresario paga la nómina pero <strong>no retiene</strong> la cuota obrera en ese momento, <strong>pierde el derecho</strong> a descontársela posteriormente.</span></div>
+            <div class="item"><span class="arrow">→</span><span>La TGSS le exigirá el <strong>100% de la cuota obrera</strong> a su exclusivo cargo.</span></div>
+            <div class="caja-dato" style="margin-top:10px;">
+                <strong>📌 APUNTE PARA EL TEST:</strong> Si el empresario no retiene la cuota obrera → la paga <strong>él al 100%</strong>.
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 03. PLAZOS DE INGRESO ======= -->
+    <h2 id="p3">03. Plazos de ingreso y medios de pago</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Plazo voluntario general de ingreso</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Regla general (a mes vencido):</strong> ingreso hasta el <strong>último día natural del mes siguiente</strong> al de su devengo.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Error de la Administración:</strong> no se aplica recargo ni intereses (art. 28 LGSS).</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>Se distingue entre <strong>plazo reglamentario</strong> (el ordinario) y <strong>plazo voluntario ampliado</strong> (el margen desde que vence el reglamentario hasta el apremio).</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Plazos específicos</div>
+            <div class="table-wrap" style="margin:10px 0;">
+                <table>
+                    <thead><tr><th>Supuesto</th><th>Plazo de ingreso</th></tr></thead>
+                    <tbody>
+                        <tr><td>Empresas (RG)</td><td>Hasta <strong>último día del mes siguiente</strong> al devengo</td></tr>
+                        <tr><td>Autónomos (RETA)</td><td>Dentro del <strong>mismo mes</strong> de devengo</td></tr>
+                        <tr><td>Reclamación de deuda (notif. días 1-15)</td><td>Hasta el <strong>día 5 del mes siguiente</strong></td></tr>
+                        <tr><td>Reclamación de deuda (notif. días 16-último)</td><td>Hasta el <strong>día 20 del mes siguiente</strong></td></tr>
+                        <tr><td>Acta de liquidación (definitiva)</td><td>Hasta el <strong>último día del mes siguiente</strong> a la notificación</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 04. EFECTOS DE LA FALTA DE COTIZACIÓN ======= -->
+    <h2 id="p4">04. Efectos de la falta de cotización — Escala de recargos (art. 30 LGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="block full yellow">
+        <div class="block-title"><span class="dot"></span>Escala de recargos (art. 30 LGSS)</div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th>Situación del deudor</th><th>Momento del pago tardío</th><th>Recargo aplicable</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>✅ Presentó documentos en plazo</td><td>Dentro del <strong>1.er mes</strong> siguiente</td><td><span class="pill pill-g">10%</span></td></tr>
+                    <tr><td>✅ Presentó documentos en plazo</td><td>A partir del <strong>2.º mes</strong> siguiente</td><td><span class="pill pill-y">20%</span></td></tr>
+                    <tr><td>❌ NO presentó documentos en plazo</td><td>Antes del fin de la reclamación de deuda/acta</td><td><span class="pill pill-r">20%</span></td></tr>
+                    <tr><td>❌ NO presentó documentos en plazo</td><td>Tras el fin de la reclamación de deuda/acta</td><td><span class="pill pill-r">35%</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="info" style="margin-top:10px;">
+            <div class="ilabel">📌 Aportación del video — Matiz clave</div>
+            <p>El <strong>recargo se aplica desde que concluye el plazo reglamentario</strong> y siempre se exige. Los intereses solo se exigen si transcurren 15 días desde la notificación de la providencia sin pagar.</p>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Interés de demora (art. 31 LGSS)</div>
+            <div class="item"><span class="arrow">→</span><span>Exigible si no se abona la deuda pasados <strong>15 días desde la notificación</strong> de la providencia de apremio.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Tipo:</strong> interés legal del dinero + <strong>25%</strong>, salvo que los PGE fijen otro.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Se devenga desde el <strong>vencimiento del plazo reglamentario</strong> de ingreso.</span></div>
+        </div>
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Imputación de pagos (art. 32 LGSS)</div>
+            <div class="item"><span class="arrow">→</span><span>El cobro parcial de deuda apremiada se imputa:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>1.</strong> Al <strong>bien embargado</strong> que generó el cobro.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>2.</strong> Primero a <strong>costas</strong>, después a los <strong>títulos más antiguos</strong>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>3.</strong> Distribución <strong>proporcional</strong> entre principal, recargo e intereses.</span></div>
+        </div>
+    </div>
+
+    <!-- ======= 05. RECLAMACIÓN DE DEUDAS Y ACTAS ======= -->
+    <h2 id="p5">05. Reclamación de deudas y actas de liquidación (arts. 33-34 LGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Reclamación de deuda (art. 33 LGSS)</div>
+            <div class="item"><span class="arrow">→</span><span>La emite la <strong>TGSS</strong> cuando transcurre el plazo sin ingreso de cuotas.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Recurso de alzada:</strong> solo suspende el procedimiento con <strong>aval suficiente o consignación</strong>.</span></div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Actas de liquidación (art. 34 LGSS)</div>
+            <div class="item"><span class="arrow">→</span><span>Las extiende la <strong>Inspección de Trabajo y SS</strong> (no la TGSS).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Conformidad:</strong> si el infractor da conformidad, la sanción se reduce al <strong>50%</strong>.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Diferencia clave (video)</div>
+                <p><strong>Acta de liquidación</strong> → se notifica al sujeto responsable.</p>
+                <p><strong>Propuesta de liquidación</strong> → comunicación interna entre la Inspección y la TGSS (no se notifica).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 06. APLAZAMIENTOS ======= -->
+    <h2 id="p6">06. Aplazamientos y fraccionamientos (art. 23 LGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Rules generales</div>
+            <div class="item"><span class="arrow">→</span><span>Concedido por la TGSS; comprende <strong>principal + recargos + intereses + costas</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Si se exime de garantías por causas extraordinarias: <strong>interés de demora + 2 puntos</strong>.</span></div>
+        </div>
+        <div class="block red">
+            <div class="block-title"><span class="dot"></span>⚠ INAPLAZABLES ABSOLUTOS</div>
+            <div class="item"><span class="arrow">→</span><span>La TGSS <strong>NUNCA</strong> permite aplazar:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>1.</strong> Cuotas de contingencias profesionales (AT + EP).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>2.</strong> Aportación de los trabajadores (cuota obrera).</span></div>
+            <div class="item"><span class="arrow">→</span><span>El deudor debe ingresarlas en el plazo máximo de <strong>1 mes</strong> tras la notificación.</span></div>
+        </div>
+    </div>
+
+    <!-- ======= 07. DEVOLUCIÓN DE INGRESOS INDEBIDOS ======= -->
+    <h2 id="p7">07. Devolución de ingresos indebidos y prescripción (arts. 24 y 26 LGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Devolución de ingresos indebidos (art. 26 LGSS)</div>
+            <div class="item"><span class="arrow">→</span><span>Derecho a recuperar lo pagado de más por <strong>error material o de cálculo</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span>La TGSS tiene <strong>6 meses para resolver</strong>; si no responde, <strong>silencio negativo</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prescripción:</strong> <strong>4 años</strong> desde el día siguiente al ingreso.</span></div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Prescripción general (art. 24 LGSS)</div>
+            <div class="item"><span class="arrow">→</span><span>Prescriben a los <strong>4 años</strong>: la determinación de deudas, la acción para exigir el pago y la acción para imponer sanciones.</span></div>
+        </div>
+    </div>
+
+    <!-- ======= 08. CAPITAL COSTE DE PENSIONES ======= -->
+    <h2 id="p8">08. Capital coste de pensiones</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="block full purple">
+        <div class="block-title"><span class="dot"></span>Concepto y responsables</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Concepto:</strong> cantidad global en <strong>pago único</strong> que la TGSS exige a Mutuas o a empresarios negligentes para financiar de por vida la pensión causada por un trabajador.</span></div>
+            </div>
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Supuesto típico:</strong> trabajador <strong>no dado de alta</strong> que sufre un Accidente de Trabajo.</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= 09. MATICES DEL ART. 85 Y CASOS PRÁCTICOS ======= -->
+    <h2 id="p9">09. Matices del art. 85 RGRSS y casos prácticos (nuevo del video)</h2>
+    <p><span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Nuevo</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Art. 85 RGRSS — Providencia directa vs. Reclamación de deuda</div>
+            <div class="sub-head">¿Cuándo procede providencia de apremio <strong>sin reclamación previa</strong>?</div>
+            <div class="item"><span class="arrow">→</span><span>Se han cumplido las obligaciones de liquidación, y la liquidación está <strong>correctamente calculada</strong>.</span></div>
+            <div class="alert" style="margin-top:12px;">
+                <div class="alabel">⚠ Ejemplo práctico</div>
+                <p><strong>Trabajador en alta, pero no incluido en la liquidación:</strong> Respecto a los trabajadores no incluidos, se trata <strong>como si no se hubieran cumplido las obligaciones</strong> (recargo del 20% o 35%).</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Resumen de escenarios</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Verde (cumplió):</strong> pago en 1.er mes → 10% recargo. Pago en 2.º mes o posterior → 20% recargo.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Rojo (no cumplió):</strong> pago antes de vencer la reclamación → 20%. Pago después → 35%.</span></div>
+        </div>
+    </div>
+
+    <!-- ======= KIT DE CRIBA ======= -->
+    <h2 id="kit">🎯 Kit de criba directa para el test (datos críticos)</h2>
+    <p><span class="tag tag-web">Esquema web</span></p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Concepto</th><th>Dato clave</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Autoliquidación — transmisión</td><td><strong>Último día natural</strong> del plazo reglamentario</td></tr>
+                <tr><td>Liquidación directa — transmisión</td><td><strong>Penúltimo día natural</strong> del plazo reglamentario</td></tr>
+                <tr><td>Plazo voluntario general</td><td><strong>Último día del mes siguiente</strong> al de devengo</td></tr>
+                <tr><td>Cuota obrera no retenida</td><td>Empresario pierde el derecho; la paga él al <strong>100%</strong></td></tr>
+                <tr><td>Inaplazables absolutos</td><td><strong>Cuota obrera + AT/EP</strong> (plazo ingreso: 1 mes)</td></tr>
+                <tr><td>Prescripción general</td><td><strong>4 años</strong></td></tr>
+                <tr><td>Conformidad acta liquidación</td><td>Reducción de la sanción al <strong>50%</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ======= CONTENEDOR EXCLUSIVO MINI-TEST INTERACTIVO ======= -->
+    <h2 id="mini-test">🧪 Mini-test de criba · Tema 5 (15 preguntas)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Preguntas reales de oposición sobre Gestión Recaudatoria. Haz clic en la opción correcta.</p>
+
+    <div id="testContainer">
+        <div class="test-question" data-q="0">
+            <div class="test-q-text"><span class="test-q-num">1</span>En el sistema de liquidación directa, ¿hasta qué día del plazo reglamentario tiene de margen el empresario para transmitir los datos solicitados por la TGSS?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El último día natural del mes</div>
+                <div class="test-option" data-ans="1">B) El penúltimo día natural del mes ✓</div>
+                <div class="test-option" data-ans="0">C) El día 20 del mes de devengo</div>
+                <div class="test-option" data-ans="0">D) El último día hábil del mes anterior</div>
+            </div>
+            <div class="test-feedback" data-ok="En la **liquidación directa**, el sujeto responsable debe transmitir los datos hasta el **penúltimo día natural** del plazo reglamentario."></div>
+        </div>
+
+        <div class="test-question" data-q="1">
+            <div class="test-q-text"><span class="test-q-num">2</span>¿Qué ocurre si un empresario abona los salarios a sus trabajadores pero no les descuenta la cuota obrera en ese mismo momento?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Puede descontársela prorrateada en las siguientes 3 nóminas</div>
+                <div class="test-option" data-ans="0">B) El deudor pasa a ser de forma exclusiva el propio trabajador</div>
+                <div class="test-option" data-ans="1">C) El empresario pierde el derecho a descontarla y debe pagarla él al 100% ✓</div>
+                <div class="test-option" data-ans="0">D) Se genera un recargo automático del 35% sobre la liquidación directa</div>
+            </div>
+            <div class="test-feedback" data-ok="Si el empresario no retiene la cuota obrera en el momento del pago del salario, **pierde el derecho a hacerlo después y queda obligado a ingresarla íntegramente a su propio cargo**."></div>
+        </div>
+
+        <div class="test-question" data-q="2">
+            <div class="test-q-text"><span class="test-q-num">3</span>¿Cuál es el plazo voluntario general establecido para el ingreso de las cuotas de la Seguridad Social en el Régimen General?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Dentro del mismo mes natural de su devengo</div>
+                <div class="test-option" data-ans="1">B) Hasta el último día del mes natural siguiente al de su devengo ✓</div>
+                <div class="test-option" data-ans="0">C) Hasta el día 15 del mes natural posterior a la liquidación</div>
+                <div class="test-option" data-ans="0">D) En los primeros 10 días hábiles tras la presentación del modelo RLC</div>
+            </div>
+            <div class="test-feedback" data-ok="La regla general determina que las cuotas deben ingresarse **hasta el último día del mes natural siguiente al de su devengo**."></div>
+        </div>
+
+        <div class="test-question" data-q="3">
+            <div class="test-q-text"><span class="test-q-num">4</span>Si una empresa ha presentado los documentos de cotización dentro del plazo reglamentario pero realiza el pago de la deuda dentro del primer mes siguiente a dicho plazo, ¿qué recargo se le aplica?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) Un recargo del 10% ✓</div>
+                <div class="test-option" data-ans="0">B) Un recargo del 20%</div>
+                <div class="test-option" data-ans="0">C) Un recargo del 35%</div>
+                <div class="test-option" data-ans="0">D) No se aplica recargo si justifica dificultades de tesorería</div>
+            </div>
+            <div class="test-feedback" data-ok="Cuando se cumplen las obligaciones de presentar documentos en plazo, el recargo por pagar en el primer mes de retraso es del **10%**."></div>
+        </div>
+
+        <div class="test-question" data-q="4">
+            <div class="test-q-text"><span class="test-q-num">5</span>¿Qué recargo se le aplica a un deudor de la Seguridad Social que NO presentó los documentos de cotización en plazo si abona la deuda tras vencer el plazo de la reclamación de deuda o acta de liquidación?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 10%</div>
+                <div class="test-option" data-ans="0">B) 20%</div>
+                <div class="test-option" data-ans="1">C) 35% ✓</div>
+                <div class="test-option" data-ans="0">D) 50%</div>
+            </div>
+            <div class="test-feedback" data-ok="Si no se presentaron los documentos y el pago se efectúa **después** del vencimiento fijado en la reclamación o acta, el recargo se eleva al **35%**."></div>
+        </div>
+
+        <div class="test-question" data-q="5">
+            <div class="test-q-text"><span class="test-q-num">6</span>¿A partir de qué momento exacto se consideran exigibles los intereses de demora en el procedimiento de recaudación de cuotas?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Al día siguiente del vencimiento del plazo reglamentario de ingreso</div>
+                <div class="test-option" data-ans="1">B) Transcurridos 15 días desde la notificación de la providencia de apremio sin haber abonado la deuda ✓</div>
+                <div class="test-option" data-ans="0">C) En el momento en que la Inspección de Trabajo levanta el acta de liquidación</div>
+                <div class="test-option" data-ans="0">D) Desde la fecha en que el deudor formaliza la solicitud de aplazamiento</div>
+            </div>
+            <div class="test-feedback" data-ok="Ojo con la criba: los intereses se devengan desde el vencimiento, pero solo **son exigibles transcurridos 15 días desde la notificación de la providencia de apremio** sin realizar el pago."></div>
+        </div>
+
+        <div class="test-question" data-q="6">
+            <div class="test-q-text"><span class="test-q-num">7</span>¿Cuál es el tipo general fijado por ley para los intereses de demora si no viene establecido en la Ley de Presupuestos Generales del Estado?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El interés legal del dinero liso y llano</div>
+                <div class="test-option" data-ans="0">B) El interés legal del dinero incrementado en un 50%</div>
+                <div class="test-option" data-ans="1">C) El interés legal del dinero incrementado en un 25% ✓</div>
+                <div class="test-option" data-ans="0">D) El Euríbor más un diferencial punitivo de 3 puntos</div>
+            </div>
+            <div class="test-feedback" data-ok="El interés de demora equivale al **interés legal del dinero incrementado en un 25%**, salvo disposición contraria en los PGE."></div>
+        </div>
+
+        <div class="test-question" data-q="7">
+            <div class="test-q-text"><span class="test-q-num">8</span>¿Cuál de los siguientes conceptos de cotización se considera legalmente un INAPLAZABLE ABSOLUTO por la TGSS?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Las cuotas de contingencias comunes a cargo del empresario</div>
+                <div class="test-option" data-ans="0">B) Los recargos del 10% derivados de retrasos del primer mes</div>
+                <div class="test-option" data-ans="1">C) Las cuotas por Accidentes de Trabajo y Enfermedades Profesionales, junto a la cuota obrera ✓</div>
+                <div class="test-option" data-ans="0">D) Las cuotas destinadas al Mecanismo de Equidad Intergeneracional (MEI)</div>
+            </div>
+            <div class="test-feedback" data-ok="Son conceptos **absolutamente inaplazables** las cuotas por contingencias profesionales (**AT y EP**) y las aportaciones retenidas a los trabajadores (**cuota obrera**)."></div>
+        </div>
+
+        <div class="test-question" data-q="8">
+            <div class="test-q-text"><span class="test-q-num">9</span>¿De qué plazo dispone el deudor al que se le concede un aplazamiento para ingresar los conceptos considerados inaplazables?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) Un plazo máximo de 1 mes desde la notificación de la resolución de concesión ✓</div>
+                <div class="test-option" data-ans="0">B) 15 días hábiles improrrogables</div>
+                <div class="test-option" data-ans="0">C) Debe abonarlos obligatoriamente el día anterior a cursar la solicitud</div>
+                <div class="test-option" data-ans="0">D) Se dilatan proporcionalmente a lo largo de las mensualidades concedidas</div>
+            </div>
+            <div class="test-feedback" data-ok="Los conceptos inaplazables deben abonarse en el **plazo máximo de 1 mes** a contar desde la notificación del aplazamiento; si no, este queda sin efecto."></div>
+        </div>
+
+        <div class="test-question" data-q="9">
+            <div class="test-q-text"><span class="test-q-num">10</span>¿Cuál es el plazo de prescripción que tiene un obligado al pago para solicitar a la TGSS la devolución de un ingreso indebido?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 año desde la fecha del ingreso</div>
+                <div class="test-option" data-ans="0">B) 3 años contados de fecha a fecha</div>
+                <div class="test-option" data-ans="1">C) 4 años a contar desde el día siguiente al que se realizó el ingreso ✓</div>
+                <div class="test-option" data-ans="0">D) 5 años naturales según el Código Civil</div>
+            </div>
+            <div class="test-feedback" data-ok="El derecho a solicitar la devolución de ingresos indebidos prescribe a los **4 años, computados desde el día siguiente al de su realización**."></div>
+        </div>
+
+        <div class="test-question" data-q="10">
+            <div class="test-q-text"><span class="test-q-num">11</span>¿Qué tipo de liquidación aplica la TGSS de forma automatizada para los trabajadores por cuenta propia (RETA) o los empleados en el Sistema Especial del Hogar?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Sistema de Autoliquidación con envío de modelos RLC</div>
+                <div class="test-option" data-ans="0">B) Liquidación directa con desglose nominal de trabajadores</div>
+                <div class="test-option" data-ans="1">C) Liquidación simplificada ✓</div>
+                <div class="test-option" data-ans="0">D) Liquidación diferida por cuenta unificada de tesorería</div>
+            </div>
+            <div class="test-feedback" data-ok="Para el RETA, Hogar y convenios especiales se utiliza el sistema de **liquidación simplificada**, donde la TGSS calcula el importe de forma automática."></div>
+        </div>
+
+        <div class="test-question" data-q="11">
+            <div class="test-q-text"><span class="test-q-num">12</span>Si un infractor presta su total conformidad a un acta de liquidación extendida por la Inspección de Trabajo, ¿en qué porcentaje se reduce la sanción económica propuesta?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) En un 25%</div>
+                <div class="test-option" data-ans="0">B) En un 30%</div>
+                <div class="test-option" data-ans="1">C) En un 50% ✓</div>
+                <div class="test-option" data-ans="0">D) Se anula la sanción si abona el principal en las siguientes 48 horas</div>
+            </div>
+            <div class="test-feedback" data-ok="La conformidad del sujeto infractor con el acta de liquidación genera una **reducción automática del 50%** en el importe de la sanción."></div>
+        </div>
+
+        <div class="test-question" data-q="12">
+            <div class="test-q-text"><span class="test-q-num">13</span>Según el artículo 85 del RGRSS, ¿cuál es el requisito fundamental para que la TGSS dicte una providencia de apremio directa sin emitir previamente una reclamación de deuda?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Que el deudor sea calificado como reincidente habitual</div>
+                <div class="test-option" data-ans="1">B) Que las cuotas se hayan liquidado y estén correctamente calculadas ✓</div>
+                <div class="test-option" data-ans="0">C) Que la cuantía adeudada supere el triple del IPREM mensual</div>
+                <div class="test-option" data-ans="0">D) Únicamente que la empresa cuente con menos de 10 trabajadores en alta</div>
+            </div>
+            <div class="test-feedback" data-ok="Aportación del vídeo: Procede providencia de apremio directa **siempre que se hayan presentado los papeles y la liquidación esté correctamente calculada** (sin errores materiales)."></div>
+        </div>
+
+        <div class="test-question" data-q="13">
+            <div class="test-q-text"><span class="test-q-num">14</span>Una empresa con 10 trabajadores tramita su liquidación mensual pero deja fuera deliberadamente a 2 de ellos que están en alta real. ¿Cómo se califica el recargo aplicable a las cuotas de esos 2 trabajadores?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Escenario verde general (10% o 20% según el mes de pago)</div>
+                <div class="test-option" data-ans="1">B) Escenario rojo (20% o 35%) al considerarse como no cumplida la obligación de liquidar ✓</div>
+                <div class="test-option" data-ans="0">C) Exento de recargo si se subsana mediante un recibo nominal complementario</div>
+                <div class="test-option" data-ans="0">D) Recargo único punitivo del 50% al cargo exclusivo del gestor</div>
+            </div>
+            <div class="test-feedback" data-ok="Matiz práctico: respecto a los trabajadores omitidos, se considera **incumplida la obligación de liquidar**, entrando en el escenario rojo (**20% o 35% de recargo**)."></div>
+        </div>
+
+        <div class="test-question" data-q="14">
+            <div class="test-q-text"><span class="test-q-num">15</span>¿Cuál es la diferencia fundamental entre un 'Acta de liquidación' y una 'Propuesta de liquidación' emitidas en el ámbito de la Inspección de Trabajo?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) El acta se notifica al deudor; la propuesta es una comunicación interna entre Inspección y TGSS ✓</div>
+                <div class="test-option" data-ans="0">B) El acta solo contiene sanciones; la propuesta contiene el principal de la deuda</div>
+                <div class="test-option" data-ans="0">C) El acta la emite la TGSS; la propuesta la emite la Inspección de Trabajo</div>
+                <div class="test-option" data-ans="0">D) El acta es definitiva e inimpugnable; la propuesta es recurrible en reposición</div>
+            </div>
+            <div class="test-feedback" data-ok="El **acta de liquidación se notifica directamente al deudor**, mientras que la **propuesta de liquidación es un trámite de comunicación interno** entre la Inspección y la TGSS."></div>
+        </div>
+    </div>
+
+    <!-- Puntuación final del Mini-test -->
+    <div class="test-score" id="testScore">
+        <div class="score-num" id="scoreNum">0/15</div>
+        <div class="score-label">Respuestas correctas</div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <br>
+        <button class="btn-reiniciar" onclick="reiniciarTest()">🔄 Reiniciar test</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= 🃏 SECCIÓN DE PREGUNTA ALEATORIA (TARJETAS) ======= -->
+    <h2 id="seccion-tarjetas" style="color:#0d2b3e; border-bottom:3px solid #e74c3c; margin-top:50px;">🃏 Práctica con Tarjetas Aleatorias (Tema 5)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Haz clic sobre la tarjeta para voltearla y ver la solución oficial. Pulsa el botón rojo para cambiar de pregunta.</p>
+
+    <!-- Tarjeta Interactiva -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+            <div class="flip-card-front" id="pregunta">
+                Cargando pregunta...
+            </div>
+            <div class="flip-card-back" id="respuesta">
+                Cargando respuesta...
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de Control -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <button id="btn-otra" onclick="cargarPreguntaAleatoria()">Otra pregunta</button>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ENTRE TEMAS ======= -->
+    <div class="nav-bar">
+        <a href="tema4_fusionado_completo.html">⬅ Tema 4</a>
+        <a href="index.html" class="indice">🏠 Índice de Temas</a>
+        <a href="tema6_fusionado_completo.html">Tema 6 ➡</a>
+    </div>
+
+    <!-- ======= FOOTER ======= -->
+    <div class="footer">
+        Tema 5 — Gestión Recaudatoria · Periodo Voluntario · Seguridad Social · Convocatoria 2026<br>
+        Material unificado: esquema web + transcripciones de control y recaudación con control de errores<br>
+        <span style="color:#27ae60;">✅ Conexión automatizada con el archivo externo 'preguntas5.js' habilitada</span>
+    </div>
+
+</div> <!-- /fin container -->
+
+<!-- ========================================== -->
+<!-- SCRIPTS Y CONTROLADORES JAVASCRIPT         -->
+<!-- ========================================== -->
+
+<!-- Enlace para cargar tu futura base de datos del Tema 5 -->
+<script src="preguntas5.js"></script>
+
+<script>
+    // --- LÓGICA DEL MINI-TEST INTERACTIVO ---
+    (function(){
+        var correct = 0, answered = 0, total = 15;
+        document.querySelectorAll('.test-question').forEach(function(q){
+            var opts = q.querySelectorAll('.test-option');
+            var fb = q.querySelector('.test-feedback');
+            var okText = fb.getAttribute('data-ok');
+            opts.forEach(function(opt){
+                opt.addEventListener('click', function(){
+                    if(q.dataset.done) return;
+                    q.dataset.done = '1';
+                    var isCorrect = opt.getAttribute('data-ans') === '1';
+                    opts.forEach(function(o){
+                        o.classList.add('disabled');
+                        if(o.getAttribute('data-ans') === '1') o.classList.add('correct');
+                    });
+                    if(!isCorrect) opt.classList.add('wrong');
+                    fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + okText;
+                    fb.classList.add('show', isCorrect ? 'ok' : 'ko');
+                    if(isCorrect) correct++;
+                    answered++;
+                    if(answered === total){
+                        var score = document.getElementById('testScore');
+                        document.getElementById('scoreNum').textContent = correct + '/' + total;
+                        var msg = correct >= 13 ? '🏆 ¡Sublime! Dominas los recargos, plazos y el RGRSS a nivel de inspector.' : correct >= 10 ? '👍 Muy buen nivel. Vigila bien las sutiles diferencias del art. 85.' : correct >= 7 ? '⚠️ Aprobado raspado. Repasa la escala de recargos del art. 30.' : '🔁 Necesitas machacar más este tema. Céntrate en memorizar los plazos y los inaplazables.';
+                        document.getElementById('scoreMsg').textContent = msg;
+                        score.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        window.reiniciarTest = function(){
+            document.querySelectorAll('.test-question').forEach(function(q){
+                delete q.dataset.done;
+                q.querySelectorAll('.test-option').forEach(function(o){ o.classList.remove('correct','wrong','disabled'); });
+                var fb = q.querySelector('.test-feedback');
+                fb.classList.remove('show','ok','ko');
+            });
+            correct = 0; answered = 0;
+            document.getElementById('testScore').style.display = 'none';
+            window.scrollTo({top: document.getElementById('mini-test').offsetTop - 20, behavior:'smooth'});
+        };
+    })();
+
+    // --- LÓGICA DE LAS TARJETAS ALEATORIAS ---
+    function cargarPreguntaAleatoria() {
+        if (typeof preguntas === 'undefined' || preguntas.length === 0) {
+            document.getElementById("pregunta").innerHTML = "<span style='color:#e74c3c;'>⚠️ Archivo 'preguntas5.js' no detectado o vacío.</span><br><br>Crea el archivo JS en esta misma carpeta para activar las tarjetas.";
+            document.getElementById("respuesta").innerText = "No se pudieron cargar las soluciones.";
+            return;
+        }
+
+        const random = Math.floor(Math.random() * preguntas.length);
+        document.getElementById("pregunta").innerText = preguntas[random].pregunta;
+        document.getElementById("respuesta").innerText = preguntas[random].respuesta;
+
+        // Devuelve la tarjeta al frente si estaba volteada
+        const card = document.querySelector('.flip-card');
+        card.classList.remove('flipped');
+        
+        // Efecto visual instantáneo verde en el botón
+        const btn = document.getElementById("btn-otra");
+        btn.classList.add("verde");
+        setTimeout(() => { btn.classList.remove("verde"); }, 400);
+    }
+
+    // Disparar la primera tarjeta automáticamente al iniciar el archivo
+    window.addEventListener('DOMContentLoaded', () => {
+        cargarPreguntaAleatoria();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 11 - Protección por Muerte y Supervivencia</title>
+    <style>
+        /* === RESET Y ESTILOS GENERALES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1a2a3a;
+            line-height: 1.7;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.12);
+            padding: 40px 50px;
+        }
+
+        .header {
+            border-bottom: 4px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #2e6b8a;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .badge-fusion {
+            display: inline-block;
+            background: #1a5276;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        .badge-update {
+            display: inline-block;
+            background: #27ae60;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .nav {
+            background: #eaf2f8;
+            border-radius: 16px;
+            padding: 18px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .nav a {
+            color: #1a5276;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav a:hover {
+            border-bottom-color: #1a5276;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            margin-top: 45px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #d4e6f1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a5276;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0 25px 0;
+            border-radius: 14px;
+            border: 1px solid #dce6ed;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        th {
+            background: #1a3a4f;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid #e9edf2;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+        }
+
+        .tag-web {
+            background: #d4e6f1;
+            color: #1a5276;
+        }
+
+        .tag-video {
+            background: #fdebd0;
+            color: #a04000;
+        }
+
+        .tag-fusion {
+            background: #d5f5e3;
+            color: #1a6e4b;
+        }
+
+        .tag-update {
+            background: #abebc6;
+            color: #1a6e4b;
+        }
+
+        .trampa {
+            background: #fef9e7;
+            border-left: 6px solid #f39c12;
+            padding: 18px 24px;
+            border-radius: 0 14px 14px 0;
+            margin: 22px 0;
+        }
+        .trampa strong { color: #b9770e; }
+
+        .cepo {
+            background: #fdedec;
+            border-left: 6px solid #e74c3c;
+            padding: 18px 24px;
+            border-radius: 0 14px 14px 0;
+            margin: 22px 0;
+        }
+        .cepo strong { color: #b03a2e; }
+
+        .destacado {
+            background: #eaf2f8;
+            padding: 16px 22px;
+            border-radius: 14px;
+            margin: 18px 0;
+            border: 1px solid #bdd7e8;
+        }
+        .destacado strong { color: #1a5276; }
+
+        .caja-dato {
+            background: #1a2a3a;
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 14px;
+            margin: 18px 0;
+            font-size: 0.95rem;
+        }
+        .caja-dato strong { color: #f1c40f; }
+
+        ul, ol {
+            padding-left: 28px;
+            margin: 12px 0 18px 0;
+        }
+        li { margin-bottom: 6px; }
+
+        .back-top {
+            display: inline-block;
+            margin-top: 40px;
+            background: #1a5276;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .back-top:hover { background: #0d3b55; }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #d4e6f1;
+            font-size: 0.85rem;
+            color: #5d6d7e;
+            text-align: center;
+        }
+
+        /* === BLOQUES DE COLOR === */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .full { grid-column: 1 / -1; }
+
+        .block {
+            background: #f8fafc;
+            border: 1px solid #dce6ed;
+            border-radius: 14px;
+            padding: 18px 22px;
+            transition: box-shadow 0.2s;
+        }
+        .block:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+        .block-title {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dce6ed;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .yellow .block-title { color: #b7950b; }
+        .yellow .dot { background: #f1c40f; }
+        .blue .block-title { color: #1a5276; }
+        .blue .dot { background: #2980b9; }
+        .red .block-title { color: #b03a2e; }
+        .red .dot { background: #e74c3c; }
+        .green .block-title { color: #1e7e34; }
+        .green .dot { background: #27ae60; }
+        .purple .block-title { color: #6c3483; }
+        .purple .dot { background: #8e44ad; }
+        .orange .block-title { color: #b9770e; }
+        .orange .dot { background: #f39c12; }
+
+        .item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .item:last-child { margin-bottom: 0; }
+        .item .arrow {
+            color: #6b7292;
+            flex-shrink: 0;
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.9rem;
+        }
+        .item strong { color: #0d2b3e; }
+
+        .pill {
+            display: inline-block;
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+        .pill-y { background: #fef9e7; color: #b7950b; border: 1px solid #f9e79f; }
+        .pill-b { background: #eaf2f8; color: #1a5276; border: 1px solid #aed6f1; }
+        .pill-r { background: #fdedec; color: #b03a2e; border: 1px solid #f5b7b1; }
+        .pill-g { background: #eafaf1; color: #1e7e34; border: 1px solid #a9dfbf; }
+        .pill-p { background: #f4ecf7; color: #6c3483; border: 1px solid #d7bde2; }
+        .pill-o { background: #fef9e7; color: #b9770e; border: 1px solid #f9e79f; }
+
+        .note {
+            background: rgba(74,222,128,0.05);
+            border: 1px solid rgba(74,222,128,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .note .nlabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #1e7e34;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .alert {
+            background: rgba(255,95,95,0.08);
+            border: 1px solid rgba(255,95,95,0.25);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .alert .alabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #b03a2e;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info {
+            background: rgba(61,158,255,0.05);
+            border: 1px solid rgba(61,158,255,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .info .ilabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #1a5276;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .sub-head {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 12px 0 6px 0;
+        }
+
+        .ejemplo {
+            background: #f0f7fb;
+            border-left: 4px solid #2980b9;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 10px 0;
+            font-size: 0.92rem;
+        }
+        .ejemplo strong { color: #1a5276; }
+
+        .formula {
+            background: #eaf2f8;
+            padding: 16px 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0d2b3e;
+            margin: 10px 0;
+            border: 1px solid #bdd7e8;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
+            .header h1 { font-size: 1.7rem; }
+            .nav { flex-direction: column; gap: 4px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            h2 { font-size: 1.5rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 10px 12px; }
+        }
+        /* === TABLA DATOS CLAVE === */
+        .datos-table th { background: #0d2b3e; }
+        .datos-table tr:hover td { background: #f0f7fb; }
+        .pb-red { background:#fdedec; color:#b03a2e; border:1px solid #f5b7b1; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-blue { background:#eaf2f8; color:#1a5276; border:1px solid #aed6f1; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-green { background:#eafaf1; color:#1e7e34; border:1px solid #a9dfbf; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-yellow { background:#fef9e7; color:#b7950b; border:1px solid #f9e79f; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-purple { background:#f5eef8; color:#6c3483; border:1px solid #d2b4de; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        /* === MINI-TEST === */
+        .test-question { background:#f8fafc; border:1px solid #dce6ed; border-radius:14px; padding:20px 24px; margin-bottom:16px; }
+        .test-q-num { display:inline-block; background:#1a3a4f; color:#fff; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:20px; margin-right:8px; }
+        .test-q-text { font-weight:600; color:#0d2b3e; font-size:1rem; margin-bottom:14px; }
+        .test-options { display:flex; flex-direction:column; gap:8px; }
+        .test-option { display:flex; align-items:flex-start; gap:10px; background:#fff; border:2px solid #dce6ed; border-radius:10px; padding:12px 16px; cursor:pointer; font-size:0.93rem; transition:border-color 0.15s, background 0.15s; user-select:none; }
+        .test-option:hover { border-color:#2980b9; background:#eaf2f8; }
+        .test-option.correct { border-color:#27ae60; background:#eafaf1; color:#1e7e34; font-weight:600; }
+        .test-option.wrong { border-color:#e74c3c; background:#fdedec; color:#b03a2e; }
+        .test-option.disabled { pointer-events:none; }
+        .test-feedback { margin-top:10px; padding:10px 16px; border-radius:8px; font-size:0.9rem; display:none; }
+        .test-feedback.show { display:block; }
+        .test-feedback.ok { background:#eafaf1; border-left:4px solid #27ae60; color:#1e7e34; }
+        .test-feedback.ko { background:#fdedec; border-left:4px solid #e74c3c; color:#b03a2e; }
+        .test-score { background:#1a2a3a; color:#fff; border-radius:14px; padding:20px 28px; text-align:center; display:none; margin-top:20px; }
+        .test-score .score-num { font-size:2.8rem; font-weight:700; color:#f1c40f; }
+        .test-score .score-label { font-size:1rem; color:#aab; margin-top:4px; }
+        .test-score .score-msg { font-size:0.95rem; margin-top:10px; color:#ddd; }
+        .btn-reiniciar { background:#1a5276; color:#fff; border:none; border-radius:30px; padding:10px 28px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:14px; transition:background 0.2s; }
+        .btn-reiniciar:hover { background:#0d3b55; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ======= HEADER ======= -->
+    <div class="header">
+        <h1>Tema 11 · Protección por Muerte y Supervivencia</h1>
+        <div class="subtitle">Auxilio por defunción · Viudedad · Orfandad · Favor de familiares · Indemnizaciones · Asignaciones familiares · Subsidio por cáncer</div>
+        <span class="badge-fusion">📚 Desarrollo completo · Esquema web + Datos adicionales</span>
+        <span class="badge-update">✅ Con límites de ingresos, plazos y alertas de examen</span>
+        <div style="margin-top: 8px; font-size: 0.85rem; color: #5d6d7e;">
+            Arts. 216-227, 351-362 TRLGSS · RD 1335/2005 · LPGE 2025
+        </div>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ======= -->
+    <div class="nav">
+        <a href="#datos-clave">⚡ Datos clave</a>
+        <a href="#p1">01. Cuadro general</a>
+        <a href="#p2">02. Requisitos del causante</a>
+        <a href="#p3">03. Auxilio por defunción</a>
+        <a href="#p4">04. Viudedad</a>
+        <a href="#p5">05. Orfandad</a>
+        <a href="#p6">06. Favor de familiares</a>
+        <a href="#p7">07. Indemnizaciones AT/EP</a>
+        <a href="#p8">08. Asignaciones familiares</a>
+        <a href="#p9">09. Subsidio por cáncer</a>
+        <a href="#kit">🎯 Kit de criba</a>
+        <a href="#minitest">🧪 Mini-test</a>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= TABLA DATOS CLAVE ======= -->
+    <h2 id="datos-clave" style="color:#0d2b3e; border-bottom:3px solid #f1c40f;">⚡ Datos clave del tema (lo más preguntado)</h2>
+    <p style="margin-bottom:14px; color:#5d6d7e; font-size:0.93rem;">Tema con muchas cifras concretas — mensualidades, porcentajes y plazos muy específicos. Fíjate especialmente en las indemnizaciones AT/EP y los requisitos de viudedad.</p>
+
+    <div class="table-wrap">
+        <table class="datos-table">
+            <thead>
+                <tr>
+                    <th style="width:36%">Concepto</th>
+                    <th style="width:22%">Dato</th>
+                    <th style="width:14%">Bloque</th>
+                    <th style="width:28%">Truco / Alerta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">REQUISITOS DEL CAUSANTE (PMC)</td>
+                </tr>
+                <tr>
+                    <td>PMC — EC en alta</td>
+                    <td><strong>500 días</strong> en <strong>5 años</strong></td>
+                    <td><span class="pb-blue">PMC</span></td>
+                    <td>⚠️ Diferente a IT (180 días en 5 años)</td>
+                </tr>
+                <tr>
+                    <td>PMC — AT, EP o ANL en alta</td>
+                    <td><strong>NO se exige</strong></td>
+                    <td><span class="pb-blue">PMC</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>PMC — No alta</td>
+                    <td><strong>15 años</strong> en toda la vida laboral</td>
+                    <td><span class="pb-blue">PMC</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>PMC — causante pensionista de jubilación o IP</td>
+                    <td><strong>NO se exige</strong></td>
+                    <td><span class="pb-blue">PMC</span></td>
+                    <td>⚠️ Trampa frecuente: si ya era pensionista, no se exige PMC</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">AUXILIO POR DEFUNCIÓN</td>
+                </tr>
+                <tr>
+                    <td>Plazo de solicitud</td>
+                    <td><strong>5 años</strong></td>
+                    <td><span class="pb-green">Auxilio</span></td>
+                    <td>Desde el fallecimiento</td>
+                </tr>
+                <tr>
+                    <td>Beneficiario preferente</td>
+                    <td>Quien paga el sepelio <strong>(con factura)</strong></td>
+                    <td><span class="pb-green">Auxilio</span></td>
+                    <td>Orden: cónyuge → hijos convivientes → parientes convivientes → cualquiera con factura</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">PENSIÓN DE VIUDEDAD — PORCENTAJES</td>
+                </tr>
+                <tr>
+                    <td>Porcentaje general</td>
+                    <td><strong>52%</strong> de la BR</td>
+                    <td><span class="pb-yellow">Viudedad</span></td>
+                    <td>Compatible con cualquier renta del trabajo</td>
+                </tr>
+                <tr>
+                    <td>Porcentaje incrementado</td>
+                    <td><strong>60%</strong></td>
+                    <td><span class="pb-yellow">Viudedad</span></td>
+                    <td>≥ 65 años + sin otra pensión + sin trabajo + rentas ≤ 24.979,4 € (2025)</td>
+                </tr>
+                <tr>
+                    <td>Porcentaje máximo (cargas familiares)</td>
+                    <td><strong>70%</strong></td>
+                    <td><span class="pb-yellow">Viudedad</span></td>
+                    <td>Requisitos del 60% + cargas familiares + pensión ≥ 50% de ingresos</td>
+                </tr>
+                <tr>
+                    <td>Prestación temporal viudedad</td>
+                    <td><strong>Máximo 2 años</strong></td>
+                    <td><span class="pb-yellow">Viudedad</span></td>
+                    <td>Si no se cumple el año de matrimonio ni hay hijos comunes (EC anterior al matrimonio)</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">PENSIÓN DE VIUDEDAD — REQUISITOS ESPECIALES</td>
+                </tr>
+                <tr>
+                    <td>EC anterior al matrimonio — requisito temporal</td>
+                    <td><strong>1 año</strong> de matrimonio</td>
+                    <td><span class="pb-yellow">Viudedad</span></td>
+                    <td>O hijos en común (salva el requisito)</td>
+                </tr>
+                <tr>
+                    <td>Excónyuge separado/divorciado</td>
+                    <td>Requiere <strong>pensión compensatoria</strong></td>
+                    <td><span class="pb-yellow">Viudedad</span></td>
+                    <td>Excepción: víctimas de violencia de género (sin pensión compensatoria)</td>
+                </tr>
+                <tr>
+                    <td>Pareja de hecho — constitución previa</td>
+                    <td><strong>2 años</strong> antes del fallecimiento</td>
+                    <td><span class="pb-yellow">Viudedad</span></td>
+                    <td>⚠️ 2 años de inscripción + 5 años de convivencia (ambos requisitos)</td>
+                </tr>
+                <tr>
+                    <td>Pareja de hecho — convivencia</td>
+                    <td><strong>5 años</strong></td>
+                    <td><span class="pb-yellow">Viudedad</span></td>
+                    <td>Se exime si hay hijos en común</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">PENSIÓN DE ORFANDAD</td>
+                </tr>
+                <tr>
+                    <td>Porcentaje básico por huérfano</td>
+                    <td><strong>20%</strong> de la BR</td>
+                    <td><span class="pb-green">Orfandad</span></td>
+                    <td>Límite grupo: viudedad + orfandad ≤ 100% de la BR</td>
+                </tr>
+                <tr>
+                    <td>Edad automática</td>
+                    <td><strong>Hasta 21 años</strong></td>
+                    <td><span class="pb-green">Orfandad</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>De 21 a 24 años</td>
+                    <td>Sin trabajo o ingresos <strong>&lt; SMI</strong></td>
+                    <td><span class="pb-green">Orfandad</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Sin límite de edad</td>
+                    <td>Discapacidad ≡ <strong>IPA o GI</strong></td>
+                    <td><span class="pb-green">Orfandad</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Orfandad absoluta — distribución</td>
+                    <td>El <strong>52%</strong> de viudedad se reparte entre huérfanos</td>
+                    <td><span class="pb-green">Orfandad</span></td>
+                    <td>Cada huérfano = 20% (orfandad) + su parte del 52%</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">INDEMNIZACIONES AT/EP (a tanto alzado)</td>
+                </tr>
+                <tr>
+                    <td>Cónyuge / pareja de hecho</td>
+                    <td><strong>6 mensualidades</strong> de la BR</td>
+                    <td><span class="pb-red">AT/EP</span></td>
+                    <td>Si no hay cónyuge → se reparte entre huérfanos</td>
+                </tr>
+                <tr>
+                    <td>Cada huérfano</td>
+                    <td><strong>1 mensualidad</strong> de la BR</td>
+                    <td><span class="pb-red">AT/EP</span></td>
+                    <td>Compatible con la pensión de orfandad</td>
+                </tr>
+                <tr>
+                    <td>Progenitor único (sin cónyuge ni hijos)</td>
+                    <td><strong>9 mensualidades</strong> de la BR</td>
+                    <td><span class="pb-red">AT/EP</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Ambos progenitores (sin cónyuge ni hijos)</td>
+                    <td><strong>12 mensualidades</strong> a repartir</td>
+                    <td><span class="pb-red">AT/EP</span></td>
+                    <td>Regla: 6→cónyuge · 1→huérfano · 9→padre/madre solo · 12→padre y madre</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">ASIGNACIONES FAMILIARES</td>
+                </tr>
+                <tr>
+                    <td>Pago único nacimiento/adopción (supuestos especiales)</td>
+                    <td><strong>1.000 €</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                    <td>Familias numerosas, monoparentales o discapacidad ≥ 65%</td>
+                </tr>
+                <tr>
+                    <td>Parto múltiple — 2 hijos</td>
+                    <td><strong>4 × SMI diario</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                    <td rowspan="3">Solo se reconoce a uno de los progenitores</td>
+                </tr>
+                <tr>
+                    <td>Parto múltiple — 3 hijos</td>
+                    <td><strong>8 × SMI diario</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                </tr>
+                <tr>
+                    <td>Parto múltiple — 4 o más hijos</td>
+                    <td><strong>12 × SMI diario</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                </tr>
+                <tr>
+                    <td>Variaciones familiares — efectos</td>
+                    <td>Por <strong>trimestres naturales</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                    <td>Alta: 1er día del trimestre siguiente · Baja: último día del trimestre</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">SUBSIDIO CUIDADO MENORES CON CÁNCER</td>
+                </tr>
+                <tr>
+                    <td>Reducción de jornada mínima</td>
+                    <td><strong>50%</strong></td>
+                    <td><span class="pb-purple">Cáncer</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Edad límite del menor</td>
+                    <td><strong>18 años</strong></td>
+                    <td><span class="pb-purple">Cáncer</span></td>
+                    <td>Prórroga 23 años (enfermedad antes de 18) · 26 años si discapacidad ≥ 65%</td>
+                </tr>
+                <tr>
+                    <td>Cuantía</td>
+                    <td><strong>100%</strong> de la BR de IT (proporcional)</td>
+                    <td><span class="pb-purple">Cáncer</span></td>
+                    <td>Exige que ambos progenitores trabajen (salvo monoparental)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="caja-dato" style="margin-bottom:30px;">
+        <strong>🧠 Regla rápida AT/EP:</strong> Cónyuge <strong>6</strong> mensualidades · huérfano <strong>1</strong> · padre/madre solo <strong>9</strong> · ambos padres <strong>12</strong>. Viudedad: general <strong>52%</strong> · 65 años <strong>60%</strong> · cargas <strong>70%</strong>. Pareja de hecho: <strong>2</strong> años inscripción + <strong>5</strong> años convivencia.
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= 01. CUADRO GENERAL ======= -->
+    <h2 id="p1">01. Cuadro general de la acción protectora (art. 216 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="block full blue">
+        <div class="block-title"><span class="dot"></span>Prestaciones por muerte y supervivencia</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Auxilio por defunción</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Pago único para sufragar los gastos del sepelio.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Pensión de viudedad</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Prestación vitalicia o temporal para el cónyuge o pareja de hecho superviviente.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Prestación temporal de viudedad</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Subsidio de corta duración cuando el matrimonio no cumple los requisitos temporales (máximo 2 años).</span></div>
+            </div>
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Pensión de orfandad</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Pensión para los hijos del causante.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Pensión o subsidio a favor de familiares</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Prestación para parientes consanguíneos que dependían económicamente del fallecido.</span></div>
+            </div>
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Indemnización especial a tanto alzado</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Cantidad complementaria si la muerte deriva de <strong>Contingencias Profesionales (AT o EP)</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Asignaciones familiares</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Prestaciones no contributivas por hijo a cargo.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Subsidio por cuidado de menores con cáncer</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Prestación para progenitores que reducen jornada para cuidar a un menor con enfermedad grave.</span></div>
+            </div>
+        </div>
+        <div class="caja-dato" style="margin-top:14px;">
+            <strong>📌 Hecho causante:</strong> el fallecimiento del trabajador o su declaración de fallecimiento.
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 02. REQUISITOS DEL CAUSANTE ======= -->
+    <h2 id="p2">02. Requisitos de cotización del causante (art. 217 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="grid-2">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>En situación de alta o asimilada</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Enfermedad común:</strong> <span class="pill pill-g">500 días cotizados</span> dentro de los <span class="pill pill-g">5 años inmediatamente anteriores</span> a la fecha del fallecimiento (o desde que cesó la obligación de cotizar).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Accidente (laboral o no) o Enfermedad Profesional:</strong> <span class="pill pill-r">NO se exige</span> período previo de cotización (0 días).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>IT, NYCM, Riesgo durante el embarazo/lactancia:</strong> también causan derecho si reunían la carencia propia de dichas situaciones.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Clave</div>
+                <p>Si el causante fallece estando en <strong>IT, NYCM o riesgo</strong>, se exige la carencia correspondiente a esa situación (ej. 180 días en los 5 años para IT por CC).</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>En situación de "No alta"</div>
+            <div class="item"><span class="arrow">→</span><span>Se exige un período mínimo de cotización de <span class="pill pill-y">15 años</span> a lo largo de toda su vida laboral.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Válido para causar <strong>viudedad, orfandad y favor de familiares</strong>.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Condición de pensionista</div>
+            <div class="item"><span class="arrow">→</span><span><span class="pill pill-g">NO se exige carencia</span> si el fallecido ya era <strong>pensionista de jubilación contributiva</strong> o de <strong>incapacidad permanente</strong>.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> Si el causante es pensionista de jubilación o IP, <strong>no se exige PMC</strong> para que sus beneficiarios accedan a las prestaciones de muerte y supervivencia.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 03. AUXILIO POR DEFUNCIÓN ======= -->
+    <h2 id="p3">03. Auxilio por defunción (art. 218 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Objeto y beneficiarios</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Objeto:</strong> auxilio económico de <strong>pago único</strong> para los gastos del sepelio.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Plazo de solicitud:</strong> <span class="pill pill-b">5 años</span> desde el fallecimiento.</span></div>
+            <div class="sub-head">Orden de preferencia (salvo prueba en contrario)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>1.</strong> El cónyuge superviviente o la pareja de hecho formalizada.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>2.</strong> Los hijos que convivieran habitualmente con el fallecido.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>3.</strong> Los parientes que convivieran con él.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>En su defecto:</strong> cualquier persona (física o jurídica) que demuestre <strong>con facturas</strong> haber pagado el sepelio, con el límite del importe fijado para el auxilio.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Límite de la prestación</div>
+                <p>El auxilio por defunción se abona <strong>hasta el importe del gasto acreditado</strong> (factura). No se paga si los gastos han sido asumidos por la propia SS, otra entidad o el causante.</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Cuadro resumen de prestaciones por muerte</div>
+            <div class="table-wrap" style="margin:10px 0;">
+                <table>
+                    <thead>
+                        <tr><th>Prestación</th><th>Carácter</th><th>Beneficiario</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Auxilio por defunción</td><td>Pago único</td><td>Quien paga el sepelio</td></tr>
+                        <tr><td>Viudedad</td><td>Vitalicia o temporal</td><td>Cónyuge / pareja de hecho</td></tr>
+                        <tr><td>Prestación temporal viudedad</td><td>Temporal (2 años)</td><td>Cónyuge sin 1 año de matrimonio</td></tr>
+                        <tr><td>Orfandad</td><td>Pensión</td><td>Hijos del causante</td></tr>
+                        <tr><td>Favor de familiares</td><td>Pensión</td><td>Familiares consanguíneos</td></tr>
+                        <tr><td>Indemnización AT/EP</td><td>Pago único (a tanto alzado)</td><td>Beneficiarios (cónyuge, hijos, padres)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 04. PENSIÓN DE VIUDEDAD ======= -->
+    <h2 id="p4">04. Pensión de viudedad (arts. 219-224 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>A) Vínculo matrimonial (art. 219)</div>
+            <div class="item"><span class="arrow">→</span><span>Si el fallecimiento se debe a una <strong>enfermedad común anterior al matrimonio</strong>, se exige:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Matrimonio celebrado al menos <span class="pill pill-y">1 año antes</span> de la muerte.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>O bien, existencia de <strong>hijos en común</strong> (o concebidos en la convivencia previa).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prestación temporal (excepción):</strong> si no se cumple lo anterior, se concede un subsidio temporal limitado a un <strong>máximo de 2 años</strong>.</span></div>
+            <div class="sub-head" style="margin-top:14px;">B) Separación, divorcio y nulidad (art. 220)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Regla general:</strong> se exige estar percibiendo una <strong>pensión compensatoria</strong> judicial o por convenio.</span></div>
+            <div class="item"><span class="arrow">→</span><span>La pensión de viudedad está <strong>topada</strong> por el importe de dicha pensión compensatoria.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Excepción por Violencia de Género:</strong> las mujeres que acrediten haber sido víctimas de violencia de género en el momento de la separación o divorcio tienen derecho a la viudedad <strong>sin necesidad de percibir pensión compensatoria</strong>.</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>C) Parejas de hecho (art. 221)</div>
+            <div class="item"><span class="arrow">→</span><span>Exige <strong>doble acreditación oficial</strong>:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>1. Inscripción:</strong> en el registro de la CC.AA. o ayuntamiento (o documento público) con antelación mínima de <span class="pill pill-g">2 años</span>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>2. Convivencia:</strong> estable e ininterrumpida de al menos <span class="pill pill-g">5 años</span> previos al fallecimiento.</span></div>
+            <div class="trampa" style="margin-top:10px;">
+                <strong>⚠️ Trampa de examen:</strong> Pareja de hecho → <strong>2 años</strong> de constitución + <strong>5 años</strong> de convivencia. Si hay <strong>hijos en común</strong>, no se exige la convivencia de 5 años.
+            </div>
+            <div class="sub-head" style="margin-top:14px;">D) Extinción del derecho por delito doloso</div>
+            <div class="item"><span class="arrow">→</span><span>Quien sea condenado por <strong>sentencia firme</strong> por un delito doloso de homicidio contra el causante <span class="pill pill-r">NO podrá ser beneficiario</span> de las prestaciones de muerte y supervivencia.</span></div>
+        </div>
+    </div>
+
+    <div class="block full yellow">
+        <div class="block-title"><span class="dot"></span>E) Cuantías y porcentajes de viudedad (art. 224 TRLGSS)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">52% (general)</div>
+                <div class="item"><span class="arrow">→</span><span><span class="pill pill-y">52%</span> de la Base Reguladora del causante.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Compatible con cualquier renta del trabajo.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">60% (incrementado)</div>
+                <div class="item"><span class="arrow">→</span><span><span class="pill pill-b">60%</span> para mayores de <strong>65 años</strong> que:</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>No tengan otra pensión pública.</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>No tengan ingresos por trabajo.</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Sus rentas anuales no superen el límite legal (<strong>24.979,4 €</strong> en 2025).</span></div>
+            </div>
+            <div>
+                <div class="sub-head">70% (con cargas familiares)</div>
+                <div class="item"><span class="arrow">→</span><span><span class="pill pill-p">70%</span> si se cumplen <strong>todos</strong> los requisitos del 60% <strong>Y ADEMÁS</strong>:</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Tener <strong>cargas familiares</strong> (hijos menores de 26 años o con discapacidad que convivan y dependan del beneficiario).</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Que la pensión sea la <strong>principal o única fuente de ingresos</strong> (≥ 50% de sus ingresos totales).</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Que los rendimientos anuales totales no superen el límite legal.</span></div>
+            </div>
+        </div>
+        <div class="caja-dato" style="margin-top:14px;">
+            <strong>📌 Clave para el examen:</strong> El 60% y 70% requieren <strong>cumplir todos los requisitos</strong> (son sumativos). El 52% es el general y compatible con cualquier ingreso.
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 05. PENSIÓN DE ORFANDAD ======= -->
+    <h2 id="p5">05. Pensión de orfandad (arts. 224-225 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Beneficiarios y edades</div>
+            <div class="item"><span class="arrow">→</span><span>Tienen derecho los <strong>hijos del causante</strong>, con independencia de su filiación.</span></div>
+            <div class="sub-head">Tramos de edad</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Menores de 21 años:</strong> derecho automático.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>De 21 a 24 años (menores de 25):</strong> derecho <strong>si no trabajan</strong>, o si lo hacen, sus ingresos anuales son <strong>inferiores al SMI</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prórroga por estudios:</strong> si cumple 25 años cursando estudios, la pensión se mantiene hasta el <strong>día primero del mes posterior al inicio del siguiente curso escolar</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Hijos con discapacidad:</strong> <span class="pill pill-g">Sin límite de edad</span> si tienen reducida su capacidad de trabajo en grado equivalente a <strong>IPA o Gran Invalidez</strong>.</span></div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Cuantía y límites</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Porcentaje básico:</strong> <span class="pill pill-y">20%</span> de la Base Reguladora del causante por cada huérfano.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Límite del grupo:</strong> la suma de <strong>viudedad + orfandad</strong> <span class="pill pill-r">NO</span> puede superar el <span class="pill pill-r">100%</span> de la BR (salvo incrementos excepcionales por el 70% de viudedad).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Orfandad absoluta (sin progenitor superviviente):</strong> el <span class="pill pill-y">52%</span> de la viudedad se puede distribuir y sumar de forma proporcional entre las pensiones de los huérfanos.</span></div>
+            <div class="ejemplo">
+                <strong>📌 Ejemplo:</strong> Si el causante tiene 2 hijos huérfanos absolutos, cada uno recibirá: 20% (orfandad) + (52% ÷ 2 = 26%) = <strong>46%</strong> de la BR cada uno.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 06. PRESTACIONES A FAVOR DE FAMILIARES ======= -->
+    <h2 id="p6">06. Prestaciones a favor de familiares (art. 226 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="block full purple">
+        <div class="block-title"><span class="dot"></span>Requisitos y cuantía</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="item"><span class="arrow">→</span><span>Para <strong>parientes consanguíneos</strong> que convivieran con el causante y <strong>dependieran económicamente</strong> de él desde al menos <span class="pill pill-g">2 años antes</span> del fallecimiento.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Ejemplos:</strong> nietos, hermanos menores de 21 (o incapacitados), padres mayores de 60 (o incapacitados).</span></div>
+            </div>
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Porcentaje:</strong> <span class="pill pill-p">20%</span> de la BR para cada beneficiario.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Se aplican los <strong>mismos límites máximos de concurrencia</strong> que en la orfandad (viudedad + favor de familiares ≤ 100% de la BR).</span></div>
+                <div class="caja-dato" style="margin-top:10px;">
+                    <strong>📌 Clave:</strong> La dependencia económica debe ser <strong>real y efectiva</strong> (no basta con la mera convivencia).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 07. INDEMNIZACIONES POR CONTINGENCIAS PROFESIONALES ======= -->
+    <h2 id="p7">07. Indemnizaciones por contingencias profesionales (art. 227 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="grid-2">
+        <div class="block red">
+            <div class="block-title"><span class="dot"></span>Indemnizaciones a tanto alzado</div>
+            <div class="item"><span class="arrow">→</span><span>Si la muerte se debe a <strong>Accidente de Trabajo (AT) o Enfermedad Profesional (EP)</strong>, los beneficiarios reciben, <strong>además de su pensión</strong>, un pago único a tanto alzado.</span></div>
+            <div class="sub-head">Cuantías</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Cónyuge o pareja de hecho superviviente:</strong> <span class="pill pill-r">6 mensualidades</span> de la BR.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Cada huérfano beneficiario:</strong> <span class="pill pill-r">1 mensualidad</span> de la BR.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>En orfandad absoluta:</strong> las 6 mensualidades del cónyuge se reparten <strong>equitativamente</strong> entre los huérfanos.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Progenitores (padre o madre):</strong> si no hay cónyuge ni hijos con derecho, los progenitores que dependieran económicamente del fallecido reciben:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><span class="pill pill-r">9 mensualidades</span> (si vive uno solo).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><span class="pill pill-r">12 mensualidades</span> (a repartir si viven ambos).</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Resumen de indemnizaciones AT/EP</div>
+            <div class="table-wrap" style="margin:10px 0;">
+                <table>
+                    <thead>
+                        <tr><th>Beneficiario</th><th>Nº de mensualidades</th><th>Observaciones</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Cónyuge / pareja de hecho</td><td><strong>6</strong></td><td>Si no hay cónyuge, se reparten entre huérfanos</td></tr>
+                        <tr><td>Cada huérfano</td><td><strong>1</strong></td><td>—</td></tr>
+                        <tr><td>Padre o madre (uno solo)</td><td><strong>9</strong></td><td>Solo si no hay cónyuge ni hijos</td></tr>
+                        <tr><td>Padre y madre (ambos)</td><td><strong>12</strong> (a repartir)</td><td>Solo si no hay cónyuge ni hijos</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> Estas indemnizaciones son <strong>compatibles</strong> con las pensiones de viudedad, orfandad o favor de familiares. Se suman, no se sustituyen.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 08. ASIGNACIONES FAMILIARES ======= -->
+    <h2 id="p8">08. Asignaciones familiares (arts. 351-362 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="grid-2">
+        <div class="block orange">
+            <div class="block-title"><span class="dot"></span>Prestación por nacimiento o adopción (arts. 357-358)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pago único:</strong> <span class="pill pill-y">1.000 €</span> por nacimiento o adopción en supuestos de <strong>familias numerosas, monoparentales o progenitor con discapacidad ≥ 65%</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Límite de ingresos:</strong> los ingresos anuales no deben superar la cuantía fijada en la LPGE (incrementada en 15% por cada hijo a cargo a partir del segundo).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Regla de ingresos intermedios:</strong> si los ingresos superan el límite pero son inferiores a (límite + 1.000 €), la cuantía = diferencia.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Prestación por parto o adopción múltiple (arts. 359-361)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>2 hijos:</strong> <span class="pill pill-y">4 × SMI diario</span></span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>3 hijos:</strong> <span class="pill pill-y">8 × SMI diario</span></span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>4 o más hijos:</strong> <span class="pill pill-y">12 × SMI diario</span></span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Incompatibilidad:</strong> solo se reconoce a <strong>uno</strong> de los progenitores.</span></div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Compatibilidad y periodos de cotización</div>
+            <div class="sub-head">Compatibilidad del beneficiario con el trabajo (art. 351)</div>
+            <div class="item"><span class="arrow">→</span><span>El hijo o menor con discapacidad <strong>puede trabajar</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Límite:</strong> mantiene el derecho si sus ingresos anuales <span class="pill pill-g">≤ 100% del SMI</span>.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Huérfanos absolutos o menores abandonados (art. 352)</div>
+            <div class="item"><span class="arrow">→</span><span>Son beneficiarios directos de la asignación por hijo a cargo los huérfanos de padre y madre menores de 18 años (o mayores con discapacidad).</span></div>
+            <div class="item"><span class="arrow">→</span><span>Se asimilan los menores <strong>abandonados</strong> por sus padres.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Efectos temporales (art. 355)</div>
+            <div class="item"><span class="arrow">→</span><span>Las variaciones familiares se aplican por <strong>trimestres naturales</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Nacimiento (alza):</strong> efectos desde el <strong>primer día del trimestre siguiente</strong> a la solicitud.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Extinción (baja):</strong> efectos desde el <strong>último día del trimestre</strong> en que se produzca la causa.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Cotización por excedencia (art. 362 y RD 1335/2005)</div>
+                <p>El <strong>primer año de excedencia por cuidado de hijo</strong> se considera <strong>cotización efectiva</strong> para jubilación, IP, MYS y maternidad.</p>
+                <p><strong>Familia numerosa general:</strong> 15 meses. <strong>Familia numerosa especial:</strong> 18 meses.</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 09. SUBSIDIO POR CUIDADO DE MENORES CON CÁNCER ======= -->
+    <h2 id="p9">09. Subsidio por cuidado de menores afectados por cáncer u otra enfermedad grave (arts. 190-192 TRLGSS)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Situación protegida y condiciones</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reducción de jornada:</strong> de al menos un <span class="pill pill-p">50%</span> de su duración, motivada por el cuidado directo, continuo y permanente de un menor con <strong>cáncer u otra enfermedad grave</strong> que requiera ingreso hospitalario de larga duración y tratamiento continuo.</span></div>
+            <div class="sub-head">Condiciones del menor</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Edad límite:</strong> menor de <span class="pill pill-y">18 años</span> (hijos o menores en guarda/acogimiento).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prórroga hasta 23 años:</strong> si persiste la necesidad del cuidado tras el diagnóstico realizado antes de los 18.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prórroga hasta 26 años:</strong> si el causante tiene discapacidad ≥ <span class="pill pill-y">65%</span>.</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Requisitos y cuantía</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Requisitos de cotización:</strong> los mismos que para la prestación por <strong>NYCM</strong> (según edad del interesado en la fecha del hecho causante).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Obligación de doble alta:</strong> <span class="pill pill-y">ambos progenitores deben trabajar</span>. El derecho solo se reconoce a <strong>uno</strong> de ellos.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Familias monoparentales:</strong> basta con que trabaje el único progenitor.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong> <span class="pill pill-g">100% de la Base Reguladora</span> de IT (CC o CP), en <strong>proporción directa a la reducción</strong> de jornada.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Gestión:</strong> <strong>Mutua Colaboradora</strong> o Entidad Gestora con la que la empresa tenga concertada la cobertura de riesgos profesionales.</span></div>
+            <div class="trampa" style="margin-top:10px;">
+                <strong>⚠️ Trampa de examen:</strong> Este subsidio se concede aunque la empresa <strong>no haya cotizado</strong> por contingencias profesionales (en ese caso, se toma la base de CC).
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= KIT DE CRIBA ======= -->
+    <h2 id="kit">🎯 Kit de criba directa para el test (datos críticos)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Concepto</th><th>Dato clave</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Hecho causante en MYS</td><td><strong>Fallecimiento</strong> o declaración de fallecimiento</td></tr>
+                <tr><td>PMC — enfermedad común (alta)</td><td><strong>500 días</strong> en <strong>5 años</strong></td></tr>
+                <tr><td>PMC — AT, EP o ANL (alta)</td><td><strong>NO</strong> se exige</td></tr>
+                <tr><td>PMC — No alta</td><td><strong>15 años</strong> de cotización a lo largo de la vida laboral</td></tr>
+                <tr><td>PMC — pensionista de jubilación/IP</td><td><strong>NO</strong> se exige</td></tr>
+                <tr><td>Auxilio por defunción — plazo de solicitud</td><td><strong>5 años</strong></td></tr>
+                <tr><td>Auxilio por defunción — beneficiario</td><td>Quien <strong>paga el sepelio</strong> (con factura)</td></tr>
+                <tr><td>Viudedad — porcentaje general</td><td><strong>52%</strong> de la BR</td></tr>
+                <tr><td>Viudedad — 60% (requisitos)</td><td>≥ 65 años, sin otra pensión, sin ingresos por trabajo, rentas ≤ <strong>24.979,4 €</strong> (2025)</td></tr>
+                <tr><td>Viudedad — 70% (requisitos)</td><td>Requisitos del 60% + <strong>cargas familiares</strong> + pensión = principal fuente (≥ 50%)</td></tr>
+                <tr><td>Viudedad — excónyuge</td><td>Requisito: <strong>pensión compensatoria</strong> (art. 97 CC). Excepción: violencia de género.</td></tr>
+                <tr><td>Viudedad — pareja de hecho (constitución)</td><td><strong>2 años</strong> de antelación al fallecimiento</td></tr>
+                <tr><td>Viudedad — pareja de hecho (convivencia)</td><td><strong>5 años</strong> (salvo hijos en común)</td></tr>
+                <tr><td>Orfandad — porcentaje básico</td><td><strong>20%</strong> de la BR por cada huérfano</td></tr>
+                <tr><td>Orfandad — límite del grupo</td><td>Viudedad + orfandad ≤ <strong>100%</strong> de la BR</td></tr>
+                <tr><td>Orfandad — edad automática</td><td><strong>Menores de 21 años</strong></td></tr>
+                <tr><td>Orfandad — 21 a 24 años</td><td>Sin trabajo, o ingresos < <strong>SMI</strong></td></tr>
+                <tr><td>Orfandad — prórroga por estudios</td><td>Hasta el <strong>primer día del mes posterior al inicio del siguiente curso</strong></td></tr>
+                <tr><td>Orfandad — sin límite de edad</td><td>Discapacidad equivalente a <strong>IPA o Gran Invalidez</strong></td></tr>
+                <tr><td>Favor de familiares — porcentaje</td><td><strong>20%</strong> de la BR</td></tr>
+                <tr><td>Favor de familiares — dependencia</td><td>Convivencia y dependencia económica ≥ <strong>2 años</strong></td></tr>
+                <tr><td>Indemnización AT/EP — cónyuge</td><td><strong>6 mensualidades</strong> de la BR</td></tr>
+                <tr><td>Indemnización AT/EP — cada huérfano</td><td><strong>1 mensualidad</strong> de la BR</td></tr>
+                <tr><td>Indemnización AT/EP — padres (uno solo)</td><td><strong>9 mensualidades</strong> de la BR</td></tr>
+                <tr><td>Indemnización AT/EP — padres (ambos)</td><td><strong>12 mensualidades</strong> a repartir</td></tr>
+                <tr><td>Nacimiento/adopción — pago único</td><td><strong>1.000 €</strong> (familias numerosas, monoparentales o discapacidad ≥ 65%)</td></tr>
+                <tr><td>Parto/adopción múltiple — 2 hijos</td><td><strong>4 × SMI diario</strong></td></tr>
+                <tr><td>Parto/adopción múltiple — 3 hijos</td><td><strong>8 × SMI diario</strong></td></tr>
+                <tr><td>Parto/adopción múltiple — 4+ hijos</td><td><strong>12 × SMI diario</strong></td></tr>
+                <tr><td>Subsidio por cáncer — reducción de jornada</td><td>Al menos <strong>50%</strong></td></tr>
+                <tr><td>Subsidio por cáncer — cuantía</td><td><strong>100%</strong> de la BR de IT, en proporción a la reducción</td></tr>
+                <tr><td>Subsidio por cáncer — edad límite</td><td><strong>18 años</strong> (23 años prórroga, 26 años si discapacidad ≥ 65%)</td></tr>
+                <tr><td>Subsidio por cáncer — requisito doble alta</td><td>Ambos progenitores deben <strong>trabajar</strong> (excepto monoparental)</td></tr>
+                <tr><td>Extinción por delito doloso</td><td><strong>NO</strong> puede ser beneficiario quien sea condenado por homicidio doloso contra el causante</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="destacado" style="margin-top:20px;">
+        <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+        <p><strong>✅ Desarrollo completo del Tema 11:</strong> se han integrado todos los apartados del esquema con datos adicionales (límite de ingresos para el 60%, plazo de 5 años para el auxilio, extinción por delito doloso, etc.). El material está listo para estudiar y repasar con el formato visual de los temas anteriores.</p>
+    </div>
+    <!-- ============================================================ -->
+    <!-- ======= MINI-TEST ======= -->
+    <h2 id="minitest">🧪 Mini-test de criba · Tema 11 (15 preguntas)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Preguntas tipo examen sobre muerte y supervivencia. Haz clic en la opción correcta.</p>
+
+    <div id="testContainer">
+
+        <div class="test-question" data-q="0">
+            <div class="test-q-text"><span class="test-q-num">1</span>El causante fallece por enfermedad común estando en alta. ¿Cuántos días debe tener cotizados en los últimos 5 años para que sus beneficiarios accedan a las prestaciones de muerte y supervivencia?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 180 días</div>
+                <div class="test-option" data-ans="1">B) 500 días ✓</div>
+                <div class="test-option" data-ans="0">C) 1.800 días</div>
+                <div class="test-option" data-ans="0">D) No se exige PMC</div>
+            </div>
+            <div class="test-feedback" data-ok="Para muerte y supervivencia por EC en alta: <strong>500 días</strong> en los 5 años anteriores. Diferente a IT por EC (180 días). Para AT/EP/ANL: no se exige PMC."></div>
+        </div>
+
+        <div class="test-question" data-q="1">
+            <div class="test-q-text"><span class="test-q-num">2</span>El causante lleva años sin cotizar y no está en alta en el momento del fallecimiento por enfermedad común. ¿Pueden sus familiares acceder a la pensión de viudedad?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) No; en situación de no alta no se puede causar viudedad</div>
+                <div class="test-option" data-ans="1">B) Sí, si acredita 15 años cotizados a lo largo de toda su vida laboral ✓</div>
+                <div class="test-option" data-ans="0">C) Solo si tiene 500 días cotizados en los últimos 5 años</div>
+                <div class="test-option" data-ans="0">D) Solo si era pensionista de jubilación</div>
+            </div>
+            <div class="test-feedback" data-ok="En <strong>situación de no alta</strong>: se exigen <strong>15 años cotizados</strong> en toda la vida laboral. Si el causante era pensionista de jubilación o IP, no se exige PMC alguno."></div>
+        </div>
+
+        <div class="test-question" data-q="2">
+            <div class="test-q-text"><span class="test-q-num">3</span>¿Cuál es el plazo para solicitar el auxilio por defunción?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 año desde el fallecimiento</div>
+                <div class="test-option" data-ans="0">B) 2 años desde el fallecimiento</div>
+                <div class="test-option" data-ans="1">C) 5 años desde el fallecimiento ✓</div>
+                <div class="test-option" data-ans="0">D) 4 años desde el fallecimiento</div>
+            </div>
+            <div class="test-feedback" data-ok="El auxilio por defunción tiene un plazo de solicitud de <strong>5 años</strong> desde el fallecimiento. Lo cobra quien acredite con factura haber pagado el sepelio."></div>
+        </div>
+
+        <div class="test-question" data-q="3">
+            <div class="test-q-text"><span class="test-q-num">4</span>¿Cuál es el porcentaje general de la pensión de viudedad sobre la base reguladora del causante?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 45%</div>
+                <div class="test-option" data-ans="1">B) 52% ✓</div>
+                <div class="test-option" data-ans="0">C) 60%</div>
+                <div class="test-option" data-ans="0">D) 70%</div>
+            </div>
+            <div class="test-feedback" data-ok="El porcentaje <strong>general</strong> de viudedad es el <strong>52%</strong> de la BR. El 60% y el 70% son incrementos condicionados al cumplimiento de requisitos adicionales."></div>
+        </div>
+
+        <div class="test-question" data-q="4">
+            <div class="test-q-text"><span class="test-q-num">5</span>Una viuda de 67 años no tiene otra pensión pública ni ingresos por trabajo y sus rentas anuales no superan el límite legal. ¿A qué porcentaje de viudedad tiene derecho?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 52%</div>
+                <div class="test-option" data-ans="1">B) 60% ✓</div>
+                <div class="test-option" data-ans="0">C) 70%</div>
+                <div class="test-option" data-ans="0">D) 75%</div>
+            </div>
+            <div class="test-feedback" data-ok="El <strong>60%</strong> requiere: ≥ 65 años + sin otra pensión pública + sin ingresos por trabajo + rentas ≤ 24.979,4 € (2025). El 70% requiere además cargas familiares y que la pensión sea su principal fuente de ingresos."></div>
+        </div>
+
+        <div class="test-question" data-q="5">
+            <div class="test-q-text"><span class="test-q-num">6</span>El causante fallece por una enfermedad común que ya padecía antes del matrimonio, celebrado hace 8 meses. No tienen hijos. ¿Qué le corresponde al cónyuge superviviente?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Pensión de viudedad vitalicia al 52%</div>
+                <div class="test-option" data-ans="1">B) Prestación temporal de viudedad, máximo 2 años ✓</div>
+                <div class="test-option" data-ans="0">C) Nada; no cumple los requisitos</div>
+                <div class="test-option" data-ans="0">D) Pensión de viudedad vitalicia al 30%</div>
+            </div>
+            <div class="test-feedback" data-ok="EC anterior al matrimonio + menos de 1 año casados + sin hijos comunes → <strong>prestación temporal de viudedad máximo 2 años</strong>. Si hubiera hijos comunes o llevaran ≥ 1 año casados, sería pensión vitalicia."></div>
+        </div>
+
+        <div class="test-question" data-q="6">
+            <div class="test-q-text"><span class="test-q-num">7</span>Para que una pareja de hecho tenga derecho a la pensión de viudedad, ¿qué requisitos de convivencia e inscripción se exigen?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 año de inscripción y 2 años de convivencia</div>
+                <div class="test-option" data-ans="0">B) 2 años de inscripción y 2 años de convivencia</div>
+                <div class="test-option" data-ans="1">C) 2 años de inscripción y 5 años de convivencia ✓</div>
+                <div class="test-option" data-ans="0">D) 5 años de inscripción y 2 años de convivencia</div>
+            </div>
+            <div class="test-feedback" data-ok="Pareja de hecho: <strong>2 años</strong> de constitución (inscripción) + <strong>5 años</strong> de convivencia estable e ininterrumpida. Si hay hijos en común, se exime el requisito de convivencia."></div>
+        </div>
+
+        <div class="test-question" data-q="7">
+            <div class="test-q-text"><span class="test-q-num">8</span>¿Cuál es el porcentaje de la pensión de orfandad por cada huérfano?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 10% de la BR</div>
+                <div class="test-option" data-ans="1">B) 20% de la BR ✓</div>
+                <div class="test-option" data-ans="0">C) 25% de la BR</div>
+                <div class="test-option" data-ans="0">D) 52% de la BR repartido entre todos</div>
+            </div>
+            <div class="test-feedback" data-ok="La orfandad es el <strong>20%</strong> de la BR por cada huérfano. Límite: viudedad + orfandad no puede superar el <strong>100%</strong> de la BR (salvo incrementos excepcionales)."></div>
+        </div>
+
+        <div class="test-question" data-q="8">
+            <div class="test-q-text"><span class="test-q-num">9</span>Un trabajador fallece por accidente de trabajo dejando cónyuge y 2 hijos. ¿A cuántas mensualidades de indemnización a tanto alzado tiene derecho cada hijo?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) 1 mensualidad de la BR por hijo ✓</div>
+                <div class="test-option" data-ans="0">B) 3 mensualidades de la BR por hijo</div>
+                <div class="test-option" data-ans="0">C) 6 mensualidades de la BR a repartir entre los dos</div>
+                <div class="test-option" data-ans="0">D) No corresponde indemnización si hay cónyuge</div>
+            </div>
+            <div class="test-feedback" data-ok="AT/EP: cada huérfano recibe <strong>1 mensualidad</strong> de la BR como indemnización a tanto alzado. El cónyuge recibe 6 mensualidades aparte. Ambas son compatibles con las pensiones."></div>
+        </div>
+
+        <div class="test-question" data-q="9">
+            <div class="test-q-text"><span class="test-q-num">10</span>Un trabajador fallece por AT sin cónyuge ni hijos. Sus padres dependían económicamente de él y vivían con él. ¿Cuántas mensualidades de indemnización recibirán si ambos están vivos?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 6 mensualidades en total</div>
+                <div class="test-option" data-ans="0">B) 9 mensualidades en total</div>
+                <div class="test-option" data-ans="1">C) 12 mensualidades a repartir entre ambos ✓</div>
+                <div class="test-option" data-ans="0">D) 18 mensualidades en total</div>
+            </div>
+            <div class="test-feedback" data-ok="Sin cónyuge ni hijos: si vive <strong>un solo progenitor</strong> → 9 mensualidades. Si viven <strong>ambos</strong> → <strong>12 mensualidades</strong> a repartir. Recuerda: 6→cónyuge · 1→huérfano · 9→padre/madre solo · 12→ambos padres."></div>
+        </div>
+
+        <div class="test-question" data-q="10">
+            <div class="test-q-text"><span class="test-q-num">11</span>Un huérfano cumple 25 años en octubre cursando estudios. ¿Hasta cuándo se prolonga la pensión de orfandad?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Hasta el 31 de octubre (su cumpleaños)</div>
+                <div class="test-option" data-ans="0">B) Hasta el 31 de diciembre de ese año</div>
+                <div class="test-option" data-ans="1">C) Hasta el primer día del mes posterior al inicio del siguiente curso escolar ✓</div>
+                <div class="test-option" data-ans="0">D) Hasta completar los estudios sin límite de edad</div>
+            </div>
+            <div class="test-feedback" data-ok="La prórroga por estudios al cumplir 25 años se extiende hasta el <strong>primer día del mes posterior al inicio del siguiente curso escolar</strong>. Es un dato muy concreto que suele aparecer en test."></div>
+        </div>
+
+        <div class="test-question" data-q="11">
+            <div class="test-q-text"><span class="test-q-num">12</span>Una familia tiene un parto triple. ¿A cuánto asciende la prestación por parto múltiple?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 4 × SMI diario</div>
+                <div class="test-option" data-ans="1">B) 8 × SMI diario ✓</div>
+                <div class="test-option" data-ans="0">C) 12 × SMI diario</div>
+                <div class="test-option" data-ans="0">D) 1.000 €</div>
+            </div>
+            <div class="test-feedback" data-ok="Parto múltiple: 2 hijos → 4 × SMI diario · <strong>3 hijos → 8 × SMI diario</strong> · 4+ hijos → 12 × SMI diario. Se reconoce a uno solo de los progenitores."></div>
+        </div>
+
+        <div class="test-question" data-q="12">
+            <div class="test-q-text"><span class="test-q-num">13</span>Para el subsidio por cuidado de menores con cáncer, ¿qué reducción mínima de jornada se exige al progenitor?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 25%</div>
+                <div class="test-option" data-ans="0">B) 33%</div>
+                <div class="test-option" data-ans="1">C) 50% ✓</div>
+                <div class="test-option" data-ans="0">D) 75%</div>
+            </div>
+            <div class="test-feedback" data-ok="El subsidio por cuidado de menores con cáncer exige una reducción de jornada de al menos el <strong>50%</strong>. La cuantía es el 100% de la BR de IT, en proporción directa a la reducción."></div>
+        </div>
+
+        <div class="test-question" data-q="13">
+            <div class="test-q-text"><span class="test-q-num">14</span>Las variaciones en las asignaciones familiares (nacimiento y extinción del derecho), ¿cuándo producen efectos?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El día en que se produce el hecho causante</div>
+                <div class="test-option" data-ans="0">B) El primer día del mes siguiente al hecho causante</div>
+                <div class="test-option" data-ans="1">C) Por trimestres naturales: alta desde el 1er día del trimestre siguiente; baja desde el último día del trimestre ✓</div>
+                <div class="test-option" data-ans="0">D) El primer día del mes siguiente a la solicitud</div>
+            </div>
+            <div class="test-feedback" data-ok="Las variaciones en asignaciones familiares operan por <strong>trimestres naturales</strong>: el nacimiento produce efectos desde el <strong>primer día del trimestre siguiente</strong> a la solicitud; la extinción desde el <strong>último día del trimestre</strong> en que ocurre la causa."></div>
+        </div>
+
+        <div class="test-question" data-q="14">
+            <div class="test-q-text"><span class="test-q-num">15</span>Una excónyuge divorciada solicita la pensión de viudedad. El divorcio se produjo por violencia de género que ella ejerció contra el causante. ¿Tiene derecho?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Sí, si percibía pensión compensatoria</div>
+                <div class="test-option" data-ans="0">B) Sí, siempre; el divorcio no extingue el derecho</div>
+                <div class="test-option" data-ans="1">C) No; quien haya sido condenada por delito doloso de homicidio contra el causante no puede ser beneficiaria ✓</div>
+                <div class="test-option" data-ans="0">D) Sí, si llevaban más de 10 años casados</div>
+            </div>
+            <div class="test-feedback" data-ok="Quien sea condenada por <strong>sentencia firme</strong> por delito <strong>doloso de homicidio</strong> contra el causante <strong>no puede ser beneficiaria</strong> de ninguna prestación de muerte y supervivencia. La excepción por violencia de género en viudedad aplica en sentido inverso: favorece a la víctima, no al agresor."></div>
+        </div>
+
+    </div>
+
+    <div class="test-score" id="testScore">
+        <div class="score-num" id="scoreNum">0/15</div>
+        <div class="score-label">Respuestas correctas</div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <br>
+        <button class="btn-reiniciar" onclick="reiniciarTest()">🔄 Reiniciar test</button>
+    </div>
+
+    <script>
+    (function(){
+        var correct = 0, answered = 0, total = 15;
+        document.querySelectorAll('.test-question').forEach(function(q){
+            var opts = q.querySelectorAll('.test-option');
+            var fb = q.querySelector('.test-feedback');
+            var okText = fb.getAttribute('data-ok');
+            opts.forEach(function(opt){
+                opt.addEventListener('click', function(){
+                    if(q.dataset.done) return;
+                    q.dataset.done = '1';
+                    var isCorrect = opt.getAttribute('data-ans') === '1';
+                    opts.forEach(function(o){
+                        o.classList.add('disabled');
+                        if(o.getAttribute('data-ans') === '1') o.classList.add('correct');
+                    });
+                    if(!isCorrect) opt.classList.add('wrong');
+                    fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + okText;
+                    fb.classList.add('show', isCorrect ? 'ok' : 'ko');
+                    if(isCorrect) correct++;
+                    answered++;
+                    if(answered === total){
+                        document.getElementById('scoreNum').textContent = correct + '/' + total;
+                        var msg = correct >= 13 ? '🏆 Excelente — dominas muerte y supervivencia.' : correct >= 10 ? '👍 Bien — repasa las mensualidades AT/EP y los requisitos de viudedad.' : correct >= 7 ? '⚠️ Regular — vuelve a la tabla de datos clave.' : '🔁 Necesitas más repaso — empieza por la tabla del inicio.';
+                        document.getElementById('scoreMsg').textContent = msg;
+                        document.getElementById('testScore').style.display = 'block';
+                    }
+                });
+            });
+        });
+        window.reiniciarTest = function(){
+            document.querySelectorAll('.test-question').forEach(function(q){
+                delete q.dataset.done;
+                q.querySelectorAll('.test-option').forEach(function(o){ o.classList.remove('correct','wrong','disabled'); });
+                var fb = q.querySelector('.test-feedback');
+                fb.classList.remove('show','ok','ko');
+            });
+            correct = 0; answered = 0;
+            document.getElementById('testScore').style.display = 'none';
+            window.scrollTo({top: document.getElementById('minitest').offsetTop - 20, behavior:'smooth'});
+        };
+    })();
+    </script>
+
+ <!-- ====== NAVEGACIÓN SUPERIOR ====== -->
+    <div class="nav-bar">
+        <a href="tema4_fusionado_completo.html">⬅ Tema 10</a>
+        <a href="index.html" class="indice">🏠 Índice</a>
+        <a href="tema12_fusionado_completo.html">Tema 12 ➡</a>
+    </div>
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ======= FOOTER ======= -->
+    <div class="footer">
+        Tema 11 — Protección por Muerte y Supervivencia · Seguridad Social · Convocatoria 2026<br>
+        Material desarrollado a partir del esquema web + datos adicionales
+    </div>
+
+</div>
+<!-- fin container -->
+
+</body>
+</html>

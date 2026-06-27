@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 12 - Prestaciones no contributivas y asistenciales. El IMV.</title>
+    <style>
+        /* === RESET Y ESTILOS GENERALES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1a2a3a;
+            line-height: 1.7;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.12);
+            padding: 40px 50px;
+        }
+
+        .header {
+            border-bottom: 4px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #2e6b8a;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .badge-fusion {
+            display: inline-block;
+            background: #1a5276;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        .badge-update {
+            display: inline-block;
+            background: #27ae60;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .nav {
+            background: #eaf2f8;
+            border-radius: 16px;
+            padding: 18px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .nav a {
+            color: #1a5276;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav a:hover {
+            border-bottom-color: #1a5276;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            margin-top: 45px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #d4e6f1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a5276;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0 25px 0;
+            border-radius: 14px;
+            border: 1px solid #dce6ed;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        th {
+            background: #1a3a4f;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid #e9edf2;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+        }
+
+        .tag-web { background: #d4e6f1; color: #1a5276; }
+        .tag-video { background: #fdebd0; color: #a04000; }
+        .tag-fusion { background: #d5f5e3; color: #1a6e4b; }
+        .tag-update { background: #abebc6; color: #1a6e4b; }
+
+        .trampa {
+            background: #fef9e7;
+            border-left: 6px solid #f39c12;
+            padding: 18px 24px;
+            border-radius: 0 14px 14px 0;
+            margin: 22px 0;
+        }
+        .trampa strong { color: #b9770e; }
+
+        .cepo {
+            background: #fdedec;
+            border-left: 6px solid #e74c3c;
+            padding: 18px 24px;
+            border-radius: 0 14px 14px 0;
+            margin: 22px 0;
+        }
+        .cepo strong { color: #b03a2e; }
+
+        .destacado {
+            background: #eaf2f8;
+            padding: 16px 22px;
+            border-radius: 14px;
+            margin: 18px 0;
+            border: 1px solid #bdd7e8;
+        }
+        .destacado strong { color: #1a5276; }
+
+        .caja-dato {
+            background: #1a2a3a;
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 14px;
+            margin: 18px 0;
+            font-size: 0.95rem;
+        }
+        .caja-dato strong { color: #f1c40f; }
+
+        ul, ol {
+            padding-left: 28px;
+            margin: 12px 0 18px 0;
+        }
+        li { margin-bottom: 6px; }
+
+        .back-top {
+            display: inline-block;
+            margin-top: 40px;
+            background: #1a5276;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .back-top:hover { background: #0d3b55; }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #d4e6f1;
+            font-size: 0.85rem;
+            color: #5d6d7e;
+            text-align: center;
+        }
+
+        /* === BLOQUES DE COLOR === */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .full { grid-column: 1 / -1; }
+
+        .block {
+            background: #f8fafc;
+            border: 1px solid #dce6ed;
+            border-radius: 14px;
+            padding: 18px 22px;
+            transition: box-shadow 0.2s;
+        }
+        .block:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+        .block-title {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dce6ed;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .yellow .block-title { color: #b7950b; }
+        .yellow .dot { background: #f1c40f; }
+        .blue .block-title { color: #1a5276; }
+        .blue .dot { background: #2980b9; }
+        .red .block-title { color: #b03a2e; }
+        .red .dot { background: #e74c3c; }
+        .green .block-title { color: #1e7e34; }
+        .green .dot { background: #27ae60; }
+        .purple .block-title { color: #6c3483; }
+        .purple .dot { background: #8e44ad; }
+        .orange .block-title { color: #b9770e; }
+        .orange .dot { background: #f39c12; }
+
+        .item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .item:last-child { margin-bottom: 0; }
+        .item .arrow {
+            color: #6b7292;
+            flex-shrink: 0;
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.9rem;
+        }
+        .item strong { color: #0d2b3e; }
+
+        .pill {
+            display: inline-block;
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+        .pill-y { background: #fef9e7; color: #b7950b; border: 1px solid #f9e79f; }
+        .pill-b { background: #eaf2f8; color: #1a5276; border: 1px solid #aed6f1; }
+        .pill-r { background: #fdedec; color: #b03a2e; border: 1px solid #f5b7b1; }
+        .pill-g { background: #eafaf1; color: #1e7e34; border: 1px solid #a9dfbf; }
+        .pill-p { background: #f4ecf7; color: #6c3483; border: 1px solid #d7bde2; }
+        .pill-o { background: #fef9e7; color: #b9770e; border: 1px solid #f9e79f; }
+
+        .note {
+            background: rgba(74,222,128,0.05);
+            border: 1px solid rgba(74,222,128,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .note .nlabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #1e7e34;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .alert {
+            background: rgba(255,95,95,0.08);
+            border: 1px solid rgba(255,95,95,0.25);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .alert .alabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #b03a2e;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info {
+            background: rgba(61,158,255,0.05);
+            border: 1px solid rgba(61,158,255,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .info .ilabel {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.7rem;
+            color: #1a5276;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .sub-head {
+            font-family: 'Segoe UI', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 12px 0 6px 0;
+        }
+
+        .ejemplo {
+            background: #f0f7fb;
+            border-left: 4px solid #2980b9;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 10px 0;
+            font-size: 0.92rem;
+        }
+        .ejemplo strong { color: #1a5276; }
+
+        .formula {
+            background: #eaf2f8;
+            padding: 16px 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0d2b3e;
+            margin: 10px 0;
+            border: 1px solid #bdd7e8;
+            overflow-x: auto;
+        }
+
+        /* === TABLA DATOS CLAVE === */
+        .datos-table th { background: #0d2b3e; }
+        .datos-table tr:hover td { background: #f0f7fb; }
+        .pb-red { background:#fdedec; color:#b03a2e; border:1px solid #f5b7b1; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-blue { background:#eaf2f8; color:#1a5276; border:1px solid #aed6f1; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-green { background:#eafaf1; color:#1e7e34; border:1px solid #a9dfbf; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-yellow { background:#fef9e7; color:#b7950b; border:1px solid #f9e79f; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+        .pb-purple { background:#f5eef8; color:#6c3483; border:1px solid #d2b4de; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:4px; display:inline-block; }
+
+        /* === MINI-TEST === */
+        .test-question { background:#f8fafc; border:1px solid #dce6ed; border-radius:14px; padding:20px 24px; margin-bottom:16px; }
+        .test-q-num { display:inline-block; background:#1a3a4f; color:#fff; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:20px; margin-right:8px; }
+        .test-q-text { font-weight:600; color:#0d2b3e; font-size:1rem; margin-bottom:14px; }
+        .test-options { display:flex; flex-direction:column; gap:8px; }
+        .test-option { display:flex; align-items:flex-start; gap:10px; background:#fff; border:2px solid #dce6ed; border-radius:10px; padding:12px 16px; cursor:pointer; font-size:0.93rem; transition:border-color 0.15s, background 0.15s; user-select:none; }
+        .test-option:hover { border-color:#2980b9; background:#eaf2f8; }
+        .test-option.correct { border-color:#27ae60; background:#eafaf1; color:#1e7e34; font-weight:600; }
+        .test-option.wrong { border-color:#e74c3c; background:#fdedec; color:#b03a2e; }
+        .test-option.disabled { pointer-events:none; }
+        .test-feedback { margin-top:10px; padding:10px 16px; border-radius:8px; font-size:0.9rem; display:none; }
+        .test-feedback.show { display:block; }
+        .test-feedback.ok { background:#eafaf1; border-left:4px solid #27ae60; color:#1e7e34; }
+        .test-feedback.ko { background:#fdedec; border-left:4px solid #e74c3c; color:#b03a2e; }
+        .test-score { background:#1a2a3a; color:#fff; border-radius:14px; padding:20px 28px; text-align:center; display:none; margin-top:20px; }
+        .test-score .score-num { font-size:2.8rem; font-weight:700; color:#f1c40f; }
+        .test-score .score-label { font-size:1rem; color:#aab; margin-top:4px; }
+        .test-score .score-msg { font-size:0.95rem; margin-top:10px; color:#ddd; }
+        .btn-reiniciar { background:#1a5276; color:#fff; border:none; border-radius:30px; padding:10px 28px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:14px; transition:background 0.2s; }
+        .btn-reiniciar:hover { background:#0d3b55; }
+
+        /* === NAV BAR INFERIOR === */
+        .nav-bar { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eaf2f8; }
+        .nav-bar a { text-decoration: none; color: #1a5276; font-weight: 600; font-size: 0.95rem; }
+
+        /* --- ESTILO DE LA TARJETA (FLASHCARDS) --- */
+        .flip-card {
+            margin: 20px auto;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 14px;
+            padding: 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .flip-card-front {
+            border: 2px solid #1a5276;
+            background: #ffffff;
+            color: #0d2b3e;
+        }
+
+        .flip-card-back {
+            background: #1a5276;
+            color: white;
+            transform: rotateY(180deg);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* --- BOTÓN OTRA PREGUNTA --- */
+        #btn-otra {
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            background-color: #d40000; /* rojo */
+            color: white;
+            border: none;
+            transition: background-color 0.4s ease;
+        }
+
+        #btn-otra.verde {
+            background-color: #00a000; /* verde */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ======= HEADER ======= -->
+    <div class="header">
+        <h1>Tema 12 · Prestaciones no contributivas y asistenciales</h1>
+        <div class="subtitle">Ingreso Mínimo Vital (IMV) · Prestaciones familiares no contributivas · Pensiones No Contributivas (PNC)</div>
+        <span class="badge-fusion">📚 Fusión completa · Esquema web + 2 transcripciones de video</span>
+        <span class="badge-update">✅ Con diferencias titular/beneficiario, gestión, cobros solidarios y sanciones</span>
+        <div style="margin-top: 8px; font-size: 0.85rem; color: #5d6d7e;">
+            Arts. 2-15, 19, 36 TRLGSS (IMV) · Arts. 235-237, 364-373 TRLGSS · Ley 19/2021
+        </div>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ======= -->
+    <div class="nav">
+        <a href="#datos-clave">⚡ Datos clave</a>
+        <a href="#p1">01. IMV: concepto y naturaleza</a>
+        <a href="#p2">02. Unidad de convivencia</a>
+        <a href="#p3">03. Titulares y requisitos</a>
+        <a href="#p4">04. Cuantía y complementos</a>
+        <a href="#p5">05. Gestión y obligaciones</a>
+        <a href="#p6">06. Suspensión y extinción</a>
+        <a href="#p7">07. Prestaciones familiares</a>
+        <a href="#p8">08. Pensiones No Contributivas</a>
+        <a href="#kit">🎯 Kit de criba</a>
+        <a href="#minitest">🧪 Mini-test</a>
+        <a href="#seccion-tarjetas">🃏 Tarjetas aleatorias</a>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= TABLA DATOS CLAVE ======= -->
+    <h2 id="datos-clave" style="color:#0d2b3e; border-bottom:3px solid #f1c40f;">⚡ Datos clave del tema (lo más preguntado)</h2>
+    <p style="margin-bottom:14px; color:#5d6d7e; font-size:0.93rem;">Tema muy numérico: cuantías IMV, complementos, PNC y prestaciones familiares. Fíjate especialmente en las diferencias IMV vs PNC y en los requisitos de independencia.</p>
+
+    <div class="table-wrap">
+        <table class="datos-table">
+            <thead>
+                <tr>
+                    <th style="width:36%">Concepto</th>
+                    <th style="width:22%">Dato</th>
+                    <th style="width:14%">Bloque</th>
+                    <th style="width:28%">Truco / Alerta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">IMV — NATURALEZA Y HECHO CAUSANTE</td>
+                </tr>
+                <tr>
+                    <td>Naturaleza</td>
+                    <td><strong>No contributiva</strong></td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>Se financia con PGE</td>
+                </tr>
+                <tr>
+                    <td>Hecho causante</td>
+                    <td><strong>La solicitud</strong></td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>⚠️ No la situación de vulnerabilidad ni cumplir los requisitos</td>
+                </tr>
+                <tr>
+                    <td>Número de pagas</td>
+                    <td><strong>12 pagas</strong></td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>⚠️ PNC = 14 pagas · IMV = 12 pagas</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">IMV — UNIDAD DE CONVIVENCIA Y REQUISITOS</td>
+                </tr>
+                <tr>
+                    <td>Vínculo unidad de convivencia</td>
+                    <td>Hasta <strong>2º grado</strong></td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>Consanguinidad, afinidad o adopción + mismo domicilio</td>
+                </tr>
+                <tr>
+                    <td>Antigüedad unidad de convivencia</td>
+                    <td><strong>6 meses</strong> antes de la solicitud</td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>Excepción: nuevos miembros, VG, desahucio…</td>
+                </tr>
+                <tr>
+                    <td>Edad mínima (regla general)</td>
+                    <td><strong>23 años</strong></td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>Excepción: ≥18 con hijos a cargo si nadie en la UC llega a 23</td>
+                </tr>
+                <tr>
+                    <td>Residencia en España</td>
+                    <td><strong>1 año</strong> continuado</td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>Salidas al extranjero ≤ 90 días/año no rompen continuidad</td>
+                </tr>
+                <tr>
+                    <td>Independencia — menores de 30 años</td>
+                    <td><strong>2 años</strong> + <strong>12 meses</strong> de alta SS</td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>⚠️ Doble requisito: independencia + alta</td>
+                </tr>
+                <tr>
+                    <td>Independencia — mayores de 30 años</td>
+                    <td><strong>1 año</strong> domicilio distinto</td>
+                    <td><span class="pb-blue">IMV</span></td>
+                    <td>Solo necesitan acreditar domicilio separado del de los progenitores</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">IMV — CUANTÍA Y COMPLEMENTOS</td>
+                </tr>
+                <tr>
+                    <td>Cuantía mínima para percibir el IMV</td>
+                    <td><strong>≥ 10 €/mes</strong></td>
+                    <td><span class="pb-yellow">Cuantía</span></td>
+                    <td>Diferencia entre renta garantizada e ingresos</td>
+                </tr>
+                <tr>
+                    <td>Renta garantizada individual</td>
+                    <td><strong>100%</strong> de la PNC</td>
+                    <td><span class="pb-yellow">Cuantía</span></td>
+                    <td>Más complementos del 22% si procede</td>
+                </tr>
+                <tr>
+                    <td>Complemento por miembro adicional (UC)</td>
+                    <td><strong>30%</strong> por miembro</td>
+                    <td><span class="pb-yellow">Cuantía</span></td>
+                    <td>Máximo total: <strong>220%</strong> (= 4 miembros adicionales)</td>
+                </tr>
+                <tr>
+                    <td>Complemento 22% (discapacidad, monoparental, ascendientes)</td>
+                    <td><strong>22%</strong> por circunstancia</td>
+                    <td><span class="pb-yellow">Cuantía</span></td>
+                    <td>⚠️ <strong>Sumativos</strong>: si concurren 2 → 44%</td>
+                </tr>
+                <tr>
+                    <td>Complemento infancia — menores de 3 años</td>
+                    <td><strong>115 €/mes</strong></td>
+                    <td><span class="pb-yellow">Cuantía</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Complemento infancia — 3 a 6 años</td>
+                    <td><strong>80,50 €/mes</strong></td>
+                    <td><span class="pb-yellow">Cuantía</span></td>
+                    <td>= 70% del tramo 0-3</td>
+                </tr>
+                <tr>
+                    <td>Complemento infancia — 6 a 18 años</td>
+                    <td><strong>57,50 €/mes</strong></td>
+                    <td><span class="pb-yellow">Cuantía</span></td>
+                    <td>= 50% del tramo 0-3</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">IMV — GESTIÓN, OBLIGACIONES Y EXTINCIÓN</td>
+                </tr>
+                <tr>
+                    <td>Reconocimiento y resolución</td>
+                    <td><strong>INSS</strong></td>
+                    <td><span class="pb-green">Gestión</span></td>
+                    <td>⚠️ CCAA/entidades locales pueden incoar y tramitar, pero <strong>NO resolver</strong></td>
+                </tr>
+                <tr>
+                    <td>Responsabilidad cobros indebidos</td>
+                    <td><strong>Solidaria</strong></td>
+                    <td><span class="pb-green">Gestión</span></td>
+                    <td>Titular, miembros de la UC y colaboradores responden del reintegro (Art. 19).</td>
+                </tr>
+                <tr>
+                    <td>Plazo de comunicación de cambios</td>
+                    <td><strong>30 días naturales</strong></td>
+                    <td><span class="pb-green">Gestión</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Salida al extranjero sin comunicar → extinción</td>
+                    <td><strong>&gt; 90 días</strong> sin comunicación ni justificación</td>
+                    <td><span class="pb-red">Extinción</span></td>
+                    <td>Con comunicación + justificación → solo <strong>suspensión</strong></td>
+                </tr>
+                <tr>
+                    <td>Veto de solicitud por sanción firme</td>
+                    <td>Hasta <strong>2 años</strong></td>
+                    <td><span class="pb-red">Extinción</span></td>
+                    <td>⚠️ Cepo clásico de test (Art. 36): te prohíben solicitarlo en este plazo.</td>
+                </tr>
+                <tr>
+                    <td>Suspensión = extinción si dura</td>
+                    <td><strong>1 año</strong></td>
+                    <td><span class="pb-red">Extinción</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Nueva solicitud tras fallecimiento del titular</td>
+                    <td><strong>3 meses</strong></td>
+                    <td><span class="pb-red">Extinción</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">PRESTACIONES FAMILIARES NO CONTRIBUTIVAS</td>
+                </tr>
+                <tr>
+                    <td>Hijo a cargo — menor de 18 (discapacidad ≥ 33%)</td>
+                    <td><strong>1.000 €/año</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                    <td>Pago semestral</td>
+                </tr>
+                <tr>
+                    <td>Hijo a cargo — mayor de 18 (discapacidad ≥ 65%)</td>
+                    <td><strong>5.012,40 €/año</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                    <td>Pago mensual</td>
+                </tr>
+                <tr>
+                    <td>Hijo a cargo — discapacidad ≥ 75% + tercera persona</td>
+                    <td><strong>7.519,20 €/año</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                    <td>Pago mensual</td>
+                </tr>
+                <tr>
+                    <td>Parto múltiple 2 hijos / 3 hijos / 4+ hijos</td>
+                    <td><strong>4 / 8 / 12 × SMI diario</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Plazo de resolución prestaciones familiares</td>
+                    <td><strong>45 días</strong></td>
+                    <td><span class="pb-purple">Familiar</span></td>
+                    <td>Prescripción: 5 años</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background:#1a3a4f; color:#f1c40f; font-weight:700; font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">PENSIONES NO CONTRIBUTIVAS (PNC)</td>
+                </tr>
+                <tr>
+                    <td>PNC — número de pagas</td>
+                    <td><strong>14 pagas</strong></td>
+                    <td><span class="pb-blue">PNC</span></td>
+                    <td>⚠️ IMV = 12 / PNC = 14 · Extraordinarias en junio y noviembre</td>
+                </tr>
+                <tr>
+                    <td>PNC — gestión</td>
+                    <td><strong>IMSERSO</strong> (o CCAA con competencias)</td>
+                    <td><span class="pb-blue">PNC</span></td>
+                    <td>⚠️ Ceuta y Melilla: IMSERSO. Resto CCAA: competencia transferida</td>
+                </tr>
+                <tr>
+                    <td>PNC Invalidez — edad</td>
+                    <td><strong>18 a 65 años</strong></td>
+                    <td><span class="pb-blue">PNC</span></td>
+                    <td>Discapacidad ≥ 65%</td>
+                </tr>
+                <tr>
+                    <td>PNC Invalidez — residencia</td>
+                    <td><strong>5 años</strong> (2 inmediatamente anteriores)</td>
+                    <td><span class="pb-blue">PNC</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>PNC Invalidez — complemento tercera persona</td>
+                    <td><strong>50%</strong> de la PNC</td>
+                    <td><span class="pb-blue">PNC</span></td>
+                    <td>Discapacidad ≥ 75% + necesidad de asistencia</td>
+                </tr>
+                <tr>
+                    <td>PNC Invalidez — compatibilidad con trabajo</td>
+                    <td>Ingresos ≤ <strong>35%</strong> de la PNC anual</td>
+                    <td><span class="pb-blue">PNC</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>PNC Jubilación — edad</td>
+                    <td><strong>65 años</strong></td>
+                    <td><span class="pb-blue">PNC</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>PNC Jubilación — residencia</td>
+                    <td><strong>10 años</strong> entre 16 y 65 (2 consecutivos inmediatos)</td>
+                    <td><span class="pb-blue">PNC</span></td>
+                    <td>⚠️ Invalidez = 5 años · Jubilación = 10 años</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="caja-dato" style="margin-bottom:30px;">
+        <strong>🧠 Regla rápida:</strong> IMV = <strong>12 pagas</strong>, PNC = <strong>14 pagas</strong>. IMV gestionado por <strong>INSS</strong>; PNC por <strong>IMSERSO</strong>/CCAA. Hecho causante IMV = <strong>solicitud</strong>. Independencia &lt;30 años: <strong>2 años + 12 meses alta</strong>. Complementos 22%: <strong>sumativos</strong>.
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= 01. IMV: CONCEPTO Y NATURALEZA ======= -->
+    <h2 id="p1">01. Ingreso Mínimo Vital: concepto y naturaleza</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Definición y características</div>
+            <div class="item"><span class="arrow">→</span><span>El IMV es el <strong>derecho subjetivo</strong> a una prestación económica que garantiza un nivel mínimo de renta a quienes se encuentren en situación de <strong>vulnerabilidad económica</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Forma parte de la acción protectora de la SS en su <strong>modalidad NO contributiva</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Características:</strong></span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Garantiza un nivel mínimo de renta mediante la cobertura de la <strong>diferencia</strong> entre los recursos y la renta garantizada.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Es <strong>intransferible</strong> (no puede ser objeto de cesión, retención o embargo, salvo límites legales).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Dura mientras persista la situación de <strong>vulnerabilidad</strong> y se mantengan los requisitos.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p><strong>Hecho causante del IMV:</strong> la <strong>solicitud</strong> (no la situación de vulnerabilidad ni haber cumplido los requisitos).</p>
+                <p><strong>Pago:</strong> se abona en <span class="pill pill-y">12 pagas</span> (a diferencia de las PNC, que son 14).</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Naturaleza jurídica</div>
+            <div class="item"><span class="arrow">→</span><span>Prestación <strong>no contributiva</strong> → no exige periodo mínimo de cotización.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Excepción:</strong> para menores de 30 años no integrados en unidad de convivencia, se exige <span class="pill pill-y">12 meses de alta</span> en la SS (como requisito de independencia).</span></div>
+            <div class="item"><span class="arrow">→</span><span>Se financia con <strong>cargo a los Presupuestos Generales del Estado</strong>.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> El IMV es una prestación <strong>no contributiva</strong>, pero para menores de 30 años no integrados en unidad de convivencia se exige <strong>12 meses de alta</strong> en la SS como requisito de independencia.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 02. UNIDAD DE CONVIVENCIA ======= -->
+    <h2 id="p2">02. Unidad de convivencia (arts. 4, 6, 7 y 8)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Regla general (art. 6)</div>
+            <div class="item"><span class="arrow">→</span><span>Constituida por todas las personas que residan en un mismo domicilio y estén unidas entre sí por <strong>vínculo matrimonial, pareja de hecho o vínculo hasta el 2º grado de consanguinidad, afinidad o adopción</strong>, o guarda con fines de adopción/acogimiento permanente.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>No rompen la convivencia:</strong> fallecimiento, separación transitoria (estudios, trabajo, hospitalización).</span></div>
+            <div class="item"><span class="arrow">→</span><span>Nadie puede formar parte de <strong>más de una unidad de convivencia</strong>.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Situaciones especiales (arts. 7-8)</div>
+            <div class="item"><span class="arrow">→</span><span>Se consideran unidades de convivencia independientes en supuestos de quiebra residencial justificada:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Mujeres víctimas de <strong>violencia de género</strong> que hayan abandonado el domicilio familiar.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Personas que hayan abandonado el domicilio por trámites de <strong>separación, nulidad o divorcio</strong>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Personas que hayan abandonado el domicilio por <strong>desahucio, accidente o fuerza mayor</strong>.</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Excepción: nuevo integrante</div>
+            <div class="item"><span class="arrow">→</span><span>Si un nuevo miembro se incorpora a la unidad de convivencia (ej. nacimiento), <strong>no se exige</strong> el requisito de 6 meses de antelación para que forme parte de la unidad.</span></div>
+            <div class="caja-dato" style="margin-top:10px;">
+                <strong>📌 Clave para el examen:</strong> La unidad de convivencia debe estar constituida durante, al menos, los <strong>6 meses anteriores</strong> a la solicitud, salvo excepciones (nuevos miembros, violencia de género, etc.).
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 03. TITULARES Y REQUISITOS ======= -->
+    <h2 id="p3">03. Titulares del IMV: requisitos de edad y acceso (art. 5 y 10)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Diferencias clave (video)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Titular:</strong> persona que solicita la prestación y recibe el pago (en nombre propio o de la unidad de convivencia).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Beneficiario:</strong> toda persona que forma parte de la unidad de convivencia y tiene derecho a la prestación (el titular también es beneficiario).</span></div>
+            <div class="trampa" style="margin-top:10px;">
+                <strong>⚠️ Trampa de examen:</strong> En una unidad de convivencia, <strong>todos los miembros son beneficiarios</strong>, pero <strong>solo uno es titular</strong> (el que solicita y recibe el pago). El niño no puede ser titular, pero sí es beneficiario.
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Requisitos de edad</div>
+            <div class="sub-head">Integrados en unidad de convivencia</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Edad mínima:</strong> <span class="pill pill-y">23 años</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Excepción:</strong> mayores de edad (18 años) o menores emancipados si tienen hijos a cargo, siempre que ningún otro miembro alcance los 23 años.</span></div>
+            <div class="sub-head" style="margin-top:14px;">No integrados (beneficiarios individuales)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Edad mínima:</strong> <span class="pill pill-y">23 años</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Excepciones (no se exige edad mínima):</strong></span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Mujeres víctimas de <strong>violencia de género</strong> o trata de seres humanos.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Personas entre <strong>18-22 años</strong> procedentes de <strong>centros residenciales de protección de menores</strong> (en los 3 años anteriores), <strong>huérfanos absolutos</strong> que vivan solos, o <strong>centros penitenciarios</strong> (si han estado privados de libertad > 6 meses).</span></div>
+        </div>
+    </div>
+
+    <div class="block full red">
+        <div class="block-title"><span class="dot"></span>Requisitos generales de acceso (art. 10)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Residencia legal y efectiva en España</div>
+                <div class="item"><span class="arrow">→</span><span>Debe ser de forma <strong>continuada e ininterrumpida</strong> durante, al menos, <span class="pill pill-r">el año inmediatamente anterior</span> a la fecha de solicitud.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Excepción de estancia exterior:</strong> no se rompe la continuidad por salidas al extranjero que <strong>no superen los 90 días naturales</strong> al año, o si están motivadas por enfermedad justificada.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Requisitos de independencia por edad</div>
+                <div class="item"><span class="arrow">→</span><span><strong>Menores de 30 años:</strong> deben acreditar haber vivido de forma independiente durante, al menos, <span class="pill pill-y">2 años</span> inmediatamente anteriores (salvo excepciones). Se entiende independiente si ha estado en alta en la SS al menos <span class="pill pill-y">12 meses</span>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Mayores de 30 años:</strong> deben acreditar que, durante el año anterior, su domicilio ha sido distinto al de sus progenitores.</span></div>
+                <div class="cepo" style="margin-top:10px;">
+                    <strong>⚠️ Cepo de examen:</strong> Menores de 30 años no integrados → <strong>2 años de independencia</strong> + <strong>12 meses de alta</strong> en la SS. Mayores de 30 años → solo <strong>1 año de independencia</strong>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 04. CUANTÍA Y COMPLEMENTOS ======= -->
+    <h2 id="p4">04. Determinación de la cuantía (arts. 13-14)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="block full orange">
+        <div class="block-title"><span class="dot"></span>Cálculo de la cuantía</div>
+        <div class="item"><span class="arrow">→</span><span>La cuantía mensual será la <strong>diferencia entre la renta garantizada y el conjunto de rentas e ingresos</strong> de la persona o unidad de convivencia.</span></div>
+        <div class="item"><span class="arrow">→</span><span>La cuantía resultante debe ser igual o superior a <span class="pill pill-y">10 € mensuales</span> para poder percibirse.</span></div>
+        <div class="formula" style="font-size:0.95rem; background:#fef9e7; border-color:#f9e79f;">
+            Cuantía IMV = Renta Garantizada − Ingresos (si la diferencia ≥ 10 €)
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:14px;">
+            <div>
+                <div class="sub-head">Renta garantizada individual</div>
+                <div class="item"><span class="arrow">→</span><span><strong>100%</strong> del importe anual de las <strong>pensiones no contributivas</strong> (PNC) fijado en la LPGE.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Se suma un <strong>22%</strong> adicional en determinados supuestos (<span class="pill pill-y">discapacidad ≥ 65%, monoparentalidad, ascendientes en dependencia</span>).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Importante:</strong> estos complementos del 22% son <span class="pill pill-g">sumativos</span> (ej. si concurren dos, se suman 44%).</span></div>
+                <div class="ejemplo">
+                    <strong>📌 Ejemplo (video):</strong> Madre soltera con discapacidad ≥ 65% y un hijo → <strong>100% + 22% (monoparental) + 22% (discapacidad) = 144%</strong> de la PNC como renta garantizada.
+                </div>
+            </div>
+            <div>
+                <div class="sub-head">Unidad de convivencia</div>
+                <div class="item"><span class="arrow">→</span><span><strong>100%</strong> de la PNC (por el titular).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>30%</strong> por cada miembro adicional, hasta un máximo del <span class="pill pill-y">220%</span> (lo que equivale a <strong>4 miembros adicionales</strong>).</span></div>
+                <div class="item"><span class="arrow">→</span><span>Complementos del <strong>22%</strong> si concurren circunstancias (discapacidad, monoparentalidad, ascendientes en dependencia).</span></div>
+                <div class="ejemplo">
+                    <strong>📌 Ejemplo (video):</strong> Unidad de convivencia de 4 personas (titular + 3 miembros adicionales) → <strong>100% + (30% × 3) = 190%</strong> de la PNC como renta garantizada.
+                </div>
+                <div class="sub-head" style="margin-top:14px;">Complemento de ayuda para la infancia</div>
+                <div class="item"><span class="arrow">→</span><span><strong>Menores de 3 años:</strong> <span class="pill pill-y">115 €</span>/mes.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>3 a 6 años:</strong> <span class="pill pill-y">80,50 €</span>/mes (70% del anterior).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>6 a 18 años:</strong> <span class="pill pill-y">57,50 €</span>/mes (50% del anterior).</span></div>
+            </div>
+        </div>
+        <div class="caja-dato" style="margin-top:14px;">
+            <strong>📌 Clave para el examen:</strong> La renta garantizada es el <strong>techo</strong>. De ella se descuentan los ingresos reales. Si la diferencia es <strong>≥ 10 €</strong>, se percibe el IMV por esa diferencia.
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 05. GESTIÓN Y OBLIGACIONES ======= -->
+    <h2 id="p5">05. Gestión del IMV y obligaciones (arts. 36)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Gestión del IMV (art. 25)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reconocimiento y control:</strong> <span class="pill pill-b">INSS</span> (Instituto Nacional de la Seguridad Social).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Incoación (inicio), tramitación y gestión previa:</strong> pueden realizarla las <span class="pill pill-y">CCAA y entidades locales</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Resolución:</strong> <span class="pill pill-r">SIEMPRE</span> competencia del <strong>INSS</strong>.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen (video):</strong> Las CCAA y entidades locales pueden <strong>iniciar, tramitar y gestionar</strong> el expediente, pero <strong>NO pueden resolverlo</strong>. La resolución es siempre del INSS.
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Obligaciones de los beneficiarios</div>
+            <div class="sub-head">Titulares</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Comunicar cualquier cambio</strong> en el plazo de <span class="pill pill-y">30 días naturales</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span>Comunicar cambios de <strong>domicilio o padrón</strong> en el mismo plazo.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reintegrar</strong> prestaciones indebidamente percibidas.</span></div>
+            
+            <!-- REINTEGRO SOLIDARIO DEL ARTÍCULO 19 DEL VÍDEO -->
+            <div class="alert" style="margin-top: 8px; margin-bottom: 8px;">
+                <div class="alabel">⚠️ Ojo examen (Art. 19 Reintegro)</div>
+                <p>La obligación de reintegrar los cobros indebidos es <strong>solidaria</strong> entre el titular y <strong>todos los miembros</strong> de la UC, incluidos colaboradores dolosos/culposos.</p>
+            </div>
+
+            <div class="item"><span class="arrow">→</span><span>Comunicar <strong>con carácter previo</strong> cualquier salida al extranjero que supere los 90 días naturales al año.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Presentar anualmente la declaración del IRPF</strong>.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Resto de integrantes</div>
+            <div class="item"><span class="arrow">→</span><span>Comunicar el <strong>fallecimiento del titular</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Presentar anualmente la declaración del IRPF</strong> (obligatorio para todos los miembros).</span></div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 06. SUSPENSIÓN Y EXTINCIÓN ======= -->
+    <h2 id="p6">06. Suspensión y extinción del IMV</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Suspensión (pausa)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pérdida temporal</strong> de alguno de los requisitos.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Suspensión cautelar</strong> si hay indicios de incumplimiento.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Salida al extranjero</strong> superior a 90 días (con comunicación y justificación) → <span class="pill pill-y">suspensión</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Incumplimiento de compatibilidad</strong> con rentas del trabajo (primera vez).</span></div>
+            <div class="item"><span class="arrow">→</span><span>La suspensión por un año equivale a <strong>extinción</strong>.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Truco del video</div>
+                <p><strong>Suspensión = pausa.</strong> Como en el fútbol: una tarjeta amarilla = suspensión.</p>
+            </div>
+        </div>
+        <div class="block red">
+            <div class="block-title"><span class="dot"></span>Extinción (finalización)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pérdida definitiva</strong> de los requisitos.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Salida al extranjero</strong> superior a 90 días <strong>sin comunicación y sin justificación</strong> → <span class="pill pill-r">extinción</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Incumplimiento reiterado</strong> de la compatibilidad con rentas del trabajo.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Procedimiento sancionador:</strong> acarrea la extinción del derecho.</span></div>
+            
+            <!-- VETO DE HASTA 2 AÑOS DEL ARTÍCULO 36 DEL VÍDEO -->
+            <div class="item" style="padding-left:20px; color: #b03a2e;"><span class="arrow">→</span><span>La sanción puede imponer un <span class="pill pill-r">veto de hasta 2 años</span> para poder presentar una nueva solicitud.</span></div>
+
+            <div class="item"><span class="arrow">→</span><span><strong>Fallecimiento del titular</strong> (se puede presentar nueva solicitud en <span class="pill pill-y">3 meses</span>).</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen (video):</strong> <strong>No comunicar + No justificar</strong> una salida al extranjero superior a 90 días = <strong>extinción</strong> (doble amarilla = roja).
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 07. PRESTACIONES FAMILIARES NO CONTRIBUTIVAS ======= -->
+    <h2 id="p7">07. Prestaciones familiares no contributivas</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Prestación por hijo o menor acogido a cargo</div>
+            <div class="item"><span class="arrow">→</span><span>Asignación económica por cada hijo menor de 18 años con discapacidad ≥ 33%, o mayor de 18 con discapacidad ≥ 65%.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Requisitos:</strong> residencia legal en España, tener a cargo hijos o menores en acogimiento, y no tener derecho en otro régimen.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Cuantía:</strong></span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Menores de 18 años (discapacidad ≥ 33%):</strong> <span class="pill pill-y">1.000 €/año</span>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Mayores de 18 años (discapacidad ≥ 65%):</strong> <span class="pill pill-y">5.012,40 €/año</span>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Discapacidad ≥ 75% + necesidad de tercera persona:</strong> <span class="pill pill-y">7.519,20 €/año</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pago:</strong> semestral (menores de 18) o mensual (mayores de 18 con discapacidad).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Plazo de resolución:</strong> <span class="pill pill-b">45 días</span>. <strong>Prescripción:</strong> <span class="pill pill-b">5 años</span>.</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Prestación por nacimiento o adopción</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Pago único de 1.000 €</strong> para familias numerosas, monoparentales o progenitor con discapacidad ≥ 65%.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Requisitos de ingresos:</strong> no superar los límites fijados en la LPGE.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Regla de ingresos intermedios:</strong> si se supera el límite pero es inferior a (límite + 1.000 €), la cuantía = diferencia.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Prestación por parto o adopción múltiple</div>
+            <div class="item"><span class="arrow">→</span><span><strong>2 hijos:</strong> <span class="pill pill-y">4 × SMI</span></span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>3 hijos:</strong> <span class="pill pill-y">8 × SMI</span></span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>4 o más hijos:</strong> <span class="pill pill-y">12 × SMI</span></span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>SMI 2022:</strong> 1.000 € (referencia para el cálculo).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Plazo de resolución:</strong> <span class="pill pill-b">45 días</span>. <strong>Prescripción:</strong> <span class="pill pill-b">5 años</span>.</span></div>
+        </div>
+    </div>
+
+    <div class="block full yellow">
+        <div class="block-title"><span class="dot"></span>Periodos de cotización asimilados por parto y cuidado de hijos (arts. 235-237)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Por parto (art. 235)</div>
+                <div class="item"><span class="arrow">→</span><span>Se computan <strong>112 días completos de cotización</strong> por cada parto de un solo hijo, a efectos de jubilación e IP.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Se incrementa en <strong>14 días más por cada hijo a partir del segundo</strong> (parto múltiple).</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Por cuidado de hijos (art. 236)</div>
+                <div class="item"><span class="arrow">→</span><span>Se computa el tiempo de interrupción de cotización entre los <strong>9 meses anteriores al nacimiento</strong> y los <strong>6 años posteriores</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Límite máximo:</strong> <span class="pill pill-y">260 días por hijo</span>. Total máximo <span class="pill pill-y">5 años</span>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Solo se reconoce a <strong>uno de los progenitores</strong> (en caso de controversia, a la madre).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Excedencias (art. 237):</strong> los <strong>3 primeros años</strong> se consideran cotización efectiva para jubilación, IP, MYS y maternidad.</span></div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 08. PENSIONES NO CONTRIBUTIVAS ======= -->
+    <h2 id="p8">08. Pensiones No Contributivas (PNC)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Pensión de Invalidez No Contributiva (arts. 237-238)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Edad:</strong> > 18 años y < 65 años.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Residencia:</strong> 5 años en España, de los cuales <span class="pill pill-b">2 inmediatamente anteriores</span> a la solicitud.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Discapacidad:</strong> grado ≥ <span class="pill pill-y">65%</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Carencia de rentas:</strong> ingresos anuales <strong>&lt;</strong> importe de la PNC.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Complemento por tercera persona:</strong> si discapacidad ≥ 75% y necesita concurso de otra persona → <span class="pill pill-y">50%</span> del importe de la PNC.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Compatibilidad con trabajo:</strong> puede trabajar si los ingresos no exceden el <span class="pill pill-y">35%</span> del importe anual de la PNC.</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Pensión de Jubilación No Contributiva (arts. 369-372)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Edad:</strong> <span class="pill pill-y">65 años</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Residencia:</strong> 10 años entre los 16 y la edad de devengo, de los cuales <span class="pill pill-b">2 consecutivos e inmediatamente anteriores</span> a la solicitud.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Carencia de rentas:</strong> mismas condiciones que la invalidez.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Gestión de las PNC (art. 373)</div>
+            <div class="item"><span class="arrow">→</span><span>Corresponde al <strong>IMSERSO</strong>, salvo en CCAA con competencias transferidas (actualmente todas las CCAA excepto Ceuta y Melilla).</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Clave</div>
+                <p>Las PNC se pagan en <span class="pill pill-y">14 pagas</span> (12 mensualidades + 2 extraordinarias en junio y noviembre).</p>
+                <p>La PNC de invalidez es <strong>incompatible</strong> con la PNC de jubilación.</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= KIT DE CRIBA ======= -->
+    <h2 id="kit">🎯 Kit de criba directa para el test (datos críticos)</h2>
+
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Actualizado</span></p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Concepto</th><th>Dato clave</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>IMV — naturaleza</td><td><strong>No contributiva</strong></td></tr>
+                <tr><td>IMV — hecho causante</td><td><strong>Solicitud</strong> (not la situación de vulnerabilidad)</td></tr>
+                <tr><td>IMV — pago</td><td><strong>12 pagas</strong> (no 14 como las PNC)</td></tr>
+                <tr><td>IMV — unidad de convivencia (regla general)</td><td>Vínculo hasta <strong>2º grado</strong> + mismo domicilio</td></tr>
+                <tr><td>IMV — unidad de convivencia (antigüedad)</td><td><strong>6 meses</strong> anteriores a la solicitud</td></tr>
+                <tr><td>IMV — titular</td><td>Quien <strong>solicita y recibe</strong> el pago (en nombre propio o de la unidad)</td></tr>
+                <tr><td>IMV — beneficiario</td><td>Todos los miembros de la unidad de convivencia (incluido el titular)</td></tr>
+                <tr><td>IMV — edad mínima (regla general)</td><td><strong>23 años</strong></td></tr>
+                <tr><td>IMV — menores de 30 años (independencia)</td><td><strong>2 años</strong> de independencia + <strong>12 meses</strong> de alta en la SS</td></tr>
+                <tr><td>IMV — mayores de 30 años (independencia)</td><td><strong>1 año</strong> de independencia (domicilio distinto al de los progenitores)</td></tr>
+                <tr><td>IMV — residencia</td><td><strong>1 año</strong> continuado e ininterrumpido</td></tr>
+                <tr><td>IMV — salidas al extranjero (límite)</td><td><strong>90 días naturales</strong> al año</td></tr>
+                <tr><td>IMV — cuantía mínima</td><td><strong>10 €</strong> mensuales (diferencia entre renta garantizada e ingresos)</td></tr>
+                <tr><td>IMV — complemento por miembro adicional</td><td><strong>30%</strong> (hasta 220% total)</td></tr>
+                <tr><td>IMV — complemento 22% (discapacidad, monoparental, ascendientes)</td><td><strong>Sumativo</strong> (22% + 22% = 44%)</td></tr>
+                <tr><td>IMV — complemento ayuda infancia (&lt; 3 años)</td><td><strong>115 €</strong>/mes</td></tr>
+                <tr><td>IMV — complemento ayuda infancia (3-6 años)</td><td><strong>80,50 €</strong>/mes</td></tr>
+                <tr><td>IMV — complemento ayuda infancia (6-18 años)</td><td><strong>57,50 €</strong>/mes</td></tr>
+                <tr><td>IMV — gestión (reconocimiento)</td><td><strong>INSS</strong></td></tr>
+                <tr><td>IMV — gestión (inicio/tramitación previa)</td><td><strong>CCAA y entidades locales</strong> (pueden incoar, tramitar y gestionar)</td></tr>
+                <tr><td>IMV — cobros indebidos (responsabilidad)</td><td><strong>Solidaria</strong> entre todos los miembros de la UC (Art. 19)</td></tr>
+                <tr><td>IMV — veto tras procedimiento sancionador</td><td>Hasta <strong>2 años</strong> de prohibición (Art. 36)</td></tr>
+                <tr><td>IMV — obligación de comunicación</td><td><strong>30 días naturales</strong></td></tr>
+                <tr><td>IMV — salida al extranjero sin comunicar (extinción)</td><td>Superior a <strong>90 días</strong> sin comunicación ni justificación</td></tr>
+                <tr><td>IMV — nuevo titular tras fallecimiento</td><td>Solicitud en <strong>3 meses</strong></td></tr>
+                <tr><td>Prestación hijo a cargo (menor 18, discapacidad ≥ 33%)</td><td><strong>1.000 €</strong>/año</td></tr>
+                <tr><td>Prestación hijo a cargo (mayor 18, discapacidad ≥ 65%)</td><td><strong>5.012,40 €</strong>/año</td></tr>
+                <tr><td>Prestación hijo a cargo (discapacidad ≥ 75% + tercera persona)</td><td><strong>7.519,20 €</strong>/año</td></tr>
+                <tr><td>Nacimiento/adopción — pago único</td><td><strong>1.000 €</strong></td></tr>
+                <tr><td>Parto múltiple — 2 hijos</td><td><strong>4 × SMI</strong></td></tr>
+                <tr><td>Parto múltiple — 3 hijos</td><td><strong>8 × SMI</strong></td></tr>
+                <tr><td>Parto múltiple — 4+ hijos</td><td><strong>12 × SMI</strong></td></tr>
+                <tr><td>PNC — gestión</td><td><strong>IMSERSO</strong> (salvo CCAA con competencias transferidas)</td></tr>
+                <tr><td>PNC — pagas</td><td><strong>14</strong> (12 + 2 en junio y noviembre)</td></tr>
+                <tr><td>PNC Invalidez — edad</td><td>18-65 años</td></tr>
+                <tr><td>PNC Invalidez — discapacidad</td><td>≥ <strong>65%</strong></td></tr>
+                <tr><td>PNC Invalidez — complemento tercera persona</td><td><strong>50%</strong> (discapacidad ≥ 75%)</td></tr>
+                <tr><td>PNC Invalidez — compatibilidad con trabajo</td><td>Ingresos ≤ <strong>35%</strong> del importe anual de la PNC</td></tr>
+                <tr><td>PNC Jubilación — edad</td><td><strong>65 años</strong></td></tr>
+                <tr><td>PNC Jubilación — residencia</td><td><strong>10 años</strong> (2 consecutivos inmediatos)</td></tr>
+                <tr><td>Prestaciones familiares — plazo de resolución</td><td><strong>45 días</strong></td></tr>
+                <tr><td>Prestaciones familiares — prescripción</td><td><strong>5 años</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="destacado" style="margin-top:20px;">
+        <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Actualizado</span></p>
+        <p><strong>✅ Fusión completa del Tema 12:</strong> se han integrado tu esquema con las dos transcripciones (IMV y prestaciones familiares). Se han añadido matices clave de la Parte I del vídeo: hecho causante = solicitud, diferencia titular/beneficiario, responsabilidad solidaria de reintegros de la UC (Art. 19), veto de hasta 2 años en procedimientos sancionadores (Art. 36), complementos sumativos del 22%, pagas del IMV (12) y el complemento de ayuda a la infancia.</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= MINI-TEST ======= -->
+    <h2 id="minitest">🧪 Mini-test de criba · Tema 12 (15 preguntas)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Preguntas tipo examen sobre IMV, PNC y prestaciones familiares. Haz clic en la opción correcta.</p>
+
+    <div id="testContainer">
+
+        <div class="test-question" data-q="0">
+            <div class="test-q-text"><span class="test-q-num">1</span>¿Cuál es el hecho causante del Ingreso Mínimo Vital?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El momento en que se produce la situación de vulnerabilidad económica</div>
+                <div class="test-option" data-ans="0">B) El cumplimiento de todos los requisitos de acceso</div>
+                <div class="test-option" data-ans="1">C) La solicitud ✓</div>
+                <div class="test-option" data-ans="0">D) La resolución favorable del INSS</div>
+            </div>
+            <div class="test-feedback" data-ok="El hecho causante del IMV es <strong>la solicitud</strong>, no la situación de vulnerabilidad ni el cumplimiento de requisitos. Es uno de los cepos más frecuentes de este tema."></div>
+        </div>
+
+        <div class="test-question" data-q="1">
+            <div class="test-q-text"><span class="test-q-num">2</span>¿En cuántas pagas anuales se abona el IMV?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 14 pagas (igual que las PNC)</div>
+                <div class="test-option" data-ans="1">B) 12 pagas ✓</div>
+                <div class="test-option" data-ans="0">C) 16 pagas</div>
+                <div class="test-option" data-ans="0">D) Varía según la cuantía reconocida</div>
+            </div>
+            <div class="test-feedback" data-ok="El IMV se abona en <strong>12 pagas</strong>. Las PNC, en cambio, se abonan en <strong>14 pagas</strong> (12 mensualidades + 2 extraordinarias en junio y noviembre). Truco: IMV=12, PNC=14."></div>
+        </div>
+
+        <div class="test-question" data-q="2">
+            <div class="test-q-text"><span class="test-q-num">3</span>¿Cuánto tiempo debe llevar constituida la unidad de convivencia antes de la solicitud del IMV (regla general)?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 año</div>
+                <div class="test-option" data-ans="1">B) 6 meses ✓</div>
+                <div class="test-option" data-ans="0">C) 3 meses</div>
+                <div class="test-option" data-ans="0">D) No se exige antigüedad</div>
+            </div>
+            <div class="test-feedback" data-ok="La unidad de convivencia debe estar constituida al menos <strong>6 meses antes</strong> de la solicitud. Excepciones: nuevos integrantes, víctimas de VG, desahucio, etc."></div>
+        </div>
+
+        <div class="test-question" data-q="3">
+            <div class="test-q-text"><span class="test-q-num">4</span>Un hombre de 27 años quiere solicitar el IMV de forma individual. ¿Qué requisito de independencia debe acreditar?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 año de domicilio distinto al de sus progenitores</div>
+                <div class="test-option" data-ans="1">B) 2 años de vida independiente + 12 meses de alta en la SS ✓</div>
+                <div class="test-option" data-ans="0">C) Solo necesita tener 23 años cumplidos</div>
+                <div class="test-option" data-ans="0">D) 6 meses de alta en la SS</div>
+            </div>
+            <div class="test-feedback" data-ok="Menores de 30 años: <strong>2 años de vida independiente + 12 meses de alta en la SS</strong>. Mayores de 30: solo 1 año de domicilio distinto. El requisito doble solo aplica a los menores de 30."></div>
+        </div>
+
+        <div class="test-question" data-q="4">
+            <div class="test-q-text"><span class="test-q-num">5</span>¿Quién tiene competencia exclusiva para resolver las solicitudes del IMV?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Las CCAA, que pueden delegar en el INSS</div>
+                <div class="test-option" data-ans="0">B) Las entidades locales, en primera instancia</div>
+                <div class="test-option" data-ans="1">C) El INSS, siempre y en todo caso ✓</div>
+                <div class="test-option" data-ans="0">D) El IMSERSO, como entidad gestora de prestaciones no contributivas</div>
+            </div>
+            <div class="test-feedback" data-ok="La <strong>resolución</strong> del IMV es competencia exclusiva del <strong>INSS</strong>. Las CCAA y entidades locales pueden incoar, tramitar y gestionar el expediente, pero <strong>nunca resolver</strong>."></div>
+        </div>
+
+        <div class="test-question" data-q="5">
+            <div class="test-q-text"><span class="test-q-num">6</span>¿Cuál es la cuantía mínima de IMV que debe resultar para que se pueda percibir?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 €/mes</div>
+                <div class="test-option" data-ans="1">B) 10 €/mes ✓</div>
+                <div class="test-option" data-ans="0">C) 50 €/mes</div>
+                <div class="test-option" data-ans="0">D) No hay mínimo; se percibe cualquier diferencia positiva</div>
+            </div>
+            <div class="test-feedback" data-ok="La diferencia entre la renta garantizada y los ingresos debe ser de al menos <strong>10 €/mes</strong> para que se reconozca la prestación. Por debajo de esa cantidad no se percibe."></div>
+        </div>
+
+        <div class="test-question" data-q="6">
+            <div class="test-q-text"><span class="test-q-num">7</span>Una unidad de convivencia del IMV tiene titular + 3 miembros adicionales. ¿Cuál es el porcentaje de renta garantizada antes de complementos?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 100% + 22% + 22% + 22% = 166%</div>
+                <div class="test-option" data-ans="0">B) 100% + 30% + 30% = 160%</div>
+                <div class="test-option" data-ans="1">C) 100% + 30% + 30% + 30% = 190% ✓</div>
+                <div class="test-option" data-ans="0">D) 220% (máximo siempre)</div>
+            </div>
+            <div class="test-feedback" data-ok="Titular = 100%. Cada miembro adicional suma <strong>30%</strong>. Con 3 miembros adicionales: 100% + 30% + 30% + 30% = <strong>190%</strong>. El máximo es 220% (con 4 o más miembros adicionales)."></div>
+        </div>
+
+        <div class="test-question" data-q="7">
+            <div class="test-q-text"><span class="test-q-num">8</span>Una madre soltera (monoparental) tiene un hijo de 2 años. ¿Cuánto percibe mensualmente en complemento de ayuda para la infancia?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 57,50 €/mes</div>
+                <div class="test-option" data-ans="0">B) 80,50 €/mes</div>
+                <div class="test-option" data-ans="1">C) 115 €/mes ✓</div>
+                <div class="test-option" data-ans="0">D) 150 €/mes</div>
+            </div>
+            <div class="test-feedback" data-ok="Complemento de ayuda para la infancia: <strong>menores de 3 años → 115 €/mes</strong>. De 3 a 6 años → 80,50 €/mes. De 6 a 18 años → 57,50 €/mes."></div>
+        </div>
+
+        <div class="test-question" data-q="8">
+            <div class="test-q-text"><span class="test-q-num">9</span>Un beneficiario del IMV sale al extranjero durante 4 meses sin comunicarlo ni justificarlo. ¿Qué consecuencia tiene?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Suspensión cautelar durante esos 4 meses</div>
+                <div class="test-option" data-ans="1">B) Extinción del IMV ✓</div>
+                <div class="test-option" data-ans="0">C) Reducción del 50% de la cuantía durante 1 año</div>
+                <div class="test-option" data-ans="0">D) Ninguna; las salidas al extranjero no afectan al IMV</div>
+            </div>
+            <div class="test-feedback" data-ok="Salida &gt;90 días <strong>sin comunicar y sin justificar</strong> = <strong>extinción</strong>. Si se comunica y justifica → solo suspensión. Truco del video: sin comunicar = dos amarillas = tarjeta roja."></div>
+        </div>
+
+        <div class="test-question" data-q="9">
+            <div class="test-q-text"><span class="test-q-num">10</span>¿Cuál es la cuantía anual de la prestación por hijo a cargo mayor de 18 años con discapacidad igual o superior al 65%?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1.000 €/año</div>
+                <div class="test-option" data-ans="1">B) 5.012,40 €/año ✓</div>
+                <div class="test-option" data-ans="0">C) 7.519,20 €/año</div>
+                <div class="test-option" data-ans="0">D) 3.500 €/año</div>
+            </div>
+            <div class="test-feedback" data-ok="Hijo a cargo mayor de 18 años con discapacidad ≥ 65%: <strong>5.012,40 €/año</strong> (pago mensual). Con discapacidad ≥ 75% + necesidad de tercera persona: 7.519,20 €/año."></div>
+        </div>
+
+        <div class="test-question" data-q="10">
+            <div class="test-q-text"><span class="test-q-num">11</span>¿Quién gestiona las Pensiones No Contributivas (PNC) en la Comunidad de Madrid?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El INSS</div>
+                <div class="test-option" data-ans="0">B) El IMSERSO, porque las PNC son competencia estatal</div>
+                <div class="test-option" data-ans="1">C) La propia Comunidad de Madrid, al tener competencias transferidas ✓</div>
+                <div class="test-option" data-ans="0">D) La entidad local del municipio de residencia</div>
+            </div>
+            <div class="test-feedback" data-ok="Las PNC las gestiona el <strong>IMSERSO</strong>, salvo en las CCAA con competencias transferidas. <strong>Todas las CCAA tienen competencias transferidas excepto Ceuta y Melilla</strong>, por lo que en Madrid las gestiona la propia Comunidad."></div>
+        </div>
+
+        <div class="test-question" data-q="11">
+            <div class="test-q-text"><span class="test-q-num">12</span>Para acceder a la PNC de Jubilación, ¿cuántos años de residencia en España se exigen?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 5 años (2 inmediatamente anteriores a la solicitud)</div>
+                <div class="test-option" data-ans="1">B) 10 años entre los 16 años y la edad de devengo (2 consecutivos inmediatos) ✓</div>
+                <div class="test-option" data-ans="0">C) 1 año continuado inmediatamente anterior</div>
+                <div class="test-option" data-ans="0">D) 15 años en toda la vida</div>
+            </div>
+            <div class="test-feedback" data-ok="PNC Jubilación: <strong>10 años</strong> de residencia entre los 16 años y la edad de devengo, de los cuales <strong>2 deben ser consecutivos e inmediatamente anteriores</strong> a la solicitud. PNC Invalidez: solo 5 años (2 inmediatos)."></div>
+        </div>
+
+        <div class="test-question" data-q="12">
+            <div class="test-q-text"><span class="test-q-num">13</span>Un beneficiario de PNC de Invalidez empieza a trabajar y obtiene ingresos del 30% del importe anual de su PNC. ¿Es compatible?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) Sí, porque no supera el límite del 35% ✓</div>
+                <div class="test-option" data-ans="0">B) No; la PNC de Invalidez es incompatible con cualquier trabajo</div>
+                <div class="test-option" data-ans="0">C) Solo si trabaja a tiempo parcial</div>
+                <div class="test-option" data-ans="0">D) Solo si la discapacidad es entre 65% y 74%</div>
+            </div>
+            <div class="test-feedback" data-ok="La PNC de Invalidez es compatible con trabajo cuando los ingresos no exceden el <strong>35%</strong> del importe anual de la PNC. Un 30% está por debajo de ese límite, por lo que es compatible."></div>
+        </div>
+
+        <div class="test-question" data-q="13">
+            <div class="test-q-text"><span class="test-q-num">14</span>Los complementos del 22% del IMV por monoparentalidad y discapacidad ≥ 65%, ¿cómo se aplican si concurren los dos?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Solo se aplica uno; no son acumulables</div>
+                <div class="test-option" data-ans="0">B) Se aplica el mayor de los dos (22%)</div>
+                <div class="test-option" data-ans="1">C) Se suman: 22% + 22% = 44% ✓</div>
+                <div class="test-option" data-ans="0">D) Se aplica el 22% una sola vez independientemente de cuántas concurran</div>
+            </div>
+            <div class="test-feedback" data-ok="Los complementos del 22% son <strong>sumativos</strong>. Si concurren monoparentalidad + discapacidad ≥ 65%: 22% + 22% = <strong>44%</strong> adicional sobre la renta garantizada."></div>
+        </div>
+
+        <div class="test-question" data-q="14">
+            <div class="test-q-text"><span class="test-q-num">15</span>¿Cuál es el plazo para presentar una nueva solicitud de IMV cuando fallece el titular de la unidad de convivencia?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) 1 mes desde el fallecimiento</div>
+                <div class="test-option" data-ans="1">B) 3 meses desde el fallecimiento ✓</div>
+                <div class="test-option" data-ans="0">C) 6 meses desde el fallecimiento</div>
+                <div class="test-option" data-ans="0">D) No hay plazo; se puede solicitar en cualquier momento</div>
+            </div>
+            <div class="test-feedback" data-ok="Tras el fallecimiento del titular, los restantes miembros de la unidad de convivencia tienen <strong>3 meses</strong> para presentar una nueva solicitud de IMV."></div>
+        </div>
+
+    </div>
+
+    <div class="test-score" id="testScore">
+        <div class="score-num" id="scoreNum">0/15</div>
+        <div class="score-label">Respuestas correctas</div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <br>
+        <button class="btn-reiniciar" onclick="reiniciarTest()">🔄 Reiniciar test</button>
+    </div>
+
+    <script>
+    (function(){
+        var correct = 0, answered = 0, total = 15;
+        document.querySelectorAll('.test-question').forEach(function(q){
+            var opts = q.querySelectorAll('.test-option');
+            var fb = q.querySelector('.test-feedback');
+            var okText = fb.getAttribute('data-ok');
+            opts.forEach(function(opt){
+                opt.addEventListener('click', function(){
+                    if(q.dataset.done) return;
+                    q.dataset.done = '1';
+                    var isCorrect = opt.getAttribute('data-ans') === '1';
+                    opts.forEach(function(o){
+                        o.classList.add('disabled');
+                        if(o.getAttribute('data-ans') === '1') o.classList.add('correct');
+                    });
+                    if(!isCorrect) opt.classList.add('wrong');
+                    fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + okText;
+                    fb.classList.add('show', isCorrect ? 'ok' : 'ko');
+                    if(isCorrect) correct++;
+                    answered++;
+                    if(answered === total){
+                        document.getElementById('scoreNum').textContent = correct + '/' + total;
+                        var msg = correct >= 13 ? '🏆 Excelente — dominas el Tema 12.' : correct >= 10 ? '👍 Bien — repasa los complementos del IMV y las PNC.' : correct >= 7 ? '⚠️ Regular — vuelve a la tabla de datos clave.' : '🔁 Necesitas más repaso — empieza por la tabla del inicio.';
+                        document.getElementById('scoreMsg').textContent = msg;
+                        document.getElementById('testScore').style.display = 'block';
+                    }
+                });
+            });
+        });
+        window.reiniciarTest = function(){
+            document.querySelectorAll('.test-question').forEach(function(q){
+                delete q.dataset.done;
+                q.querySelectorAll('.test-option').forEach(function(o){ o.classList.remove('correct','wrong','disabled'); });
+                var fb = q.querySelector('.test-feedback');
+                fb.classList.remove('show','ok','ko');
+            });
+            correct = 0; answered = 0;
+            document.getElementById('testScore').style.display = 'none';
+            window.scrollTo({top: document.getElementById('minitest').offsetTop - 20, behavior:'smooth'});
+        };
+    })();
+    </script>
+
+    <!-- ====== NAVEGACIÓN SUPERIOR ====== -->
+    <div class="nav-bar">
+        <a href="tema11_fusionado_completo.html">⬅ Tema 11</a>
+        <a href="index.html" class="indice">🏠 Índice</a>
+        <a href="tema13_fusionado_completo.html">Tema 13 ➡</a>
+    </div>
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ======= FOOTER INTERMEDIO ======= -->
+    <div class="footer">
+        Tema 12 — Prestaciones no contributivas y asistenciales · IMV · Seguridad Social · Convocatoria 2026<br>
+        Material fusionado: esquema web + 2 transcripciones de video<br>
+        <span style="color:#27ae60;">✅ Actualizado con diferencias titular/beneficiario, gestión y complementos</span>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- ======= TARJETA ALEATORIA BLINDA ======= -->
+    <!-- ======================================= -->
+    <h2 id="seccion-tarjetas" style="color:#0d2b3e; border-bottom:3px solid #e74c3c; margin-top:50px;">🃏 Práctica con Tarjetas Aleatorias (Tema 12)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Haz clic sobre la tarjeta para voltearla y ver la solución oficial. Pulsa el botón rojo para cambiar de pregunta.</p>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+            <div class="flip-card-front" id="pregunta">
+                Cargando pregunta...
+            </div>
+            <div class="flip-card-back" id="respuesta">
+                Cargando respuesta...
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center; margin-bottom: 20px;">
+        <button id="btn-otra" onclick="cargarPreguntaAleatoria()">Otra pregunta</button>
+    </div>
+
+    <div class="nav-bar" style="margin-top: 50px;">
+        <a href="tema11_fusionado_completo.html">⬅ Tema 11</a>
+        <a href="index.html" class="indice">🏠 Índice de Temas</a>
+        <a href="tema13_fusionado_completo.html">Tema 13 ➡</a>
+    </div>
+
+    <div class="footer">
+        Tema 12 — Prestaciones no contributivas y asistenciales · Seguridad Social · Convocatoria 2026<br>
+        <span style="color:#27ae60;">✅ Conexión entrelazada local y base dinámica 'preguntas12.js' operativas</span>
+    </div>
+
+</div> <!-- Fin container -->
+
+<!-- SCRIPT EXTERNO ORIGINAL PARA LAS FLASHCARDS -->
+<script src="preguntas12.js"></script>
+
+<script>
+    // Base de datos local interna en caso de que 'preguntas12.js' falle o no contenga datos
+    var preguntasFallback = [
+        {pregunta: "¿Cuál es el hecho causante de la prestación del IMV?", respuesta: "La presentación formal de la solicitud (no el estado de vulnerabilidad)."},
+        {pregunta: "¿En cuántas pagas anuales se abona el Ingreso Mínimo Vital?", respuesta: "En 12 mensualidades ordinarias. No tiene pagas extraordinarias."},
+        {pregunta: "¿Cuál es el régimen de responsabilidad ante el cobro de un reintegro indebido?", respuesta: "Responsabilidad solidaria entre el titular, todos los miembros de la UC y los colaboradores dolosos o culposos (Art. 19)."},
+        {pregunta: "¿Qué veto temporal de solicitud se puede imponer tras una extinción por sanción?", respuesta: "Una prohibición de formular nuevas solicitudes por un plazo de hasta 2 años (Art. 36)."},
+        {pregunta: "¿Qué edad de independencia y cotización se exige a los menores de 30 años?", respuesta: "Acreditar 2 años de vida independiente fuera de los padres y 12 meses de alta en la Seguridad Social."},
+        {pregunta: "¿Cuál es el plazo para resolver las asignaciones familiares no contributivas?", respuesta: "45 días naturales. El silencio administrativo es negativo."}
+    ];
+
+    function cargarPreguntaAleatoria() {
+        // Da prioridad al array externo 'preguntas' si existe, de lo contrario usa la base fallback blindada
+        var fuentePreguntas = (typeof preguntas !== 'undefined' && preguntas.length > 0) ? preguntas : preguntasFallback;
+
+        const random = Math.floor(Math.random() * fuentePreguntas.length);
+        document.getElementById("pregunta").innerText = fuentePreguntas[random].pregunta;
+        document.getElementById("respuesta").innerText = fuentePreguntas[random].respuesta;
+
+        const card = document.querySelector('.flip-card');
+        card.classList.remove('flipped');
+        
+        const btn = document.getElementById("btn-otra");
+        btn.classList.add("verde");
+        setTimeout(() => { btn.classList.remove("verde"); }, 400);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        cargarPreguntaAleatoria();
+    });
+</script>
+
+</body>
+</html>

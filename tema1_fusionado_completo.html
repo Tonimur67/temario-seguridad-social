@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 1 - La Seguridad Social en la Constitución y niveles de protección</title>
+    <style>
+        /* === RESET Y ESTILOS GENERALES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1a2a3a;
+            line-height: 1.7;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.12);
+            padding: 40px 50px;
+        }
+
+        .header {
+            border-bottom: 4px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #2e6b8a;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .badge-fusion {
+            display: inline-block;
+            background: #1a5276;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        .badge-update {
+            display: inline-block;
+            background: #27ae60;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .nav {
+            background: #eaf2f8;
+            border-radius: 16px;
+            padding: 18px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .nav a {
+            color: #1a5276;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav a:hover {
+            border-bottom-color: #1a5276;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            margin-top: 45px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #d4e6f1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a5276;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0 25px 0;
+            border-radius: 14px;
+            border: 1px solid #dce6ed;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        th {
+            background: #1a3a4f;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid #e9edf2;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+        }
+
+        .tag-web { background: #d4e6f1; color: #1a5276; }
+        .tag-video { background: #fdebd0; color: #a04000; }
+        .tag-fusion { background: #d5f5e3; color: #1a6e4b; }
+        .tag-update { background: #abebc6; color: #1a6e4b; }
+
+        .trampa { background: #fef9e7; border-left: 6px solid #f39c12; padding: 18px 24px; border-radius: 0 14px 14px 0; margin: 22px 0; }
+        .trampa strong { color: #b9770e; }
+        .cepo { background: #fdedec; border-left: 6px solid #e74c3c; padding: 18px 24px; border-radius: 0 14px 14px 0; margin: 22px 0; }
+        .cepo strong { color: #b03a2e; }
+        .destacado { background: #eaf2f8; padding: 16px 22px; border-radius: 14px; margin: 18px 0; border: 1px solid #bdd7e8; }
+        .destacado strong { color: #1a5276; }
+        .caja-dato { background: #1a2a3a; color: #fff; padding: 14px 22px; border-radius: 14px; margin: 18px 0; font-size: 0.95rem; }
+        .caja-dato strong { color: #f1c40f; }
+
+        ul, ol { padding-left: 28px; margin: 12px 0 18px 0; }
+        li { margin-bottom: 6px; }
+
+        .back-top { display: inline-block; margin-top: 40px; background: #1a5276; color: #fff; padding: 10px 28px; border-radius: 40px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: background 0.2s; }
+        .back-top:hover { background: #0d3b55; }
+        .footer { margin-top: 50px; padding-top: 20px; border-top: 2px solid #d4e6f1; font-size: 0.85rem; color: #5d6d7e; text-align: center; }
+
+        /* === BLOQUES DE COLOR === */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .full { grid-column: 1 / -1; }
+        .block { background: #f8fafc; border: 1px solid #dce6ed; border-radius: 14px; padding: 18px 22px; transition: box-shadow 0.2s; }
+        .block:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+        .block-title { font-family: 'Segoe UI', sans-serif; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #dce6ed; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        
+        .yellow .block-title { color: #b7950b; }
+        .yellow .dot { background: #f1c40f; }
+        .blue .block-title { color: #1a5276; }
+        .blue .dot { background: #2980b9; }
+        .red .block-title { color: #b03a2e; }
+        .red .dot { background: #e74c3c; }
+        .green .block-title { color: #1e7e34; }
+        .green .dot { background: #27ae60; }
+        .purple .block-title { color: #6c3483; }
+        .purple .dot { background: #8e44ad; }
+        .orange .block-title { color: #b9770e; }
+        .orange .dot { background: #f39c12; }
+
+        .item { display: flex; gap: 10px; margin-bottom: 6px; font-size: 0.95rem; line-height: 1.5; }
+        .item:last-child { margin-bottom: 0; }
+        .item .arrow { color: #6b7292; flex-shrink: 0; font-family: 'Segoe UI', monospace; font-size: 0.9rem; }
+        .item strong { color: #0d2b3e; }
+
+        .pill { display: inline-block; font-family: 'Segoe UI', monospace; font-size: 0.8rem; font-weight: 700; padding: 1px 8px; border-radius: 4px; margin: 0 2px; }
+        .pill-y { background: #fef9e7; color: #b7950b; border: 1px solid #f9e79f; }
+        .pill-b { background: #eaf2f8; color: #1a5276; border: 1px solid #aed6f1; }
+        .pill-r { background: #fdedec; color: #b03a2e; border: 1px solid #f5b7b1; }
+        .pill-g { background: #eafaf1; color: #1e7e34; border: 1px solid #a9dfbf; }
+        .pill-p { background: #f4ecf7; color: #6c3483; border: 1px solid #d7bde2; }
+        .pill-o { background: #fef9e7; color: #b9770e; border: 1px solid #f9e79f; }
+
+        .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+        .note .nlabel { font-family: 'Segoe UI', monospace; font-size: 0.7rem; color: #1e7e34; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+        .alert .alabel { font-family: 'Segoe UI', monospace; font-size: 0.7rem; color: #b03a2e; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .info { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+        .info .ilabel { font-family: 'Segoe UI', monospace; font-size: 0.7rem; color: #1a5276; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .sub-head { font-family: 'Segoe UI', monospace; font-size: 0.8rem; font-weight: 700; color: #2c3e50; text-transform: uppercase; letter-spacing: 0.5px; margin: 12px 0 6px 0; }
+        .ejemplo { background: #f0f7fb; border-left: 4px solid #2980b9; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: 0.92rem; }
+        .ejemplo strong { color: #1a5276; }
+
+        /* === MINI-TEST STYLES === */
+        .test-question { background:#f8fafc; border:1px solid #dce6ed; border-radius:14px; padding:20px 24px; margin-bottom:16px; }
+        .test-q-num { display:inline-block; background:#1a3a4f; color:#fff; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:20px; margin-right:8px; }
+        .test-q-text { font-weight:600; color:#0d2b3e; font-size:1rem; margin-bottom:14px; }
+        .test-options { display:flex; flex-direction:column; gap:8px; }
+        .test-option { display:flex; align-items:flex-start; gap:10px; background:#fff; border:2px solid #dce6ed; border-radius:10px; padding:12px 16px; cursor:pointer; font-size:0.93rem; transition:border-color 0.15s, background 0.15s; user-select:none; }
+        .test-option:hover { border-color:#2980b9; background:#eaf2f8; }
+        .test-option.correct { border-color:#27ae60; background:#eafaf1; color:#1e7e34; font-weight:600; }
+        .test-option.wrong { border-color:#e74c3c; background:#fdedec; color:#b03a2e; }
+        .test-option.disabled { pointer-events:none; }
+        .test-feedback { margin-top:10px; padding:10px 16px; border-radius:8px; font-size:0.9rem; display:none; }
+        .test-feedback.show { display:block; }
+        .test-feedback.ok { background:#eafaf1; border-left:4px solid #27ae60; color:#1e7e34; }
+        .test-feedback.ko { background:#fdedec; border-left:4px solid #e74c3c; color:#b03a2e; }
+        .test-score { background:#1a2a3a; color:#fff; border-radius:14px; padding:20px 28px; text-align:center; display:none; margin-top:20px; }
+        .test-score .score-num { font-size:2.8rem; font-weight:700; color:#f1c40f; }
+        .test-score .score-label { font-size:1rem; color:#aab; margin-top:4px; }
+        .test-score .score-msg { font-size:0.95rem; margin-top:10px; color:#ddd; }
+        .btn-reiniciar { background:#1a5276; color:#fff; border:none; border-radius:30px; padding:10px 28px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:14px; transition:background 0.2s; }
+        .btn-reiniciar:hover { background:#0d3b55; }
+
+        /* === CONFIGURACIÓN DE LAS TARJETAS FLIP === */
+        .flip-card {
+            margin: 30px auto;
+            width: 100%;
+            max-width: 500px;
+            height: 280px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 18px; padding: 30px; display: flex; justify-content: center; align-items: center; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .flip-card-front { background: #f8fafc; border: 2px dashed #1a5276; color: #0d2b3e; font-size: 1.15rem; font-weight: 600; }
+        .flip-card-back { background: #1a5276; color: white; transform: rotateY(180deg); font-size: 1.1rem; line-height: 1.6; }
+
+        #btn-otra { padding: 12px 35px; font-size: 1rem; font-weight: 600; border-radius: 30px; cursor: pointer; background-color: #e74c3c; color: white; border: none; box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); transition: all 0.3s ease; }
+        #btn-otra:hover { background-color: #c0392b; transform: translateY(-2px); }
+        #btn-otra.verde { background-color: #27ae60 !important; box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3); }
+
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eaf2f8; }
+        .nav-bar a { text-decoration: none; color: #1a5276; font-weight: 600; font-size: 0.95rem; }
+        .nav-bar .indice { background: #eaf2f8; padding: 8px 20px; border-radius: 20px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
+            .header h1 { font-size: 1.7rem; }
+            .nav { flex-direction: column; gap: 4px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            h2 { font-size: 1.5rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ======= HEADER ======= -->
+    <div class="header">
+        <h1>Tema 1 · La Seguridad Social en la Constitución · Niveles de protección</h1>
+        <div class="subtitle">Artículos constitucionales · Principios · Niveles · TRLGSS · Reglamentos</div>
+        <span class="badge-fusion">📚 Fusión completa · Esquema web + 2 transcripciones de video</span>
+        <span class="badge-update">✅ Con principios del art. 41, niveles de protección y estructura del TRLGSS</span>
+        <div style="margin-top: 8px; font-size: 0.85rem; color: #5d6d7e;">
+            Arts. 41, 25.2, 39, 43, 49, 50, 129, 148, 149 CE · Arts. 1-6 TRLGSS · Ley 20/2014
+        </div>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ======= -->
+    <div class="nav">
+        <a href="#p1">01. Artículo 41 CE</a>
+        <a href="#p2">02. Otros artículos</a>
+        <a href="#p3">03. Niveles de protección</a>
+        <a href="#p4">04. Distribución competencial</a>
+        <a href="#p5">05. Principios del sistema</a>
+        <a href="#p6">06. TRLGSS</a>
+        <a href="#p7">07. Reglamentos clave</a>
+        <a href="#kit">🎯 Kit de criba</a>
+        <a href="#minitest">🧪 Mini-test</a>
+        <a href="#seccion-tarjetas">🃏 Tarjetas</a>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= 01. ARTÍCULO 41 CE ======= -->
+    <h2 id="p1">01. El artículo 41 de la Constitución Española</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Contenido del art. 41 CE</div>
+            <div class="item"><span class="arrow">→</span><span>Los poderes públicos mantendrán un <strong>régimen público de Seguridad Social</strong> para todos los ciudadanos.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Finalidad:</strong> garantizar la asistencia y prestaciones sociales <strong>suficientes</strong> ante situaciones de necesidad.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Contingencia prioritaria:</strong> el artículo explicita que la protección se dispensará <strong>especialmente en caso de desempleo</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Complementariedad:</strong> la asistencia y prestaciones complementarias serán <strong>libres</strong> (carácter privado voluntario).</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>El art. 41 es el <strong>más importante</strong> en materia de Seguridad Social. De él se extraen los <strong>cuatro principios fundamentales</strong> del sistema.</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Cuatro principios del art. 41 CE (video)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>1. Sistema público:</strong> corresponde a los poderes públicos dictar las normas reguladoras (el Estado tiene competencia en legislación básica) y organizar y gestionar el sistema.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>2. Universalidad subjetiva:</strong> todos los ciudadanos son destinatarios de la asistencia y prestaciones del sistema público.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>3. Generalidad objetiva:</strong> garantiza la asistencia y prestaciones sociales (no solo económicas).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>4. Suficiencia prestacional:</strong> las prestaciones de la SS deben ser suficientes. La Constitución <strong>no establece</strong> ningún criterio para determinar esa suficiencia.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> El art. 41 es el <strong>núcleo constitucional</strong> de la SS. Los cuatro principios (público, universal, general y suficiente) son preguntas frecuentes.
+            </div>
+        </div>
+    </div>
+
+    <div class="block full green">
+        <div class="block-title"><span class="dot"></span>Gestión del sistema público (video)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Gestión directa estatal:</strong> el Estado organiza y gestiona directamente.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Gestión indirecta estatal:</strong> a través de entes instrumentales creados específicamente y tutelados por el Estado (ej. INSS, TGSS).</span></div>
+            </div>
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Ejecución por CCAA:</strong> las Comunidades Autónomas pueden ejecutar los servicios de la SS en su territorio.</span></div>
+                <div class="caja-dato" style="margin-top:10px;">
+                    <strong>📌 Clave:</strong> La SS es un sistema <strong>público, universal y suficiente</strong>, pero la Constitución no define qué es "suficiente", dejándolo al desarrollo legislativo.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 02. OTROS ARTÍCULOS CONSTITUCIONALES ======= -->
+    <h2 id="p2">02. Otros preceptos constitucionales relacionados</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Artículos del Título I</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Art. 25.2:</strong> el condenado a pena de prisión tiene derecho a un <strong>trabajo remunerado</strong> y a los <strong>beneficios correspondientes de la SS</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Art. 39.1:</strong> los poderes públicos aseguran la <strong>protección social, económica y jurídica de la familia</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Art. 43:</strong> <strong>protección de la salud</strong>. Compete a los poderes públicos organizar y tutelar la salud pública a través de medidas preventivas y prestaciones.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Art. 49:</strong> <strong>autonomía personal e inclusión social de las personas con discapacidad</strong>. Reformado en 2024.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Art. 50:</strong> los poderes públicos garantizan mediante <strong>pensiones adecuadas y periódicamente actualizadas</strong> la suficiencia económica de los ciudadanos durante la <strong>tercera edad</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Art. 129:</strong> la ley determinará las formas de <strong>participación de los interesados</strong> en la SS y en los organismos públicos.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>La Constitución utiliza la expresión "Seguridad Social" en <strong>cuatro preceptos</strong>: arts. 41, 25.2, 129.1 y 149.1.17ª. Los demás (39, 43, 49, 50) son vertientes de la protección social.</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Carácter de las normas (art. 53 CE)</div>
+            <div class="item"><span class="arrow">→</span><span><span class="pill pill-b">Art. 25.2:</span> se ubica en el <strong>Título I, Capítulo 2º, Sección 1ª</strong> → es un <strong>derecho fundamental</strong> (máximas garantías, recurso de amparo).</span></div>
+            <div class="item"><span class="arrow">→</span><span><span class="pill pill-y">Arts. 39, 43, 49, 50:</span> se ubican en el <strong>Título I, Capítulo 3º</strong> → son <strong>Principios rectores de la política social y económica</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Consecuencias:</strong> los principios rectores informan la legislación positiva, la práctica judicial y la actuación de los poderes públicos. <strong>Solo pueden ser alegados ante la jurisdicción ordinaria</strong> de acuerdo con las leyes que los desarrollen.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> El art. 25.2 es un <strong>derecho fundamental</strong> (recurso de amparo). Los arts. 39, 43, 49, 50 son <strong>principios rectores</strong> (requieren desarrollo legislativo).
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 03. NIVELES DE PROTECCIÓN ======= -->
+    <h2 id="p3">03. Niveles de protección de la Seguridad Social</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Nivel básico (no contributivo)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Ámbito:</strong> universal (todos los ciudadanos).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Objetivo:</strong> prestaciones uniformes ante situaciones de necesidad, rentas de compensación básicas.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Gestión:</strong> pública.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Financiación:</strong> <span class="pill pill-g">Presupuestos Generales del Estado (PGE)</span>. En caso de servicios transferidos a CCAA (asistencia sanitaria y servicios sociales) → <strong>sistema de financiación autonómica</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prestaciones (art. 109.3 TRLGSS):</strong></span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Asistencia sanitaria (salvo AT/EP).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Pensiones no contributivas (invalidez y jubilación).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Subsidio por maternidad (arts. 181-182).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Prestaciones familiares no contributivas (Título VI, Cap. I).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Complementos por mínimos, IMV.</span></div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Nivel profesional (contributivo)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Ámbito:</strong> población trabajadora (activa).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Objetivo:</strong> rentas de sustitución de las obtenidas en la vida activa, proporcionales a las cotizaciones/salarios.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Gestión:</strong> pública.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Financiación:</strong> <span class="pill pill-b">cotizaciones sociales</span> (trabajadores y empresarios), con aportaciones del Estado.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Prestaciones (art. 109.3 TRLGSS):</strong></span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>IP y jubilación contributiva.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>IT, NYCM, lactante, riesgos (embarazo y lactancia), cáncer.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Muerte y supervivencia (MYS).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Prestaciones derivadas de <strong>AT y EP</strong> (todas).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Prestaciones familiares económicas (excedencias, cuidado de menores).</span></div>
+        </div>
+    </div>
+
+    <div class="block full yellow">
+        <div class="block-title"><span class="dot"></span>Nivel complementario (video)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Ámbito:</strong> selectivo (quienes voluntariamente realicen aportaciones).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Naturaleza:</strong> <span class="pill pill-y">voluntaria</span>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Objetivo:</strong> prestaciones complementarias a las del sistema obligatorio (no lo sustituye).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Gestión:</strong> puede ser <span class="pill pill-g">pública o privada</span>.</span></div>
+            </div>
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Financiación:</strong> aportaciones exclusivas de los partícipes.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Ejemplos:</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Mejoras voluntarias de la acción protectora (a cargo de empresas).</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>Planes y fondos de pensiones.</span></div>
+                <div class="caja-dato" style="margin-top:10px;">
+                    <strong>📌 Clave:</strong> El nivel complementario es <strong>libre</strong> (art. 41 CE) y <strong>no sustituye</strong> al sistema obligatorio.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 04. DISTRIBUCIÓN COMPETENCIAL ======= -->
+    <h2 id="p4">04. Distribución de competencias territoriales (arts. 148 y 149 CE)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block orange">
+            <div class="block-title"><span class="dot"></span>Competencias de las CCAA (art. 148)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>148.1.20ª:</strong> <span class="pill pill-y">Asistencia social</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>148.1.21ª:</strong> <span class="pill pill-y">Sanidad e higiene</span>.</span></div>
+        </div>
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Competencia exclusiva del Estado (art. 149)</div>
+            <div class="item"><span class="arrow">→</span><span><strong>149.1.16ª:</strong> <span class="pill pill-b">Sanidad exterior</span>. Bases y coordinación general de la sanidad. Legislación sobre productos farmacéuticos.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>149.1.17ª:</strong> <span class="pill pill-b">Legislación básica y régimen económico de la Seguridad Social</span>, sin perjuicio de la <strong>ejecución de sus servicios por las CCAA</strong>.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> El Estado tiene competencia exclusiva sobre la <strong>legislación básica</strong> y el <strong>régimen económico</strong> de la SS. Las CCAA pueden <strong>ejecutar los servicios</strong>, pero no legislar en materia básica.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 05. PRINCIPIOS DEL SISTEMA (ARTS. 1-6 TRLGSS) ======= -->
+    <h2 id="p5">05. Principios del sistema (arts. 1-6 TRLGSS)</h2>
+    <p><span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Nuevo</span></p>
+
+    <div class="grid-2">
+        <div class="block purple">
+            <div class="block-title"><span class="dot"></span>Art. 1 — Derecho a la SS</div>
+            <div class="item"><span class="arrow">→</span><span>El derecho de los españoles a la SS, establecido en el art. 41 CE, se ajusta a lo dispuesto en esta ley.</span></div>
+            <div class="item"><span class="arrow">→</span><span>La ley establece cómo se organiza y aplica este derecho en la vida cotidiana.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Art. 2 — Principios y fines</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Principios:</strong> <span class="pill pill-p">Universalidad, unidad, solidaridad e igualdad</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Fines (art. 2.2):</strong> el Estado, por medio de la SS, garantiza a las personas comprendidas en su campo de aplicación (contributiva o no contributiva), y a sus familiares o asimilados, la <strong>protección adecuada</strong> frente a las contingencias y situaciones previstas en la ley.</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Arts. 3 y 6 — Irrenunciabilidad y coordinación</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Art. 3 (irrenunciabilidad):</strong> será <span class="pill pill-r">nulo</span> todo pacto individual o colectivo por el cual el trabajador renuncie a los derechos que le confiere la ley. Protege al trabajador frente a posibles abusos.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Art. 6 (coordinación):</strong> el Gobierno es responsable de que la SS se coordine con otros servicios públicos (sanidad, educación, asistencia social) para garantizar una protección integral y evitar duplicidades.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Aportación del video</div>
+                <p>Las actividades relacionadas con la SS <strong>no pueden usarse para obtener beneficios mercantiles</strong> (prohibición de lucro).</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 06. TRLGSS: ESTRUCTURA Y CONTENIDO ======= -->
+    <h2 id="p6">06. Texto Refundido de la Ley General de la Seguridad Social (TRLGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="block full blue">
+        <div class="block-title"><span class="dot"></span>Antecedentes y rango normativo</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Primera Ley de SS:</strong> Ley 193/1963 (Ley de Bases).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Primer texto refundido:</strong> Decreto 2065/1974.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Antecesor inmediato:</strong> Real Decreto Legislativo 1/1994.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Actual TRLGSS:</strong> aprobado por <strong>Real Decreto Legislativo 8/2015</strong>, de 30 de octubre.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Rango:</strong> <span class="pill pill-y">Real Decreto Legislativo</span> (norma con rango de ley).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Autorización:</strong> Ley 20/2014, de 29 de octubre, que delegó en el Gobierno la potestad de refundir diversos textos.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Entrada en vigor:</strong> <span class="pill pill-b">2 de enero de 2016</span>.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Estructura del TRLGSS (video)</div>
+                <div class="item"><span class="arrow">→</span><span><strong>Preámbulo</strong> (introduce y justifica el Real Decreto Legislativo).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Artículo único</strong> (aprueba el texto refundido).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Disposición adicional única:</strong> remisiones normativas.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Disposición derogatoria única:</strong> derogación normativa de igual o inferior rango.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Disposición final única:</strong> entrada en vigor (2 de enero de 2016).</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block full yellow" style="margin-top:14px;">
+        <div class="block-title"><span class="dot"></span>Estructura sistemática del TRLGSS (6 títulos)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">TÍTULO I</div>
+                <div class="item"><span class="arrow">→</span><span>Normas generales del sistema (Cap. I-IX). Preliminares, campo de aplicación, afiliación, acción protectora, gestión, recaudación, régimen económico, inspección y sanciones.</span></div>
+                <div class="sub-head" style="margin-top:14px;">TÍTULO II</div>
+                <div class="item"><span class="arrow">→</span><span>Régimen General (Cap. I-XXI). Inscripción, cotización, prestaciones (IT, NYCM, IP, jubilación, MYS, familia), sistemas especiales (hogar, agrarios).</span></div>
+            </div>
+            <div>
+                <div class="sub-head">TÍTULO III</div>
+                <div class="item"><span class="arrow">→</span><span>Protección por desempleo (Cap. I-VIII). Nivel contributivo, nivel asistencial, colectivos especiales, régimen financiero y sancionador.</span></div>
+                <div class="sub-head" style="margin-top:14px;">TÍTULO IV</div>
+                <div class="item"><span class="arrow">→</span><span>Régimen Especial RETA (Autónomos) — Cap. I-IV. Campo de aplicación, cotización, acción protectora y SETA.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">TÍTULO V</div>
+                <div class="item"><span class="arrow">→</span><span>Protección por cese de actividad (Cap. I-V). Situación legal de cese, protección y régimen financiero para autónomos.</span></div>
+                <div class="sub-head" style="margin-top:14px;">TÍTULO VI</div>
+                <div class="item"><span class="arrow">→</span><span>Prestaciones no contributivas (Cap. I-III). Prestaciones familiares no contributivas y pensiones de invalidez y jubilación.</span></div>
+            </div>
+        </div>
+        <div class="caja-dato" style="margin-top:14px;">
+            <strong>📌 Dato clave:</strong> El TRLGSS tiene <strong>373 artículos</strong>, <strong>53 disposiciones adicionales</strong>, <strong>44 disposiciones transitorias</strong> y <strong>8 disposiciones finales</strong>.
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 07. REGLAMENTOS CLAVE ======= -->
+    <h2 id="p7">07. Reglamentos clave de la Seguridad Social</h2>
+    <p><span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Nuevo</span></p>
+
+    <div class="grid-2">
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Reglamentos principales</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reglamento General de Prestaciones:</strong> Decreto 3158/1963.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reglamento de Inscripción de Empresas y Afiliación:</strong> Real Decreto 84/1996.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reglamento de Cotización y Liquidación:</strong> Real Decreto 2064/1995.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reglamento General de Recaudación:</strong> Real Decreto 1415/2004.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reglamento de Colaboración de Mutuas:</strong> (sobre AT/EP).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Reglamento de Declaración y Revisión de IP:</strong> (incapacidad permanente).</span></div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Resumen de reglamentos clave</div>
+            <div class="table-wrap" style="margin:10px 0;">
+                <table>
+                    <thead>
+                        <tr><th>Reglamento</th><th>Norma</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Prestaciones</td><td>Decreto 3158/1963</td></tr>
+                        <tr><td>Inscripción de empresas y afiliación</td><td>RD 84/1996</td></tr>
+                        <tr><td>Cotización y liquidación</td><td>RD 2064/1995</td></tr>
+                        <tr><td>Recaudación</td><td>RD 1415/2004</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> No confundir el TRLGSS (ley) con los reglamentos que lo desarrollan. Los reglamentos son normas de <strong>rango inferior</strong> pero <strong>esenciales</strong>.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= KIT DE CRIBA ======= -->
+    <h2 id="kit">🎯 Kit de criba directa para el test (datos críticos)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Concepto</th><th>Dato clave</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Artículo constitucional más importante en SS</td><td><strong>Art. 41 CE</strong></td></tr>
+                <tr><td>Principios del art. 41 CE</td><td><strong>Sistema público, universalidad, generalidad, suficiencia</strong></td></tr>
+                <tr><td>Contingencia prioritaria en el art. 41</td><td><strong>Desempleo</strong></td></tr>
+                <tr><td>Carácter de las prestaciones complementarias (art. 41)</td><td><strong>Libres</strong> (voluntarias)</td></tr>
+                <tr><td>Art. 25.2 CE — naturaleza</td><td><strong>Derecho fundamental</strong> (Sección 1ª, Cap. 2º, Tít. I)</td></tr>
+                <tr><td>Arts. 39, 43, 49, 50 CE — naturaleza</td><td><strong>Principios rectores</strong> (Cap. 3º, Tít. I)</td></tr>
+                <tr><td>Art. 49 CE</td><td>Autonomía personal e inclusión social de personas con <strong>discapacidad</strong> (reformado 2024)</td></tr>
+                <tr><td>Art. 50 CE</td><td><strong>Pensiones adecuadas y actualizadas</strong> para la tercera edad</td></tr>
+                <tr><td>Nivel básico — financiación</td><td><strong>PGE</strong> (o sistema de financiación autonómica si está transferido)</td></tr>
+                <tr><td>Nivel profesional — financiación</td><td><strong>Cotizaciones sociales</strong> (trabajadores y empresarios)</td></tr>
+                <tr><td>Competencia del Estado en SS (art. 149.1.17ª)</td><td><strong>Legislación básica y régimen económico</strong></td></tr>
+                <tr><td>Competencia de las CCAA en SS</td><td><strong>Ejecución de servicios</strong> (asistencia social, sanidad e higiene)</td></tr>
+                <tr><td>TRLGSS — rango y norma</td><td><strong>Real Decreto Legislativo 8/2015</strong></td></tr>
+                <tr><td>TRLGSS — entrada en vigor</td><td><strong>2 de enero de 2016</strong></td></tr>
+                <tr><td>TRLGSS — volumen de artículos</td><td><strong>373 artículos</strong></td></tr>
+                <tr><td>Principios del sistema (art. 2 TRLGSS)</td><td><strong>Universalidad, unidad, solidaridad, igualdad</strong></td></tr>
+                <tr><td>Reglamento de inscripción y afiliación</td><td><strong>RD 84/1996</strong></td></tr>
+                <tr><td>Reglamento de cotización y liquidación</td><td><strong>RD 2064/1995</strong></td></tr>
+                <tr><td>Reglamento de recaudación</td><td><strong>RD 1415/2004</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ======= MINI-TEST INTERACTIVO ======= -->
+    <h2 id="minitest">🧪 Mini-test de criba · Tema 1 (14 preguntas)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Preguntas tipo examen basadas en los contenidos del Tema 1. Haz clic en la opción correcta.</p>
+
+    <div class="test-container" id="testContainer">
+        <div class="test-question" data-q="0">
+            <div class="test-q-text"><span class="test-q-num">1</span>¿Cuál es la contingencia que el artículo 41 de la Constitución Española menciona explícitamente que debe ser atendida de forma prioritaria?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Jubilación de trabajadores por cuenta ajena</div>
+                <div class="test-option" data-ans="1">B) Desempleo ✓</div>
+                <div class="test-option" data-ans="0">C) Accidente de trabajo y enfermedad profesional</div>
+                <div class="test-option" data-ans="0">D) Muerte y supervivencia</div>
+            </div>
+            <div class="test-feedback" data-ok="El art. 41 CE señala de manera explícita la dispensación de prestaciones 'especialmente en caso de desempleo'."></div>
+        </div>
+
+        <div class="test-question" data-q="1">
+            <div class="test-q-text"><span class="test-q-num">2</span>Según el artículo 41 de la Constitución, ¿qué carácter ostentan las prestaciones de carácter complementario?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Obligatorias para las empresas de más de 250 trabajadores</div>
+                <div class="test-option" data-ans="1">B) Libres ✓</div>
+                <div class="test-option" data-ans="0">C) Sujetas a cofinanciación estatal mediante los PGE</div>
+                <div class="test-option" data-ans="0">D) Reguladas de forma rígida por las Comunidades Autónomas</div>
+            </div>
+            <div class="test-feedback" data-ok="El texto constitucional establece que 'La asistencia y prestaciones complementarias serán libres', abriendo paso al sector privado y voluntario."></div>
+        </div>
+
+        <div class="test-question" data-q="2">
+            <div class="test-q-text"><span class="test-q-num">3</span>¿Cuál es el valor o criterio que la Constitución Española detalla numéricamente para fijar cuándo una prestación es 'suficiente'?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El importe equivalente al Salario Mínimo Interprofesional (SMI)</div>
+                <div class="test-option" data-ans="0">B) El índice de precios de consumo acumulado anual (IPC)</div>
+                <div class="test-option" data-ans="0">C) Un mínimo del 60% del salario medio nacional</div>
+                <div class="test-option" data-ans="1">D) Ninguno, la Constitución Española no establece criterios para determinar dicha suficiencia ✓</div>
+            </div>
+            <div class="test-feedback" data-ok="La Constitución no introduce baremos matemáticos para fijar la suficiencia prestacional; delega dicho concepto al legislador ordinario."></div>
+        </div>
+
+        <div class="test-question" data-q="3">
+            <div class="test-q-text"><span class="test-q-num">4</span>¿En qué apartado o sección de la Constitución se encuentra el artículo 25.2, relativo a los beneficios correspondientes de la Seguridad Social para las personas en prisión?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) Título I, Capítulo 2º, Sección 1ª (Derechos Fundamentales) ✓</div>
+                <div class="test-option" data-ans="0">B) Título I, Capítulo 3º (Principios Rectores)</div>
+                <div class="test-option" data-ans="0">C) Título VIII, relativo a la ordenación competencial del Estado</div>
+                <div class="test-option" data-ans="0">D) Disposiciones Transitorias del texto constitucional</div>
+            </div>
+            <div class="test-feedback" data-ok="El art. 25.2 CE se encuadra como derecho fundamental dotado de las máximas garantías procesales (recurso de amparo)."></div>
+        </div>
+
+        <div class="test-question" data-q="4">
+            <div class="test-q-text"><span class="test-q-num">5</span>¿Qué consideración jurídica poseen los artículos 39, 43, 49 y 50 de la Constitución Española en relación al amparo jurisdiccional?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Son derechos fundamentales puros y directos ante el TC</div>
+                <div class="test-option" data-ans="1">B) Son principios rectores que solo pueden alegarse conforme a las leyes que los desarrollen ✓</div>
+                <div class="test-option" data-ans="0">C) Carecen de valor normativo y son meras declaraciones de intenciones</div>
+                <div class="test-option" data-ans="0">D) Son normas orgánicas de obligado cumplimiento inmediato y directo</div>
+            </div>
+            <div class="test-feedback" data-ok="Se integran en el Capítulo 3º del Título I, operando como principios rectores conforme al artículo 53.3 de la CE."></div>
+        </div>
+
+        <div class="test-question" data-q="5">
+            <div class="test-q-text"><span class="test-q-num">6</span>¿En cuántos artículos o preceptos constitucionales diferentes se emplea de forma literal la expresión 'Seguridad Social'?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Únicamente en uno (artículo 41)</div>
+                <div class="test-option" data-ans="0">B) En dos (artículo 41 y artículo 149)</div>
+                <div class="test-option" data-ans="1">C) En cuatro (artículos 25.2, 41, 129 y 149) ✓</div>
+                <div class="test-option" data-ans="0">D) En todos los principios rectores del Capítulo III</div>
+            </div>
+            <div class="test-feedback" data-ok="Se menciona de forma explícita y exclusiva en cuatro artículos: 25.2, 41, 129 y 149.1.17ª."></div>
+        </div>
+
+        <div class="test-question" data-q="6">
+            <div class="test-q-text"><span class="test-q-num">7</span>¿Cuál es el mecanismo de financiación principal para el nivel básico o no contributivo de la Seguridad Social?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Las cotizaciones exclusivas de los empresarios</div>
+                <div class="test-option" data-ans="1">B) Los Presupuestos Generales del Estado (PGE) ✓</div>
+                <div class="test-option" data-ans="0">C) El Fondo de Reserva de la Seguridad Social</div>
+                <div class="test-option" data-ans="0">D) Las tasas del régimen de autónomos (RETA)</div>
+            </div>
+            <div class="test-feedback" data-ok="El nivel básico y no contributivo se nutre de aportaciones del Estado mediante transferencias de los **PGE**."></div>
+        </div>
+
+        <div class="test-question" data-q="7">
+            <div class="test-q-text"><span class="test-q-num">8</span>¿Qué competencias reserva el artículo 149.1.17ª de la Constitución al Estado en régimen de exclusividad?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) La asistencia social y los servicios asistenciales de los ayuntamientos</div>
+                <div class="test-option" data-ans="0">B) La gestión operativa de los centros de salud de atención primaria</div>
+                <div class="test-option" data-ans="1">C) La legislación básica y el régimen económico de la Seguridad Social ✓</div>
+                <div class="test-option" data-ans="0">D) La inspección de cooperativas autonómicas</div>
+            </div>
+            <div class="test-feedback" data-ok="El Estado posee de forma blindada la competencia exclusiva sobre la **legislación básica** y el **régimen económico** del sistema público."></div>
+        </div>
+
+        <div class="test-question" data-q="8">
+            <div class="test-q-text"><span class="test-q-num">9</span>¿Qué ámbito de actuación territorial queda reservado a las Comunidades Autónomas en el artículo 149.1.17ª de la CE?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Dictar decretos leyes de bases de cotización alternativos</div>
+                <div class="test-option" data-ans="1">B) La ejecución de los servicios de la Seguridad Social ✓</div>
+                <div class="test-option" data-ans="0">C) Alterar el principio de caja única según su recaudación local</div>
+                <div class="test-option" data-ans="0">D) Ninguno, la SS es íntegramente centralizada sin capacidad autonómica</div>
+            </div>
+            <div class="test-feedback" data-ok="El precepto constitucional deja a salvo la posibilidad de que las Comunidades Autónomas asuman la **ejecución de los servicios** del sistema."></div>
+        </div>
+
+        <div class="test-question" data-q="9">
+            <div class="test-q-text"><span class="test-q-num">10</span>¿Cuáles son los cuatro principios consagrados en el artículo 2 del TRLGSS?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Público, Privado, Mixto y Alternativo</div>
+                <div class="test-option" data-ans="1">B) Universalidad, unidad, solidaridad e igualdad ✓</div>
+                <div class="test-option" data-ans="0">C) Desempleo, Vejez, Enfermedad y Orfandad</div>
+                <div class="test-option" data-ans="0">D) Descentralización, Criterio mercantil, Lucro y Reparto</div>
+            </div>
+            <div class="test-feedback" data-ok="Art. 2.1 TRLGSS: La ordenación del sistema responde a los principios de **Universalidad, unidad, solidaridad e igualdad**."></div>
+        </div>
+
+        <div class="test-question" data-q="10">
+            <div class="test-q-text"><span class="test-q-num">11</span>Según el artículo 3 del TRLGSS, ¿cuál es la consecuencia de un pacto por el cual un trabajador renuncia a sus derechos de protección social?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) El pacto será nulo de pleno derecho ✓</div>
+                <div class="test-option" data-ans="0">B) El pacto es válido si se firma ante un notario público</div>
+                <div class="test-option" data-ans="0">C) Conlleva una penalización del 10% en su base reguladora</div>
+                <div class="test-option" data-ans="0">D) Se transforma de forma automática en un alta de autónomos</div>
+            </div>
+            <div class="test-feedback" data-ok="El principio de irrenunciabilidad determina que todo pacto (individual o colectivo) de renuncia de derechos confieridos por la Ley de la SS es radicalmente **nulo**."></div>
+        </div>
+
+        <div class="test-question" data-q="11">
+            <div class="test-q-text"><span class="test-q-num">12</span>¿Qué disposición del Gobierno aprueba el Texto Refundido de la Ley General de la Seguridad Social actualmente en vigor?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) La Ley Orgánica 1/1994</div>
+                <div class="test-option" data-ans="0">B) El Real Decreto 84/1996</div>
+                <div class="test-option" data-ans="1">C) El Real Decreto Legislativo 8/2015, de 30 de octubre ✓</div>
+                <div class="test-option" data-ans="0">D) El Decreto de Bases de 1963</div>
+            </div>
+            <div class="test-feedback" data-ok="El actual TRLGSS fue aprobado bajo la forma de **Real Decreto Legislativo 8/2015**, entrando en vigor el **2 de enero de 2016**."></div>
+        </div>
+
+        <div class="test-question" data-q="12">
+            <div class="test-q-text"><span class="test-q-num">13</span>¿Cuántos artículos componen el Texto Refundido de la Ley General de la Seguridad Social?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) 373 artículos ✓</div>
+                <div class="test-option" data-ans="0">B) 150 artículos</div>
+                <div class="test-option" data-ans="0">C) 500 artículos exactos</div>
+                <div class="test-option" data-ans="0">D) 252 artículos</div>
+            </div>
+            <div class="test-feedback" data-ok="Dato numérico puro de criba: El cuerpo normativo estructurado del TRLGSS está integrado por **373 artículos**."></div>
+        </div>
+
+        <div class="test-question" data-q="13">
+            <div class="test-q-text"><span class="test-q-num">14</span>¿Qué norma reglamentaria regula los procedimientos de inscripción de empresas, afiliación, altas, bajas y variaciones de datos en la Seguridad Social?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El Decreto 3158/1963</div>
+                <div class="test-option" data-ans="1">B) El Real Decreto 84/1996, de 26 de enero ✓</div>
+                <div class="test-option" data-ans="0">C) El Real Decreto 2064/1995</div>
+                <div class="test-option" data-ans="0">D) El Real Decreto 1415/2004</div>
+            </div>
+            <div class="test-feedback" data-ok="El **RD 84/1996** constituye el Reglamento General de Inscripción de Empresas y Afiliación de los Trabajadores."></div>
+        </div>
+    </div>
+
+    <!-- Puntuación final del Mini-test -->
+    <div class="test-score" id="testScore">
+        <div class="score-num" id="scoreNum">0/14</div>
+        <div class="score-label">Respuestas correctas</div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <br>
+        <button class="btn-reiniciar" onclick="reiniciarTest()">🔄 Reiniciar test</button>
+    </div>
+
+    <!-- ======= 🃏 SECCIÓN DE PREGUNTA ALEATORIA (TARJETAS) ======= -->
+    <h2 id="seccion-tarjetas" style="color:#0d2b3e; border-bottom:3px solid #e74c3c; margin-top:50px;">🃏 Práctica con Tarjetas Aleatorias (Tema 1)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Haz clic sobre la tarjeta para voltearla y ver la solución oficial. Pulsa el botón rojo para cambiar de pregunta.</p>
+
+    <!-- Tarjeta Interactiva -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+            <div class="flip-card-front" id="pregunta">
+                Cargando pregunta...
+            </div>
+            <div class="flip-card-back" id="respuesta">
+                Cargando respuesta...
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de Control -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <button id="btn-otra" onclick="cargarPreguntaAleatoria()">Otra pregunta</button>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ENTRE TEMAS ======= -->
+    <div class="nav-bar">
+        <a href="index.html" class="indice">🏠 Índice de Temas</a>
+        <a href="tema2_fusionado_completo.html">Tema 2 ➡</a>
+    </div>
+
+    <!-- ======= FOOTER ======= -->
+    <div class="footer">
+        Tema 1 — La Seguridad Social en la Constitución · Niveles de protección · Seguridad Social · Convocatoria 2026<br>
+        Material unificado: esquema web + 2 transcripciones de video de MimaOpos<br>
+        <span style="color:#27ae60;">✅ Conexión automatizada con el archivo externo 'preguntas1.js' e inclusión de test interactiva habilitada</span>
+    </div>
+
+</div> <!-- /fin container -->
+
+<!-- ========================================== -->
+<!-- SCRIPTS Y CONTROLADORES JAVASCRIPT         -->
+<!-- ========================================== -->
+
+<!-- Enlace para cargar tu base de datos del Tema 1 -->
+<script src="preguntas1.js"></script>
+
+<script>
+    // --- LÓGICA DEL MINI-TEST INTERACTIVO ---
+    (function(){
+        var correct = 0, answered = 0, total = 14;
+        document.querySelectorAll('.test-question').forEach(function(q){
+            var opts = q.querySelectorAll('.test-option');
+            var fb = q.querySelector('.test-feedback');
+            var okText = fb.getAttribute('data-ok');
+            opts.forEach(function(opt){
+                opt.addEventListener('click', function(){
+                    if(q.dataset.done) return;
+                    q.dataset.done = '1';
+                    var isCorrect = opt.getAttribute('data-ans') === '1';
+                    opts.forEach(function(o){
+                        o.classList.add('disabled');
+                        if(o.getAttribute('data-ans') === '1') o.classList.add('correct');
+                    });
+                    if(!isCorrect) opt.classList.add('wrong');
+                    fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + okText;
+                    fb.classList.add('show', isCorrect ? 'ok' : 'ko');
+                    if(isCorrect) correct++;
+                    answered++;
+                    if(answered === total){
+                        var score = document.getElementById('testScore');
+                        document.getElementById('scoreNum').textContent = correct + '/' + total;
+                        var msg = correct >= 12 ? '🏆 ¡Excelente! Dominas a la perfección el entramado constitucional, la naturaleza de los artículos y los principios básicos del TRLGSS.' : correct >= 9 ? '👍 Buen trabajo. Asegúrate de retener bien los números de los reglamentos generales (84/1996, 2064/1995).' : correct >= 6 ? '⚠️ Aprobado. Recuerda repasar la diferencia de blindaje entre el art. 25.2 (derecho fundamental) y los principios rectores.' : '🔁 Conviene repasar el Tema 1. Revisa detenidamente el reparto competencial del artículo 149.1.17ª y los fines del sistema.';
+                        document.getElementById('scoreMsg').textContent = msg;
+                        score.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        window.reiniciarTest = function(){
+            document.querySelectorAll('.test-question').forEach(function(q){
+                delete q.dataset.done;
+                q.querySelectorAll('.test-option').forEach(function(o){ o.classList.remove('correct','wrong','disabled'); });
+                var fb = q.querySelector('.test-feedback');
+                fb.classList.remove('show','ok','ko');
+            });
+            correct = 0; answered = 0;
+            document.getElementById('testScore').style.display = 'none';
+            window.scrollTo({top: document.getElementById('minitest').offsetTop - 20, behavior:'smooth'});
+        };
+    })();
+
+    // --- LÓGICA DE LAS TARJETAS ALEATORIAS ---
+    function cargarPreguntaAleatoria() {
+        if (typeof preguntas === 'undefined' || preguntas.length === 0) {
+            document.getElementById("pregunta").innerHTML = "<span style='color:#e74c3c;'>⚠️ Archivo 'preguntas1.js' no detectado o vacío.</span><br><br>Crea el archivo JS en esta misma carpeta para activar las tarjetas.";
+            document.getElementById("respuesta").innerText = "No se pudieron cargar las soluciones.";
+            return;
+        }
+
+        const random = Math.floor(Math.random() * preguntas.length);
+        document.getElementById("pregunta").innerText = preguntas[random].pregunta;
+        document.getElementById("respuesta").innerText = preguntas[random].respuesta;
+
+        // Devuelve la tarjeta al frente si estaba volteada
+        const card = document.querySelector('.flip-card');
+        card.classList.remove('flipped');
+        
+        // Efecto visual instantáneo verde en el botón
+        const btn = document.getElementById("btn-otra");
+        btn.classList.add("verde");
+        setTimeout(() => { btn.classList.remove("verde"); }, 400);
+    }
+
+    // Disparar la primera tarjeta automáticamente al iniciar el archivo
+    window.addEventListener('DOMContentLoaded', () => {
+        cargarPreguntaAleatoria();
+    });
+</script>
+
+</body>
+</html>

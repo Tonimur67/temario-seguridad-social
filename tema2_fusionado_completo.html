@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 2 - Campo de aplicación y composición (Actualizado con SETA y Agrario)</title>
+    <style>
+        /* === RESET Y ESTILOS GENERALES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1a2a3a;
+            line-height: 1.7;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.12);
+            padding: 40px 50px;
+        }
+
+        .header {
+            border-bottom: 4px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #2e6b8a;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .badge-fusion {
+            display: inline-block;
+            background: #1a5276;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        .badge-update {
+            display: inline-block;
+            background: #27ae60;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .nav {
+            background: #eaf2f8;
+            border-radius: 16px;
+            padding: 18px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .nav a {
+            color: #1a5276;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav a:hover {
+            border-bottom-color: #1a5276;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #0d2b3e;
+            margin-top: 45px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #d4e6f1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a5276;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0 25px 0;
+            border-radius: 14px;
+            border: 1px solid #dce6ed;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        th {
+            background: #1a3a4f;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid #e9edf2;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+        }
+
+        .tag-web { background: #d4e6f1; color: #1a5276; }
+        .tag-video { background: #fdebd0; color: #a04000; }
+        .tag-fusion { background: #d5f5e3; color: #1a6e4b; }
+        .tag-update { background: #abebc6; color: #1a6e4b; }
+
+        .trampa { background: #fef9e7; border-left: 6px solid #f39c12; padding: 18px 24px; border-radius: 0 14px 14px 0; margin: 22px 0; }
+        .trampa strong { color: #b9770e; }
+        .cepo { background: #fdedec; border-left: 6px solid #e74c3c; padding: 18px 24px; border-radius: 0 14px 14px 0; margin: 22px 0; }
+        .cepo strong { color: #b03a2e; }
+        .destacado { background: #eaf2f8; padding: 16px 22px; border-radius: 14px; margin: 18px 0; border: 1px solid #bdd7e8; }
+        .destacado strong { color: #1a5276; }
+        .caja-dato { background: #1a2a3a; color: #fff; padding: 14px 22px; border-radius: 14px; margin: 18px 0; font-size: 0.95rem; }
+        .caja-dato strong { color: #f1c40f; }
+
+        ul, ol { padding-left: 28px; margin: 12px 0 18px 0; }
+        li { margin-bottom: 6px; }
+
+        .back-top { display: inline-block; margin-top: 40px; background: #1a5276; color: #fff; padding: 10px 28px; border-radius: 40px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: background 0.2s; }
+        .back-top:hover { background: #0d3b55; }
+        .footer { margin-top: 50px; padding-top: 20px; border-top: 2px solid #d4e6f1; font-size: 0.85rem; color: #5d6d7e; text-align: center; }
+
+        /* === BLOQUES DE COLOR === */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .full { grid-column: 1 / -1; }
+        .block { background: #f8fafc; border: 1px solid #dce6ed; border-radius: 14px; padding: 18px 22px; transition: box-shadow 0.2s; }
+        .block:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+        .block-title { font-family: 'Segoe UI', sans-serif; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #dce6ed; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        
+        .yellow .block-title { color: #b7950b; }
+        .yellow .dot { background: #f1c40f; }
+        .blue .block-title { color: #1a5276; }
+        .blue .dot { background: #2980b9; }
+        .red .block-title { color: #b03a2e; }
+        .red .dot { background: #e74c3c; }
+        .green .block-title { color: #1e7e34; }
+        .green .dot { background: #27ae60; }
+        .purple .block-title { color: #6c3483; }
+        .purple .dot { background: #8e44ad; }
+        .orange .block-title { color: #b9770e; }
+        .orange .dot { background: #f39c12; }
+
+        .item { display: flex; gap: 10px; margin-bottom: 6px; font-size: 0.95rem; line-height: 1.5; }
+        .item:last-child { margin-bottom: 0; }
+        .item .arrow { color: #6b7292; flex-shrink: 0; font-family: 'Segoe UI', monospace; font-size: 0.9rem; }
+        .item strong { color: #0d2b3e; }
+
+        .pill { display: inline-block; font-family: 'Segoe UI', monospace; font-size: 0.8rem; font-weight: 700; padding: 1px 8px; border-radius: 4px; margin: 0 2px; }
+        .pill-y { background: #fef9e7; color: #b7950b; border: 1px solid #f9e79f; }
+        .pill-b { background: #eaf2f8; color: #1a5276; border: 1px solid #aed6f1; }
+        .pill-r { background: #fdedec; color: #b03a2e; border: 1px solid #f5b7b1; }
+        .pill-g { background: #eafaf1; color: #1e7e34; border: 1px solid #a9dfbf; }
+        .pill-p { background: #f4ecf7; color: #6c3483; border: 1px solid #d7bde2; }
+        .pill-o { background: #fef9e7; color: #b9770e; border: 1px solid #f9e79f; }
+
+        .note { background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2); padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+        .note .nlabel { font-family: 'Segoe UI', monospace; font-size: 0.7rem; color: #1e7e34; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .alert { background: rgba(255,95,95,0.08); border: 1px solid rgba(255,95,95,0.25); padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+        .alert .alabel { font-family: 'Segoe UI', monospace; font-size: 0.7rem; color: #b03a2e; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .info { background: rgba(61,158,255,0.05); border: 1px solid rgba(61,158,255,0.2); padding: 12px 16px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+        .info .ilabel { font-family: 'Segoe UI', monospace; font-size: 0.7rem; color: #1a5276; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .sub-head { font-family: 'Segoe UI', monospace; font-size: 0.8rem; font-weight: 700; color: #2c3e50; text-transform: uppercase; letter-spacing: 0.5px; margin: 12px 0 6px 0; }
+        .ejemplo { background: #f0f7fb; border-left: 4px solid #2980b9; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: 0.92rem; }
+        .ejemplo strong { color: #1a5276; }
+
+        /* === MINI-TEST STYLES === */
+        .test-question { background:#f8fafc; border:1px solid #dce6ed; border-radius:14px; padding:20px 24px; margin-bottom:16px; }
+        .test-q-num { display:inline-block; background:#1a3a4f; color:#fff; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:20px; margin-right:8px; }
+        .test-q-text { font-weight:600; color:#0d2b3e; font-size:1rem; margin-bottom:14px; }
+        .test-options { display:flex; flex-direction:column; gap:8px; }
+        .test-option { display:flex; align-items:flex-start; gap:10px; background:#fff; border:2px solid #dce6ed; border-radius:10px; padding:12px 16px; cursor:pointer; font-size:0.93rem; transition:border-color 0.15s, background 0.15s; user-select:none; }
+        .test-option:hover { border-color:#2980b9; background:#eaf2f8; }
+        .test-option.correct { border-color:#27ae60; background:#eafaf1; color:#1e7e34; font-weight:600; }
+        .test-option.wrong { border-color:#e74c3c; background:#fdedec; color:#b03a2e; }
+        .test-option.disabled { pointer-events:none; }
+        .test-feedback { margin-top:10px; padding:10px 16px; border-radius:8px; font-size:0.9rem; display:none; }
+        .test-feedback.show { display:block; }
+        .test-feedback.ok { background:#eafaf1; border-left:4px solid #27ae60; color:#1e7e34; }
+        .test-feedback.ko { background:#fdedec; border-left:4px solid #e74c3c; color:#b03a2e; }
+        .test-score { background:#1a2a3a; color:#fff; border-radius:14px; padding:20px 28px; text-align:center; display:none; margin-top:20px; }
+        .test-score .score-num { font-size:2.8rem; font-weight:700; color:#f1c40f; }
+        .test-score .score-label { font-size:1rem; color:#aab; margin-top:4px; }
+        .test-score .score-msg { font-size:0.95rem; margin-top:10px; color:#ddd; }
+        .btn-reiniciar { background:#1a5276; color:#fff; border:none; border-radius:30px; padding:10px 28px; font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:14px; transition:background 0.2s; }
+        .btn-reiniciar:hover { background:#0d3b55; }
+
+        /* === CONFIGURACIÓN DE LAS TARJETAS FLIP === */
+        .flip-card {
+            margin: 30px auto;
+            width: 100%;
+            max-width: 500px;
+            height: 280px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 18px; padding: 30px; display: flex; justify-content: center; align-items: center; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .flip-card-front { background: #f8fafc; border: 2px dashed #1a5276; color: #0d2b3e; font-size: 1.15rem; font-weight: 600; }
+        .flip-card-back { background: #1a5276; color: white; transform: rotateY(180deg); font-size: 1.1rem; line-height: 1.6; }
+
+        #btn-otra { padding: 12px 35px; font-size: 1rem; font-weight: 600; border-radius: 30px; cursor: pointer; background-color: #e74c3c; color: white; border: none; box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); transition: all 0.3s ease; }
+        #btn-otra:hover { background-color: #c0392b; transform: translateY(-2px); }
+        #btn-otra.verde { background-color: #27ae60 !important; box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3); }
+
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eaf2f8; }
+        .nav-bar a { text-decoration: none; color: #1a5276; font-weight: 600; font-size: 0.95rem; }
+        .nav-bar .indice { background: #eaf2f8; padding: 8px 20px; border-radius: 20px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
+            .header h1 { font-size: 1.7rem; }
+            .nav { flex-direction: column; gap: 4px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            h2 { font-size: 1.5rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ======= HEADER ======= -->
+    <div class="header">
+        <h1>Tema 2 · Campo de aplicación y composición del sistema</h1>
+        <div class="subtitle">Inclusiones · Exclusiones · Régimen General · Regímenes Especiales · SETA · Agrario</div>
+        <span class="badge-fusion">📚 Fusión completa · Esquema web + 4 transcripciones de video</span>
+        <span class="badge-update">✅ Actualizado con SETA, Agrario (ampliado) y control efectivo (art. 305.2)</span>
+        <div style="margin-top: 8px; font-size: 0.85rem; color: #5d6d7e;">
+            Arts. 7-14, 136-137, 252-256, 305, 324 TRLGSS · Ley 28/2011 · RD 84/1996
+        </div>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ======= -->
+    <div class="nav">
+        <a href="#p1">01. Campo de aplicación</a>
+        <a href="#p2">02. Composición del sistema</a>
+        <a href="#p3">03. Régimen General</a>
+        <a href="#p4">04. Regímenes Especiales</a>
+        <a href="#p5">05. RETA y control efectivo</a>
+        <a href="#p6">06. SETA (sistema especial agrario)</a>
+        <a href="#p7">07. REMAR</a>
+        <a href="#p8">08. Minería del Carbón</a>
+        <a href="#p9">09. Sistemas Especiales (incl. Agrario)</a>
+        <a href="#kit">🎯 Kit de criba</a>
+        <a href="#minitest">🧪 Mini-test</a>
+        <a href="#seccion-tarjetas">🃏 Tarjetas</a>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ======= 01. CAMPO DE APLICACIÓN ======= -->
+    <h2 id="p1">01. Campo de aplicación (arts. 7-8 TRLGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Modalidad contributiva (art. 7.1)</div>
+            <div class="item"><span class="arrow">→</span><span>Están comprendidos, cualquiera que sea su sexo, estado civil y profesión:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Españoles</strong> que residan en España.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Extranjeros</strong> que residan <strong>o se encuentren legalmente</strong> en España.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Siempre que:</strong> ejerzan su activity en <strong>territorio nacional</strong> y estén incluidos en alguno de estos grupos:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>1.</strong> Trabajadores por <strong>cuenta ajena</strong> o asimilados.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>2.</strong> Trabajadores por <strong>cuenta propia</strong> (autónomos), mayores de <strong>18 años</strong>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>3.</strong> Socios trabajadores de <strong>cooperativas</strong> de trabajo asociado.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>4.</strong> <strong>Estudiantes</strong>.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>5.</strong> <strong>Funcionarios públicos</strong>, civiles y militares.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Matiz del video</div>
+                <p>Para la <strong>contributiva</strong>, el extranjero basta con que <strong>resida o se encuentre legalmente</strong> (ej. visado de trabajo). Para la <strong>no contributiva</strong> se exige <strong>residencia legal</strong>.</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Modalidad no contributiva (art. 7.2)</div>
+            <div class="item"><span class="arrow">→</span><span>Estarán comprendidos:</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Españoles</strong> residentes en territorio español.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>Extranjeros</strong> que <strong>residan legalmente</strong> en territorio español (LO 4/2000).</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Españoles no residentes:</strong> el Gobierno podrá establecer medidas de protección social según el país de residencia.</span></div>
+            <div class="sub-head" style="margin-top:14px;">Deportistas de alto nivel (art. 7.4)</div>
+            <div class="item"><span class="arrow">→</span><span>El Gobierno puede establecer su inclusión en el sistema como medida para facilitar su plena integración social y profesional.</span></div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> <strong>Contributiva:</strong> extranjero = resida o se encuentre legalmente. <strong>No contributiva:</strong> extranjero = resida legalmente.
+            </div>
+        </div>
+    </div>
+
+    <div class="block full green">
+        <div class="block-title"><span class="dot"></span>Exclusiones y prohibiciones (arts. 7.5 y 8)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Exclusión por trabajo marginal (art. 7.5)</div>
+                <div class="item"><span class="arrow">→</span><span>El Gobierno, a propuesta del MISSM, puede excluir del campo de aplicación a personas cuyo trabajo por cuenta ajena, en atención a su <strong>jornada o retribución</strong>, pueda considerarse <strong>marginal</strong> y no constitutivo de medio fundamental de vida.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Se oirá a las organizaciones sindicales más representativas o al colegio oficial competente.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Prohibición de inclusión múltiple (art. 8)</div>
+                <div class="item"><span class="arrow">→</span><span>Las personas comprendidas en el campo de aplicación <strong>no podrán estar incluidas por el mismo trabajo</strong>, con carácter obligatorio, en otros regímenes de previsión distintos de los que integran el sistema.</span></div>
+                <div class="ejemplo">
+                    <strong>📌 Ejemplo:</strong> Si trabajas como administrativo por cuenta ajena, cotizas en el RG. No puedes cotizar al mismo tiempo por ese mismo trabajo en el RETA.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 02. COMPOSICIÓN DEL SISTEMA ======= -->
+    <h2 id="p2">02. Composición del sistema (arts. 9-10 TRLGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="grid-2">
+        <div class="block blue">
+            <div class="block-title"><span class="dot"></span>Estructura organizativa</div>
+            <div class="item"><span class="arrow">→</span><span><strong>Régimen General (art. 9):</strong> integrado por los regímenes regulados en el Título II del TRLGSS.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>Regímenes Especiales (art. 10):</strong> se establecen en actividades profesionales donde, por su naturaleza, condiciones de tiempo y lugar, o índole de sus procesos, sea preciso para la adecuada aplicación de los beneficios.</span></div>
+            <div class="sub-head">Regímenes Especiales existentes</div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>1.</strong> Trabajadores por cuenta propia o autónomos (RETA).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>2.</strong> Trabajadores del mar (REMAR).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>3.</strong> Funcionarios públicos, civiles y militares.</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>4.</strong> Estudiantes (Seguro Escolar).</span></div>
+            <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span><strong>5.</strong> Minería del Carbón.</span></div>
+            <div class="info" style="margin-top:10px;">
+                <div class="ilabel">📌 Aportación del video (David)</div>
+                <p>De esta lista, <strong>dos</strong> se regulan por <strong>ley específica</strong>: el <strong>REMAR</strong> y los <strong>Funcionarios públicos</strong>. El RETA y Estudiantes se regulan en el propio TRLGSS.</p>
+            </div>
+        </div>
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Totalización de periodos</div>
+            <div class="item"><span class="arrow">→</span><span>Los derechos en curso de adquisición se conservan mediante <strong>totalización</strong> de los periodos de permanencia en cada régimen, siempre que <strong>no se superpongan</strong>.</span></div>
+            <div class="ejemplo">
+                <strong>📌 Ejemplo (video):</strong> Ana trabaja en RG (2000-2020) y luego en RETA (2021-2025). Periodos no superpuestos → se suman: <strong>25 años</strong>.
+            </div>
+            <div class="ejemplo">
+                <strong>📌 Ejemplo inverso:</strong> Ana trabaja en RG (2000-2020) y en RETA (2010-2025). Hay superposición (2010-2020) → no se duplica, se cuenta el tiempo total desde 2000 a 2025.
+            </div>
+            <div class="cepo" style="margin-top:10px;">
+                <strong>⚠️ Cepo de examen:</strong> Se totalizan los periodos <strong>siempre que no se superpongan</strong>. Si hay superposición, solo se cuenta una vez.
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 03. RÉGIMEN GENERAL ======= -->
+    <h2 id="p3">03. Régimen General (arts. 136-137 TRLGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="block full blue">
+        <div class="block-title"><span class="dot"></span>Ámbito subjetivo e inclusiones expresas (art. 136)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Regla general (art. 136.1)</div>
+                <div class="item"><span class="arrow">→</span><span>Incluye obligatoriamente a los <strong>trabajadores por cuenta ajena y asimilados</strong> (art. 7.1.a), salvo que por su actividad deban quedar comprendidos en algún <strong>régimen especial</strong>.</span></div>
+                <div class="sub-head" style="margin-top:14px;">Inclusiones expresas (art. 136.2)</div>
+                <div class="item"><span class="arrow">→</span><span>Trabajadores incluidos en los <strong>Sistemas Especiales</strong> (Empleados de hogar, Agrarios, etc.).</span></div>
+                <div class="item"><span class="arrow">→</span><span>Trabajadores por cuenta ajena y socios trabajadores de <strong>sociedades de capital</strong>, si <strong>NO</strong> conlleva funciones de dirección y gerencia ni poseen control.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Consejeros y administradores</strong> de sociedades de capital <strong>sin control efectivo</strong> (excluidos de desempleo y FOGASA).</span></div>
+                <div class="item"><span class="arrow">→</span><span>Socios trabajadores de <strong>sociedades laborales</strong> sin control efectivo (excluidos de desempleo y FOGASA, salvo <strong>≤ 25 socios</strong>).</span></div>
+                <div class="item"><span class="arrow">→</span><span>Personal de <strong>notarías y registros</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Trabajadores de <strong>manipulación del plátano</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Personal civil <strong>no funcionario</strong> de AAPP.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Funcionarios</strong> al servicio de AAPP (incluido período de prácticas), salvo integrados en Clases Pasivas.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Exclusiones (art. 137)</div>
+                <div class="item"><span class="arrow">→</span><span><strong>Servicios amistosos, benévolos o de buena vecindad</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Trabajos que den lugar a inclusión en <strong>regímenes especiales</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Profesores universitarios eméritos</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Personal licenciado sanitario emérito</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Trabajos por cuenta ajena de carácter <strong>marginal</strong> (art. 7.5).</span></div>
+                <div class="sub-head" style="margin-top:14px;">Exclusión por parentesco (art. 12)</div>
+                <div class="item"><span class="arrow">→</span><span><strong>No</strong> tendrán la consideración de trabajadores por cuenta ajena (salvo prueba en contrario) el <strong>cónyuge, descendientes, ascendientes y demás parientes del empresario hasta el 2º grado</strong>, ocupados en su centro de trabajo, cuando <strong>convivan en su hogar</strong> y <strong>estén a su cargo</strong>.</span></div>
+                <div class="trampa" style="margin-top:10px;">
+                    <strong>⚠️ Trampa de examen:</strong> Para que opere la exclusión por parentesco se necesitan <strong>3 condiciones</strong>: 1) parentesco hasta 2º grado, 2) convivencia en el hogar, 3) estar a cargo del empresario.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block full green">
+        <div class="block-title"><span class="dot"></span>Excepciones: hijos de autónomos (art. 12)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Menores de 30 años</div>
+                <div class="item"><span class="arrow">→</span><span>Los autónomos pueden contratar a sus hijos <strong>menores de 30 años</strong> como trabajadores por cuenta ajena, aunque convivan con ellos.</span></div>
+                <div class="item"><span class="arrow">→</span><span><span class="pill pill-r">Excluidos de la protección por desempleo</span>.</span></div>
+                <div class="cepo" style="margin-top:10px;">
+                    <strong>⚠️ Cepo de examen (video):</strong> Hijo menor de 30 años contratado por autónomo → <strong>SÍ</strong> es trabajador por cuenta ajena, pero <strong>sin derecho a desempleo</strong>.
+                </div>
+            </div>
+            <div>
+                <div class="sub-head">Mayores de 30 años con discapacidad</div>
+                <div class="item"><span class="arrow">→</span><span><strong>Parálisis cerebral, enfermedad mental o discapacidad intelectual ≥ 33%</strong> → pueden ser contratados.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Discapacidad física o sensorial 33%-65%</strong> → solo si causan <strong>alta por primera vez</strong> in el sistema.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Discapacidad física o sensorial ≥ 65%</strong> → en cualquier caso.</span></div>
+                <div class="info" style="margin-top:10px;">
+                    <div class="ilabel">📌 Aportación del video</div>
+                    <p>Si el hijo ya estaba contratado antes de cumplir 30 años, al llegar a los 30 debe presentar una <strong>declaración responsable</strong> ante la TGSS en un plazo de <strong>30 días</strong>. A partir de ahí, sí cotiza por desempleo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 04. REGÍMENES ESPECIALES ======= -->
+    <h2 id="p4">04. Regímenes Especiales (art. 10 TRLGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="block full purple">
+        <div class="block-title"><span class="dot"></span>Resumen de regímenes especiales</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">RETA (Autónomos)</div>
+                <div class="item"><span class="arrow">→</span><span>Trabajadores por cuenta propia, mayores de 18 años, que realizan actividad de forma habitual, personal, directa y fuera del ámbito de dirección de otra persona.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Incluye: agrarios por cuenta propia (SETA), consejeros/administradores con control efectivo, TRADEs, familiares colaboradores.</span></div>
+                <div class="info" style="margin-top:10px;">
+                    <div class="ilabel">📌 Aportación del video (David)</div>
+                    <p><strong>Exclusiones del RETA:</strong> si tu actividad te manda al <strong>REMAR</strong> → no vas al RETA (preferencia del REMAR). Los <strong>socios capitalistas</strong> (sociedades cuyo único objeto es la administración del patrimonio) → no van al RETA.</p>
+                </div>
+            </div>
+            <div>
+                <div class="sub-head">REMAR (Trabajadores del Mar)</div>
+                <div class="item"><span class="arrow">→</span><span>Cuenta ajena: tripulantes, técnicos, personal embarcado, mariscadores, buceadores, rederos, estibadores, prácticos de puerto.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Cuenta propia: mariscadores, percebeiros, armadores, acuicultura.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Se regula por <strong>ley específica</strong> (Ley 47/2015).</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Minería del Carbón</div>
+                <div class="item"><span class="arrow">→</span><span>Trabajadores por cuenta ajena en extracción de carbón (minas subterráneas, cielo abierto), fabricación de aglomerados, hornos de cok, transporte fluvial.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Bonificación de edad:</strong> reducción de la edad de jubilación con coeficientes desde 0,50 (Picador/Barrenista) hasta 0,05 (exterior).</span></div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 05. RETA Y CONTROL EFECTIVO ======= -->
+    <h2 id="p5">05. RETA: Control efectivo en sociedades (art. 305.2 TRLGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Ampliado</span></p>
+
+    <div class="block full red">
+        <div class="block-title"><span class="dot"></span>¿Cuándo se considera que existe control efectivo?</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Se entenderá (regla directa)</div>
+                <div class="item"><span class="arrow">→</span><span>Cuando las acciones o participaciones del trabajador supongan <strong>al menos la mitad del capital social</strong> (<span class="pill pill-r">50%</span>).</span></div>
+                <div class="sub-head" style="margin-top:14px;">Se presumirá (salvo prueba en contrario)</div>
+                <div class="item"><span class="arrow">→</span><span><strong>1. Presunción familiar (50%):</strong> la mitad del capital está distribuido entre socios con los que conviva y a quienes se encuentre unido por vínculo conyugal o de parentesco <strong>hasta 2º grado</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>2. Presunción del tercio (1/3):</strong> su participación en el capital es <strong>igual o superior a 1/3</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>3. Presunción del cuarto (1/4):</strong> su participación en el capital es <strong>igual o superior a 1/4</strong> y tiene atribuidas funciones de <strong>dirección y gerencia</strong>.</span></div>
+                <div class="cepo" style="margin-top:10px;">
+                    <strong>⚠️ Cepo de examen:</strong> Si se da cualquiera de estas circunstancias, la persona queda encuadrada en el <strong>RETA</strong>. Recuerda: <strong>50% (con familiares que convivan), 1/3 (tú solo), 1/4 + dirección</strong>.
+                </div>
+            </div>
+            <div>
+                <div class="sub-head">Sociedades laborales (art. 305.2.e)</div>
+                <div class="item"><span class="arrow">→</span><span>Se considera control efectivo cuando la participación en el capital social, junto con la de su <strong>cónyuge y parientes hasta 2º grado</strong> con los que conviva, alcance <strong>al menos el 50%</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Salvedad:</strong> no se aplica si se acredita que el ejercicio del control efectivo requiere el concurso de personas ajenas a las relaciones familiares.</span></div>
+                <div class="info" style="margin-top:10px;">
+                    <div class="ilabel">📌 Resumen (video)</div>
+                    <p><strong>Sin control efectivo → RG</strong> (excluidos de desempleo y FOGASA, salvo ≤ 25 socios en sociedades laborales).</p>
+                    <p><strong>Con control efectivo → RETA</strong> (autónomos).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 06. SETA ======= -->
+    <h2 id="p6">06. SETA (Sistema Especial para Trabajadores por Cuenta Propia Agrarios)</h2>
+    <p><span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Nuevo</span></p>
+
+    <div class="block full orange">
+        <div class="block-title"><span class="dot"></span>¿Qué es el SETA?</div>
+        <div class="item"><span class="arrow">→</span><span>Es un <strong>sistema especial dentro del RETA</strong> (no es un régimen independiente). Se regula en el <strong>art. 324 TRLGSS</strong>.</span></div>
+        <div class="item"><span class="arrow">→</span><span>Se creó el <strong>1 de enero de 2008</strong>, integrando en el RETA a los titulares de explotaciones agrarias.</span></div>
+        <div class="item"><span class="arrow">→</span><span><strong>No confundir:</strong> el SETA es para <strong>autónomos agrarios</strong> (cuenta propia). El Sistema Especial Agrario por cuenta ajena está en el <strong>Régimen General</strong>.</span></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:14px;">
+            <div>
+                <div class="sub-head">Requisitos de entrada (art. 324 TRLGSS)</div>
+                <div class="item"><span class="arrow">→</span><span><strong>1. 50%:</strong> al menos el <span class="pill pill-y">50%</span> de su renta total debe venir de la <strong>actividad agraria o complementaria</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>2. 25%:</strong> de ese 50%, al menos el <span class="pill pill-y">25%</span> de su renta total debe venir <strong>directamente de su propia explotación</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>3. 75%:</strong> sus rendimientos netos de la explotación <strong>no pueden superar el <span class="pill pill-y">75%</span></strong> del importe anual de la <strong>base máxima de cotización</strong> del Régimen General.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>4. Trabajo personal:</strong> debe realizar la actividad de forma <strong>personal y directa</strong>.</span></div>
+                <div class="cepo" style="margin-top:10px;">
+                    <strong>⚠️ Cepo de examen (video):</strong> <strong>50%</strong> de renta agraria, de ese <strong>25%</strong> de propia explotación, y límite del <strong>75%</strong> de la base máxima. Son porcentajes clave.
+                </div>
+            </div>
+            <div>
+                <div class="sub-head">Límites de contratación</div>
+                <div class="item"><span class="arrow">→</span><span>A) No puede tener más de <span class="pill pill-r">2 trabajadores fijos</span> con bases mensuales.</span></div>
+                <div class="item"><span class="arrow">→</span><span>B) Si contrata temporeros, no pueden superar las <span class="pill pill-r">546 jornadas reales</span> al año.</span></div>
+                <div class="sub-head" style="margin-top:14px;">Familiar colaborador en el SETA</div>
+                <div class="item"><span class="arrow">→</span><span>En el <strong>RETA normal</strong>, el familiar colaborador es hasta <span class="pill pill-y">2º grado</span>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>En el <strong>SETA</strong>, se amplía a <span class="pill pill-y">3º grado</span> (cónyuge y parientes por consanguinidad o afinidad).</span></div>
+                <div class="trampa" style="margin-top:10px;">
+                    <strong>⚠️ Trampa de examen (video):</strong> Un primo de <strong>tercer grado</strong> en el RETA normal es falso, pero en el SETA <strong>sí</strong> es colaborador legítimo si trabaja en la explotación.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 07. REMAR ======= -->
+    <h2 id="p7">07. Régimen Especial de Trabajadores del Mar (Ley 47/2015)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="block full blue">
+        <div class="block-title"><span class="dot"></span>Clasificación a efectos de cotización</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">PRIMER GRUPO</div>
+                <div class="item"><span class="arrow">→</span><span>Cuenta ajena retribuidos a salario.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Cuenta propia indicados.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Embarcaciones de <strong>más de 150 toneladas</strong>.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">SEGUNDO GRUPO</div>
+                <div class="item"><span class="arrow">→</span><span><strong>Grupo A:</strong> pesqueros de <strong>50,01 a 150 T</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Grupo B:</strong> pesqueros de <strong>10,01 a 50 T</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Coeficientes correctores: <strong>2/3</strong> y <strong>1/2</strong>.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">TERCER GRUPO</div>
+                <div class="item"><span class="arrow">→</span><span>Cuenta ajena retribuidos a la parte en embarcaciones <strong>≤ 10 T</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Mariscadores, percebeiros, rederos, autónomos ≤ 10 T.</span></div>
+                <div class="item"><span class="arrow">→</span><span>Coeficiente corrector: <strong>1/3</strong>.</span></div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 08. MINERÍA DEL CARBÓN ======= -->
+    <h2 id="p8">08. Régimen Especial de la Minería del Carbón</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-fusion">Desarrollo</span></p>
+
+    <div class="block full green">
+        <div class="block-title"><span class="dot"></span>Bonificación de edad de jubilación</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="item"><span class="arrow">→</span><span><strong>Campo de aplicación:</strong> cuenta ajena en extracción de carbón (minas subterráneas, cielo abierto), investigación, hornos de cok y transporte fluvial.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Plazo de alta:</strong> el empresario debe comunicar a la TGSS el alta en el plazo de <strong>3 días naturales</strong>.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Escala de coeficientes reductores</div>
+                <div class="item"><span class="arrow">→</span><span><strong>Picador y Barrenista:</strong> reducción de <span class="pill pill-r">0,50</span>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Trabajadores del exterior:</strong> reducción de <span class="pill pill-y">0,05</span>.</span></div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= 09. SISTEMAS ESPECIALES ======= -->
+    <h2 id="p9">09. Sistemas Especiales (art. 11 TRLGSS)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span> <span class="tag tag-update">✅ Ampliado</span></p>
+
+    <div class="block full purple">
+        <div class="block-title"><span class="dot"></span>¿Qué es un sistema especial?</div>
+        <div class="item"><span class="arrow">→</span><span>Cuando en un régimen es necesario establecer alguna particularidad, se puede crear un <strong>Sistema Especial</strong>.</span></div>
+        <div class="item"><span class="arrow">→</span><span><strong>Limitación:</strong> solo se puede regular exclusivamente en alguna de las siguientes materias: **Encuadramiento, Afiliación, Forma de cotización o Recaudación**.</span></div>
+        <div class="cepo" style="margin-top:10px;">
+            <strong>⚠️ Cepo de examen:</strong> Un sistema especial <strong>NO</strong> puede regular la <strong>acción protectora</strong>. Si se quiere regular las prestaciones de un colectivo, hay que crear un <strong>régimen especial</strong> independiente.
+        </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:10px;">
+        <div class="block yellow">
+            <div class="block-title"><span class="dot"></span>Integrados en el Régimen General</div>
+            <div class="item"><span class="arrow">→</span><span><strong>1.</strong> <span class="pill pill-b">Sistema Especial Agrario por cuenta ajena</span>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>2.</strong> <strong>Empleados del Hogar</strong>.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>3.</strong> Frutas, Hortalizas y Tomate Fresco.</span></div>
+            <div class="item"><span class="arrow">→</span><span><strong>4.</strong> Hostelería y servicios extraordinarios.</span></div>
+        </div>
+        <div class="block green">
+            <div class="block-title"><span class="dot"></span>Integrados en el RETA</div>
+            <div class="item"><span class="arrow">→</span><span><strong>1.</strong> <strong>SETA</strong> (Agrarios por cuenta propia).</span></div>
+        </div>
+    </div>
+
+    <!-- ======= SISTEMA ESPECIAL AGRARIO POR CUENTA AJENA ======= -->
+    <div class="block full green" style="margin-top:14px;">
+        <div class="block-title"><span class="dot"></span>📌 Sistema Especial Agrario por cuenta ajena (detalle ampliado)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div>
+                <div class="sub-head">Base legal y ámbito</div>
+                <div class="item"><span class="arrow">→</span><span><strong>Base legal:</strong> <span class="pill pill-y">Ley 28/2011</span>, en vigor desde el <strong>1 de enero de 2012</strong> (arts. 252-256 TRLGSS).</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Cotización y responsables:</strong></span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>En <strong>actividad</strong>: responsable el <span class="pill pill-b">empresario</span>.</span></div>
+                <div class="item" style="padding-left:20px;"><span class="arrow">→</span><span>En <strong>inactividad</strong>: responsable el <span class="pill pill-y">trabajador</span>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Jornadas reales:</strong> comunicar dentro de los <strong>6 primeros días del mes</strong>.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Tipo en inactividad:</strong> <span class="pill pill-g">11,50%</span> sobre base mínima del grupo 7.</span></div>
+            </div>
+            <div>
+                <div class="sub-head">Inactividad: definición y requisitos</div>
+                <div class="item"><span class="arrow">→</span><span><strong>¿Cuándo ocurre?</strong> Cuando las jornadas reales realizadas en un mes son <span class="pill pill-r">inferiores al 76,67%</span> de los días en alta.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Excepción:</strong> no hay inactividad si realiza <span class="pill pill-y">al menos 5 jornadas semanales</span> para el mismo empleador.</span></div>
+                <div class="item"><span class="arrow">→</span><span><strong>Requisito técnico:</strong> haber realizado <span class="pill pill-b">30 jornadas reales</span> en los <strong>últimos 365 días</strong> y solicitar la inclusión en un plazo de <strong>3 meses</strong> mediante formulario <strong>TA.0161</strong>.</span></div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-top">⬆ Volver arriba</a>
+
+    <!-- ============================================================ -->
+    <!-- ======= KIT DE CRIBA ======= -->
+    <h2 id="kit">🎯 Kit de criba directa para el test (datos críticos)</h2>
+    <p><span class="tag tag-web">Esquema web</span> <span class="tag tag-video">Video</span> <span class="tag tag-fusion">Fusión</span></p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Concepto</th><th>Dato clave</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Contributiva — extranjeros</td><td>Que <strong>residan o se encuentren legalmente</strong> en España</td></tr>
+                <tr><td>No contributiva — extranjeros</td><td>Que <strong>residan legalmente</strong> en España</td></tr>
+                <tr><td>Exclusión por parentesco</td><td><strong>Hasta 2º grado</strong> con convivencia + estar a su cargo</td></tr>
+                <tr><td>Hijo de autónomo < 30 años</td><td>Alta en cuenta ajena, pero <strong>sin protección por desempleo</strong></td></tr>
+                <tr><td>Control efectivo — directriz</td><td>Participación ≥ <strong>50%</strong> del capital social</td></tr>
+                <tr><td>Control efectivo — un tercio</td><td>Participación ≥ <strong>1/3</strong> de forma individual</td></tr>
+                <tr><td>Control efectivo — un cuarto</td><td>Participación ≥ <strong>1/4</strong> + funciones de dirección y gerencia</td></tr>
+                <tr><td>SETA (Autónomos Agrarios)</td><td>Sistema Especial integrado en el <strong>RETA</strong> (Renta agraria 50%-25%-75%)</td></tr>
+                <tr><td>SETA — familiar colaborador</td><td>Se amplía hasta el <strong>3º grado</strong> (RETA ordinario es hasta 2º grado)</td></tr>
+                <tr><td>SE Agrario cuenta ajena — inactividad</td><td>Jornadas reales < <strong>76,67%</strong> de los días del mes en alta</td></tr>
+                <tr><td>SE Agrario cuenta ajena — requisitos</td><td><strong>30 jornadas reales</strong> en <strong>365 días</strong> y solicitarlo en <strong>3 meses</strong></td></tr>
+                <tr><td>SE Agrario cuenta ajena — formulario</td><td>Modelo <strong>TA.0161</strong> (Tipo cotización inactividad: <strong>11,50%</strong>)</td></tr>
+                <tr><td>Regímenes con ley específica</td><td>El <strong>REMAR</strong> (Ley 47/2015) y los <strong>Funcionarios públicos</strong></td></tr>
+                <tr><td>Sistemas especiales — límites</td><td>No pueden alterar nunca la <strong>acción protectora</strong> (prestaciones)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ======= MINI-TEST INTERACTIVO ======= -->
+    <h2 id="minitest">🧪 Mini-test de criba · Tema 2 (14 preguntas)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Preguntas tipo examen basadas en los contenidos del Tema 2. Haz clic en la opción correcta.</p>
+
+    <div class="test-container" id="testContainer">
+        <div class="test-question" data-q="0">
+            <div class="test-q-text"><span class="test-q-num">1</span>¿Qué condición se exige a un ciudadano extranjero para su inclusión en la modalidad no contributiva del sistema?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Que se encuentre legalmente o resida en España</div>
+                <div class="test-option" data-ans="1">B) Que resida legalmente en territorio español ✓</div>
+                <div class="test-option" data-ans="0">C) Únicamente que realice una actividad mercantil en el país</div>
+                <div class="test-option" data-ans="0">D) No se permite la inclusión de extranjeros en esta modalidad</div>
+            </div>
+            <div class="test-feedback" data-ok="Modalidad no contributiva (art. 7.2): Se exige taxativamente que el extranjero **resida legalmente** en España."></div>
+        </div>
+
+        <div class="test-question" data-q="1">
+            <div class="test-q-text"><span class="test-q-num">2</span>¿Cuál de las siguientes condiciones NO es un requisito obligatorio para aplicar la exclusión por parentesco del artículo 12?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Vínculo de parentesco por consanguinidad o afinidad hasta el 2º grado</div>
+                <div class="test-option" data-ans="0">B) Convivencia en el hogar del empresario</div>
+                <div class="test-option" data-ans="1">C) Que el pariente posea acciones o participaciones de la sociedad ✓</div>
+                <div class="test-option" data-ans="0">D) Que el pariente esté a cargo del empresario</div>
+            </div>
+            <div class="test-feedback" data-ok="La exclusión exige 3 requisitos: parentesco hasta 2º grado, convivencia y estar a su cargo. La titularidad de acciones define el control efectivo de sociedades, no el parentesco básico empresarial."></div>
+        </div>
+
+        <div class="test-question" data-q="2">
+            <div class="test-q-text"><span class="test-q-num">3</span>Un autónomo contrata a su hijo menor de 30 años que convive con él. ¿Cuál es la consecuencia directa en su encuadramiento?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Queda excluido del sistema por completo</div>
+                <div class="test-option" data-ans="0">B) Se le da de alta de forma obligatoria en el RETA como familiar colaborador</div>
+                <div class="test-option" data-ans="1">C) Se le incluye en el Régimen General como cuenta ajena, pero sin desempleo ✓</div>
+                <div class="test-option" data-ans="0">D) Se le incluye en el Régimen General con plenos derechos, incluyendo desempleo</div>
+            </div>
+            <div class="test-feedback" data-ok="Excepción del art. 12: Hijos menores de 30 años pueden ser cuenta ajena (RG), pero quedan **excluidos de la protección por desempleo**."></div>
+        </div>
+
+        <div class="test-question" data-q="3">
+            <div class="test-q-text"><span class="test-q-num">4</span>¿En qué plazo debe presentarse la declaración responsable ante la TGSS cuando el hijo contratado por un autónomo cumple los 30 años para poder cotizar por desempleo?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) 30 días ✓</div>
+                <div class="test-option" data-ans="0">B) 3 días naturales</div>
+                <div class="test-option" data-ans="0">C) 10 días naturales</div>
+                <div class="test-option" data-ans="0">D) 3 meses naturales</div>
+            </div>
+            <div class="test-feedback" data-ok="Al cumplir los 30 años, se dispone de un plazo de **30 días** para presentar dicha declaración y abrir el derecho a cotizar por la contingencia de desempleo."></div>
+        </div>
+
+        <div class="test-question" data-q="4">
+            <div class="test-q-text"><span class="test-q-num">5</span>¿Cuáles de los siguientes regímenes del nivel contributivo se regulan expresamente mediante una ley específica ajena al TRLGSS?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El RETA y la Minería del Carbón</div>
+                <div class="test-option" data-ans="1">B) El REMAR y los Funcionarios Públicos ✓</div>
+                <div class="test-option" data-ans="0">C) El Régimen General y el Seguro Escolar</div>
+                <div class="test-option" data-ans="0">D) Todos los regímenes especiales se regulan dentro del TRLGSS</div>
+            </div>
+            <div class="test-feedback" data-ok="El Régimen Especial de Trabajadores del Mar (Ley 47/2015) y los de Funcionarios cuentan con **leyes específicas de regulación**."></div>
+        </div>
+
+        <div class="test-question" data-q="5">
+            <div class="test-q-text"><span class="test-q-num">6</span>Se presume (salvo prueba en contrario) que un trabajador ejerce el control efectivo de una sociedad si posee una participación igual o superior a:</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El 50% del capital social de forma individual</div>
+                <div class="test-option" data-ans="1">B) El 1/3 del capital social de forma individual ✓</div>
+                <div class="test-option" data-ans="0">C) El 1/4 del capital social sin importar sus funciones</div>
+                <div class="test-option" data-ans="0">D) El 10% si convive con administradores</div>
+            </div>
+            <div class="test-feedback" data-ok="Art. 305.2: La presunción de control por titularidad individual arranca al alcanzar **1/3 (un tercio)** del capital social. El 50% es la regla directa, no una presunción."></div>
+        </div>
+
+        <div class="test-question" data-q="6">
+            <div class="test-q-text"><span class="test-q-num">7</span>Si un trabajador posee el 25% del capital de una sociedad y ejerce funciones de dirección y gerencia, ¿dónde debe encuadrarse?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) En el Régimen General como asimilado puro</div>
+                <div class="test-option" data-ans="1">B) En el RETA (Autónomos) ✓</div>
+                <div class="test-option" data-ans="0">C) En el Régimen General como cuenta ajena ordinario</div>
+                <div class="test-option" data-ans="0">D) Queda excluido del sistema obligatorio</div>
+            </div>
+            <div class="test-feedback" data-ok="Poseer **1/4 (25%)** del capital sumado al ejercicio de **funciones de dirección y gerencia** levanta la presunción de control efectivo, enviando al sujeto al RETA."></div>
+        </div>
+
+        <div class="test-question" data-q="7">
+            <div class="test-q-text"><span class="test-q-num">8</span>¿Qué es el SETA (Sistema Especial para Trabajadores por Cuenta Propia Agrarios)?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Un régimen especial independiente de la Seguridad Social</div>
+                <div class="test-option" data-ans="1">B) Un sistema especial integrado dentro del RETA ✓</div>
+                <div class="test-option" data-ans="0">C) Una sección del Régimen General para peones del campo</div>
+                <div class="test-option" data-ans="0">D) Un convenio voluntario asimilado al alta</div>
+            </div>
+            <div class="test-feedback" data-ok="El SETA es un **sistema especial integrado dentro del RETA** diseñado para los autónomos del sector agrario."></div>
+        </div>
+
+        <div class="test-question" data-q="8">
+            <div class="test-q-text"><span class="test-q-num">9</span>¿Cuál es el límite máximo de rendimiento neto de la explotación que exige el SETA en relación a la base máxima del Régimen General?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) No superar el 50%</div>
+                <div class="test-option" data-ans="1">B) No superar el 75% ✓</div>
+                <div class="test-option" data-ans="0">C) No superar el 25%</div>
+                <div class="test-option" data-ans="0">D) Debe ser igual o superior al 100%</div>
+            </div>
+            <div class="test-feedback" data-ok="Art. 324 TRLGSS: Los rendimientos netos anuales obtenidos de la explotación agraria no pueden superar el **75%** de la base máxima de cotización del RG."></div>
+        </div>
+
+        <div class="test-question" data-q="9">
+            <div class="test-q-text"><span class="test-q-num">10</span>¿Hasta qué grado de parentesco se admite la figura del familiar colaborador dentro del SETA?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Hasta el 2º grado (igual que el RETA normal)</div>
+                <div class="test-option" data-ans="1">B) Hasta el 3º grado inclusive ✓</div>
+                <div class="test-option" data-ans="0">C) Únicamente primer grado (cónyuge e hijos)</div>
+                <div class="test-option" data-ans="0">D) No se permiten familiares colaboradores en el SETA</div>
+            </div>
+            <div class="test-feedback" data-ok="Matiz crítico de examen: El SETA amplía de forma especial la cobertura familiar hasta el **3º grado** (consanguinidad o afinidad)."></div>
+        </div>
+
+        <div class="test-question" data-q="10">
+            <div class="test-q-text"><span class="test-q-num">11</span>¿En qué materias exclusivas puede regular o introducir particularidades un Sistema Especial?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="1">A) Encuadramiento, afiliación, forma de cotización y recaudación ✓</div>
+                <div class="test-option" data-ans="0">B) Acción protectora, bases de cotización y tipos sancionadores</div>
+                <div class="test-option" data-ans="0">C) Estructura de prestaciones, jubilación y asistencia sanitaria</div>
+                <div class="test-option" data-ans="0">D) Únicamente puede regular la cuantía de la cuota patronal</div>
+            </div>
+            <div class="test-feedback" data-ok="Art. 11 TRLGSS: Un sistema especial está limitado estrictamente a **encuadramiento, afiliación, cotización y recaudación**. Nunca puede alterar la acción protectora."></div>
+        </div>
+
+        <div class="test-question" data-q="11">
+            <div class="test-q-text"><span class="test-q-num">12</span>Bajo el Sistema Especial Agrario por cuenta ajena (Ley 28/2011), ¿quién es el sujeto responsable de ingresar la cotización en los periodos de inactividad?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) El último empresario para el que prestó servicios</div>
+                <div class="test-option" data-ans="1">B) El propio trabajador agrario ✓</div>
+                <div class="test-option" data-ans="0">C) El SEPE de forma conjunta con la mutua</div>
+                <div class="test-option" data-ans="0">D) Se suspende la obligación de cotizar y nadie ingresa</div>
+            </div>
+            <div class="test-feedback" data-ok="En el SE Agrario (cuenta ajena): Durante la **actividad** responde el empresario; durante la **inactividad** el responsable del ingreso es el propio **trabajador**."></div>
+        </div>
+
+        <div class="test-question" data-q="12">
+            <div class="test-q-text"><span class="test-q-num">13</span>¿Cuándo se considera que existe una situación de inactividad en el Sistema Especial Agrario por cuenta ajena?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Cuando no se realiza ninguna jornada en un año natural</div>
+                <div class="test-option" data-ans="1">B) Cuando las jornadas reales del mes sean inferiores al 76,67% de los días en alta ✓</div>
+                <div class="test-option" data-ans="0">C) Cuando el trabajador se encuentra en desempleo contributivo</div>
+                <div class="test-option" data-ans="0">D) Cuando las jornadas semanales bajan de 3 días</div>
+            </div>
+            <div class="test-feedback" data-ok="Regla técnica: Hay inactividad si las jornadas reales mensuales resultan **inferiores al 76,67%** de los días naturales en alta de ese mes."></div>
+        </div>
+
+        <div class="test-question" data-q="13">
+            <div class="test-q-text"><span class="test-q-num">14</span>¿Qué formulario oficial de la TGSS debe utilizarse para solicitar la inclusión o exclusión en el censo de inactividad del Sistema Especial Agrario?</div>
+            <div class="test-options">
+                <div class="test-option" data-ans="0">A) Modelo TA.1</div>
+                <div class="test-option" data-ans="0">B) Modelo TA.0521</div>
+                <div class="test-option" data-ans="1">C) Modelo TA.0161 ✓</div>
+                <div class="test-option" data-ans="0">D) Modelo TA.200</div>
+            </div>
+            <div class="test-feedback" data-ok="El censo agrario de cuenta ajena se gestiona específicamente a través del formulario **TA.0161**."></div>
+        </div>
+    </div>
+
+    <!-- Puntuación final del Mini-test -->
+    <div class="test-score" id="testScore">
+        <div class="score-num" id="scoreNum">0/14</div>
+        <div class="score-label">Respuestas correctas</div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <br>
+        <button class="btn-reiniciar" onclick="reiniciarTest()">🔄 Reiniciar test</button>
+    </div>
+
+    <!-- ======= 🃏 SECCIÓN DE PREGUNTA ALEATORIA (TARJETAS) ======= -->
+    <h2 id="seccion-tarjetas" style="color:#0d2b3e; border-bottom:3px solid #e74c3c; margin-top:50px;">🃏 Práctica con Tarjetas Aleatorias (Tema 2)</h2>
+    <p style="margin-bottom:16px; color:#5d6d7e; font-size:0.93rem;">Haz clic sobre la tarjeta para voltearla y ver la solución oficial. Pulsa el botón rojo para cambiar de pregunta.</p>
+
+    <!-- Tarjeta Interactiva -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+            <div class="flip-card-front" id="pregunta">
+                Cargando pregunta...
+            </div>
+            <div class="flip-card-back" id="respuesta">
+                Cargando respuesta...
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de Control -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <button id="btn-otra" onclick="cargarPreguntaAleatoria()">Otra pregunta</button>
+    </div>
+
+    <!-- ======= NAVEGACIÓN ENTRE TEMAS ======= -->
+    <div class="nav-bar">
+        <a href="tema1_fusionado_completo.html">⬅ Tema 1</a>
+        <a href="index.html" class="indice">🏠 Índice de Temas</a>
+        <a href="tema3_fusionado_completo.html">Tema 3 ➡</a>
+    </div>
+
+    <!-- ======= FOOTER ======= -->
+    <div class="footer">
+        Tema 2 — Campo de aplicación y composición del sistema · Seguridad Social · Convocatoria 2026<br>
+        Material unificado: esquema web + 4 transcripciones de video de MimaOpos<br>
+        <span style="color:#27ae60;">✅ Conexión automatizada con el archivo externo 'preguntas2.js' e inclusión de test interactiva habilitada</span>
+    </div>
+
+</div> <!-- /fin container -->
+
+<!-- ========================================== -->
+<!-- SCRIPTS Y CONTROLADORES JAVASCRIPT         -->
+<!-- ========================================== -->
+
+<!-- Enlace para cargar tu base de datos del Tema 2 -->
+<script src="preguntas2.js"></script>
+
+<script>
+    // --- LÓGICA DEL MINI-TEST INTERACTIVO ---
+    (function(){
+        var correct = 0, answered = 0, total = 14;
+        document.querySelectorAll('.test-question').forEach(function(q){
+            var opts = q.querySelectorAll('.test-option');
+            var fb = q.querySelector('.test-feedback');
+            var okText = fb.getAttribute('data-ok');
+            opts.forEach(function(opt){
+                opt.addEventListener('click', function(){
+                    if(q.dataset.done) return;
+                    q.dataset.done = '1';
+                    var isCorrect = opt.getAttribute('data-ans') === '1';
+                    opts.forEach(function(o){
+                        o.classList.add('disabled');
+                        if(o.getAttribute('data-ans') === '1') o.classList.add('correct');
+                    });
+                    if(!isCorrect) opt.classList.add('wrong');
+                    fb.innerHTML = (isCorrect ? '✅ ' : '❌ ') + okText;
+                    fb.classList.add('show', isCorrect ? 'ok' : 'ko');
+                    if(isCorrect) correct++;
+                    answered++;
+                    if(answered === total){
+                        var score = document.getElementById('testScore');
+                        document.getElementById('scoreNum').textContent = correct + '/' + total;
+                        var msg = correct >= 12 ? '🏆 ¡Excelente! Tienes claros los porcentajes de control efectivo, los límites del SETA y la inactividad de la Ley 28/2011.' : correct >= 9 ? '👍 Buen trabajo. Revisa los plazos de declaración de los hijos de autónomos al cumplir los 30 años.' : correct >= 6 ? '⚠️ Aprobado. Conviene repasar las limitaciones de los Sistemas Especiales (acción protectora).' : '🔁 Necesitas repasar el Tema 2, concéntrate en los requisitos agrarios y las presunciones de control.';
+                        document.getElementById('scoreMsg').textContent = msg;
+                        score.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        window.reiniciarTest = function(){
+            document.querySelectorAll('.test-question').forEach(function(q){
+                delete q.dataset.done;
+                q.querySelectorAll('.test-option').forEach(function(o){ o.classList.remove('correct','wrong','disabled'); });
+                var fb = q.querySelector('.test-feedback');
+                fb.classList.remove('show','ok','ko');
+            });
+            correct = 0; answered = 0;
+            document.getElementById('testScore').style.display = 'none';
+            window.scrollTo({top: document.getElementById('minitest').offsetTop - 20, behavior:'smooth'});
+        };
+    })();
+
+    // --- LÓGICA DE LAS TARJETAS ALEATORIAS ---
+    function cargarPreguntaAleatoria() {
+        if (typeof preguntas === 'undefined' || preguntas.length === 0) {
+            document.getElementById("pregunta").innerHTML = "<span style='color:#e74c3c;'>⚠️ Archivo 'preguntas2.js' no detectado o vacío.</span><br><br>Crea el archivo JS en esta misma carpeta para activar las tarjetas.";
+            document.getElementById("respuesta").innerText = "No se pudieron cargar las soluciones.";
+            return;
+        }
+
+        const random = Math.floor(Math.random() * preguntas.length);
+        document.getElementById("pregunta").innerText = preguntas[random].pregunta;
+        document.getElementById("respuesta").innerText = preguntas[random].respuesta;
+
+        // Devuelve la tarjeta al frente si estaba volteada
+        const card = document.querySelector('.flip-card');
+        card.classList.remove('flipped');
+        
+        // Efecto visual instantáneo verde en el botón
+        const btn = document.getElementById("btn-otra");
+        btn.classList.add("verde");
+        setTimeout(() => { btn.classList.remove("verde"); }, 400);
+    }
+
+    // Disparar la primera tarjeta automáticamente al iniciar el archivo
+    window.addEventListener('DOMContentLoaded', () => {
+        cargarPreguntaAleatoria();
+    });
+</script>
+
+</body>
+</html>
